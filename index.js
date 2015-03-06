@@ -1,3 +1,3 @@
 var aero = require("aero-cms");
 
-aero.start();
+aero.start("config.json");

@@ -1,0 +1,12 @@
+{
+    "siteName": "Nihongo Center",
+    "scripts": [
+        
+    ],
+    "styles": [
+        "base"
+    ],
+    "pages": [
+        "login"
+    ]
+}
