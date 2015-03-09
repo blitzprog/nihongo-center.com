@@ -3,7 +3,7 @@
     "repository": "blitzprog/nihongo-center.com",
     "version": "0.0.1",
     "dependencies": {
-        "aero-cms": "*"
+        "aero": "*"
     },
     "author": {
         "name": "Eduard Urbach",
