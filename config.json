@@ -1,5 +1,5 @@
 {
-    "siteName": "Nihongo Center",
+    "siteName": "Nihongo Center - Students",
     "scripts": [
         
     ],
@@ -8,7 +8,8 @@
         "layout"
     ],
     "pages": [
-        "login"
+        "login",
+        "students"
     ],
     "fonts": [
         "Ubuntu",
