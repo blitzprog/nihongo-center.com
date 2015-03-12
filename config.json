@@ -4,10 +4,15 @@
         
     ],
     "styles": [
-        "base"
+        "base",
+        "layout"
     ],
     "pages": [
         "login"
+    ],
+    "fonts": [
+        "Ubuntu",
+        "Ubuntu:bold"
     ],
     "port": 3002
 }
