@@ -1,14 +1,23 @@
-#container
+container-element()
+    float left
     width 100%
+
+#container
+#header-container
+#content-container
+    container-element()
     
-#header
+#header, #content
     float left
     padding 1em
     width "calc(100% - %s)" % (@padding * 2)
     
-#navigation
+#title
     float left
-    width 100%
+    margin-bottom 0.25em
+    
+#navigation
+    container-element()
     
     header
         display none
@@ -20,3 +29,6 @@
 
 .navigation-button
     display inline-block
+    
+.navigation-link
+    float left
