@@ -6,6 +6,6 @@ if locals.post
         #password= post.password
 
 form(action="/", method="post")
-    input(type="text", placeholder="E-Mail")
-    input(type="password", placeholder="Password")
+    input(name="email", type="text", placeholder="E-Mail")
+    input(name="password", type="password", placeholder="Password")
     input(type="submit")
