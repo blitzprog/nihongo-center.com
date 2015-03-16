@@ -1,11 +1,11 @@
 h2 Login
 
-if locals.post
+if email
     #data
-        #email= post.email
-        #password= post.password
-
-form(action="/", method="post")
-    input(name="email", type="text", placeholder="E-Mail")
-    input(name="password", type="password", placeholder="Password")
-    input(type="submit")
+        #email= email
+        #password= password
+else
+    form(action="/", method="post")
+        input(name="email", type="text", placeholder="E-Mail")
+        input(name="password", type="password", placeholder="Password")
+        input(type="submit")
