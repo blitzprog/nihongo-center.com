@@ -1,12 +1,19 @@
+mainColor = rgb(108, 169, 44)
+textColor = rgb(16, 16, 16)
+
 html, body, *
     font-family "Ubuntu"
+
+body
+    color textColor
+    background-color lighten(mainColor, 90%)
 
 #title
     font-size 2em
 
 a
     text-decoration none
-    color #6ca92c
+    color mainColor
     
     :hover
-        color lighten(#6ca92c, 30%)
+        color lighten(mainColor, 30%)
