@@ -3,7 +3,9 @@
     "repository": "blitzprog/nihongo-center.com",
     "version": "0.0.1",
     "dependencies": {
-        "aero": "*"
+        "aero": "*",
+        "passport": "*",
+        "passport-google-openidconnect": "*"
     },
     "author": {
         "name": "Eduard Urbach",

@@ -1,8 +1,6 @@
-h2 Login
-
 if email
     #data
         #email= email
         #password= password
 else
-    include form.jade
+    a(href="/auth/google") Sign In with Google
