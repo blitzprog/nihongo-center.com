@@ -7,8 +7,12 @@ var login = require("./login");
 login(aero, {
 	clientID: "142269503991-oj65drmhdreneseg4v9j25l4t4lvocrr.apps.googleusercontent.com",
 	clientSecret: "QgM9AITTtrTRPA_Wb8MCVZWR",	// Well this shouldn't be on git...
-	callbackURL: "http://localhost:3002/auth/google/callback"
-});
+	callbackURL: "http://localhost:3002/auth/google/callback",
+	userInfoURL: "https://www.googleapis.com/plus/v1/people/me"
+}, [
+	"email",
+	"profile"
+]);
 
 // Start Aero
 aero.start();

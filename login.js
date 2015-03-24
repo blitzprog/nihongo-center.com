@@ -4,17 +4,17 @@ var passport = require("passport");
 var StrategyGoogle = require("passport-google-openidconnect").Strategy;
 //var nodiak = require("nodiak");
 
-module.exports = function(aero, googleConfig) {
+module.exports = function(aero, googleConfig, scopes) {
 	aero.events.on("initialized", function() {
 		passport.use(new StrategyGoogle(
             googleConfig,
 			function(iss, sub, profile, accessToken, refreshToken, done) {
 				var user = {
-					id: profile.id,
+					email: profile._json.emails[0].value,
 					displayName: profile.displayName
 				};
 				
-				console.log("User logged in: " + user.displayName);
+				console.log("User logged in: " + user.email);
 				done(null, user);
 			}
 		));
@@ -35,7 +35,9 @@ module.exports = function(aero, googleConfig) {
 		// Redirect the user to Google for authentication.  When complete, Google
 		// will redirect the user back to the application at
 		//     /auth/google/return
-		aero.app.get("/auth/google", passport.authenticate("google-openidconnect"));
+		aero.app.get("/auth/google", passport.authenticate("google-openidconnect", {
+            scope: scopes
+        }));
 
 		// Google will redirect the user to this URL after authentication.  Finish
 		// the process by verifying the assertion.  If valid, the user will be
