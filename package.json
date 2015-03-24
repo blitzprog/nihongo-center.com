@@ -5,7 +5,8 @@
     "dependencies": {
         "aero": "*",
         "passport": "*",
-        "passport-google-openidconnect": "*"
+        "passport-google-openidconnect": "*",
+        "nodiak" : "*"
     },
     "author": {
         "name": "Eduard Urbach",
