@@ -26,9 +26,11 @@ module.exports = function(aero, googleConfig, scopes) {
 			}
 		));
 		
+		// Accounts
+		var userBucket = riak.bucket("Accounts");
+		
 		// Serializer
 		passport.serializeUser(function(account, done) {
-			var userBucket = riak.bucket("Accounts");
 			var userObject = userBucket.objects.new(account.email, account);
 			
 			// Save account in database
@@ -46,9 +48,6 @@ module.exports = function(aero, googleConfig, scopes) {
 		
 		// Deserializer
 		passport.deserializeUser(function(email, done) {
-			console.log("Deserialize: " + email);
-            
-			var userBucket = riak.bucket("Accounts");
 			userBucket.objects.get(email, function(err, obj) {
 				if(err) {
 					console.error(err);
@@ -57,7 +56,6 @@ module.exports = function(aero, googleConfig, scopes) {
 				
 				var account = obj.data;
 				
-				console.log(account);
 				done(null, account);
 			});
 		});

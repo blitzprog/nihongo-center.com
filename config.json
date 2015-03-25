@@ -9,8 +9,9 @@
     ],
     "pages": [
         "dashboard",
-        "login",
-        "students"
+        "profile",
+        "students",
+        "login"
     ],
     "fonts": [
         "Ubuntu",

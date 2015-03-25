@@ -1,9 +1,9 @@
 "use strict";
 
 module.exports = {
-    get: function(data, user) {
+    get: function(request) {
         return {
-            user: user
+            user: request.user
         };
     }
 };

@@ -1,0 +1,9 @@
+if user
+    h2= user.name.givenName + " " + user.name.familyName
+    
+    if user.gender == "male"
+        p= "♂ " + user.age
+    else if user.gender == "female"
+        p= "♀ " + user.age
+else
+    p Not logged in!
