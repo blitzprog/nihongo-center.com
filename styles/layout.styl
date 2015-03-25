@@ -9,10 +9,18 @@ h2
 form
     container-element()
     
+space = 1em
+
 #header, #content
     float left
-    padding 1em
+    padding space
     width "calc(100% - %s)" % (@padding * 2)
+    
+#header
+    padding-bottom space * 0.5
+    
+#content
+    padding-top space * 0.5
     
 #title
     float left

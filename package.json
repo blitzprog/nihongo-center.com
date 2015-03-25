@@ -6,7 +6,8 @@
         "aero": "*",
         "passport": "*",
         "passport-google-openidconnect": "*",
-        "nodiak" : "*"
+        "nodiak": "*",
+        "express-session": "*"
     },
     "author": {
         "name": "Eduard Urbach",
