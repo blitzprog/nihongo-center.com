@@ -2,9 +2,6 @@ h2 Dashboard
 
 if user
     p Welcome 
-        span= user.name.givenName
-        | 
-        span= user.name.familyName
-        | !
+        span= user.displayName + "!"
 else
     p Not logged in!

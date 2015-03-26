@@ -55,6 +55,7 @@ module.exports = function(aero, googleConfig, scopes) {
 				}
 				
 				var account = obj.data;
+				account.displayName = account.name.givenName + " " + account.name.familyName;
 				
 				done(null, account);
 			});
