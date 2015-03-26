@@ -1,9 +1,38 @@
+mixin input(mLabel, mId, mValue, disabled)
+	label(for=mId)= mLabel
+	if disabled
+		input(type="text", name=mId, id=mId, value=mValue, disabled)
+	else
+		input(type="text", name=mId, id=mId, value=mValue)
+
+mixin date(mLabel, mId, mValue)
+	label(for=mId)= mLabel
+	input(type="date", name=mId, id=mId, value=mValue)
+
+mixin select(mLabel, mId, mValue, mOptions)
+	label(for=mId)= mLabel
+	select(name=mId, id=mId, value=mValue)
+		each option in mOptions
+			option(value=option.value)= option.name
+
+mixin inputAutoComplete(mLabel, mId, mValue, mOptions)
+	label(for=mId)= mLabel
+	input(type="text", name=mId, id=mId, list=mId + "-datalist", value=mValue)
+	datalist(id=mId + "-datalist")
+		each val in mOptions
+			option(value=val)
+
 if user
-    h2= user.displayName
-    
-    if user.gender == "male"
-        p= "♂ " + user.age
-    else if user.gender == "female"
-        p= "♀ " + user.age
+	h2= displayName
+	
+	+input("Given name:", "givenName", user.givenName)
+	+input("Family name:", "familyName", user.familyName)
+	+select("Gender:", "gender", user.gender, [{name: "♂ Male", value: "male"}, {name: "♀ Female", value: "female"}])
+	+date("Birthday:", "birthday", user.birthday)
+	+input("Age:", "age", age, true)
+	+input("Occupation:", "occupation", user.occupation)
+	
+	script
+		include save-to-database.js
 else
-    p Not logged in!
+	p Not logged in!

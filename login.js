@@ -7,6 +7,9 @@ var session = require("express-session");
 
 module.exports = function(aero, googleConfig, scopes) {
 	aero.events.on("initialized", function() {
+		// Accounts
+		var userBucket = riak.bucket("Accounts");
+		
 		passport.use(new StrategyGoogle(
 			googleConfig,
 			function(iss, sub, profile, accessToken, refreshToken, done) {
@@ -14,20 +17,23 @@ module.exports = function(aero, googleConfig, scopes) {
 				
 				var account = {
 					email: json.emails[0].value,
-					name: json.name,
+					givenName: json.name.givenName,
+					familyName: json.name.familyName,
 					gender: json.gender,
 					birthday: json.birthday,
 					occupation: json.occupation,
 					language: json.language
 				};
 				
+				// TODO: ...
+				/*userBucket.get("", function() {
+					
+				});*/
+				
 				console.log("User logged in: " + account.email);
 				done(null, account);
 			}
 		));
-		
-		// Accounts
-		var userBucket = riak.bucket("Accounts");
 		
 		// Serializer
 		passport.serializeUser(function(account, done) {
@@ -54,10 +60,7 @@ module.exports = function(aero, googleConfig, scopes) {
 					return;
 				}
 				
-				var account = obj.data;
-				account.displayName = account.name.givenName + " " + account.name.familyName;
-				
-				done(null, account);
+				done(null, obj.data);
 			});
 		});
 		

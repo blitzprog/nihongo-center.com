@@ -1,21 +1,21 @@
 {
-    "siteName": "Nihongo Center",
-    "scripts": [
-        
-    ],
-    "styles": [
-        "base",
-        "layout"
-    ],
-    "pages": [
-        "dashboard",
-        "profile",
-        "students",
-        "login"
-    ],
-    "fonts": [
-        "Ubuntu",
-        "Ubuntu:bold"
-    ],
-    "port": 3002
+	"siteName": "My Nihongo Center",
+	"scripts": [
+		
+	],
+	"styles": [
+		"base",
+		"layout"
+	],
+	"pages": [
+		"dashboard",
+		"profile",
+		"students",
+		"login"
+	],
+	"fonts": [
+		"Ubuntu",
+		"Ubuntu:bold"
+	],
+	"port": 3002
 }

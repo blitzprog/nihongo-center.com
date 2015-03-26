@@ -1,9 +1,15 @@
 "use strict";
 
 module.exports = {
-    get: function(request) {
-        return {
-            user: request.user
-        };
-    }
+	get: function(request) {
+		var user = request.user;
+		
+		if(typeof user === "undefined")
+			return undefined;
+		
+		return {
+			user: user,
+			displayName: user.givenName + " " + user.familyName
+		};
+	}
 };

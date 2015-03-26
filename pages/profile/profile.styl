@@ -1,0 +1,18 @@
+label
+	float left
+	padding 0.5em
+	width "calc(100% - %s)" % (@padding * 2)
+
+input
+select
+	float left
+	padding 0.5em
+	width "calc(100% - %s)" % (@padding * 2)
+	font-size 1em
+	border 1px solid rgba(0, 0, 0, 0.25)
+	border-radius 3px
+	background rgba(255, 255, 255, 1)
+	
+input:focus
+select:focus
+	border 1px solid red
