@@ -1,44 +1,43 @@
-container-element()
-    float left
-    width 100%
+@require "styles/config.styl"
 
 #container
 #header-container
 #content-container
 h2
 form
-    container-element()
-    
+	container-element()
+	
 space = 1em
 
 #header, #content
-    float left
-    padding space
-    width "calc(100% - %s)" % (@padding * 2)
-    
+	float left
+	padding space
+	width "calc(100% - %s)" % (@padding * 2)
+	
 #header
-    padding-bottom space * 0.5
-    
+	padding-bottom space * 0.5
+	border-bottom 1px dashed mainColor
+	
 #content
-    padding-top space * 0.5
-    
+	padding-top space * 0.5
+	
 #title
-    float left
-    margin-bottom 0.25em
-    
+	float left
+	margin-bottom 0.25em
+	
 #navigation
-    container-element()
-    
-    header
-        display none
+	container-element()
+	
+	header
+		display none
 
 .navigation-button
-    float left
-    font-size 1.2em
-    padding 0.25em 0.5em
+	float left
+	font-size 1.2em
+	padding 0.25em 0.5em
 
 .navigation-button
-    display inline-block
-    
+	display inline-block
+	
 .navigation-link
-    float left
+	float left

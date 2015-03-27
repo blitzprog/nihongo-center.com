@@ -1,13 +1,13 @@
 mixin input(mLabel, mId, mValue, disabled)
 	label(for=mId)= mLabel
 	if disabled
-		input(type="text", name=mId, id=mId, value=mValue, disabled)
+		input(type="text", name=mId, id=mId, value=mValue, disabled).text-input
 	else
-		input(type="text", name=mId, id=mId, value=mValue)
+		input(type="text", name=mId, id=mId, value=mValue).text-input
 
 mixin date(mLabel, mId, mValue)
 	label(for=mId)= mLabel
-	input(type="date", name=mId, id=mId, value=mValue)
+	input(type="date", name=mId, id=mId, value=mValue).date-input
 
 mixin select(mLabel, mId, mValue, mOptions)
 	label(for=mId)= mLabel
@@ -20,7 +20,7 @@ mixin select(mLabel, mId, mValue, mOptions)
 
 mixin inputAutoComplete(mLabel, mId, mValue, mOptions)
 	label(for=mId)= mLabel
-	input(type="text", name=mId, id=mId, list=mId + "-datalist", value=mValue)
+	input(type="text", name=mId, id=mId, list=mId + "-datalist", value=mValue).text-input
 	datalist(id=mId + "-datalist")
 		each val in mOptions
 			option(value=val)
@@ -36,6 +36,6 @@ if user
 	+input("Occupation:", "occupation", user.occupation)
 	
 	script
-		include save-to-database.js
+		include profile-save.js
 else
 	p Not logged in!

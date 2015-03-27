@@ -1,17 +1,18 @@
 {
-    "name": "nihongo-center.com",
-    "repository": "blitzprog/nihongo-center.com",
-    "version": "0.0.1",
-    "dependencies": {
-        "aero": "*",
-        "passport": "*",
-        "passport-google-openidconnect": "*",
-        "nodiak": "*",
-        "express-session": "*"
-    },
-    "author": {
-        "name": "Eduard Urbach",
-        "email": "e.urbach@gmail.com",
-        "url": "http://blitzprog.org"
-    }
+	"name": "nihongo-center.com",
+	"repository": "blitzprog/nihongo-center.com",
+	"version": "0.0.1",
+	"dependencies": {
+		"aero": "*",
+		"passport": "*",
+		"passport-google-openidconnect": "*",
+		"nodiak": "*",
+		"express-session": "*",
+		"string": "*"
+	},
+	"author": {
+		"name": "Eduard Urbach",
+		"email": "e.urbach@gmail.com",
+		"url": "http://blitzprog.org"
+	}
 }

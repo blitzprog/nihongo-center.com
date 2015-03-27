@@ -1,25 +1,35 @@
-mainColor = rgb(108, 169, 44)
-textColor = rgb(16, 16, 16)
+@require "styles/config.styl"
 
 html, body, *
-    font-family "Ubuntu"
+	font-family "Ubuntu"
 
 body
-    color textColor
-    background-color lighten(mainColor, 90%)
+	color textColor
+	background-color lighten(mainColor, 90%)
 
 #title
-    font-size 2em
+	font-size 2em
 
 a
-    text-decoration none
-    color mainColor
-    
-    :hover
-        color lighten(mainColor, 30%)
+	text-decoration none
+	color mainColor
+	
+	:hover
+		color lighten(mainColor, 30%)
 
 h2
-    float left
-    width 100%
-    font-size 1.5em
-    line-height 1.5em
+h3
+	container-element()
+	padding 0.5em 0
+
+h2
+	:first-child
+		padding 0
+	
+h2
+	font-size 1.5em
+	line-height 1.5em
+	
+h3
+	font-size 1.3em
+	line-height 1.3em

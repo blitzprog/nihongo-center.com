@@ -1,5 +1,7 @@
 "use strict";
 
+var S = require("string");
+
 module.exports = {
 	get: function(request) {
 		var user = request.user;
@@ -10,12 +12,8 @@ module.exports = {
 		return {
 			user: user,
 			displayName: user.givenName + " " + user.familyName,
-			age: this.getAgeByBirthday(user.birthday)
+			age: this.getAge(new Date(user.birthday))
 		};
-	},
-	
-	getAgeByBirthday: function(birthday) {
-		return this.getAge(new Date(birthday));
 	},
 	
 	getAge: function(d1, d2) {
@@ -28,6 +26,10 @@ module.exports = {
 	post: function(request) {
 		var user = request.user;
 		user[request.body.key] = request.body.value;
+		
+		// Capitalize
+		user.givenName = S(user.givenName).capitalize().s;
+		user.familyName = S(user.familyName).capitalize().s;
 		
 		// Render
 		var response = this.get(request);
