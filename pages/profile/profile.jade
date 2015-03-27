@@ -11,9 +11,12 @@ mixin date(mLabel, mId, mValue)
 
 mixin select(mLabel, mId, mValue, mOptions)
 	label(for=mId)= mLabel
-	select(name=mId, id=mId, value=mValue)
+	select(name=mId, id=mId)
 		each option in mOptions
-			option(value=option.value)= option.name
+			if option.value === mValue
+				option(value=option.value, selected)= option.name
+			else
+				option(value=option.value)= option.name
 
 mixin inputAutoComplete(mLabel, mId, mValue, mOptions)
 	label(for=mId)= mLabel

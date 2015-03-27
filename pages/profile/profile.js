@@ -26,17 +26,11 @@ module.exports = {
 	
 	// Post: Save to database
 	post: function(request) {
-		console.log(request.body);
-		
 		var user = request.user;
 		user[request.body.key] = request.body.value;
 		
 		// Render
 		var response = this.get(request);
-		
-		// Remove cached data from the DB
-		delete user.displayName;
-		delete user.age;
 		
 		// Connect
 		var riak = require("nodiak").getClient();

@@ -14,24 +14,31 @@ module.exports = function(aero, googleConfig, scopes) {
 			googleConfig,
 			function(iss, sub, profile, accessToken, refreshToken, done) {
 				var json = profile._json;
+				var email = json.emails[0].value;
 				
-				var account = {
-					email: json.emails[0].value,
-					givenName: json.name.givenName,
-					familyName: json.name.familyName,
-					gender: json.gender,
-					birthday: json.birthday,
-					occupation: json.occupation,
-					language: json.language
-				};
-				
-				// TODO: ...
-				/*userBucket.get("", function() {
+				// Does the user already exist?
+				userBucket.objects.get(email, function(err, obj) {
+					if(err) {
+						// Create new account
+						var account = {
+							email: email,
+							givenName: json.name.givenName,
+							familyName: json.name.familyName,
+							gender: json.gender,
+							birthday: json.birthday,
+							occupation: json.occupation,
+							language: json.language
+						};
+						
+						console.log("New user logged in: " + account.email);
+						done(null, account);
+						
+						return;
+					}
 					
-				});*/
-				
-				console.log("User logged in: " + account.email);
-				done(null, account);
+					// Log in existing account
+					done(null, obj.data);
+				});
 			}
 		));
 		
