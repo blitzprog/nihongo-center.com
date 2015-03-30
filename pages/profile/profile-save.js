@@ -10,6 +10,8 @@ var onContentLoaded = function() {
 			key: key,
 			value: value
 		}, function(response) {
+			console.log("Saved " + key);
+			
 			var focusedElementId = $(document.activeElement).attr("id");
 			
 			aero.$content.html(response);
@@ -26,6 +28,7 @@ var onContentLoaded = function() {
 	
 	$(".text-input").change(save);
 	$(".date-input").blur(save);
+	$(".tel-input").change(save);
 	$("select").change(save);
 };
 

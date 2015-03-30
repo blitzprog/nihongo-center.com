@@ -28,8 +28,15 @@ module.exports = {
 		user[request.body.key] = request.body.value;
 		
 		// Capitalize
-		user.givenName = S(user.givenName).capitalize().s;
-		user.familyName = S(user.familyName).capitalize().s;
+		[
+			"givenName",
+			"familyName",
+			"nationality",
+			"birthPlace"
+		].forEach(function(field) {
+			if(user[field])
+				user[field] = S(user[field]).capitalize().s;
+		});
 		
 		// Render
 		var response = this.get(request);

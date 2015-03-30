@@ -1,40 +1,66 @@
-mixin input(mLabel, mId, mValue, disabled)
-	label(for=mId)= mLabel
-	if disabled
-		input(type="text", name=mId, id=mId, value=mValue, disabled).text-input
-	else
-		input(type="text", name=mId, id=mId, value=mValue).text-input
+mixin input(mLabel, mId, mValue, mPlaceHolder, disabled)
+	.field
+		label(for=mId)= mLabel
+		if disabled
+			input(type="text", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, disabled).text-input
+		else
+			input(type="text", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder).text-input
+
+mixin tel(mLabel, mId, mValue, mPlaceHolder)
+	.field
+		label(for=mId)= mLabel
+		input(type="tel", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder).tel-input
 
 mixin date(mLabel, mId, mValue)
-	label(for=mId)= mLabel
-	input(type="date", name=mId, id=mId, value=mValue).date-input
+	.field
+		label(for=mId)= mLabel
+		input(type="date", name=mId, id=mId, value=mValue).date-input
 
 mixin select(mLabel, mId, mValue, mOptions)
-	label(for=mId)= mLabel
-	select(name=mId, id=mId)
-		each option in mOptions
-			if option.value === mValue
-				option(value=option.value, selected)= option.name
-			else
-				option(value=option.value)= option.name
+	.field
+		label(for=mId)= mLabel
+		select(name=mId, id=mId)
+			each option in mOptions
+				if option.value === mValue
+					option(value=option.value, selected)= option.name
+				else
+					option(value=option.value)= option.name
 
 mixin inputAutoComplete(mLabel, mId, mValue, mOptions)
-	label(for=mId)= mLabel
-	input(type="text", name=mId, id=mId, list=mId + "-datalist", value=mValue).text-input
-	datalist(id=mId + "-datalist")
-		each val in mOptions
-			option(value=val)
+	.field
+		label(for=mId)= mLabel
+		input(type="text", name=mId, id=mId, list=mId + "-datalist", value=mValue).text-input
+		datalist(id=mId + "-datalist")
+			each val in mOptions
+				option(value=val)
 
 if user
 	h2= displayName
 	
-	+input("Given name:", "givenName", user.givenName)
-	+input("Family name:", "familyName", user.familyName)
-	+select("Gender:", "gender", user.gender, [{name: "♂ Male", value: "male"}, {name: "♀ Female", value: "female"}])
-	+date("Birthday:", "birthday", user.birthday)
-	+input("Age:", "age", age, true)
-	+input("Occupation:", "occupation", user.occupation)
-	
+	.profile
+		+input("Given name:", "givenName", user.givenName)
+		+input("Family name:", "familyName", user.familyName)
+		
+		+select("Gender:", "gender", user.gender, [{name: "♂ Male", value: "male"}, {name: "♀ Female", value: "female"}])
+		+select("Marital status:", "maritalStatus", user.maritalStatus, [{name: "Please choose:", value: ""}, {name: "Single", value: "single"}, {name: "Married", value: "married"}])
+		
+		+date("Birthday:", "birthday", user.birthday)
+		+input("Age:", "age", age, "", true)
+		
+		+input("Birthplace:", "birthPlace", user.birthPlace)
+		+input("Nationality:", "nationality", user.nationality)
+		
+		+select("Start year:", "startYear", user.startYear, [{name: new Date().getFullYear(), value: "2015"}, {name: new Date().getFullYear() + 1, value: "2016"}])
+		+select("Start month:", "startMonth", user.startMonth, [{name: "Please choose:", value: ""}, {name: "April", value: "04"}, {name: "June", value: "06"}, {name: "October", value: "10"}, {name: "January", value: "01"}])
+		
+		+select("Course:", "course", user.course, [{name: "Please choose:", value: ""}, {name: "Regular | 10 weeks", value: "10 weeks"}, {name: "Regular | 20 weeks", value: "20 weeks"}, {name: "Intensive | 6 months", value: "6 months"}, {name: "Intensive | 1 year", value: "1 year"}, {name: "Intensive | 1.5 years", value: "1.5 years"}, {name: "Intensive | 2 years", value: "2 years"}])
+		+input("Occupation:", "occupation", user.occupation)
+		
+		+input("Home address:", "address", user.address, "🏠")
+		+input("Address in Japan:", "addressAbroad", user.addressAbroad, "🏠 Only if you have one.")
+		
+		+tel("Telephone:", "telephone", user.telephone, "☎")
+		+tel("Telephone in Japan:", "telephoneAbroad", user.telephoneAbroad, "☎ Only if you have one.")
 	script
 		include profile-save.js
 else

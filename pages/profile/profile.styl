@@ -1,7 +1,21 @@
-label
+.profile
+	width 100%
+	display flex
+	flex-direction row
+	flex-wrap wrap
+
+.field
 	float left
 	padding 0.5em
-	width "calc(100% - %s)" % (@padding * 2)
+	width "calc(50% - %s)" % (@padding * 2)
+
+label
+	float left
+	padding-left 0em
+	padding-right 0em
+	padding-top 0.5em
+	padding-bottom 0.5em
+	width "calc(100% - %s)" % (@padding-left * 2)
 
 input
 select
