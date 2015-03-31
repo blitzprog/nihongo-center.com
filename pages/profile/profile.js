@@ -1,8 +1,19 @@
 "use strict";
 
 var S = require("string");
+var fs = require("fs");
+
+// Load file as array
+var loadFileAsArray = function(filePath) {
+	return fs.readFileSync(filePath).toString().split("\n");
+};
 
 module.exports = {
+	// List of nationalities
+	nationalities: loadFileAsArray("pages/profile/nationalities.txt"),
+	cities: loadFileAsArray("pages/profile/cities.txt"),
+	
+	// Get
 	get: function(request) {
 		var user = request.user;
 		
@@ -12,10 +23,13 @@ module.exports = {
 		return {
 			user: user,
 			displayName: user.givenName + " " + user.familyName,
-			age: this.getAge(new Date(user.birthday))
+			age: this.getAge(new Date(user.birthday)),
+			nationalities: this.nationalities,
+			cities: this.cities
 		};
 	},
 	
+	// Get age
 	getAge: function(d1, d2) {
 		d2 = d2 || new Date();
 		var diff = d2.getTime() - d1.getTime();

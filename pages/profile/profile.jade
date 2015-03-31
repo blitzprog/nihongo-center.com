@@ -47,8 +47,8 @@ if user
 		+date("Birthday:", "birthday", user.birthday)
 		+input("Age:", "age", age, "", true)
 		
-		+input("Birthplace:", "birthPlace", user.birthPlace)
-		+input("Nationality:", "nationality", user.nationality)
+		+inputAutoComplete("Birthplace:", "birthPlace", user.birthPlace, cities)
+		+inputAutoComplete("Nationality:", "nationality", user.nationality, nationalities)
 		
 		+select("Start year:", "startYear", user.startYear, [{name: new Date().getFullYear(), value: "2015"}, {name: new Date().getFullYear() + 1, value: "2016"}])
 		+select("Start month:", "startMonth", user.startMonth, [{name: "Please choose:", value: ""}, {name: "April", value: "04"}, {name: "June", value: "06"}, {name: "October", value: "10"}, {name: "January", value: "01"}])
