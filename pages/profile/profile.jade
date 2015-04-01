@@ -19,12 +19,17 @@ mixin date(mLabel, mId, mValue)
 		label(for=mId)= mLabel
 		input(type="date", name=mId, id=mId, value=mValue).date-input
 
+mixin month(mLabel, mId, mValue)
+	.field
+		label(for=mId)= mLabel
+		input(type="month", name=mId, id=mId, value=mValue).date-input
+
 mixin select(mLabel, mId, mValue, mOptions)
 	.field
 		label(for=mId)= mLabel
 		select(name=mId, id=mId)
 			each option in mOptions
-				if option.value === mValue
+				if option.value === mValue || (typeof mValue === "undefined" && option.value === "")
 					if option.disabled === true
 						option(value=option.value, disabled, selected)= option.name
 					else
@@ -67,16 +72,30 @@ if user
 		
 		+tel("Telephone:", "telephone", user.telephone, "☎")
 		+tel("Telephone in Japan:", "telephoneAbroad", user.telephoneAbroad, "☎ Only if you have one.")
+	
+	h2 Course
+	.profile
+		+select("Course:", "course", user.course, courseOptions)
+		+empty()
 		
 		+select("Start year:", "startYear", user.startYear, startYearOptions)
 		+select("Start month:", "startMonth", user.startMonth, startMonthOptions)
 		
-		+select("Course:", "course", user.course, courseOptions)
+	h2 Education
+	.profile
 		+select("Education:", "education", user.education, educationOptions)
+		+input("Name of educational institution:", "educationalInstitutionName", user.educationalInstitutionName, "School or university name")
 		
-		+input("Passport number:", "passportId", user.passportId)
+		+month("Graduation date:", "graduationDate", user.graduationDate)
+		
+	h2 Passport
+	.profile
+		+input("Passport number:", "passportId", user.passportId, "e.g. TK1234567")
+		+empty()
+		
 		+date("Passport date of issue:", "passportDateOfIssue", user.passportDateOfIssue)
 		+date("Passport date of expiration:", "passportDateOfExpiration", user.passportDateOfExpiration)
+	
 	script
 		include profile-save.js
 else

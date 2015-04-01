@@ -1,6 +1,10 @@
 "use strict";
 
+var fs = require("fs");
+
 module.exports = {
+	courseToTitle: JSON.parse(fs.readFileSync("data/courses.json", "utf8")),
+	
 	get: function(request) {
 		var user = request.user;
 		
@@ -27,7 +31,8 @@ module.exports = {
 		return {
 			user: user,
 			displayName: user.givenName + " " + user.familyName,
-			profileCompleted: progress
+			profileCompleted: progress,
+			courseToTitle: this.courseToTitle
 		};
 	}
 };

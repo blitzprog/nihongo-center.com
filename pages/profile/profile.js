@@ -5,13 +5,14 @@ var fs = require("fs");
 
 // Load file as array
 var loadFileAsArray = function(filePath) {
-	return fs.readFileSync(filePath).toString().split("\n");
+	return fs.readFileSync(filePath, "utf8").toString().split("\n");
 };
 
 module.exports = {
 	// List of nationalities
 	nationalities: loadFileAsArray("pages/profile/nationalities.txt"),
 	cities: loadFileAsArray("pages/profile/cities.txt"),
+	courseToTitle: JSON.parse(fs.readFileSync("data/courses.json", "utf8")),
 	
 	// Get
 	get: function(request) {
@@ -46,8 +47,8 @@ module.exports = {
 				{name: "Other", value: "other"}
 			],
 			startYearOptions: [
-				{name: currentYear, value: currentYear},
-				{name: currentYear + 1, value: currentYear + 1}
+				{name: currentYear, value: currentYear.toString()},
+				{name: currentYear + 1, value: (currentYear + 1).toString()}
 			],
 			startMonthOptions: [
 				{name: "Please choose:", value: "", disabled: true},
@@ -57,14 +58,13 @@ module.exports = {
 				{name: "January", value: "01"}
 			],
 			courseOptions: [
-				{name: "Please choose:", value: "", disabled: true},
-				{name: "Regular | 10 weeks", value: "10 weeks"},
-				{name: "Regular | 20 weeks", value: "20 weeks"},
-				{name: "Intensive | 6 months", value: "6 months"},
-				{name: "Intensive | 1 year", value: "1 year"},
-				{name: "Intensive | 1.5 years", value: "1.5 years"},
-				{name: "Intensive | 2 years", value: "2 years"}
-			],
+				{name: "Please choose:", value: "", disabled: true}
+			].concat(Object.keys(this.courseToTitle).map(function(courseId) {
+				return {
+					name: this.courseToTitle[courseId],
+					value: courseId
+				};
+			}.bind(this))),
 			educationOptions: [
 				{name: "Please choose:", value: "", disabled: true},
 				{name: "Graduated", value: "graduated"},

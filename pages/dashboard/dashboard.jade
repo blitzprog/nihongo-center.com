@@ -6,5 +6,12 @@ if user
 		
 	h3 Profile
 	p= profileCompleted + "% completed"
+	
+	if user.startYear && user.startMonth
+		h3 Course
+		p
+			span Your course 
+			span.course-name= courseToTitle[user.course]
+			span= " will begin on " + user.startMonth + " " + user.startYear + "."
 else
 	p Not logged in!
