@@ -25,9 +25,15 @@ mixin select(mLabel, mId, mValue, mOptions)
 		select(name=mId, id=mId)
 			each option in mOptions
 				if option.value === mValue
-					option(value=option.value, selected)= option.name
+					if option.disabled === true
+						option(value=option.value, disabled, selected)= option.name
+					else
+						option(value=option.value, selected)= option.name
 				else
-					option(value=option.value)= option.name
+					if option.disabled === true
+						option(value=option.value, disabled)= option.name
+					else
+						option(value=option.value)= option.name
 
 mixin inputAutoComplete(mLabel, mId, mValue, mOptions)
 	.field
@@ -44,8 +50,8 @@ if user
 		+input("Given name:", "givenName", user.givenName)
 		+input("Family name:", "familyName", user.familyName)
 		
-		+select("Gender:", "gender", user.gender, [{name: "♂ Male", value: "male"}, {name: "♀ Female", value: "female"}])
-		+select("Marital status:", "maritalStatus", user.maritalStatus, [{name: "Please choose:", value: ""}, {name: "Single", value: "single"}, {name: "Married", value: "married"}])
+		+select("Gender:", "gender", user.gender, genderOptions)
+		+select("Marital status:", "maritalStatus", user.maritalStatus, maritalStatusOptions)
 		
 		+date("Birthday:", "birthday", user.birthday)
 		+input("Age:", "age", age, "", true)
@@ -54,7 +60,7 @@ if user
 		+inputAutoComplete("Nationality:", "nationality", user.nationality, nationalities)
 		
 		+input("Occupation:", "occupation", user.occupation)
-		+select("Occupation type:", "occupationType", user.occupationType, [{name: "Please choose:", value: ""}, {name: "Student", value: "student"}, {name: "Worker", value: "worker"}, {name: "Preparing to study in Japan", value: "preparingToStudy"}, {name: "Other", value: "other"}])
+		+select("Occupation type:", "occupationType", user.occupationType, occupationTypeOptions)
 		
 		+input("Home address:", "address", user.address, "🏠")
 		+input("Address in Japan:", "addressAbroad", user.addressAbroad, "🏠 Only if you have one.")
@@ -62,10 +68,11 @@ if user
 		+tel("Telephone:", "telephone", user.telephone, "☎")
 		+tel("Telephone in Japan:", "telephoneAbroad", user.telephoneAbroad, "☎ Only if you have one.")
 		
-		+select("Start year:", "startYear", user.startYear, [{name: new Date().getFullYear(), value: "2015"}, {name: new Date().getFullYear() + 1, value: "2016"}])
-		+select("Start month:", "startMonth", user.startMonth, [{name: "Please choose:", value: ""}, {name: "April", value: "04"}, {name: "June", value: "06"}, {name: "October", value: "10"}, {name: "January", value: "01"}])
+		+select("Start year:", "startYear", user.startYear, startYearOptions)
+		+select("Start month:", "startMonth", user.startMonth, startMonthOptions)
 		
-		+select("Course:", "course", user.course, [{name: "Please choose:", value: ""}, {name: "Regular | 10 weeks", value: "10 weeks"}, {name: "Regular | 20 weeks", value: "20 weeks"}, {name: "Intensive | 6 months", value: "6 months"}, {name: "Intensive | 1 year", value: "1 year"}, {name: "Intensive | 1.5 years", value: "1.5 years"}, {name: "Intensive | 2 years", value: "2 years"}])
+		+select("Course:", "course", user.course, courseOptions)
+		+select("Education:", "education", user.education, educationOptions)
 		
 		+input("Passport number:", "passportId", user.passportId)
 		+date("Passport date of issue:", "passportDateOfIssue", user.passportDateOfIssue)
