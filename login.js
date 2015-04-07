@@ -21,13 +21,41 @@ module.exports = function(aero, googleConfig, scopes) {
 					if(err) {
 						// Create new account
 						var account = {
+							// Personal
 							email: email,
 							givenName: json.name.givenName,
 							familyName: json.name.familyName,
 							gender: json.gender,
-							birthday: json.birthday,
+							language: json.language,
+							nationality: "",
+							maritalStatus: "",
+							birthDay: json.birthday,
+							birthPlace: "",
 							occupation: json.occupation,
-							language: json.language
+							occupationType: "",
+							address: "",
+							addressAbroad: "",
+							telephone: "",
+							telephoneAbroad: "",
+							
+							// Course
+							course: "",
+							startYear: "",
+							startMonth: "",
+							
+							// Education
+							education: "",
+							educationalInstitutionName: "",
+							graduationDate: "",
+							planAfterGraduation: "",
+							
+							// Passport
+							passportId: "",
+							passportDateOfIssue: "",
+							passportDateOfExpiration: "",
+							
+							// Family
+							familyMembers: []
 						};
 						
 						console.log("New user logged in: " + account.email);

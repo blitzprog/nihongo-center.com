@@ -26,7 +26,7 @@ module.exports = {
 		return {
 			user: user,
 			displayName: user.givenName + " " + user.familyName,
-			age: this.getAge(new Date(user.birthday)),
+			age: this.getAge(new Date(user.birthDay)),
 			nationalities: this.nationalities,
 			cities: this.cities,
 			genderOptions: [
@@ -78,6 +78,16 @@ module.exports = {
 				{name: "College of technology", value: "collegeOfTechnology"},
 				{name: "Senior high school", value: "seniorHighSchool"},
 				{name: "Junior high school", value: "juniorHighSchool"},
+				{name: "Other", value: "other"}
+			],
+			planAfterGraduationOptions: [
+				{name: "Please choose:", value: "", disabled: true},
+				{name: "Return to home country", value: "returnToHomeCountry"},
+				{name: "Graduate school", value: "graduateSchool"},
+				{name: "University", value: "university"},
+				{name: "Junior college", value: "juniorCollege"},
+				{name: "College of technology", value: "collegeOfTechnology"},
+				{name: "Other educational institution", value: "otherEducationalInstitution"},
 				{name: "Other", value: "other"}
 			]
 		};

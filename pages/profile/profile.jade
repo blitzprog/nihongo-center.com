@@ -58,7 +58,7 @@ if user
 		+select("Gender:", "gender", user.gender, genderOptions)
 		+select("Marital status:", "maritalStatus", user.maritalStatus, maritalStatusOptions)
 		
-		+date("Birthday:", "birthday", user.birthday)
+		+date("Birthday:", "birthDay", user.birthDay)
 		+input("Age:", "age", age, "", true)
 		
 		+inputAutoComplete("Birthplace:", "birthPlace", user.birthPlace, cities)
@@ -87,6 +87,7 @@ if user
 		+input("Name of educational institution:", "educationalInstitutionName", user.educationalInstitutionName, "School or university name")
 		
 		+month("Graduation date:", "graduationDate", user.graduationDate)
+		+select("Plan after graduating from Nihongo Center:", "planAfterGraduation", user.planAfterGraduation, planAfterGraduationOptions)
 		
 	h2 Passport
 	.profile
@@ -95,6 +96,13 @@ if user
 		
 		+date("Passport date of issue:", "passportDateOfIssue", user.passportDateOfIssue)
 		+date("Passport date of expiration:", "passportDateOfExpiration", user.passportDateOfExpiration)
+	
+	h2 Family
+	.profile
+		each member in user.familyMembers
+			p= Test
+		
+		
 	
 	script
 		include profile-save.js
