@@ -99,10 +99,11 @@ if user
 	
 	h2 Family
 	.profile
-		each member in user.familyMembers
-			p= Test
-		
-		
+		#family-members
+			each member in user.familyMembers
+				#family-member Test
+			
+		a(href="javascript:addFamilyMember();") New family member
 	
 	script
 		include profile-save.js
