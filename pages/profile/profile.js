@@ -102,6 +102,11 @@ module.exports = {
 	
 	// Post: Save to database
 	post: function(request) {
+		return this[request.body.function](request);
+	},
+	
+	// Save profile
+	saveProfile: function(request) {
 		var user = request.user;
 		user[request.body.key] = request.body.value;
 		
@@ -116,9 +121,15 @@ module.exports = {
 				user[field] = S(user[field]).capitalize().s;
 		});
 		
-		// Render
-		var response = this.get(request);
+		this.saveUserInDB(user);
 		
+		// Render normally
+		request.user = user;
+		return this.get(request);
+	},
+	
+	// Save user in database
+	saveUserInDB: function(user, callBack) {
 		// Connect
 		var riak = require("nodiak").getClient();
 		var userBucket = riak.bucket("Accounts");
@@ -131,9 +142,22 @@ module.exports = {
 				return;
 			}
 			
+			if(callBack)
+				callBack(obj);
+			
 			console.log("Saved " + obj.data.email + " to database");
 		});
+	},
+	
+	// Add family member
+	addFamilyMember: function(request) {
+		request.user.familyMembers.push({
+			name: "Test"
+		});
 		
-		return response;
+		this.saveUserInDB(request.user);
+		
+		// Render normally
+		return this.get(request);
 	}
 };

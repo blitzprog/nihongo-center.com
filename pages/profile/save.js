@@ -24,7 +24,7 @@ var onContentLoaded = function() {
 		var value = $this.val();
 		
 		$.post("/raw/profile", {
-			function: "saveProfileField",
+			function: "saveProfile",
 			key: key,
 			value: value
 		}, function(response) {
@@ -44,8 +44,6 @@ var addFamilyMember = function() {
 	$.post("/raw/profile", {
 		function: "addFamilyMember"
 	}, function(response) {
-		console.log("Saved " + key);
-		
 		updateContent(response);
 	});
 };
