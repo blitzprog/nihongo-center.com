@@ -108,7 +108,19 @@ module.exports = {
 	// Save profile
 	saveProfile: function(request) {
 		var user = request.user;
-		user[request.body.key] = request.body.value;
+		var key = request.body.key;
+		var arrayRegEx = /^([:alnum:]+)\[(\d+)\]\.([:alnum:]+)$/g;
+		var match = arrayRegEx.exec(key);
+		
+		if(match !== null) {
+			var arrayName = match[1];
+			var index = match[2];
+			key = match[3];
+			
+			user[arrayName][index][key] = request.body.value;
+		} else {
+			user[key] = request.body.value;
+		}
 		
 		// Capitalize
 		[
@@ -152,7 +164,12 @@ module.exports = {
 	// Add family member
 	addFamilyMember: function(request) {
 		request.user.familyMembers.push({
-			name: "Test"
+			name: "",
+			relation: "",
+			age: "",
+			occupation: "",
+			nationality: "",
+			country: ""
 		});
 		
 		this.saveUserInDB(request.user);
