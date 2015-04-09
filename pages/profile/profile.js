@@ -10,8 +10,8 @@ var loadFileAsArray = function(filePath) {
 
 module.exports = {
 	// List of nationalities
-	nationalities: loadFileAsArray("pages/profile/nationalities.txt"),
-	cities: loadFileAsArray("pages/profile/cities.txt"),
+	nationalities: loadFileAsArray("pages/profile/autocomplete/nationalities.txt"),
+	cities: loadFileAsArray("pages/profile/autocomplete/cities.txt"),
 	courseToTitle: JSON.parse(fs.readFileSync("data/courses.json", "utf8")),
 	
 	// Get
