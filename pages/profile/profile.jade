@@ -10,7 +10,7 @@ mixin input(mLabel, mId, mValue, mPlaceHolder, disabled)
 			input(type="text", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder).text-input
 
 mixin inputArrayElement(mLabel, mArray, mIndex, mKey, mValue, mPlaceHolder)
-	span= mId = mArray + "." + mIndex + "." + mKey
+	span(style={display: "none"})= mId = mArray + "." + mIndex + "." + mKey
 	.field
 		label(for=mId)= mLabel
 		input(type="text", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, data-array=mArray, data-index=mIndex, data-key=mKey).array-text-input

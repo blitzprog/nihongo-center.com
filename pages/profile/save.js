@@ -28,8 +28,24 @@ var onContentLoaded = function() {
 			key: key,
 			value: value
 		}, function(response) {
-			console.log("Saved " + key);
-			
+			updateContent(response);
+		});
+	};
+	
+	var saveArrayElement = function() {
+		var $this = $(this);
+		var array = $this.data("array");
+		var index = $this.data("index");
+		var key = $this.data("key");
+		var value = $this.val();
+		
+		$.post("/raw/profile", {
+			function: "saveArrayElement",
+			array: array,
+			index: index,
+			key: key,
+			value: value
+		}, function(response) {
 			updateContent(response);
 		});
 	};
@@ -38,6 +54,7 @@ var onContentLoaded = function() {
 	$(".date-input").blur(save);
 	$(".tel-input").change(save);
 	$("select").change(save);
+	$(".array-text-input").change(saveArrayElement);
 };
 
 var addFamilyMember = function() {

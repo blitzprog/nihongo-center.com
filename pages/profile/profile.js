@@ -109,18 +109,8 @@ module.exports = {
 	saveProfile: function(request) {
 		var user = request.user;
 		var key = request.body.key;
-		var arrayRegEx = /^([:alnum:]+)\[(\d+)\]\.([:alnum:]+)$/g;
-		var match = arrayRegEx.exec(key);
 		
-		if(match !== null) {
-			var arrayName = match[1];
-			var index = match[2];
-			key = match[3];
-			
-			user[arrayName][index][key] = request.body.value;
-		} else {
-			user[key] = request.body.value;
-		}
+		user[key] = request.body.value;
 		
 		// Capitalize
 		[
@@ -132,6 +122,22 @@ module.exports = {
 			if(user[field])
 				user[field] = S(user[field]).capitalize().s;
 		});
+		
+		this.saveUserInDB(user);
+		
+		// Render normally
+		request.user = user;
+		return this.get(request);
+	},
+	
+	// Save array element
+	saveArrayElement: function(request) {
+		var user = request.user;
+		var array = request.body.array;
+		var index = request.body.index;
+		var key = request.body.key;
+		
+		user[array][index][key] = request.body.value;
 		
 		this.saveUserInDB(user);
 		
