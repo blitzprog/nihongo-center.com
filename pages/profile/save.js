@@ -1,22 +1,22 @@
 /*eslint-env browser, jquery */
 /*global aero*/
 
+var updateContent = function(response) {
+	var focusedElementId = $(document.activeElement).attr("id");
+	
+	aero.$content.html(response);
+	aero.fireContentLoadedEvent();
+	
+	// Re-focus previously selected element
+	if(typeof focusedElementId !== "undefined")
+		$("#" + focusedElementId).focus();
+	
+	// Remove from cache
+	delete aero.cache.profile;
+};
+
 var onContentLoaded = function() {
 	document.removeEventListener("DOMContentLoaded", onContentLoaded);
-	
-	var updateContent = function(response) {
-		var focusedElementId = $(document.activeElement).attr("id");
-		
-		aero.$content.html(response);
-		aero.fireContentLoadedEvent();
-		
-		// Re-focus previously selected element
-		if(typeof focusedElementId !== "undefined")
-			$("#" + focusedElementId).focus();
-		
-		// Remove from cache
-		delete aero.cache.profile;
-	};
 	
 	var save = function() {
 		var $this = $(this);
@@ -60,6 +60,15 @@ var onContentLoaded = function() {
 var addFamilyMember = function() {
 	$.post("/raw/profile", {
 		function: "addFamilyMember"
+	}, function(response) {
+		updateContent(response);
+	});
+};
+
+var removeFamilyMember = function(index) {
+	$.post("/raw/profile", {
+		function: "removeFamilyMember",
+		index: index
 	}, function(response) {
 		updateContent(response);
 	});

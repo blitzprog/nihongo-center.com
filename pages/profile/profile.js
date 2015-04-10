@@ -133,11 +133,26 @@ module.exports = {
 	// Save array element
 	saveArrayElement: function(request) {
 		var user = request.user;
+		var value = request.body.value;
 		var array = request.body.array;
 		var index = request.body.index;
 		var key = request.body.key;
 		
-		user[array][index][key] = request.body.value;
+		// Trim
+		value = value.trim();
+		
+		// Capitalize all parts
+		if(["name"].indexOf(key) !== -1) {
+			value = value.split(" ").map(function(part) {
+				return S(part).capitalize().s;
+			}).join(" ");
+		}
+		
+		// Capitalize beginning only
+		if(["relation", "occupation", "nationality", "country"].indexOf(key) !== -1)
+			value = S(value).capitalize().s;
+		
+		user[array][index][key] = value;
 		
 		this.saveUserInDB(user);
 		
@@ -177,6 +192,16 @@ module.exports = {
 			nationality: "",
 			country: ""
 		});
+		
+		this.saveUserInDB(request.user);
+		
+		// Render normally
+		return this.get(request);
+	},
+	
+	// Remove family member
+	removeFamilyMember: function(request) {
+		request.user.familyMembers.splice(request.body.index, 1);
 		
 		this.saveUserInDB(request.user);
 		

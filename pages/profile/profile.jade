@@ -10,7 +10,7 @@ mixin input(mLabel, mId, mValue, mPlaceHolder, disabled)
 			input(type="text", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder).text-input
 
 mixin inputArrayElement(mLabel, mArray, mIndex, mKey, mValue, mPlaceHolder)
-	span(style={display: "none"})= mId = mArray + "." + mIndex + "." + mKey
+	span(style={display: "none"})= mId = mArray + "-" + mIndex + "-" + mKey
 	.field
 		label(for=mId)= mLabel
 		input(type="text", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, data-array=mArray, data-index=mIndex, data-key=mKey).array-text-input
@@ -106,8 +106,14 @@ if user
 	h2 Family
 	#family-members.profile
 		each member, index in user.familyMembers
-			+inputArrayElement("Full name:", "familyMembers", index, "name", member.name)
-			+inputArrayElement("Relation:", "familyMembers", index, "relation", member.relation)
+			.family-member.profile
+				+inputArrayElement("Full name:", "familyMembers", index, "name", member.name)
+				+inputArrayElement("Relation:", "familyMembers", index, "relation", member.relation)
+				+inputArrayElement("Age:", "familyMembers", index, "age", member.age)
+				+inputArrayElement("Occupation:", "familyMembers", index, "occupation", member.occupation)
+				+inputArrayElement("Nationality:", "familyMembers", index, "nationality", member.nationality)
+				+inputArrayElement("Country:", "familyMembers", index, "country", member.country)
+				a(href="javascript:removeFamilyMember(" + index + ");").delete-button Delete
 		
 		a(href="javascript:addFamilyMember();") New family member
 	
