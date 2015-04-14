@@ -55,7 +55,9 @@ module.exports = function(aero, googleConfig, scopes) {
 							passportDateOfExpiration: "",
 							
 							// Family
-							familyMembers: []
+							familyMembers: [],
+							relativesAbroad: [],
+							financialSupporters: []
 						};
 						
 						console.log("New user logged in: " + account.email);
