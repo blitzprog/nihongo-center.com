@@ -1,19 +1,19 @@
 mixin empty()
 	.field
 
-mixin input(mLabel, mId, mValue, mPlaceHolder, disabled)
+mixin input(mLabel, mId, mValue, mPlaceHolder, dataListId, disabled)
 	.field
 		label(for=mId)= mLabel
 		if disabled
-			input(type="text", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, disabled).text-input
+			input(type="text", name=mId, id=mId, value=mValue, list=dataListId, placeholder=mPlaceHolder, disabled).text-input
 		else
-			input(type="text", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder).text-input
+			input(type="text", name=mId, id=mId, value=mValue, list=dataListId, placeholder=mPlaceHolder).text-input
 
-mixin inputArrayElement(mLabel, mArray, mIndex, mKey, mValue, mPlaceHolder)
+mixin inputArrayElement(mLabel, mArray, mIndex, mKey, mValue, mPlaceHolder, dataListId)
 	span(style={display: "none"})= mId = mArray + "-" + mIndex + "-" + mKey
 	.field
 		label(for=mId)= mLabel
-		input(type="text", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, data-array=mArray, data-index=mIndex, data-key=mKey).array-text-input
+		input(type="text", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, list=dataListId, data-array=mArray, data-index=mIndex, data-key=mKey).array-text-input
 
 mixin tel(mLabel, mId, mValue, mPlaceHolder)
 	.field
@@ -46,16 +46,17 @@ mixin select(mLabel, mId, mValue, mOptions)
 					else
 						option(value=option.value)= option.name
 
-mixin inputAutoComplete(mLabel, mId, mValue, mOptions)
-	.field
-		label(for=mId)= mLabel
-		input(type="text", name=mId, id=mId, list=mId + "-datalist", value=mValue).text-input
-		datalist(id=mId + "-datalist")
-			each val in mOptions
-				option(value=val)
+mixin datalist(mId, mOptions)
+	datalist(id=mId)
+		each val in mOptions
+			option(value=val)
 
 if user
 	h2= displayName
+	
+	+datalist("cities", cities)
+	+datalist("countries", countries)
+	+datalist("nationalities", nationalities)
 	
 	.profile
 		+input("Given name:", "givenName", user.givenName)
@@ -65,10 +66,10 @@ if user
 		+select("Marital status:", "maritalStatus", user.maritalStatus, maritalStatusOptions)
 		
 		+date("Birthday:", "birthDay", user.birthDay)
-		+input("Age:", "age", age, "", true)
+		+input("Age:", "age", age, "", "", true)
 		
-		+inputAutoComplete("Birthplace:", "birthPlace", user.birthPlace, cities)
-		+inputAutoComplete("Nationality:", "nationality", user.nationality, nationalities)
+		+input("Birthplace:", "birthPlace", user.birthPlace, "", "cities")
+		+input("Nationality:", "nationality", user.nationality, "", "nationalities")
 		
 		+input("Occupation:", "occupation", user.occupation)
 		+select("Occupation type:", "occupationType", user.occupationType, occupationTypeOptions)
@@ -111,8 +112,8 @@ if user
 				+inputArrayElement("Relation:", "familyMembers", index, "relation", member.relation)
 				+inputArrayElement("Age:", "familyMembers", index, "age", member.age)
 				+inputArrayElement("Occupation:", "familyMembers", index, "occupation", member.occupation)
-				+inputArrayElement("Nationality:", "familyMembers", index, "nationality", member.nationality)
-				+inputArrayElement("Country:", "familyMembers", index, "country", member.country)
+				+inputArrayElement("Nationality:", "familyMembers", index, "nationality", member.nationality, "", "nationalities")
+				+inputArrayElement("Country:", "familyMembers", index, "country", member.country, "", "countries")
 				a(href="javascript:removeFamilyMember(" + index + ");").delete-button Delete
 		
 		a(href="javascript:addFamilyMember();") New family member

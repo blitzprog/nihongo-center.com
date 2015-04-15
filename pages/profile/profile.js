@@ -12,6 +12,7 @@ module.exports = {
 	// List of nationalities
 	nationalities: loadFileAsArray("pages/profile/autocomplete/nationalities.txt"),
 	cities: loadFileAsArray("pages/profile/autocomplete/cities.txt"),
+	countries: loadFileAsArray("pages/profile/autocomplete/countries.txt"),
 	courseToTitle: JSON.parse(fs.readFileSync("data/courses.json", "utf8")),
 	
 	// Get
@@ -29,6 +30,7 @@ module.exports = {
 			age: this.getAge(new Date(user.birthDay)),
 			nationalities: this.nationalities,
 			cities: this.cities,
+			countries: this.countries,
 			genderOptions: [
 				{name: "Please choose:", value: "", disabled: true},
 				{name: "♂ Male", value: "male"},
