@@ -1,24 +1,40 @@
 mixin empty()
 	.field
 
-mixin input(mLabel, mId, mValue, mPlaceHolder, dataListId, disabled)
+mixin text(mLabel, mId, mValue, mPlaceHolder, dataListId, disabled)
+	if typeof mValue === "undefined"
+		- mValue = user[mId]
 	.field
 		label(for=mId)= mLabel
 		if disabled
-			input(type="text", name=mId, id=mId, value=mValue, list=dataListId, placeholder=mPlaceHolder, disabled).text-input
+			input(type="text", name=mId, id=mId, value=mValue, list=dataListId, placeholder=mPlaceHolder, title=mPlaceHolder, disabled).text-input
 		else
-			input(type="text", name=mId, id=mId, value=mValue, list=dataListId, placeholder=mPlaceHolder).text-input
+			input(type="text", name=mId, id=mId, value=mValue, list=dataListId, placeholder=mPlaceHolder, title=mPlaceHolder).text-input
 
-mixin inputArrayElement(mLabel, mArray, mIndex, mKey, mValue, mPlaceHolder, dataListId)
-	span(style={display: "none"})= mId = mArray + "-" + mIndex + "-" + mKey
+mixin textInArray(mLabel, mArray, mIndex, mKey, mValue, mPlaceHolder, dataListId)
+	- var mId = mArray + "-" + mIndex + "-" + mKey
 	.field
 		label(for=mId)= mLabel
-		input(type="text", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, list=dataListId, data-array=mArray, data-index=mIndex, data-key=mKey).array-text-input
+		input(type="text", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, title=mPlaceHolder, list=dataListId, data-array=mArray, data-index=mIndex, data-key=mKey).array-text-input
+
+mixin number(mLabel, mId, mValue, mPlaceHolder)
+	if typeof mValue === "undefined"
+		- mValue = user[mId]
+	.field
+		label(for=mId)= mLabel
+		input(type="number", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, title=mPlaceHolder).number-input
+
+mixin numberInObject(mLabel, mObject, mKey, mPlaceHolder)
+	- var mId = mObject + "-" + mKey
+	- var mValue = user[mObject][mKey]
+	.field
+		label(for=mId)= mLabel
+		input(type="number", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, title=mPlaceHolder, data-object=mObject, data-key=mKey).object-number-input
 
 mixin tel(mLabel, mId, mValue, mPlaceHolder)
 	.field
 		label(for=mId)= mLabel
-		input(type="tel", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder).tel-input
+		input(type="tel", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, title=mPlaceHolder).tel-input
 
 mixin date(mLabel, mId, mValue)
 	.field
@@ -52,30 +68,30 @@ mixin datalist(mId, mOptions)
 			option(value=val)
 
 if user
-	h2= displayName
+	h2 Personal
 	
 	+datalist("cities", cities)
 	+datalist("countries", countries)
 	+datalist("nationalities", nationalities)
 	
 	.profile
-		+input("Given name:", "givenName", user.givenName)
-		+input("Family name:", "familyName", user.familyName)
+		+text("Given name:", "givenName")
+		+text("Family name:", "familyName")
 		
 		+select("Gender:", "gender", user.gender, genderOptions)
 		+select("Marital status:", "maritalStatus", user.maritalStatus, maritalStatusOptions)
 		
 		+date("Birthday:", "birthDay", user.birthDay)
-		+input("Age:", "age", age, "", "", true)
+		+text("Age:", "age", age, "", "", true)
 		
-		+input("Birthplace:", "birthPlace", user.birthPlace, "", "cities")
-		+input("Nationality:", "nationality", user.nationality, "", "nationalities")
+		+text("Birthplace:", "birthPlace", user.birthPlace, "", "cities")
+		+text("Nationality:", "nationality", user.nationality, "", "nationalities")
 		
-		+input("Occupation:", "occupation", user.occupation)
+		+text("Occupation:", "occupation", user.occupation)
 		+select("Occupation type:", "occupationType", user.occupationType, occupationTypeOptions)
 		
-		+input("Home address:", "address", user.address, "🏠")
-		+input("Address in Japan:", "addressAbroad", user.addressAbroad, "🏠 Only if you have one.")
+		+text("Home address:", "address", user.address, "🏠")
+		+text("Address in Japan:", "addressAbroad", user.addressAbroad, "🏠 Only if you have one.")
 		
 		+tel("Telephone:", "telephone", user.telephone, "☎")
 		+tel("Telephone in Japan:", "telephoneAbroad", user.telephoneAbroad, "☎ Only if you have one.")
@@ -91,14 +107,16 @@ if user
 	h2 Education
 	.profile
 		+select("Education:", "education", user.education, educationOptions)
-		+input("Name of educational institution:", "educationalInstitutionName", user.educationalInstitutionName, "School or university name")
+		+text("Name of educational institution:", "educationalInstitutionName", user.educationalInstitutionName, "School or university name")
 		
 		+month("Graduation date:", "graduationDate", user.graduationDate)
 		+select("Plan after graduating from Nihongo Center:", "planAfterGraduation", user.planAfterGraduation, planAfterGraduationOptions)
 		
+		+number("Total period of education:", "totalPeriodOfEducation", undefined, "How many years?")
+		
 	h2 Passport
 	.profile
-		+input("Passport number:", "passportId", user.passportId, "e.g. TK1234567")
+		+text("Passport number:", "passportId", user.passportId, "e.g. TK1234567")
 		+empty()
 		
 		+date("Passport date of issue:", "passportDateOfIssue", user.passportDateOfIssue)
@@ -108,15 +126,37 @@ if user
 	#family-members.profile
 		each member, index in user.familyMembers
 			.family-member.profile
-				+inputArrayElement("Full name:", "familyMembers", index, "name", member.name)
-				+inputArrayElement("Relation:", "familyMembers", index, "relation", member.relation)
-				+inputArrayElement("Age:", "familyMembers", index, "age", member.age)
-				+inputArrayElement("Occupation:", "familyMembers", index, "occupation", member.occupation)
-				+inputArrayElement("Nationality:", "familyMembers", index, "nationality", member.nationality, "", "nationalities")
-				+inputArrayElement("Country:", "familyMembers", index, "country", member.country, "", "countries")
+				+textInArray("Full name:", "familyMembers", index, "name", member.name)
+				+textInArray("Relation:", "familyMembers", index, "relation", member.relation)
+				+textInArray("Age:", "familyMembers", index, "age", member.age)
+				+textInArray("Occupation:", "familyMembers", index, "occupation", member.occupation)
+				+textInArray("Nationality:", "familyMembers", index, "nationality", member.nationality, "", "nationalities")
+				+textInArray("Country:", "familyMembers", index, "country", member.country, "", "countries")
 				a(href="javascript:removeFamilyMember(" + index + ");").delete-button Delete
 		
-		a(href="javascript:addFamilyMember();") New family member
+		a(href="javascript:addFamilyMember();") Add family member
+	
+	h2 Finances
+	p
+		| Please enter the average amount of support 
+		strong per month 
+		| in Yen (¥).
+	.profile
+		+numberInObject("Self:", "financialSupportPerMonth", "self", "Monthly amount in Yen (¥)")
+		+numberInObject("Remittance from outside Japan:", "financialSupportPerMonth", "remittanceFromOutside", "Monthly amount in Yen (¥)")
+		+numberInObject("Carrying from abroad:", "financialSupportPerMonth", "carryingFromAbroad", "Monthly amount in Yen (¥)")
+		+numberInObject("Guarantor in Japan:", "financialSupportPerMonth", "guarantorAbroad", "Monthly amount in Yen (¥)")
+		+numberInObject("Scholarship:", "financialSupportPerMonth", "scholarship", "Monthly amount in Yen (¥)")
+		+numberInObject("Others:", "financialSupportPerMonth", "others", "Monthly amount in Yen (¥)")
+	
+	h2 Visa
+	.profile
+		+select("Port of entry:", "portOfEntry", user.portOfEntry, portsOfEntry)
+		+text("Place to apply for a visa in your country:", "visaApplicationPlace", undefined, "🏢 Location of closest Japanese Embassy or Consulate")
+	
+	h2 Japanese
+	.profile
+		+select("Acquired JLPT level (Japanese Language Proficiency Test):", "jlptLevel", user.jlptLevel, jlptLevels)
 	
 	script
 		include save.js

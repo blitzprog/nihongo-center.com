@@ -48,6 +48,7 @@ module.exports = function(aero, googleConfig, scopes) {
 							educationalInstitutionName: "",
 							graduationDate: "",
 							planAfterGraduation: "",
+							totalPeriodOfEducation: null,
 							
 							// Passport
 							passportId: "",
@@ -57,7 +58,27 @@ module.exports = function(aero, googleConfig, scopes) {
 							// Family
 							familyMembers: [],
 							relativesAbroad: [],
-							financialSupporters: []
+							
+							// Financial
+							financialSupporters: [],
+							financialSupportPerMonth: {
+								self: 0,
+								remittanceFromOutside: 0,
+								carryingFromAbroad: 0,
+								guarantorAbroad: 0,
+								scholarship: 0,
+								others: 0
+							},
+							
+							// Visa
+							portOfEntry: "",
+							visaApplicationPlace: "",
+							numberOfPastEntries: "",
+							lastEntryFrom: "",
+							lastEntryTo: "",
+							
+							// Japanese
+							jlptLevel: ""
 						};
 						
 						console.log("New user logged in: " + account.email);

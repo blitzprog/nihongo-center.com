@@ -67,6 +67,12 @@ module.exports = {
 					value: courseId
 				};
 			}.bind(this))),
+			portsOfEntry: [
+				{name: "Please choose:", value: "", disabled: true},
+				{name: "Osaka (Kansai International Airport)", value: "Kansai International Airport"},
+				{name: "Tokyo (Narita International Airport)", value: "Narita International Airport"},
+				{name: "Other", value: "other"}
+			],
 			educationOptions: [
 				{name: "Please choose:", value: "", disabled: true},
 				{name: "Graduated", value: "graduated"},
@@ -91,6 +97,19 @@ module.exports = {
 				{name: "College of technology", value: "collegeOfTechnology"},
 				{name: "Other educational institution", value: "otherEducationalInstitution"},
 				{name: "Other", value: "other"}
+			],
+			jlptLevels: [
+				{name: "Please choose:", value: "", disabled: true},
+				{name: "I have not taken the JLPT yet.", value: "none"},
+				{name: "N1", value: "N1"},
+				{name: "N2", value: "N2"},
+				{name: "N3", value: "N3"},
+				{name: "N4", value: "N4"},
+				{name: "N5", value: "N5"},
+				{name: "Level 1 (before 2010)", value: "level 1"},
+				{name: "Level 2 (before 2010)", value: "level 2"},
+				{name: "Level 3 (before 2010)", value: "level 3"},
+				{name: "Level 4 (before 2010)", value: "level 4"}
 			]
 		};
 	},
@@ -112,7 +131,10 @@ module.exports = {
 		var user = request.user;
 		var key = request.body.key;
 		
-		user[key] = request.body.value;
+		if(request.body.dataType === "numeric")
+			user[key] = parseInt(request.body.value);
+		else
+			user[key] = request.body.value;
 		
 		// Capitalize
 		[
@@ -155,6 +177,25 @@ module.exports = {
 			value = S(value).capitalize().s;
 		
 		user[array][index][key] = value;
+		
+		this.saveUserInDB(user);
+		
+		// Render normally
+		request.user = user;
+		return this.get(request);
+	},
+	
+	// Save object
+	saveObject: function(request) {
+		var user = request.user;
+		var value = request.body.value;
+		var object = request.body.object;
+		var key = request.body.key;
+		
+		if(request.body.dataType === "numeric")
+			user[object][key] = parseInt(value);
+		else
+			user[object][key] = value;
 		
 		this.saveUserInDB(user);
 		
