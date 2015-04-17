@@ -37,6 +37,8 @@ mixin tel(mLabel, mId, mValue, mPlaceHolder)
 		input(type="tel", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, title=mPlaceHolder).tel-input
 
 mixin date(mLabel, mId, mValue)
+	if typeof mValue === "undefined"
+		- mValue = user[mId]
 	.field
 		label(for=mId)= mLabel
 		input(type="date", name=mId, id=mId, value=mValue).date-input
@@ -157,7 +159,10 @@ if user
 	h2 Japanese
 	.profile
 		+select("Acquired JLPT level (Japanese Language Proficiency Test):", "jlptLevel", user.jlptLevel, jlptLevels)
-	
+		+number("Number of past entries into Japan:", "numberOfPastEntries", undefined, "How often did you go to Japan?")
+		+date("Last entry from:", "lastEntryFrom")
+		+date("Last entry to:", "lastEntryTo")
+		
 	script
 		include save.js
 else

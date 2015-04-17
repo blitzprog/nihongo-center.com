@@ -73,7 +73,7 @@ module.exports = function(aero, googleConfig, scopes) {
 							// Visa
 							portOfEntry: "",
 							visaApplicationPlace: "",
-							numberOfPastEntries: "",
+							numberOfPastEntries: null,
 							lastEntryFrom: "",
 							lastEntryTo: "",
 							
