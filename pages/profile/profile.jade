@@ -80,29 +80,37 @@ if user
 		+text("Given name:", "givenName")
 		+text("Family name:", "familyName")
 		
+	.profile
 		+select("Gender:", "gender", user.gender, genderOptions)
 		+select("Marital status:", "maritalStatus", user.maritalStatus, maritalStatusOptions)
 		
+	.profile
 		+date("Birthday:", "birthDay", user.birthDay)
 		+text("Age:", "age", age, "", "", true)
-		
 		+text("Birthplace:", "birthPlace", user.birthPlace, "", "cities")
+		
+	.profile
+		+text("Country:", "country", user.country, "", "countries")
 		+text("Nationality:", "nationality", user.nationality, "", "nationalities")
 		
+	.profile
 		+text("Occupation:", "occupation", user.occupation)
 		+select("Occupation type:", "occupationType", user.occupationType, occupationTypeOptions)
 		
+	.profile
 		+text("Home address:", "address", user.address, "🏠")
 		+text("Address in Japan:", "addressAbroad", user.addressAbroad, "🏠 Only if you have one.")
 		
+	.profile
 		+tel("Telephone:", "telephone", user.telephone, "☎")
 		+tel("Telephone in Japan:", "telephoneAbroad", user.telephoneAbroad, "☎ Only if you have one.")
 	
 	h2 Course
+	
 	.profile
 		+select("Course:", "course", user.course, courseOptions)
-		+empty()
 		
+	.profile
 		+select("Start year:", "startYear", user.startYear, startYearOptions)
 		+select("Start month:", "startMonth", user.startMonth, startMonthOptions)
 		
@@ -112,15 +120,16 @@ if user
 		+text("Name of educational institution:", "educationalInstitutionName", user.educationalInstitutionName, "School or university name")
 		
 		+month("Graduation date:", "graduationDate", user.graduationDate)
-		+select("Plan after graduating from Nihongo Center:", "planAfterGraduation", user.planAfterGraduation, planAfterGraduationOptions)
-		
 		+number("Total period of education:", "totalPeriodOfEducation", undefined, "How many years?")
 		
+		+select("Plan after graduating from Nihongo Center:", "planAfterGraduation", user.planAfterGraduation, planAfterGraduationOptions)
+		
 	h2 Passport
+	
 	.profile
 		+text("Passport number:", "passportId", user.passportId, "e.g. TK1234567")
-		+empty()
 		
+	.profile
 		+date("Passport date of issue:", "passportDateOfIssue", user.passportDateOfIssue)
 		+date("Passport date of expiration:", "passportDateOfExpiration", user.passportDateOfExpiration)
 	

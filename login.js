@@ -27,6 +27,7 @@ module.exports = function(aero, googleConfig, scopes) {
 							familyName: json.name.familyName,
 							gender: json.gender,
 							language: json.language,
+							country: "",
 							nationality: "",
 							maritalStatus: "",
 							birthDay: json.birthday,
