@@ -177,7 +177,11 @@ module.exports = {
 		if(["relation", "occupation", "nationality", "country"].indexOf(key) !== -1)
 			value = S(value).capitalize().s;
 		
-		user[array][index][key] = value;
+		
+		if(request.body.dataType === "numeric")
+			user[array][index][key] = parseInt(value);
+		else
+			user[array][index][key] = value;
 		
 		this.saveUserInDB(user);
 		
@@ -238,8 +242,6 @@ module.exports = {
 		});
 		
 		this.saveUserInDB(request.user);
-		
-		// Render normally
 		return this.get(request);
 	},
 	
@@ -248,8 +250,26 @@ module.exports = {
 		request.user.familyMembers.splice(request.body.index, 1);
 		
 		this.saveUserInDB(request.user);
+		return this.get(request);
+	},
+	
+	// Add education background
+	addEducationBackground: function(request) {
+		request.user.japaneseEducation.push({
+			institution: "",
+			totalHours: null,
+			textBook: ""
+		});
 		
-		// Render normally
+		this.saveUserInDB(request.user);
+		return this.get(request);
+	},
+	
+	// Remove education background
+	removeEducationBackground: function(request) {
+		request.user.japaneseEducation.splice(request.body.index, 1);
+		
+		this.saveUserInDB(request.user);
 		return this.get(request);
 	}
 };

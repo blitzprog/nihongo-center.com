@@ -79,7 +79,8 @@ module.exports = function(aero, googleConfig, scopes) {
 							lastEntryTo: "",
 							
 							// Japanese
-							jlptLevel: ""
+							jlptLevel: "",
+							japaneseEducation: []
 						};
 						
 						console.log("New user logged in: " + account.email);

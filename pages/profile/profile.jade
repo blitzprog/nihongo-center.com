@@ -13,9 +13,19 @@ mixin text(mLabel, mId, mValue, mPlaceHolder, dataListId, disabled)
 
 mixin textInArray(mLabel, mArray, mIndex, mKey, mValue, mPlaceHolder, dataListId)
 	- var mId = mArray + "-" + mIndex + "-" + mKey
+	if typeof mValue === "undefined"
+		- mValue = user[mArray][mIndex][mKey]
 	.field
 		label(for=mId)= mLabel
 		input(type="text", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, title=mPlaceHolder, list=dataListId, data-array=mArray, data-index=mIndex, data-key=mKey).array-text-input
+
+mixin numberInArray(mLabel, mArray, mIndex, mKey, mValue, mPlaceHolder, dataListId)
+	- var mId = mArray + "-" + mIndex + "-" + mKey
+	if typeof mValue === "undefined"
+		- mValue = user[mArray][mIndex][mKey]
+	.field
+		label(for=mId)= mLabel
+		input(type="number", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, title=mPlaceHolder, list=dataListId, data-array=mArray, data-index=mIndex, data-key=mKey).array-number-input
 
 mixin number(mLabel, mId, mValue, mPlaceHolder)
 	if typeof mValue === "undefined"
@@ -143,9 +153,9 @@ if user
 				+textInArray("Occupation:", "familyMembers", index, "occupation", member.occupation)
 				+textInArray("Nationality:", "familyMembers", index, "nationality", member.nationality, "", "nationalities")
 				+textInArray("Country:", "familyMembers", index, "country", member.country, "", "countries")
-				a(href="javascript:removeFamilyMember(" + index + ");").delete-button Delete
+				a(href="javascript:remove('FamilyMember', " + index + ");").delete-button Delete
 		
-		a(href="javascript:addFamilyMember();") Add family member
+		a(href="javascript:add('FamilyMember');") Add family member
 	
 	h2 Finances
 	p
@@ -172,6 +182,16 @@ if user
 		+date("Last entry from:", "lastEntryFrom")
 		+date("Last entry to:", "lastEntryTo")
 		
+	h3 Education Background
+	#education-backgrounds.profile
+		each education, index in user.japaneseEducation
+			.education-background.profile
+				+textInArray("Institution:", "japaneseEducation", index, "institution")
+				+numberInArray("Total hours:", "japaneseEducation", index, "totalHours")
+				+textInArray("Text book:", "japaneseEducation", index, "textBook")
+				a(href="javascript:remove('EducationBackground', " + index + ");").delete-button Delete
+	a(href="javascript:add('EducationBackground');") Add education background
+	
 	script
 		include save.js
 else
