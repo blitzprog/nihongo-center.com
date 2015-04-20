@@ -167,16 +167,15 @@ module.exports = {
 		value = value.trim();
 		
 		// Capitalize all parts
-		if(["name"].indexOf(key) !== -1) {
+		if(["name", "occupation"].indexOf(key) !== -1) {
 			value = value.split(" ").map(function(part) {
 				return S(part).capitalize().s;
 			}).join(" ");
 		}
 		
 		// Capitalize beginning only
-		if(["relation", "occupation", "nationality", "country"].indexOf(key) !== -1)
+		if(["relation", "nationality"].indexOf(key) !== -1)
 			value = S(value).capitalize().s;
-		
 		
 		if(request.body.dataType === "numeric")
 			user[array][index][key] = parseInt(value);
@@ -225,14 +224,26 @@ module.exports = {
 			
 			if(callBack)
 				callBack(obj);
-			
-			console.log("Saved " + obj.data.email + " to database");
 		});
+	},
+	
+	// Add (generic)
+	add: function(request, key, obj) {
+		request.user[key].push(obj);
+		this.saveUserInDB(request.user);
+		return this.get(request);
+	},
+	
+	// Remove (generic)
+	remove: function(request, key) {
+		request.user[key].splice(request.body.index, 1);
+		this.saveUserInDB(request.user);
+		return this.get(request);
 	},
 	
 	// Add family member
 	addFamilyMember: function(request) {
-		request.user.familyMembers.push({
+		return this.add(request, "familyMembers", {
 			name: "",
 			relation: "",
 			age: "",
@@ -240,36 +251,43 @@ module.exports = {
 			nationality: "",
 			country: ""
 		});
-		
-		this.saveUserInDB(request.user);
-		return this.get(request);
 	},
 	
 	// Remove family member
 	removeFamilyMember: function(request) {
-		request.user.familyMembers.splice(request.body.index, 1);
-		
-		this.saveUserInDB(request.user);
-		return this.get(request);
+		return this.remove(request, "familyMembers");
 	},
 	
 	// Add education background
 	addEducationBackground: function(request) {
-		request.user.japaneseEducation.push({
+		return this.add(request, "japaneseEducation", {
 			institution: "",
 			totalHours: null,
 			textBook: ""
 		});
-		
-		this.saveUserInDB(request.user);
-		return this.get(request);
 	},
 	
 	// Remove education background
 	removeEducationBackground: function(request) {
-		request.user.japaneseEducation.splice(request.body.index, 1);
-		
-		this.saveUserInDB(request.user);
-		return this.get(request);
+		return this.remove(request, "japaneseEducation");
+	},
+	
+	// Add financial supporter
+	addFinancialSupporter: function(request) {
+		return this.add(request, "financialSupporters", {
+			name: "",
+			address: "",
+			telephone: "",
+			occupation: "",
+			company: "",
+			companyTelephone: "",
+			annualIncome: null,
+			relation: ""
+		});
+	},
+	
+	// Remove financial supporter
+	removeFinancialSupporter: function(request) {
+		return this.remove(request, "financialSupporters");
 	}
 };

@@ -80,6 +80,8 @@ mixin datalist(mId, mOptions)
 			option(value=val)
 
 if user
+	- var 何 = undefined;
+	
 	h2 Personal
 	
 	+datalist("cities", cities)
@@ -130,7 +132,7 @@ if user
 		+text("Name of educational institution:", "educationalInstitutionName", user.educationalInstitutionName, "School or university name")
 		
 		+month("Graduation date:", "graduationDate", user.graduationDate)
-		+number("Total period of education:", "totalPeriodOfEducation", undefined, "How many years?")
+		+number("Total period of education:", "totalPeriodOfEducation", 何, "How many years?")
 		
 		+select("Plan after graduating from Nihongo Center:", "planAfterGraduation", user.planAfterGraduation, planAfterGraduationOptions)
 		
@@ -170,15 +172,26 @@ if user
 		+numberInObject("Scholarship:", "financialSupportPerMonth", "scholarship", "Monthly amount in Yen (¥)")
 		+numberInObject("Others:", "financialSupportPerMonth", "others", "Monthly amount in Yen (¥)")
 	
-	h2 Visa
-	.profile
-		+select("Port of entry:", "portOfEntry", user.portOfEntry, portsOfEntry)
-		+text("Place to apply for a visa in your country:", "visaApplicationPlace", undefined, "🏢 Location of closest Japanese Embassy or Consulate")
+	h3 Financial Supporters
+	#financial-supporters.profile
+		each supporter, index in user.financialSupporters
+			.financial-supporter.profile
+				+textInArray("Name:", "financialSupporters", index, "name")
+				+textInArray("Address:", "financialSupporters", index, "address")
+				+textInArray("Telephone:", "financialSupporters", index, "telephone")
+				+textInArray("Occupation:", "financialSupporters", index, "occupation")
+				+textInArray("Company name:", "financialSupporters", index, "company", 何, "Full company name")
+				+textInArray("Company telephone:", "financialSupporters", index, "companyTelephone")
+				+numberInArray("Annual income:", "financialSupporters", index, "annualIncome", 何, "In Yen (¥)")
+				+textInArray("Relationship with the applicant:", "financialSupporters", index, "relation")
+				
+				a(href="javascript:remove('FinancialSupporter', " + index + ");").delete-button Delete
+	a(href="javascript:add('FinancialSupporter');") Add financial supporter
 	
 	h2 Japanese
 	.profile
-		+select("Acquired JLPT level (Japanese Language Proficiency Test):", "jlptLevel", user.jlptLevel, jlptLevels)
-		+number("Number of past entries into Japan:", "numberOfPastEntries", undefined, "How often did you go to Japan?")
+		+select("Acquired JLPT level:", "jlptLevel", user.jlptLevel, jlptLevels)
+		+number("Number of past entries into Japan:", "numberOfPastEntries", 何, "How often did you go to Japan?")
 		+date("Last entry from:", "lastEntryFrom")
 		+date("Last entry to:", "lastEntryTo")
 		
@@ -191,6 +204,11 @@ if user
 				+textInArray("Text book:", "japaneseEducation", index, "textBook")
 				a(href="javascript:remove('EducationBackground', " + index + ");").delete-button Delete
 	a(href="javascript:add('EducationBackground');") Add education background
+	
+	h2 Visa
+	.profile
+		+select("Port of entry:", "portOfEntry", user.portOfEntry, portsOfEntry)
+		+text("Place to apply for a visa in your country:", "visaApplicationPlace", 何, "🏢 Location of closest Japanese Embassy or Consulate")
 	
 	script
 		include save.js
