@@ -126,11 +126,11 @@ module.exports = {
 	
 	// Post: Save to database
 	post: function(request, render) {
-		render(this[request.body.function](request));
+		render(this[request.body.function](request, render));
 	},
 	
 	// Save profile
-	saveProfile: function(request) {
+	saveProfile: function(request, render) {
 		var user = request.user;
 		var key = request.body.key;
 		
@@ -154,11 +154,11 @@ module.exports = {
 		
 		// Render normally
 		request.user = user;
-		return this.get(request);
+		this.get(request, render);
 	},
 	
 	// Save array element
-	saveArrayElement: function(request) {
+	saveArrayElement: function(request, render) {
 		var user = request.user;
 		var value = request.body.value;
 		var array = request.body.array;
@@ -188,11 +188,11 @@ module.exports = {
 		
 		// Render normally
 		request.user = user;
-		return this.get(request);
+		this.get(request, render);
 	},
 	
 	// Save object
-	saveObject: function(request) {
+	saveObject: function(request, render) {
 		var user = request.user;
 		var value = request.body.value;
 		var object = request.body.object;
@@ -207,7 +207,7 @@ module.exports = {
 		
 		// Render normally
 		request.user = user;
-		return this.get(request);
+		this.get(request, render);
 	},
 	
 	// Save user in database
@@ -230,22 +230,22 @@ module.exports = {
 	},
 	
 	// Add (generic)
-	add: function(request, key, obj) {
+	add: function(request, render, key, obj) {
 		request.user[key].push(obj);
 		this.saveUserInDB(request.user);
-		return this.get(request);
+		this.get(request, render);
 	},
 	
 	// Remove (generic)
-	remove: function(request, key) {
+	remove: function(request, render, key) {
 		request.user[key].splice(request.body.index, 1);
 		this.saveUserInDB(request.user);
-		return this.get(request);
+		this.get(request, render);
 	},
 	
 	// Add family member
-	addFamilyMember: function(request) {
-		return this.add(request, "familyMembers", {
+	addFamilyMember: function(request, render) {
+		this.add(request, render, "familyMembers", {
 			name: "",
 			relation: "",
 			age: "",
@@ -256,13 +256,13 @@ module.exports = {
 	},
 	
 	// Remove family member
-	removeFamilyMember: function(request) {
-		return this.remove(request, "familyMembers");
+	removeFamilyMember: function(request, render) {
+		this.remove(request, render, "familyMembers");
 	},
 	
 	// Add education background
-	addEducationBackground: function(request) {
-		return this.add(request, "japaneseEducation", {
+	addEducationBackground: function(request, render) {
+		this.add(request, render, "japaneseEducation", {
 			institution: "",
 			totalHours: null,
 			textBook: ""
@@ -270,13 +270,13 @@ module.exports = {
 	},
 	
 	// Remove education background
-	removeEducationBackground: function(request) {
-		return this.remove(request, "japaneseEducation");
+	removeEducationBackground: function(request, render) {
+		this.remove(request, render, "japaneseEducation");
 	},
 	
 	// Add financial supporter
-	addFinancialSupporter: function(request) {
-		return this.add(request, "financialSupporters", {
+	addFinancialSupporter: function(request, render) {
+		this.add(request, render, "financialSupporters", {
 			name: "",
 			address: "",
 			telephone: "",
@@ -289,7 +289,7 @@ module.exports = {
 	},
 	
 	// Remove financial supporter
-	removeFinancialSupporter: function(request) {
-		return this.remove(request, "financialSupporters");
+	removeFinancialSupporter: function(request, render) {
+		this.remove(request, render, "financialSupporters");
 	}
 };
