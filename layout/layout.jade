@@ -18,7 +18,7 @@ html(lang="en")
 							h2 Navigation
 						
 						each nav in pages
-							if nav.visible
+							if nav.visible && (!user || user.accessLevel === "admin")
 								a.navigation-link.ajax(href="/#{nav.url}")
 									.navigation-button= nav.title
 			
