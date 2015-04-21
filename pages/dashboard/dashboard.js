@@ -5,11 +5,13 @@ var fs = require("fs");
 module.exports = {
 	courseToTitle: JSON.parse(fs.readFileSync("data/courses.json", "utf8")),
 	
-	get: function(request) {
+	get: function(request, render) {
 		var user = request.user;
 		
-		if(typeof user === "undefined")
-			return undefined;
+		if(typeof user === "undefined") {
+			render();
+			return;
+		}
 		
 		var progress = 0;
 		var fields = Object.keys(user);
@@ -28,11 +30,11 @@ module.exports = {
 			progress = Math.round(completedFields / fields.length * 100);
 		}
 		
-		return {
+		render({
 			user: user,
 			displayName: user.givenName + " " + user.familyName,
 			profileCompleted: progress,
 			courseToTitle: this.courseToTitle
-		};
+		});
 	}
 };

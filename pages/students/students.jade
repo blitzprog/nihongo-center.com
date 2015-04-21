@@ -1,1 +1,9 @@
-h2 students
+h2 Students
+
+if typeof students === "undefined"
+	p You are not authorized to view this page!
+else if students.length === 0
+	p No students registered yet!
+else
+	each student in students
+		h3= student.givenName

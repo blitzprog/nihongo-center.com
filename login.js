@@ -5,6 +5,8 @@ var StrategyGoogle = require("passport-google-openidconnect").Strategy;
 var riak = require("nodiak").getClient();
 var session = require("express-session");
 
+var adminMails = ["e.urbach@gmail.com"];
+
 module.exports = function(aero, googleConfig, scopes) {
 	aero.events.on("initialized", function() {
 		// Accounts
@@ -15,6 +17,10 @@ module.exports = function(aero, googleConfig, scopes) {
 			function(iss, sub, profile, accessToken, refreshToken, done) {
 				var json = profile._json;
 				var email = json.emails[0].value;
+				var accessLevel = "";
+				
+				if(adminMails.indexOf(email) !== -1)
+					accessLevel = "admin";
 				
 				// Does the user already exist?
 				userBucket.objects.get(email, function(err, obj) {
@@ -27,6 +33,7 @@ module.exports = function(aero, googleConfig, scopes) {
 							familyName: json.name.familyName,
 							gender: json.gender,
 							language: json.language,
+							accessLevel: accessLevel,
 							country: "",
 							nationality: "",
 							maritalStatus: "",
@@ -53,7 +60,6 @@ module.exports = function(aero, googleConfig, scopes) {
 							
 							// Passport
 							passportId: "",
-							passportDateOfIssue: "",
 							passportDateOfExpiration: "",
 							
 							// Family

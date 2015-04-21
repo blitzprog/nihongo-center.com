@@ -16,15 +16,17 @@ module.exports = {
 	courseToTitle: JSON.parse(fs.readFileSync("data/courses.json", "utf8")),
 	
 	// Get
-	get: function(request) {
+	get: function(request, render) {
 		var user = request.user;
 		
-		if(typeof user === "undefined")
-			return undefined;
+		if(typeof user === "undefined") {
+			render();
+			return;
+		}
 		
 		var currentYear = new Date().getFullYear();
 		
-		return {
+		render({
 			user: user,
 			displayName: user.givenName + " " + user.familyName,
 			age: this.getAge(new Date(user.birthDay)),
@@ -112,7 +114,7 @@ module.exports = {
 				{name: "Level 3 (before 2010)", value: "level 3"},
 				{name: "Level 4 (before 2010)", value: "level 4"}
 			]
-		};
+		});
 	},
 	
 	// Get age
@@ -123,8 +125,8 @@ module.exports = {
 	},
 	
 	// Post: Save to database
-	post: function(request) {
-		return this[request.body.function](request);
+	post: function(request, render) {
+		render(this[request.body.function](request));
 	},
 	
 	// Save profile

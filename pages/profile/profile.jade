@@ -140,10 +140,14 @@ if user
 	
 	.profile
 		+text("Passport number:", "passportId", user.passportId, "e.g. TK1234567")
+		+date("Passport date of expiration:", "passportDateOfExpiration", user.passportDateOfExpiration)
 		
 	.profile
-		+date("Passport date of issue:", "passportDateOfIssue", user.passportDateOfIssue)
-		+date("Passport date of expiration:", "passportDateOfExpiration", user.passportDateOfExpiration)
+		+number("Number of past entries into Japan:", "numberOfPastEntries", 何, "How often did you go to Japan?")
+		
+	.profile
+		+date("Last entry from:", "lastEntryFrom")
+		+date("Last entry to:", "lastEntryTo")
 	
 	h2 Family
 	#family-members.profile
@@ -172,7 +176,7 @@ if user
 		+numberInObject("Scholarship:", "financialSupportPerMonth", "scholarship", "Monthly amount in Yen (¥)")
 		+numberInObject("Others:", "financialSupportPerMonth", "others", "Monthly amount in Yen (¥)")
 	
-	h3 Financial Supporters
+	h2 Financial Supporters
 	#financial-supporters.profile
 		each supporter, index in user.financialSupporters
 			.financial-supporter.profile
@@ -191,11 +195,8 @@ if user
 	h2 Japanese
 	.profile
 		+select("Acquired JLPT level:", "jlptLevel", user.jlptLevel, jlptLevels)
-		+number("Number of past entries into Japan:", "numberOfPastEntries", 何, "How often did you go to Japan?")
-		+date("Last entry from:", "lastEntryFrom")
-		+date("Last entry to:", "lastEntryTo")
 		
-	h3 Education Background
+	h2 Japanese Study Experience
 	#education-backgrounds.profile
 		each education, index in user.japaneseEducation
 			.education-background.profile
