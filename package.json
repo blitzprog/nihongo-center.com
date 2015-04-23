@@ -8,6 +8,7 @@
 		"passport-google-openidconnect": "*",
 		"nodiak": "*",
 		"express-session": "*",
+		"multer": "*",
 		"string": "*"
 	},
 	"author": {

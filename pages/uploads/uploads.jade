@@ -1,0 +1,10 @@
+if !user
+	p Not logged in!
+else if !user.email
+	p An error occured: E-Mail not available.
+else
+	h2 Uploads
+	form(id="uploadForm", enctype="multipart/form-data", action="/api/photo", method="post")
+		label(for="passportPhoto") Passport photo (30 mm x 40 mm):
+		input(type="file", name="passportPhoto")
+		input(type="submit", value="Upload photo", name="submit")

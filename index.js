@@ -2,8 +2,9 @@
 
 var aero = require("aero");
 var login = require("./login");
+var upload = require("./upload");
 
-// Setup login
+// Init login
 login(aero, {
 	clientID: "142269503991-oj65drmhdreneseg4v9j25l4t4lvocrr.apps.googleusercontent.com",
 	clientSecret: "QgM9AITTtrTRPA_Wb8MCVZWR",	// Well this shouldn't be on git...
@@ -13,6 +14,9 @@ login(aero, {
 	"email",
 	"profile"
 ]);
+
+// Init uploads
+upload(aero);
 
 // Start Aero
 aero.start();
