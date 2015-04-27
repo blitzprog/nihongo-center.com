@@ -6,4 +6,6 @@ else if students.length === 0
 	p No students registered yet!
 else
 	each student in students
-		h3= student.givenName
+		p
+			span= "【" + student.startYear + "/" + student.startMonth + "】 "
+			a(href=student.permaLink).ajax= student.givenName + " " + student.familyName

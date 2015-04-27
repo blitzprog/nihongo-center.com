@@ -3,6 +3,7 @@
 var S = require("string");
 var fs = require("fs");
 var saveUserInDB = require("../../modules/save-user");
+var age = require("../../modules/age");
 
 // Load file as array
 var loadFileAsArray = function(filePath) {
@@ -30,7 +31,7 @@ module.exports = {
 		render({
 			user: user,
 			displayName: user.givenName + " " + user.familyName,
-			age: this.getAge(new Date(user.birthDay)),
+			age: age.of(user),
 			nationalities: this.nationalities,
 			cities: this.cities,
 			countries: this.countries,
@@ -116,13 +117,6 @@ module.exports = {
 				{name: "Level 4 (before 2010)", value: "level 4"}
 			]
 		});
-	},
-	
-	// Get age
-	getAge: function(d1, d2) {
-		d2 = d2 || new Date();
-		var diff = d2.getTime() - d1.getTime();
-		return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
 	},
 	
 	// Post: Save to database

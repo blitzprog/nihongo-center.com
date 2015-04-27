@@ -5,31 +5,37 @@ html, body, *
 
 body
 	color textColor
-	background-color lighten(mainColor, 85%)
+	background-color bgColor
 
 #title
 	font-size 2em
 
 a
+a:visited
 	text-decoration none
-	color mainColor
+	color linkColor
 	
-	:hover
-		color lighten(mainColor, 30%)
+a:focus
+a:hover
+	color lighten(linkColor, 30%)
 
 h2
 h3
+p
 	container-element()
 	padding 0.5em 0
-	text-shadow 0 0 16px rgba(0, 0, 0, 0.2)
 
-h2
-	:first-child
-		padding 0
-	
 h2
 	font-size 1.6em
 	line-height 1.6em
+	color white
+	background elementBgColor
+	text-align center
+	border-radius 5px
+	shadow()
+	
+	:first-child
+		padding 0
 	
 h3
 	font-size 1.3em

@@ -1,0 +1,80 @@
+mixin empty()
+	.field
+
+mixin text(mLabel, mId, mValue, mPlaceHolder, dataListId, disabled)
+	if typeof mValue === "undefined"
+		- mValue = user[mId]
+	.field
+		label(for=mId)= mLabel
+		if disabled
+			input(type="text", name=mId, id=mId, value=mValue, list=dataListId, placeholder=mPlaceHolder, title=mPlaceHolder, disabled).text-input
+		else
+			input(type="text", name=mId, id=mId, value=mValue, list=dataListId, placeholder=mPlaceHolder, title=mPlaceHolder).text-input
+
+mixin textInArray(mLabel, mArray, mIndex, mKey, mValue, mPlaceHolder, dataListId)
+	- var mId = mArray + "-" + mIndex + "-" + mKey
+	if typeof mValue === "undefined"
+		- mValue = user[mArray][mIndex][mKey]
+	.field
+		label(for=mId)= mLabel
+		input(type="text", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, title=mPlaceHolder, list=dataListId, data-array=mArray, data-index=mIndex, data-key=mKey).array-text-input
+
+mixin numberInArray(mLabel, mArray, mIndex, mKey, mValue, mPlaceHolder, dataListId)
+	- var mId = mArray + "-" + mIndex + "-" + mKey
+	if typeof mValue === "undefined"
+		- mValue = user[mArray][mIndex][mKey]
+	.field
+		label(for=mId)= mLabel
+		input(type="number", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, title=mPlaceHolder, list=dataListId, data-array=mArray, data-index=mIndex, data-key=mKey).array-number-input
+
+mixin number(mLabel, mId, mValue, mPlaceHolder)
+	if typeof mValue === "undefined"
+		- mValue = user[mId]
+	.field
+		label(for=mId)= mLabel
+		input(type="number", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, title=mPlaceHolder).number-input
+
+mixin numberInObject(mLabel, mObject, mKey, mPlaceHolder)
+	- var mId = mObject + "-" + mKey
+	- var mValue = user[mObject][mKey]
+	.field
+		label(for=mId)= mLabel
+		input(type="number", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, title=mPlaceHolder, data-object=mObject, data-key=mKey).object-number-input
+
+mixin tel(mLabel, mId, mValue, mPlaceHolder)
+	.field
+		label(for=mId)= mLabel
+		input(type="tel", name=mId, id=mId, value=mValue, placeholder=mPlaceHolder, title=mPlaceHolder).tel-input
+
+mixin date(mLabel, mId, mValue)
+	if typeof mValue === "undefined"
+		- mValue = user[mId]
+	.field
+		label(for=mId)= mLabel
+		input(type="date", name=mId, id=mId, value=mValue).date-input
+
+mixin month(mLabel, mId, mValue)
+	.field
+		label(for=mId)= mLabel
+		input(type="month", name=mId, id=mId, value=mValue).date-input
+
+mixin select(mLabel, mId, mValue, mOptions)
+	.field
+		label(for=mId)= mLabel
+		select(name=mId, id=mId)
+			each option in mOptions
+				if option.value === mValue || (typeof mValue === "undefined" && option.value === "")
+					if option.disabled === true
+						option(value=option.value, disabled, selected)= option.name
+					else
+						option(value=option.value, selected)= option.name
+				else
+					if option.disabled === true
+						option(value=option.value, disabled)= option.name
+					else
+						option(value=option.value)= option.name
+
+mixin datalist(mId, mOptions)
+	datalist(id=mId)
+		each val in mOptions
+			option(value=val)
