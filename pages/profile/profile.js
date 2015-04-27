@@ -2,6 +2,7 @@
 
 var S = require("string");
 var fs = require("fs");
+var saveUserInDB = require("../../modules/save-user");
 
 // Load file as array
 var loadFileAsArray = function(filePath) {
@@ -150,7 +151,7 @@ module.exports = {
 				user[field] = S(user[field]).capitalize().s;
 		});
 		
-		this.saveUserInDB(user);
+		saveUserInDB(user);
 		
 		// Render normally
 		request.user = user;
@@ -184,7 +185,7 @@ module.exports = {
 		else
 			user[array][index][key] = value;
 		
-		this.saveUserInDB(user);
+		saveUserInDB(user);
 		
 		// Render normally
 		request.user = user;
@@ -203,43 +204,24 @@ module.exports = {
 		else
 			user[object][key] = value;
 		
-		this.saveUserInDB(user);
+		saveUserInDB(user);
 		
 		// Render normally
 		request.user = user;
 		this.get(request, render);
 	},
 	
-	// Save user in database
-	saveUserInDB: function(user, callBack) {
-		// Connect
-		var riak = require("nodiak").getClient();
-		var userBucket = riak.bucket("Accounts");
-		var userObject = userBucket.objects.new(user.email, user);
-		
-		// Save account in database
-		userObject.save(function(err, obj) {
-			if(err) {
-				console.error(err);
-				return;
-			}
-			
-			if(callBack)
-				callBack(obj);
-		});
-	},
-	
 	// Add (generic)
 	add: function(request, render, key, obj) {
 		request.user[key].push(obj);
-		this.saveUserInDB(request.user);
+		saveUserInDB(request.user);
 		this.get(request, render);
 	},
 	
 	// Remove (generic)
 	remove: function(request, render, key) {
 		request.user[key].splice(request.body.index, 1);
-		this.saveUserInDB(request.user);
+		saveUserInDB(request.user);
 		this.get(request, render);
 	},
 	

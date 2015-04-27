@@ -30,3 +30,6 @@ node_modules
 # Symlinks
 /.eslintrc
 /.jscs.json
+
+# Uploads
+/uploads
