@@ -1,22 +1,9 @@
 /*eslint-env browser, jquery */
 /*global aero*/
 
-var updateContent = function(response) {
-	var focusedElementId = $(document.activeElement).attr("id");
-	
-	aero.$content.html(response);
-	aero.fireContentLoadedEvent();
-	
-	// Re-focus previously selected element
-	if(typeof focusedElementId !== "undefined")
-		$("#" + focusedElementId).focus();
-	
-	// Remove from cache
-	delete aero.cache.profile;
-};
-
 // Save
 var save = function() {
+	var page = "profile";
 	var $this = $(this);
 	var key = $this.attr("name");
 	var value = $this.val();
@@ -28,18 +15,19 @@ var save = function() {
 		dataType = "numeric";
 	}
 	
-	$.post("/raw/profile", {
+	$.post("/raw/" + page, {
 		function: "saveProfile",
 		key: key,
 		value: value,
 		dataType: dataType
 	}, function(response) {
-		updateContent(response);
+		updateContent(page, response);
 	});
 };
 
 // Save array element
 var saveArrayElement = function() {
+	var page = "profile";
 	var $this = $(this);
 	var array = $this.data("array");
 	var index = $this.data("index");
@@ -53,7 +41,7 @@ var saveArrayElement = function() {
 		dataType = "numeric";
 	}
 	
-	$.post("/raw/profile", {
+	$.post("/raw/" + page, {
 		function: "saveArrayElement",
 		array: array,
 		index: index,
@@ -61,12 +49,13 @@ var saveArrayElement = function() {
 		value: value,
 		dataType: dataType
 	}, function(response) {
-		updateContent(response);
+		updateContent(page, response);
 	});
 };
 
 // Save object
 var saveObject = function() {
+	var page = "profile";
 	var $this = $(this);
 	var object = $this.data("object");
 	var key = $this.data("key");
@@ -79,14 +68,14 @@ var saveObject = function() {
 		dataType = "numeric";
 	}
 	
-	$.post("/raw/profile", {
+	$.post("/raw/" + page, {
 		function: "saveObject",
 		object: object,
 		key: key,
 		value: value,
 		dataType: dataType
 	}, function(response) {
-		updateContent(response);
+		updateContent(page, response);
 	});
 };
 
@@ -102,25 +91,6 @@ var onContentLoaded = function() {
 	$(".object-number-input").change(saveObject);
 	$(".array-text-input").change(saveArrayElement);
 	$(".array-number-input").change(saveArrayElement);
-};
-
-// Add
-var add = function(type) {
-	$.post("/raw/profile", {
-		function: "add" + type
-	}, function(response) {
-		updateContent(response);
-	});
-};
-
-// Remove
-var remove = function(type, index) {
-	$.post("/raw/profile", {
-		function: "remove" + type,
-		index: index
-	}, function(response) {
-		updateContent(response);
-	});
 };
 
 document.addEventListener("DOMContentLoaded", onContentLoaded);

@@ -96,9 +96,9 @@ if user
 					+textInArray("Occupation:", "familyMembers", index, "occupation", member.occupation)
 					+textInArray("Nationality:", "familyMembers", index, "nationality", member.nationality, "", "nationalities")
 					+textInArray("Country:", "familyMembers", index, "country", member.country, "", "countries")
-					a(href="javascript:remove('FamilyMember', " + index + ");").delete-button Delete
+					a(href="javascript:remove('profile', 'FamilyMember', " + index + ");").delete-button Delete
 			
-			a(href="javascript:add('FamilyMember');") Add family member
+			a(href="javascript:add('profile', 'FamilyMember');") Add family member
 	
 	h2 Finances
 	
@@ -131,8 +131,8 @@ if user
 					+numberInArray("Annual income:", "financialSupporters", index, "annualIncome", 何, "In Yen (¥)")
 					+textInArray("Relationship with the applicant:", "financialSupporters", index, "relation")
 					
-					a(href="javascript:remove('FinancialSupporter', " + index + ");").delete-button Delete
-		a(href="javascript:add('FinancialSupporter');") Add financial supporter
+					a(href="javascript:remove('profile', 'FinancialSupporter', " + index + ");").delete-button Delete
+		a(href="javascript:add('profile', 'FinancialSupporter');") Add financial supporter
 	
 	h2 Japanese
 	
@@ -149,8 +149,8 @@ if user
 					+textInArray("Institution:", "japaneseEducation", index, "institution")
 					+numberInArray("Total hours:", "japaneseEducation", index, "totalHours")
 					+textInArray("Text book:", "japaneseEducation", index, "textBook")
-					a(href="javascript:remove('EducationBackground', " + index + ");").delete-button Delete
-		a(href="javascript:add('EducationBackground');") Add education background
+					a(href="javascript:remove('profile', 'EducationBackground', " + index + ");").delete-button Delete
+		a(href="javascript:add('profile', 'EducationBackground');") Add education background
 	
 	h2 Visa
 	
@@ -160,6 +160,7 @@ if user
 			+text("Place to apply for a visa in your country:", "visaApplicationPlace", 何, "🏢 Location of closest Japanese Embassy or Consulate")
 	
 	script
+		include ../../scripts/arrays.js
 		include save.js
 else
 	p Not logged in!

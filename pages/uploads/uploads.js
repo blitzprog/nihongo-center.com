@@ -22,7 +22,7 @@ module.exports = {
 	post: function(request, render) {
 		var file = request.files.file[0];
 		file.purpose = request.body.purpose;
-		file.uploadDateTime = new Date();
+		file.dateTime = new Date();
 		request.user.uploads.unshift(file);
 		
 		saveUserInDB(request.user);

@@ -20,4 +20,8 @@ else
 		ul.uploads
 			li.upload
 				span= "[" + upload.purpose + "] "
-				a(href = "/" + upload.path)= upload.originalname
+				a(href="/" + upload.path)= upload.originalname
+				a(href="javascript:remove('uploads', 'Upload', " + index + ");").delete-button X
+				
+	script
+		include ../../scripts/arrays.js
