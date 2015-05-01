@@ -7,13 +7,22 @@ module.exports = {
 		var user = request.user;
 		
 		render({
-			user: user
+			user: user,
+			fileTypes: [
+				{name: "Please choose:", value: "", disabled: true},
+				{name: "Passport", value: "passport"},
+				{name: "Passport photo", value: "passportPhoto"},
+				{name: "CV", value: "curriculumVitae"},
+				{name: "Pledge", value: "pledge"},
+				{name: "Other", value: "other"}
+			]
 		});
 	},
 	
 	post: function(request, render) {
-		var passportPhoto = request.files.passportPhoto;
-		request.user.passportPhoto = passportPhoto;
+		var file = request.files.file[0];
+		file.purpose = request.body.purpose;
+		request.user.uploads.push(file);
 		
 		saveUserInDB(request.user);
 		this.get(request, render);

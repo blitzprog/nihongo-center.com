@@ -86,7 +86,10 @@ module.exports = function(aero, googleConfig, scopes) {
 							
 							// Japanese
 							jlptLevel: "",
-							japaneseEducation: []
+							japaneseEducation: [],
+							
+							// Uploads
+							uploads: []
 						};
 						
 						console.log("New user logged in: " + account.email);

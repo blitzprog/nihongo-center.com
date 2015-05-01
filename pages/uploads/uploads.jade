@@ -1,10 +1,23 @@
+include ../../mixins/forms.jade
+
 if !user
 	p Not logged in!
 else if !user.email
 	p An error occured: E-Mail not available.
 else
-	h2 Uploads
+	h2 Upload new file
+	
 	form(id="uploadForm", enctype="multipart/form-data", action="/uploads", method="post")
-		label(for="passportPhoto") Passport photo (30 mm x 40 mm):
-		input(type="file", name="passportPhoto")
-		button(type="submit") Upload photo
+		label(for="file") File upload (max. 20 MB):
+		.field
+			input(type="file", name="file")
+		+select("Purpose of this file upload:", "purpose", undefined, fileTypes)
+		button(type="submit") ⇧ Upload file
+		
+	h2 Your uploads
+	
+	each upload, index in user.uploads
+		ul.uploads
+			li.upload
+				span= "[" + upload.purpose + "] "
+				a(href = "/" + upload.path)= upload.originalname

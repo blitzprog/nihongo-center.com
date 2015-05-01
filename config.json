@@ -18,6 +18,9 @@
 		"uploads",
 		"login"
 	],
+	"static": [
+		"uploads"
+	],
 	"fonts": [
 		"Ubuntu",
 		"Ubuntu:bold"

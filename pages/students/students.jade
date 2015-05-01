@@ -1,11 +1,11 @@
-h2 Students
-
 if typeof students === "undefined"
 	p You are not authorized to view this page!
 else if students.length === 0
 	p No students registered yet!
 else
+	h2 Students
+	
 	each student in students
 		p
-			span= "【" + student.startYear + "/" + student.startMonth + "】 "
+			span= "[" + student.startYear + "/" + student.startMonth + "] "
 			a(href=student.permaLink).ajax= student.givenName + " " + student.familyName
