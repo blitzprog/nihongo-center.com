@@ -1,12 +1,12 @@
 "use strict";
 
-var S = require("string");
-var fs = require("fs");
-var saveUserInDB = require("../../modules/save-user");
-var age = require("../../modules/age");
+let S = require("string");
+let fs = require("fs");
+let saveUserInDB = require("../../modules/save-user");
+let age = require("../../modules/age");
 
 // Load file as array
-var loadFileAsArray = function(filePath) {
+let loadFileAsArray = function(filePath) {
 	return fs.readFileSync(filePath, "utf8").toString().split("\n");
 };
 
@@ -19,14 +19,14 @@ module.exports = {
 	
 	// Get
 	get: function(request, render) {
-		var user = request.user;
+		let user = request.user;
 		
 		if(typeof user === "undefined") {
 			render();
 			return;
 		}
 		
-		var currentYear = new Date().getFullYear();
+		let currentYear = new Date().getFullYear();
 		
 		render({
 			user: user,
@@ -126,8 +126,8 @@ module.exports = {
 	
 	// Save profile
 	saveProfile: function(request, render) {
-		var user = request.user;
-		var key = request.body.key;
+		let user = request.user;
+		let key = request.body.key;
 		
 		if(request.body.dataType === "numeric")
 			user[key] = parseInt(request.body.value);
@@ -154,11 +154,11 @@ module.exports = {
 	
 	// Save array element
 	saveArrayElement: function(request, render) {
-		var user = request.user;
-		var value = request.body.value;
-		var array = request.body.array;
-		var index = request.body.index;
-		var key = request.body.key;
+		let user = request.user;
+		let value = request.body.value;
+		let array = request.body.array;
+		let index = request.body.index;
+		let key = request.body.key;
 		
 		// Trim
 		value = value.trim();
@@ -188,10 +188,10 @@ module.exports = {
 	
 	// Save object
 	saveObject: function(request, render) {
-		var user = request.user;
-		var value = request.body.value;
-		var object = request.body.object;
-		var key = request.body.key;
+		let user = request.user;
+		let value = request.body.value;
+		let object = request.body.object;
+		let key = request.body.key;
 		
 		if(request.body.dataType === "numeric")
 			user[object][key] = parseInt(value);

@@ -1,11 +1,11 @@
 "use strict";
 
-var riak = require("nodiak").getClient();
-var age = require("../../modules/age");
+let riak = require("nodiak").getClient();
+let age = require("../../modules/age");
 
 module.exports = {
 	get: function(request, render) {
-		var user = request.user;
+		let user = request.user;
 		
 		// Logged in?
 		if(typeof user === "undefined") {
@@ -23,8 +23,8 @@ module.exports = {
 			if(err)
 				throw err;
 				
-			var students = rObjects.map(function(rObject) {
-				var student = rObject.data;
+			let students = rObjects.map(function(rObject) {
+				let student = rObject.data;
 				
 				student.age = age.of(student);
 				student.permaLink = "/students/" + student.email;

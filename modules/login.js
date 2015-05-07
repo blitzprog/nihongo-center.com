@@ -1,23 +1,23 @@
 "use strict";
 
-var passport = require("passport");
-var StrategyGoogle = require("passport-google-openidconnect").Strategy;
-var riak = require("nodiak").getClient();
-var session = require("express-session");
+let passport = require("passport");
+let StrategyGoogle = require("passport-google-openidconnect").Strategy;
+let riak = require("nodiak").getClient();
+let session = require("express-session");
 
-var adminMails = ["e.urbach@gmail.com"];
+let adminMails = ["e.urbach@gmail.com"];
 
 module.exports = function(aero, googleConfig, scopes) {
 	aero.events.on("initialized", function() {
 		// Accounts
-		var userBucket = riak.bucket("Accounts");
+		let userBucket = riak.bucket("Accounts");
 		
 		passport.use(new StrategyGoogle(
 			googleConfig,
 			function(iss, sub, profile, accessToken, refreshToken, done) {
-				var json = profile._json;
-				var email = json.emails[0].value;
-				var accessLevel = "";
+				let json = profile._json;
+				let email = json.emails[0].value;
+				let accessLevel = "";
 				
 				if(adminMails.indexOf(email) !== -1)
 					accessLevel = "admin";
@@ -26,7 +26,7 @@ module.exports = function(aero, googleConfig, scopes) {
 				userBucket.objects.get(email, function(err, obj) {
 					if(err) {
 						// Create new account
-						var account = {
+						let account = {
 							// Personal
 							email: email,
 							givenName: json.name.givenName,
@@ -106,7 +106,7 @@ module.exports = function(aero, googleConfig, scopes) {
 		
 		// Serializer
 		passport.serializeUser(function(account, done) {
-			var userObject = userBucket.objects.new(account.email, account);
+			let userObject = userBucket.objects.new(account.email, account);
 			
 			// Save account in database
 			userObject.save(function(err, obj) {

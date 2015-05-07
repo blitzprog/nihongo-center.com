@@ -1,8 +1,8 @@
 "use strict";
 
-var aero = require("aero");
-var login = require("./modules/login");
-var upload = require("./modules/upload");
+let aero = require("aero");
+let login = require("./modules/login");
+let upload = require("./modules/upload");
 
 // Init login
 login(aero, {

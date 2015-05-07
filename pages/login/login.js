@@ -2,7 +2,7 @@
 
 module.exports = {
 	get: function(request, render) {
-		var user = request.user;
+		let user = request.user;
 		
 		if(typeof user === "undefined") {
 			render();

@@ -1,10 +1,11 @@
 "use strict";
 
-var saveUserInDB = require("../../modules/save-user");
+let saveUserInDB = require("../../modules/save-user");
 
 module.exports = {
+	// Get
 	get: function(request, render) {
-		var user = request.user;
+		let user = request.user;
 		
 		render({
 			user: user,
@@ -19,13 +20,19 @@ module.exports = {
 		});
 	},
 	
+	// Post
 	post: function(request, render) {
-		var file = request.files.file[0];
-		file.purpose = request.body.purpose;
-		file.dateTime = new Date();
-		request.user.uploads.unshift(file);
+		let files = request.files.file;
 		
-		saveUserInDB(request.user);
+		if(files && files.length > 0) {
+			let file = files[0];
+			file.purpose = request.body.purpose;
+			file.dateTime = new Date();
+			
+			request.user.uploads.unshift(file);
+			saveUserInDB(request.user);
+		}
+		
 		this.get(request, render);
 	}
 };
