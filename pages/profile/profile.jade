@@ -9,96 +9,90 @@ if user
 	
 	h2 Personal
 	
-	p
-		.profile
-			+text("Given name:", "givenName")
-			+text("Family name:", "familyName")
+	.profile
+		+text("Given name:", "givenName")
+		+text("Family name:", "familyName")
+		
+	.profile
+		+select("Gender:", "gender", user.gender, genderOptions)
+		+select("Marital status:", "maritalStatus", user.maritalStatus, maritalStatusOptions)
+		
+	.profile
+		+date("Birthday:", "birthDay", user.birthDay)
+		+text("Birthplace:", "birthPlace", user.birthPlace, "", "cities")
+		+text("Age:", "age", age, "", "", true)
 			
-		.profile
-			+select("Gender:", "gender", user.gender, genderOptions)
-			+select("Marital status:", "maritalStatus", user.maritalStatus, maritalStatusOptions)
-			
-		.profile
-			+date("Birthday:", "birthDay", user.birthDay)
-			+text("Age:", "age", age, "", "", true)
-			+text("Birthplace:", "birthPlace", user.birthPlace, "", "cities")
 	
 	h2 Country
 	
-	p
-		.profile
-			+text("Country:", "country", user.country, "", "countries")
-			+text("Nationality:", "nationality", user.nationality, "", "nationalities")
+	.profile
+		+text("Country:", "country", user.country, "", "countries")
+		+text("Nationality:", "nationality", user.nationality, "", "nationalities")
 	
 	h2 Work
 	
-	p
-		.profile
-			+text("Occupation:", "occupation", user.occupation)
-			+select("Occupation type:", "occupationType", user.occupationType, occupationTypeOptions)
+	.profile
+		+text("Occupation:", "occupation", user.occupation)
+		+select("Occupation type:", "occupationType", user.occupationType, occupationTypeOptions)
 		
 	h2 Contact
 	
-	p
-		.profile
-			+text("Home address:", "address", user.address, "🏠")
-			+text("Address in Japan:", "addressAbroad", user.addressAbroad, "🏠 Only if you have one.")
-			
-		.profile
-			+tel("Telephone:", "telephone", user.telephone, "☎")
-			+tel("Telephone in Japan:", "telephoneAbroad", user.telephoneAbroad, "☎ Only if you have one.")
+	.profile
+		+text("Home address:", "address", user.address, "🏠")
+		+text("Address in Japan:", "addressAbroad", user.addressAbroad, "🏠 Only if you have one.")
+		
+	.profile
+		+tel("Telephone:", "telephone", user.telephone, "☎")
+		+tel("Telephone in Japan:", "telephoneAbroad", user.telephoneAbroad, "☎ Only if you have one.")
 	
 	h2 Course
 	
-	p
-		.profile
-			+select("Course:", "course", user.course, courseOptions)
-			
-		.profile
-			+select("Start year:", "startYear", user.startYear, startYearOptions)
-			+select("Start month:", "startMonth", user.startMonth, startMonthOptions)
+	.profile
+		+select("Course:", "course", user.course, courseOptions)
+		
+	.profile
+		+select("Start year:", "startYear", user.startYear, startYearOptions)
+		+select("Start month:", "startMonth", user.startMonth, startMonthOptions)
 		
 	h2 Education
 	
-	p
-		.profile
-			+select("Education:", "education", user.education, educationOptions)
-			+text("Name of educational institution:", "educationalInstitutionName", user.educationalInstitutionName, "School or university name")
-			
-			+month("Graduation date:", "graduationDate", user.graduationDate)
-			+number("Total period of education:", "totalPeriodOfEducation", 何, "How many years?")
-			
-			+select("Plan after graduating from Nihongo Center:", "planAfterGraduation", user.planAfterGraduation, planAfterGraduationOptions)
+	.profile
+		+select("Education:", "education", user.education, educationOptions)
+		+text("Name of educational institution:", "educationalInstitutionName", user.educationalInstitutionName, "School or university name")
+		
+		+month("Graduation date:", "graduationDate", user.graduationDate)
+		+number("Total period of education:", "totalPeriodOfEducation", 何, "How many years?")
+		
+		+select("Plan after graduating from Nihongo Center:", "planAfterGraduation", user.planAfterGraduation, planAfterGraduationOptions)
 		
 	h2 Passport
 	
-	p
-		.profile
-			+text("Passport number:", "passportId", user.passportId, "e.g. TK1234567")
-			+date("Passport date of expiration:", "passportDateOfExpiration", user.passportDateOfExpiration)
-			
-		.profile
-			+number("Number of past entries into Japan:", "numberOfPastEntries", 何, "How often did you go to Japan?")
-			
-		.profile
-			+date("Last entry from:", "lastEntryFrom")
-			+date("Last entry to:", "lastEntryTo")
+	.profile
+		+text("Passport number:", "passportId", user.passportId, "e.g. TK1234567")
+		+date("Passport date of expiration:", "passportDateOfExpiration", user.passportDateOfExpiration)
+		
+	.profile
+		+number("Number of past entries into Japan:", "numberOfPastEntries", 何, "How often did you go to Japan?")
+		
+	.profile
+		+date("Last entry from:", "lastEntryFrom")
+		+date("Last entry to:", "lastEntryTo")
 	
 	h2 Family
 	
+	#family-members.profile
+		each member, index in user.familyMembers
+			.profile.array-element.family-member
+				+textInArray("Full name:", "familyMembers", index, "name", member.name)
+				+textInArray("Relation:", "familyMembers", index, "relation", member.relation)
+				+textInArray("Age:", "familyMembers", index, "age", member.age)
+				+textInArray("Occupation:", "familyMembers", index, "occupation", member.occupation)
+				+textInArray("Nationality:", "familyMembers", index, "nationality", member.nationality, "", "nationalities")
+				+textInArray("Country:", "familyMembers", index, "country", member.country, "", "countries")
+				a(href="javascript:remove('profile', 'FamilyMember', " + index + ");").delete-button Delete
+		
 	p
-		#family-members.profile
-			each member, index in user.familyMembers
-				.profile.array-element.family-member
-					+textInArray("Full name:", "familyMembers", index, "name", member.name)
-					+textInArray("Relation:", "familyMembers", index, "relation", member.relation)
-					+textInArray("Age:", "familyMembers", index, "age", member.age)
-					+textInArray("Occupation:", "familyMembers", index, "occupation", member.occupation)
-					+textInArray("Nationality:", "familyMembers", index, "nationality", member.nationality, "", "nationalities")
-					+textInArray("Country:", "familyMembers", index, "country", member.country, "", "countries")
-					a(href="javascript:remove('profile', 'FamilyMember', " + index + ");").delete-button Delete
-			
-			a(href="javascript:add('profile', 'FamilyMember');") Add family member
+		a(href="javascript:add('profile', 'FamilyMember');") Add family member
 	
 	h2 Finances
 	
@@ -107,57 +101,56 @@ if user
 		strong per month 
 		| in Yen (¥).
 		
-	p
-		.profile
-			+numberInObject("Self:", "financialSupportPerMonth", "self", "Monthly amount in Yen (¥)")
-			+numberInObject("Remittance from outside Japan:", "financialSupportPerMonth", "remittanceFromOutside", "Monthly amount in Yen (¥)")
-			+numberInObject("Carrying from abroad:", "financialSupportPerMonth", "carryingFromAbroad", "Monthly amount in Yen (¥)")
-			+numberInObject("Guarantor in Japan:", "financialSupportPerMonth", "guarantorAbroad", "Monthly amount in Yen (¥)")
-			+numberInObject("Scholarship:", "financialSupportPerMonth", "scholarship", "Monthly amount in Yen (¥)")
-			+numberInObject("Others:", "financialSupportPerMonth", "others", "Monthly amount in Yen (¥)")
+	.profile
+		+numberInObject("Self:", "financialSupportPerMonth", "self", "Monthly amount in Yen (¥)")
+		+numberInObject("Remittance from outside Japan:", "financialSupportPerMonth", "remittanceFromOutside", "Monthly amount in Yen (¥)")
+		+numberInObject("Carrying from abroad:", "financialSupportPerMonth", "carryingFromAbroad", "Monthly amount in Yen (¥)")
+		+numberInObject("Guarantor in Japan:", "financialSupportPerMonth", "guarantorAbroad", "Monthly amount in Yen (¥)")
+		+numberInObject("Scholarship:", "financialSupportPerMonth", "scholarship", "Monthly amount in Yen (¥)")
+		+numberInObject("Others:", "financialSupportPerMonth", "others", "Monthly amount in Yen (¥)")
 	
 	h2 Financial Supporters
 	
+	#financial-supporters.profile
+		each supporter, index in user.financialSupporters
+			.profile.array-element.financial-supporter
+				+textInArray("Name:", "financialSupporters", index, "name")
+				+textInArray("Address:", "financialSupporters", index, "address")
+				+textInArray("Telephone:", "financialSupporters", index, "telephone")
+				+textInArray("Occupation:", "financialSupporters", index, "occupation")
+				+textInArray("Company name:", "financialSupporters", index, "company", 何, "Full company name")
+				+textInArray("Company telephone:", "financialSupporters", index, "companyTelephone")
+				+numberInArray("Annual income:", "financialSupporters", index, "annualIncome", 何, "In Yen (¥)")
+				+textInArray("Relationship with the applicant:", "financialSupporters", index, "relation")
+				
+				a(href="javascript:remove('profile', 'FinancialSupporter', " + index + ");").delete-button Delete
+	
 	p
-		#financial-supporters.profile
-			each supporter, index in user.financialSupporters
-				.profile.array-element.financial-supporter
-					+textInArray("Name:", "financialSupporters", index, "name")
-					+textInArray("Address:", "financialSupporters", index, "address")
-					+textInArray("Telephone:", "financialSupporters", index, "telephone")
-					+textInArray("Occupation:", "financialSupporters", index, "occupation")
-					+textInArray("Company name:", "financialSupporters", index, "company", 何, "Full company name")
-					+textInArray("Company telephone:", "financialSupporters", index, "companyTelephone")
-					+numberInArray("Annual income:", "financialSupporters", index, "annualIncome", 何, "In Yen (¥)")
-					+textInArray("Relationship with the applicant:", "financialSupporters", index, "relation")
-					
-					a(href="javascript:remove('profile', 'FinancialSupporter', " + index + ");").delete-button Delete
 		a(href="javascript:add('profile', 'FinancialSupporter');") Add financial supporter
 	
 	h2 Japanese
 	
-	p
-		.profile
-			+select("Acquired JLPT level:", "jlptLevel", user.jlptLevel, jlptLevels)
+	.profile
+		+select("Acquired JLPT level:", "jlptLevel", user.jlptLevel, jlptLevels)
 		
 	h2 Japanese Study Experience
 	
+	#education-backgrounds.profile
+		each education, index in user.japaneseEducation
+			.profile.array-element.education-background
+				+textInArray("Institution:", "japaneseEducation", index, "institution")
+				+numberInArray("Total hours:", "japaneseEducation", index, "totalHours")
+				+textInArray("Text book:", "japaneseEducation", index, "textBook")
+				a(href="javascript:remove('profile', 'EducationBackground', " + index + ");").delete-button Delete
+	
 	p
-		#education-backgrounds.profile
-			each education, index in user.japaneseEducation
-				.profile.array-element.education-background
-					+textInArray("Institution:", "japaneseEducation", index, "institution")
-					+numberInArray("Total hours:", "japaneseEducation", index, "totalHours")
-					+textInArray("Text book:", "japaneseEducation", index, "textBook")
-					a(href="javascript:remove('profile', 'EducationBackground', " + index + ");").delete-button Delete
 		a(href="javascript:add('profile', 'EducationBackground');") Add education background
 	
 	h2 Visa
 	
-	p
-		.profile
-			+select("Port of entry:", "portOfEntry", user.portOfEntry, portsOfEntry)
-			+text("Place to apply for a visa in your country:", "visaApplicationPlace", 何, "🏢 Location of closest Japanese Embassy or Consulate")
+	.profile
+		+select("Port of entry:", "portOfEntry", user.portOfEntry, portsOfEntry)
+		+text("Place to apply for a visa in your country:", "visaApplicationPlace", 何, "🏢 Location of closest Japanese Embassy or Consulate")
 	
 	script
 		include ../../scripts/arrays.js
