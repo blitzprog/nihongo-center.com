@@ -6,7 +6,10 @@
 h2
 form
 	container-element()
-	
+
+#container
+	text-align center
+
 space = 1em
 
 #header, #content
@@ -17,8 +20,13 @@ space = 1em
 #header
 	padding-bottom space * 0.5
 	border-bottom 1px dashed mainColor
+	text-align center
 	
 #content
+	width 60%
+	display inline-block
+	float none
+	text-align left
 	padding-top space * 0.5
 	
 #title
@@ -27,7 +35,7 @@ space = 1em
 	margin-bottom 0.25em
 	
 #navigation
-	container-element()
+	display inline-block
 	
 	header
 		display none

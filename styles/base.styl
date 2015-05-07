@@ -3,6 +3,9 @@
 html, body, *
 	font-family "Ubuntu"
 
+html
+	overflow-y scroll
+
 body
 	color textColor
 	background-color bgColor
@@ -23,17 +26,19 @@ h2
 h3
 p
 	container-element()
-	padding 0.5em 0
+	padding 0.4em 0
 
 h2
-	font-size 1.6em
-	line-height 1.6em
-	color white
+	font-size 1.8em
+	line-height 1.8em
+	color lighten(elementBgColor, 95%)
+	border 1px solid darken(elementBgColor, 30%)
 	background elementBgColor
 	text-align center
+	letter-spacing 2px
 	border-radius 5px
 	margin 0.4em 0
-	shadow()
+	box-shadow 1px 1px 8px rgba(0, 0, 0, 0.5)
 	
 	:first-child
 		padding 0
