@@ -1,6 +1,8 @@
 include ../../mixins/forms.jade
 
-if user
+if !user
+	p Not logged in!
+else
 	- var 何 = undefined;
 	
 	+datalist("cities", cities)
@@ -21,7 +23,6 @@ if user
 		+date("Birthday:", "birthDay", user.birthDay)
 		+text("Birthplace:", "birthPlace", user.birthPlace, "", "cities")
 		+text("Age:", "age", age, "", "", true)
-			
 	
 	h2 Country
 	
@@ -155,5 +156,3 @@ if user
 	script
 		include ../../scripts/arrays.js
 		include save.js
-else
-	p Not logged in!

@@ -4,6 +4,7 @@ let S = require("string");
 let fs = require("fs");
 let saveUserInDB = require("../../modules/save-user");
 let age = require("../../modules/age");
+let dbArray = require("../../modules/db-array");
 
 // Load file as array
 let loadFileAsArray = function(filePath) {
@@ -53,6 +54,7 @@ module.exports = {
 				{name: "Other", value: "other"}
 			],
 			startYearOptions: [
+				{name: "Please choose:", value: "", disabled: true},
 				{name: currentYear, value: currentYear.toString()},
 				{name: currentYear + 1, value: (currentYear + 1).toString()}
 			],
@@ -156,7 +158,7 @@ module.exports = {
 	saveArrayElement: function(request, render) {
 		let user = request.user;
 		let value = request.body.value;
-		let array = request.body.array;
+		let arrayName = request.body.array;
 		let index = request.body.index;
 		let key = request.body.key;
 		
@@ -175,9 +177,9 @@ module.exports = {
 			value = S(value).capitalize().s;
 		
 		if(request.body.dataType === "numeric")
-			user[array][index][key] = parseInt(value);
+			user[arrayName][index][key] = parseInt(value);
 		else
-			user[array][index][key] = value;
+			user[arrayName][index][key] = value;
 		
 		saveUserInDB(user);
 		
@@ -205,23 +207,9 @@ module.exports = {
 		this.get(request, render);
 	},
 	
-	// Add (generic)
-	add: function(request, render, key, obj) {
-		request.user[key].push(obj);
-		saveUserInDB(request.user);
-		this.get(request, render);
-	},
-	
-	// Remove (generic)
-	remove: function(request, render, key) {
-		request.user[key].splice(request.body.index, 1);
-		saveUserInDB(request.user);
-		this.get(request, render);
-	},
-	
 	// Add family member
 	addFamilyMember: function(request, render) {
-		this.add(request, render, "familyMembers", {
+		dbArray.add(this, request, render, "familyMembers", {
 			name: "",
 			relation: "",
 			age: "",
@@ -233,12 +221,12 @@ module.exports = {
 	
 	// Remove family member
 	removeFamilyMember: function(request, render) {
-		this.remove(request, render, "familyMembers");
+		dbArray.remove(this, request, render, "familyMembers");
 	},
 	
 	// Add education background
 	addEducationBackground: function(request, render) {
-		this.add(request, render, "japaneseEducation", {
+		dbArray.add(this, request, render, "japaneseEducation", {
 			institution: "",
 			totalHours: null,
 			textBook: ""
@@ -247,12 +235,12 @@ module.exports = {
 	
 	// Remove education background
 	removeEducationBackground: function(request, render) {
-		this.remove(request, render, "japaneseEducation");
+		dbArray.remove(this, request, render, "japaneseEducation");
 	},
 	
 	// Add financial supporter
 	addFinancialSupporter: function(request, render) {
-		this.add(request, render, "financialSupporters", {
+		dbArray.add(this, request, render, "financialSupporters", {
 			name: "",
 			address: "",
 			telephone: "",
@@ -266,6 +254,6 @@ module.exports = {
 	
 	// Remove financial supporter
 	removeFinancialSupporter: function(request, render) {
-		this.remove(request, render, "financialSupporters");
+		dbArray.remove(this, request, render, "financialSupporters");
 	}
 };

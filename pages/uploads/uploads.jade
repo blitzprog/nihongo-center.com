@@ -19,7 +19,7 @@ else
 	each upload, index in user.uploads
 		ul.uploads
 			li.upload
-				span= "[" + upload.purpose + "] "
+				span.purpose= purposeToName[upload.purpose]
 				a(href="/" + upload.path)= upload.originalname
 				a(href="javascript:remove('uploads', 'Upload', " + index + ");").delete-button X
 				

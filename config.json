@@ -13,9 +13,9 @@
 	"pages": [
 		"dashboard",
 		"profile",
+		"uploads",
 		"students",
 		"student",
-		"uploads",
 		"login"
 	],
 	"static": [
