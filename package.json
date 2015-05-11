@@ -9,7 +9,8 @@
 		"nodiak": "*",
 		"express-session": "*",
 		"multer": "*",
-		"string": "*"
+		"string": "*",
+		"fs-extra": "*"
 	},
 	"author": {
 		"name": "Eduard Urbach",
