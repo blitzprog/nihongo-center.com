@@ -8,7 +8,9 @@ if user
 	.row
 		.col-sm-4
 			.panel.panel-default
-				.panel-heading: h1 Profile
+				.panel-heading: h1
+					.glyphicon.glyphicon-user
+					|  Profile
 				.panel-body
 					.progress
 						.progress-bar.progress-bar-striped(role="progressbar", aria-valuenow=profileCompleted, aria-valuemin="0" aria-valuemax="100", style="width: " + profileCompleted + "%")
@@ -16,7 +18,9 @@ if user
 		
 		.col-sm-4
 			.panel.panel-default
-				.panel-heading: h1 Uploads
+				.panel-heading: h1
+					.glyphicon.glyphicon-upload
+					|  Uploads
 				.panel-body
 					.list-group
 						li.list-group-item
@@ -34,7 +38,9 @@ if user
 							
 		.col-sm-4
 			.panel.panel-default
-				.panel-heading: h1 Course
+				.panel-heading: h1
+					.glyphicon.glyphicon-education
+					|  Course
 				.panel-body
 					if !user.course
 						p You haven't selected a course yet!

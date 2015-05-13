@@ -99,9 +99,10 @@ else
 				+textInArray("Nationality:", "familyMembers", index, "nationality", member.nationality, "", "nationalities")
 				+textInArray("Country:", "familyMembers", index, "country", member.country, "", "countries")
 				a(href="javascript:remove('profile', 'FamilyMember', " + index + ");").delete-button Delete
-		
-	p
-		a(href="javascript:add('profile', 'FamilyMember');") Add family member
+	
+	button(onclick="add('profile', 'FamilyMember');").btn.btn-success
+		.glyphicon.glyphicon-plus
+			span(style="margin-left: 0.5em") Add family member
 	
 	.page-header
 		h2 Finances
@@ -137,8 +138,9 @@ else
 				a(href="javascript:remove('profile', 'FinancialSupporter', " + index + ");").btn.btn-danger.delete-button
 					.glyphicon.glyphicon-remove
 	
-	a(href="javascript:add('profile', 'FinancialSupporter');", role="button").btn.btn-success
-		.glyphicon.glyphicon-plus  Add financial supporter
+	button(onclick="add('profile', 'FinancialSupporter');").btn.btn-success
+		.glyphicon.glyphicon-plus
+			span(style="margin-left: 0.5em") Add financial supporter
 	
 	.page-header
 		h2 Japanese
@@ -157,8 +159,9 @@ else
 				+textInArray("Text book:", "japaneseEducation", index, "textBook")
 				a(href="javascript:remove('profile', 'EducationBackground', " + index + ");").delete-button Delete
 	
-	p
-		a(href="javascript:add('profile', 'EducationBackground');") Add education background
+	button(onclick="add('profile', 'EducationBackground');").btn.btn-success
+		.glyphicon.glyphicon-plus
+			span(style="margin-left: 0.5em") Add education background
 	
 	.page-header
 		h2 Visa

@@ -27,7 +27,12 @@ html(lang="en")
 									if (!user && loggedOutPages.indexOf(nav.id) !== -1) || (user && loggedInPages.indexOf(nav.id) !== -1)
 										li
 											a.navigation-link.ajax(href="/#{nav.url}")
-												.navigation-button= nav.title
+												if pageToGlyphIcon && nav.id in pageToGlyphIcon
+													.navigation-button
+														div(class="glyphicon glyphicon-" + pageToGlyphIcon[nav.id])
+														span(style="margin-left: 0.4em")= nav.title
+												else
+													.navigation-button= nav.title
 			
 			#content-container.container
 				section#content!= content
