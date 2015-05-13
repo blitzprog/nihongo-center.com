@@ -19,6 +19,14 @@ module.exports = {
 		// Prevent division by zero
 		if(fields.length !== 0) {
 			let completedFields = fields.map(function(property) {
+				// These don't need to be filled out
+				if(["addressAbroad", "telephoneAbroad"].indexOf(property) !== -1)
+					return 1;
+				
+				// Arrays that need at least 1 element
+				if(["familyMembers", "financialSupporters"].indexOf(property) !== -1 && user[property].length === 0)
+					return 0;
+				
 				if(typeof user[property] === "undefined" || user[property] === "")
 					return 0;
 				
@@ -28,11 +36,14 @@ module.exports = {
 			});
 			
 			progress = Math.round(completedFields / fields.length * 100);
+			
+			if(progress > 100)
+				progress = 100;
 		}
 		
 		render({
 			user: user,
-			displayName: user.givenName + " " + user.familyName,
+			displayName: user.givenName, //+ " " + user.familyName,
 			profileCompleted: progress,
 			courseToTitle: this.courseToTitle
 		});

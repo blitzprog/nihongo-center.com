@@ -4,11 +4,7 @@
 		"init"
 	],
 	"styles": [
-		"base",
-		"layout",
-		"menu",
-		"form",
-		"mobile"
+		"base"
 	],
 	"pages": [
 		"dashboard",

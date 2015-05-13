@@ -1,17 +1,50 @@
 if user
-	h2 Dashboard
-	
-	p Welcome 
-		span= displayName + "!"
+	.jumbotron
+		h1 Welcome, 
+			span= displayName + "!"
 		
-	h3 Profile
-	p= profileCompleted + "% completed"
+		p Here you can apply for a course at Nihongo Center.
 	
-	if user.startYear && user.startMonth
-		h3 Course
-		p
-			span Your course 
-			span.course-name= courseToTitle[user.course]
-			span= " will begin on " + user.startMonth + " " + user.startYear + "."
+	.row
+		.col-sm-4
+			.panel.panel-default
+				.panel-heading: h1 Profile
+				.panel-body
+					.progress
+						.progress-bar.progress-bar-striped(role="progressbar", aria-valuenow=profileCompleted, aria-valuemin="0" aria-valuemax="100", style="width: " + profileCompleted + "%")
+					p= profileCompleted + "% completed."
+		
+		.col-sm-4
+			.panel.panel-default
+				.panel-heading: h1 Uploads
+				.panel-body
+					.list-group
+						li.list-group-item
+							.glyphicon.glyphicon-minus
+							|  Passport photo
+						li.list-group-item.list-group-item-success
+							.glyphicon.glyphicon-ok
+							|  Passport
+						li.list-group-item
+							.glyphicon.glyphicon-minus
+							|  Pledge
+						li.list-group-item
+							.glyphicon.glyphicon-minus
+							|  Curriculum Vitae
+							
+		.col-sm-4
+			.panel.panel-default
+				.panel-heading: h1 Course
+				.panel-body
+					if !user.course
+						p You haven't selected a course yet!
+					else if !user.startYear || !user.startMonth
+						p You haven't selected a start date yet!
+					else
+						p Your course 
+							span.course-name= courseToTitle[user.course]
+							|  will begin on:
+							.form-group
+								input.form-control(type="month", value=user.startYear + "-" + user.startMonth, disabled)
 else
 	p Not logged in!

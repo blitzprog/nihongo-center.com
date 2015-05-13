@@ -3,31 +3,36 @@ html(lang="en")
 	head
 		title= siteName
 		meta(name="viewport", content="width=device-width, initial-scale=1")
+		link(rel="stylesheet", href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css")
 		style!= css
 	
-	body
+	body(role="document")
 		#container
-			#header-container
-				#header
-					#title
+			#header-container.container
+				#header.navbar.navbar-inverse.navbar-fixed-top
+					#title.hide
 						h1
 							a(href="/")= siteName
 					
-					nav#navigation
-						header
+					nav#navigation.container
+						header.hide
 							h2 Navigation
 						
 						- var loggedInPages = ["dashboard", "profile", "uploads"]
 						- var loggedOutPages = ["login"]
-						each nav in pages
-							if nav.visible
-								if (!user && loggedOutPages.indexOf(nav.id) !== -1) || (user && loggedInPages.indexOf(nav.id) !== -1)
-									a.navigation-link.ajax(href="/#{nav.url}")
-										.navigation-button= nav.title
+						
+						ul.nav.navbar-nav
+							each nav in pages
+								if nav.visible
+									if (!user && loggedOutPages.indexOf(nav.id) !== -1) || (user && loggedInPages.indexOf(nav.id) !== -1)
+										li
+											a.navigation-link.ajax(href="/#{nav.url}")
+												.navigation-button= nav.title
 			
-			#content-container
+			#content-container.container
 				section#content!= content
 			
 			#loading-animation.spinner
 			
 		script!= js
+		script(src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js")

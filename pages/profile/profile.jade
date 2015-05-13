@@ -9,7 +9,8 @@ else
 	+datalist("countries", countries)
 	+datalist("nationalities", nationalities)
 	
-	h2 Personal
+	.page-header
+		h2 Personal
 	
 	.profile
 		+text("Given name:", "givenName")
@@ -24,19 +25,22 @@ else
 		+text("Birthplace:", "birthPlace", user.birthPlace, "", "cities")
 		+text("Age:", "age", age, "", "", true)
 	
-	h2 Country
+	.page-header
+		h2 Country
 	
 	.profile
 		+text("Country:", "country", user.country, "", "countries")
 		+text("Nationality:", "nationality", user.nationality, "", "nationalities")
 	
-	h2 Work
+	.page-header
+		h2 Work
 	
 	.profile
 		+text("Occupation:", "occupation", user.occupation)
 		+select("Occupation type:", "occupationType", user.occupationType, occupationTypeOptions)
 		
-	h2 Contact
+	.page-header
+		h2 Contact
 	
 	.profile
 		+text("Home address:", "address", user.address, "🏠")
@@ -46,7 +50,8 @@ else
 		+tel("Telephone:", "telephone", user.telephone, "☎")
 		+tel("Telephone in Japan:", "telephoneAbroad", user.telephoneAbroad, "☎ Only if you have one.")
 	
-	h2 Course
+	.page-header
+		h2 Course
 	
 	.profile
 		+select("Course:", "course", user.course, courseOptions)
@@ -55,7 +60,8 @@ else
 		+select("Start year:", "startYear", user.startYear, startYearOptions)
 		+select("Start month:", "startMonth", user.startMonth, startMonthOptions)
 		
-	h2 Education
+	.page-header
+		h2 Education
 	
 	.profile
 		+select("Education:", "education", user.education, educationOptions)
@@ -66,7 +72,8 @@ else
 		
 		+select("Plan after graduating from Nihongo Center:", "planAfterGraduation", user.planAfterGraduation, planAfterGraduationOptions)
 		
-	h2 Passport
+	.page-header
+		h2 Passport
 	
 	.profile
 		+text("Passport number:", "passportId", user.passportId, "e.g. TK1234567")
@@ -79,7 +86,8 @@ else
 		+date("Last entry from:", "lastEntryFrom")
 		+date("Last entry to:", "lastEntryTo")
 	
-	h2 Family
+	.page-header
+		h2 Family
 	
 	#family-members.profile
 		each member, index in user.familyMembers
@@ -95,7 +103,8 @@ else
 	p
 		a(href="javascript:add('profile', 'FamilyMember');") Add family member
 	
-	h2 Finances
+	.page-header
+		h2 Finances
 	
 	p
 		| Please enter the average amount of support 
@@ -110,7 +119,8 @@ else
 		+numberInObject("Scholarship:", "financialSupportPerMonth", "scholarship", "Monthly amount in Yen (¥)")
 		+numberInObject("Others:", "financialSupportPerMonth", "others", "Monthly amount in Yen (¥)")
 	
-	h2 Financial Supporters
+	.page-header
+		h2 Financial Supporters
 	
 	#financial-supporters.profile
 		each supporter, index in user.financialSupporters
@@ -124,17 +134,20 @@ else
 				+numberInArray("Annual income:", "financialSupporters", index, "annualIncome", 何, "In Yen (¥)")
 				+textInArray("Relationship with the applicant:", "financialSupporters", index, "relation")
 				
-				a(href="javascript:remove('profile', 'FinancialSupporter', " + index + ");").delete-button Delete
+				a(href="javascript:remove('profile', 'FinancialSupporter', " + index + ");").btn.btn-danger.delete-button
+					.glyphicon.glyphicon-remove
 	
-	p
-		a(href="javascript:add('profile', 'FinancialSupporter');") Add financial supporter
+	a(href="javascript:add('profile', 'FinancialSupporter');", role="button").btn.btn-success
+		.glyphicon.glyphicon-plus  Add financial supporter
 	
-	h2 Japanese
+	.page-header
+		h2 Japanese
 	
 	.profile
 		+select("Acquired JLPT level:", "jlptLevel", user.jlptLevel, jlptLevels)
 		
-	h2 Japanese Study Experience
+	.page-header
+		h2 Japanese Study Experience
 	
 	#education-backgrounds.profile
 		each education, index in user.japaneseEducation
@@ -147,7 +160,8 @@ else
 	p
 		a(href="javascript:add('profile', 'EducationBackground');") Add education background
 	
-	h2 Visa
+	.page-header
+		h2 Visa
 	
 	.profile
 		+select("Port of entry:", "portOfEntry", user.portOfEntry, portsOfEntry)
