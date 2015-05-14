@@ -15,6 +15,7 @@
 		"login"
 	],
 	"static": [
+		"images",
 		"uploads"
 	],
 	"fonts": [

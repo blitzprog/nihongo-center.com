@@ -98,7 +98,9 @@ else
 				+textInArray("Occupation:", "familyMembers", index, "occupation", member.occupation)
 				+textInArray("Nationality:", "familyMembers", index, "nationality", member.nationality, "", "nationalities")
 				+textInArray("Country:", "familyMembers", index, "country", member.country, "", "countries")
-				a(href="javascript:remove('profile', 'FamilyMember', " + index + ");").delete-button Delete
+				
+				a(href="javascript:remove('profile', 'FamilyMember', " + index + ");").btn.btn-danger.delete-button
+					.glyphicon.glyphicon-remove
 	
 	button(onclick="add('profile', 'FamilyMember');").btn.btn-success
 		.glyphicon.glyphicon-plus
@@ -157,7 +159,9 @@ else
 				+textInArray("Institution:", "japaneseEducation", index, "institution")
 				+numberInArray("Total hours:", "japaneseEducation", index, "totalHours")
 				+textInArray("Text book:", "japaneseEducation", index, "textBook")
-				a(href="javascript:remove('profile', 'EducationBackground', " + index + ");").delete-button Delete
+				
+				a(href="javascript:remove('profile', 'EducationBackground', " + index + ");").btn.btn-danger.delete-button
+					.glyphicon.glyphicon-remove
 	
 	button(onclick="add('profile', 'EducationBackground');").btn.btn-success
 		.glyphicon.glyphicon-plus

@@ -11,10 +11,20 @@ if user
 				.panel-heading: h1
 					.glyphicon.glyphicon-user
 					|  Profile
-				.panel-body
+				.panel-body.text-center
 					.progress
-						.progress-bar.progress-bar-striped(role="progressbar", aria-valuenow=profileCompleted, aria-valuemin="0" aria-valuemax="100", style="width: " + profileCompleted + "%")
-					p= profileCompleted + "% completed."
+						if profileCompleted >= 100
+							- var cssClass = "progress-bar progress-bar-success";
+						else if profileCompleted >= 50
+							- var cssClass = "progress-bar progress-bar-warning progress-bar-striped";
+						else if profileCompleted >= 25
+							- var cssClass = "progress-bar progress-bar-info progress-bar-striped";
+						else
+							- var cssClass = "progress-bar progress-bar-danger progress-bar-striped"
+						
+						div(class=cssClass, role="progressbar", aria-valuenow=profileCompleted, aria-valuemin="0" aria-valuemax="100", style="width: " + profileCompleted + "%")
+					h2= profileCompleted + "%"
+					p completed.
 		
 		.col-sm-4
 			.panel.panel-default

@@ -12,7 +12,7 @@ module.exports = {
 			{name: "Please choose:", value: "", disabled: true},
 			{name: "Passport", value: "passport"},
 			{name: "Passport photo", value: "passportPhoto"},
-			{name: "CV", value: "curriculumVitae"},
+			{name: "Curriculum Vitae", value: "curriculumVitae"},
 			{name: "Pledge", value: "pledge"},
 			{name: "Other", value: "other"}
 		];
