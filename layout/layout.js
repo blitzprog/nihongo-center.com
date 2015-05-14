@@ -6,7 +6,8 @@ module.exports = {
 		let pageToGlyphIcon = {
 			"dashboard": "dashboard",
 			"profile": "user",
-			"uploads": "upload"
+			"uploads": "upload",
+			"login": "home"
 		};
 		
 		render({

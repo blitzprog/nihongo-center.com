@@ -1,5 +1,15 @@
-if user
-	p= "Already logged in as " + displayName + "!"
-else
-	a(href="/auth/google")
-		img(src="https://developers.google.com/+/images/branding/sign-in-buttons/Red-signin_Long_base_44dp.png", alt="Sign in with Google", width="220")
+.text-center
+	if user
+		p= "Already logged in as " + displayName + "!"
+	else
+		a(href="/")
+			img(src="/images/navbar-logo.png", alt="My Nihongo Center")
+		
+		div(style="margin-top: 40px")
+			div
+				a(href="/auth/google")
+					img(src="/images/google-login.png", alt="Sign in with Google", width="220")
+			
+			div
+				a(href="/auth/facebook")
+					img(src="/images/facebook-login.png", alt="Sign in with Facebook", width="220")

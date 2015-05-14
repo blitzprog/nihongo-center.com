@@ -1,4 +1,6 @@
-if user
+if !user
+	include ../login/login.jade
+else
 	.jumbotron
 		h1 Welcome, 
 			span= displayName + "!"
@@ -62,5 +64,3 @@ if user
 							|  will begin on:
 							.form-group
 								input.form-control(type="month", value=user.startYear + "-" + user.startMonth, disabled)
-else
-	p Not logged in!

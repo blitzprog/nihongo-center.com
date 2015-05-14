@@ -6,11 +6,13 @@
 		"aero": "*",
 		"passport": "*",
 		"passport-google-openidconnect": "*",
+		"passport-facebook": "*",
 		"nodiak": "*",
 		"express-session": "*",
 		"multer": "*",
 		"string": "*",
-		"fs-extra": "*"
+		"fs-extra": "*",
+		"object-assign": "*"
 	},
 	"author": {
 		"name": "Eduard Urbach",
