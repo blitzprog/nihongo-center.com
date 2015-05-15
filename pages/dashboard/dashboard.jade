@@ -56,8 +56,11 @@ else
 					.list-group
 						+upload("Passport photo", "passportPhoto")
 						+upload("Passport", "passport")
-						+upload("Pledge", "pledge")
 						+upload("Curriculum Vitae", "curriculumVitae")
+						+upload("Letter of Guarantee", "letterOfGuarantee")
+						if studentVisaRequired
+							+upload("Diploma", "diploma")
+						+upload("Pledge", "pledge")
 		
 		.col-sm-4
 			.panel.panel-default

@@ -13,6 +13,8 @@ module.exports = {
 			{name: "Passport", value: "passport"},
 			{name: "Passport photo", value: "passportPhoto"},
 			{name: "Curriculum Vitae", value: "curriculumVitae"},
+			{name: "Letter of Guarantee", value: "letterOfGuarantee"},
+			{name: "Diploma", value: "diploma"},
 			{name: "Pledge", value: "pledge"},
 			{name: "Other", value: "other"}
 		];

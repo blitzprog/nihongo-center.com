@@ -77,7 +77,8 @@ module.exports = {
 			profileCompleted: progress,
 			courseToTitle: this.courseToTitle,
 			uploads: uploads,
-			missingFields: missingFields
+			missingFields: missingFields,
+			studentVisaRequired: (user.course && user.course !== "10 weeks")
 		});
 	}
 };
