@@ -18,6 +18,7 @@ module.exports = {
 		let notRequiredFields = [
 			"email",
 			"accessLevel",
+			"stage",
 			"relativesAbroad",
 			"financialSupportPerMonth",
 			"addressAbroad",

@@ -10,13 +10,15 @@
 		"dashboard",
 		"profile",
 		"uploads",
+		"stages",
 		"students",
 		"student",
 		"login"
 	],
 	"static": [
 		"images",
-		"uploads"
+		"uploads",
+		"bootstrap"
 	],
 	"port": 3002
 }

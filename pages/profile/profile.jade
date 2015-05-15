@@ -121,6 +121,8 @@ else
 		+numberInObject("Guarantor in Japan:", "financialSupportPerMonth", "guarantorAbroad", "Monthly amount in Yen (¥)")
 		+numberInObject("Scholarship:", "financialSupportPerMonth", "scholarship", "Monthly amount in Yen (¥)")
 		+numberInObject("Others:", "financialSupportPerMonth", "others", "Monthly amount in Yen (¥)")
+		
+		+select("Preferred payment method:", "paymentMethod", user.paymentMethod, paymentMethods)
 	
 	.page-header
 		h2 Financial Supporters

@@ -7,6 +7,7 @@ module.exports = {
 			"dashboard": "dashboard",
 			"profile": "user",
 			"uploads": "upload",
+			"stages": "list",
 			"login": "home"
 		};
 		

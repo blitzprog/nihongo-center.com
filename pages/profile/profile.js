@@ -117,6 +117,12 @@ module.exports = {
 				{name: "Level 2 (before 2010)", value: "level 2"},
 				{name: "Level 3 (before 2010)", value: "level 3"},
 				{name: "Level 4 (before 2010)", value: "level 4"}
+			],
+			paymentMethods: [
+				{name: "Please choose:", value: "", disabled: true},
+				{name: "PayPal", value: "payPal"},
+				{name: "Credit card", value: "creditCard"},
+				{name: "Bank transfer", value: "bankTransfer"}
 			]
 		});
 	},

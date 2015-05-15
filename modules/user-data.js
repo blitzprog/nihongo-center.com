@@ -5,7 +5,11 @@ module.exports = {
 	familyName: "",
 	gender: "",
 	language: "",
+	
+	// System
 	accessLevel: "",
+	stage: "",
+	
 	country: "",
 	nationality: "",
 	maritalStatus: "",
@@ -39,6 +43,7 @@ module.exports = {
 	relativesAbroad: [],
 	
 	// Financial
+	paymentMethod: "",
 	financialSupporters: [],
 	financialSupportPerMonth: {
 		self: 0,
