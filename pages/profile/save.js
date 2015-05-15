@@ -7,10 +7,9 @@ var save = function() {
 	var $this = $(this);
 	var key = $this.attr("name");
 	var value = $this.val();
-	var className = $this.attr("class");
 	var dataType = "text";
 	
-	if(className === "number-input") {
+	if($this.hasClass("number-input")) {
 		value = parseInt(value);
 		dataType = "numeric";
 	}
@@ -33,10 +32,9 @@ var saveArrayElement = function() {
 	var index = $this.data("index");
 	var key = $this.data("key");
 	var value = $this.val();
-	var className = $this.attr("class");
 	var dataType = "text";
 	
-	if(className === "array-number-input") {
+	if($this.hasClass("array-number-input")) {
 		value = parseInt(value);
 		dataType = "numeric";
 	}
@@ -60,10 +58,9 @@ var saveObject = function() {
 	var object = $this.data("object");
 	var key = $this.data("key");
 	var value = $this.val();
-	var className = $this.attr("class");
 	var dataType = "text";
 	
-	if(className === "object-number-input") {
+	if($this.hasClass("object-number-input")) {
 		value = parseInt(value);
 		dataType = "numeric";
 	}

@@ -1,12 +1,26 @@
 if !user
 	include ../login/login.jade
 else
+	mixin upload(name, purpose)
+		- var cssClass = "";
+		- var glyph = "minus";
+		
+		if uploads[purpose]
+			- cssClass = " list-group-item-success";
+			- glyph = "ok";
+			
+		li(class="list-group-item" + cssClass)
+			div(class="glyphicon glyphicon-" + glyph)
+			span= " " + name
+	
+	//- Header
 	.jumbotron
 		h1 Welcome, 
 			span= displayName + "!"
 		
 		p Here you can apply for a course at Nihongo Center.
 	
+	//- Panels
 	.row
 		.col-sm-4
 			.panel.panel-default
@@ -27,6 +41,11 @@ else
 						div(class=cssClass, role="progressbar", aria-valuenow=profileCompleted, aria-valuemin="0" aria-valuemax="100", style="width: " + profileCompleted + "%")
 					h2= profileCompleted + "%"
 					p completed.
+					
+					if missingFields.length === 1
+						p You're missing the 
+							strong= missingFields[0]
+							|  field.
 		
 		.col-sm-4
 			.panel.panel-default
@@ -35,19 +54,11 @@ else
 					|  Uploads
 				.panel-body
 					.list-group
-						li.list-group-item
-							.glyphicon.glyphicon-minus
-							|  Passport photo
-						li.list-group-item.list-group-item-success
-							.glyphicon.glyphicon-ok
-							|  Passport
-						li.list-group-item
-							.glyphicon.glyphicon-minus
-							|  Pledge
-						li.list-group-item
-							.glyphicon.glyphicon-minus
-							|  Curriculum Vitae
-							
+						+upload("Passport photo", "passportPhoto")
+						+upload("Passport", "passport")
+						+upload("Pledge", "pledge")
+						+upload("Curriculum Vitae", "curriculumVitae")
+		
 		.col-sm-4
 			.panel.panel-default
 				.panel-heading: h1

@@ -17,17 +17,21 @@ module.exports = {
 		let fields = Object.keys(user);
 		let notRequiredFields = [
 			"email",
+			"accessLevel",
 			"relativesAbroad",
 			"financialSupportPerMonth",
 			"addressAbroad",
 			"telephoneAbroad",
 			"japaneseEducation",
+			"lastEntryFrom",
+			"lastEntryTo",
 			"uploads"
 		];
 		let atLeastOneElement = [
 			"familyMembers",
 			"financialSupporters"
 		];
+		let missingFields = [];
 		
 		// Prevent division by zero
 		if(fields.length !== 0) {
@@ -40,11 +44,15 @@ module.exports = {
 				}
 				
 				// Arrays that need at least 1 element
-				if(atLeastOneElement.indexOf(property) !== -1 && user[property].length === 0)
+				if(atLeastOneElement.indexOf(property) !== -1 && user[property].length === 0) {
+					missingFields.push(property)
 					return 0;
+				}
 				
-				if(typeof user[property] === "undefined" || user[property] === "" || user[property] === null)
+				if(typeof user[property] === "undefined" || user[property] === "" || user[property] === null) {
+					missingFields.push(property);
 					return 0;
+				}
 				
 				return 1;
 			}).reduce(function(a, b) {
@@ -57,11 +65,19 @@ module.exports = {
 				progress = 100;
 		}
 		
+		// Uploads
+		let uploads = {};
+		user.uploads.forEach(function(upload) {
+			uploads[upload.purpose] = true;
+		});
+		
 		render({
 			user: user,
 			displayName: user.givenName, //+ " " + user.familyName,
 			profileCompleted: progress,
-			courseToTitle: this.courseToTitle
+			courseToTitle: this.courseToTitle,
+			uploads: uploads,
+			missingFields: missingFields
 		});
 	}
 };

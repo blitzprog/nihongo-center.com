@@ -6,18 +6,18 @@ let merge = require("object-assign");
 let login = require("./modules/login");
 let upload = require("./modules/upload");
 
-let loginConfig = JSON.parse(fs.readFileSync("login-config.json"));
+let apiKeys = JSON.parse(fs.readFileSync("api-keys.json"));
 
 // Google
 let googleConfig = merge({
 	callbackURL: "http://localhost:3002/auth/google/callback",
 	userInfoURL: "https://www.googleapis.com/plus/v1/people/me"
-}, loginConfig.google);
+}, apiKeys.google);
 
 // Facebook
 let facebookConfig = merge({
 	callbackURL: "http://localhost:3002/auth/facebook/callback"
-}, loginConfig.facebook);
+}, apiKeys.facebook);
 
 // Init login
 login(

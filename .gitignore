@@ -35,4 +35,4 @@ node_modules
 /uploads
 
 # API keys
-/login-config.json
+/api-keys.json

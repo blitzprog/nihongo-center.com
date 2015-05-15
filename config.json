@@ -18,9 +18,5 @@
 		"images",
 		"uploads"
 	],
-	"fonts": [
-		"Ubuntu",
-		"Ubuntu:bold"
-	],
 	"port": 3002
 }
