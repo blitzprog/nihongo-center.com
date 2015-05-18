@@ -6,12 +6,18 @@ ol.list-group
 	
 	mixin stage(title, stageName)
 		if user.stage === stageName
-			li.list-group-item= title
+			li.list-group-item
+				.glyphicon.glyphicon-refresh(style="margin-right: 0.25em")
+				span= title
 			- currentStageReached = true
 		else if currentStageReached
-			li.list-group-item.disabled= title
+			li.list-group-item.disabled
+				.glyphicon.glyphicon-asterisk(style="margin-right: 0.25em")
+				span= title
 		else
-			li.list-group-item.list-group-item-success= title
+			li.list-group-item.list-group-item-success
+				.glyphicon.glyphicon-ok(style="margin-right: 0.25em")
+				span= title
 	
 	+stage("Apply at Nihongo Center", "")
 	+stage("Pay the application fee", "payApplicationFee")
@@ -20,5 +26,6 @@ ol.list-group
 	+stage("Acquire your visa", "acquireVisa")
 	+stage("Reserve accomodation", "reserveAccomodation")
 	+stage("Arrive in Japan", "arriveInJapan")
+	+stage("Take placement test", "placementTest")
 	+stage("Begin classes", "beginClasses")
 	+stage("Receive course certificate", "receiveCertification")

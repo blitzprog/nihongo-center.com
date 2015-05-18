@@ -5,6 +5,7 @@ let age = require("../../modules/age");
 
 module.exports = {
 	get: function(request, render) {
+		console.log(request.body);
 		let user = request.user;
 		
 		// Logged in?

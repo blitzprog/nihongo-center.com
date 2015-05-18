@@ -72,6 +72,15 @@ module.exports = {
 			uploads[upload.purpose] = true;
 		});
 		
+		let requiredUploads = [
+			"passport",
+			"passportPhoto",
+			"curriculumVitae",
+			"pledge",
+			"diploma",
+			"letterOfGuarantee"
+		];
+		
 		render({
 			user: user,
 			displayName: user.givenName, //+ " " + user.familyName,
@@ -79,7 +88,12 @@ module.exports = {
 			courseToTitle: this.courseToTitle,
 			uploads: uploads,
 			missingFields: missingFields,
-			studentVisaRequired: (user.course && user.course !== "10 weeks")
+			studentVisaRequired: (user.course && user.course !== "10 weeks"),
+			readyToApply: (progress >= 100) && requiredUploads.map(function(purpose) {
+				return uploads[purpose] === true;
+			}).reduce(function(a, b) {
+				return a && b;
+			})
 		});
 	}
 };

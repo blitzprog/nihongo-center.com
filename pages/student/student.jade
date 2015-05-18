@@ -1,1 +1,28 @@
-h2 Student
+if !student
+	//-
+else
+	.page-header
+		h1= student.givenName + " " + student.familyName
+
+	- var keys = Object.keys(student)
+
+	table.table.table-hover.table-condensed
+		thead
+			tr
+				th Field
+				th Value
+		
+		mixin display(key, cssClass)
+			tr(class=cssClass)
+				td= humanized[key]
+				if typeof renderKey[key] !== "undefined"
+					td!= renderKey[key]
+				else
+					td= student[key]
+		
+		each key in prioritizedKeys
+			+display(key, "info")
+		
+		each key in keys
+			if prioritizedKeys.indexOf(key) === -1
+				+display(key)

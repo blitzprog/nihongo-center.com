@@ -78,3 +78,34 @@ else
 							|  will begin on:
 							.form-group
 								input.form-control(type="month", value=user.startYear + "-" + user.startMonth, disabled)
+		.col-sm-4
+			- var cssClass = "";
+			if readyToApply
+				- cssClass = "panel panel-primary"
+			else
+				- cssClass = "panel panel-default"
+			
+			div(class=cssClass)
+				.panel-heading: h1
+					.glyphicon.glyphicon-envelope
+					|  Apply
+				.panel-body
+					if readyToApply
+						.text-center
+							button.btn.btn-primary(onclick="sendApplication('" + user.email + "', '" + user.givenName + " " + user.familyName + "');")
+								.glyphicon.glyphicon-thumbs-up
+								span  Send my application
+							p
+							p
+								| Thank you for preparing all the documents we need for
+								| the course registration. Please click on the button to send your application.
+								
+							script
+								include send-application.js
+					else
+						.text-center
+							button.btn.btn-disabled
+								.glyphicon.glyphicon-thumbs-up
+								span  Send my application
+						p
+						p You'll be able to send an application once you completed your profile and uploaded the necessary documents.
