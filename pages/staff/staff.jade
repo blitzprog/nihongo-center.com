@@ -1,0 +1,34 @@
+if !user
+	p Not logged in!
+if !staff
+	p You are not authorized to view this page!
+else if staff.length === 0
+	p No staff registered yet!
+else
+	.page-header
+		h2 Staff
+	
+	table.table
+		thead
+			tr
+				if user.accessLevel === "admin"
+					th Access
+				th Name
+		each member in staff
+			tr
+				if user.accessLevel === "admin"
+					td.col-md-2= user.accessLevel
+						//-select
+							option(value="staff", selected=(member.accessLevel === "staff")) Staff
+							option(value="admin", selected=(member.accessLevel === "admin")) Admin
+					
+				td.col-md-10
+					div= member.givenName + " " + member.familyName
+	
+	if user.accessLevel === "admin"
+		.form-group
+			input.form-control(type="email", id="email", name="email", style="max-width: 250px; display: inline-block; margin-right: 0.5em;")
+			.btn.btn-primary(onclick="addStaffMember();") Add staff member
+			
+	script
+		include add-staff.js

@@ -6,7 +6,10 @@ function sendApplication(email, name) {
 			text: "<" + host + "/students/" + email + "|" + name + ">"
 		})
 	}, function(response) {
-		console.log(response);
-		//updateContent(page, response);
+		$.post("/raw/", {
+			email: email
+		}, function(saveResponse) {
+			location.reload();
+		});
 	});
 };

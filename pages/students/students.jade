@@ -1,4 +1,6 @@
-if typeof students === "undefined"
+if !user
+	p Not logged in!
+else if typeof students === "undefined"
 	p You are not authorized to view this page!
 else if students.length === 0
 	p No students registered yet!

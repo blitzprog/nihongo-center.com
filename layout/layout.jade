@@ -24,7 +24,7 @@ html(lang="en")
 							//- 		img(alt="Nihongo Center", src="/images/navbar-logo.png", width="210", height="20")
 							
 							if user.accessLevel === "admin" || user.accessLevel === "staff"
-								- var loggedInPages = ["dashboard", "students", "profile"]
+								- var loggedInPages = ["dashboard", "students", "profile", "staff"]
 							else
 								- var loggedInPages = ["dashboard", "profile", "uploads", "stages"]
 							

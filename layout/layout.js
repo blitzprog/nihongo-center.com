@@ -9,7 +9,8 @@ module.exports = {
 			"uploads": "upload",
 			"stages": "list",
 			"login": "home",
-			"students": "book"
+			"students": "book",
+			"staff": "flash"
 		};
 		
 		render({

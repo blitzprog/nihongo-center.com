@@ -1,6 +1,7 @@
 "use strict";
 
 let fs = require("fs");
+let saveUserInDB = require("../../modules/save-user");
 
 module.exports = {
 	courseToTitle: JSON.parse(fs.readFileSync("data/courses.json", "utf8")),
@@ -26,7 +27,9 @@ module.exports = {
 			"japaneseEducation",
 			"lastEntryFrom",
 			"lastEntryTo",
-			"uploads"
+			"uploads",
+			"registrationDate",
+			"applicationDate"
 		];
 		let atLeastOneElement = [
 			"familyMembers",
@@ -95,5 +98,14 @@ module.exports = {
 				return a && b;
 			})
 		});
+	},
+	
+	// Save application date
+	post: function(request, render) {
+		let email = request.body.email;
+		request.user.applicationDate = (new Date()).toISOString();
+		saveUserInDB(request.user);
+		
+		render();
 	}
 };

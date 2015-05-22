@@ -26,10 +26,15 @@ module.exports = {
 			let students = rObjects.map(function(rObject) {
 				let student = rObject.data;
 				
+				if(student.accessLevel !== "student")
+					return null;
+				
 				student.age = age.of(student);
 				student.permaLink = "/students/" + student.email;
 				
 				return student;
+			}).filter(function(student) {
+				return student !== null;
 			});
 			
 			render({
