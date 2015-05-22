@@ -8,7 +8,8 @@ module.exports = {
 			"profile": "user",
 			"uploads": "upload",
 			"stages": "list",
-			"login": "home"
+			"login": "home",
+			"students": "book"
 		};
 		
 		render({

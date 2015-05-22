@@ -7,7 +7,7 @@ module.exports = {
 	language: "",
 	
 	// System
-	accessLevel: "",
+	accessLevel: "student",
 	stage: "",
 	
 	country: "",

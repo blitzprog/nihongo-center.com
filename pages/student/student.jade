@@ -1,5 +1,10 @@
-if !student
-	//-
+if !user
+	p Not logged in!
+else if user.accessLevel !== "admin" && user.accessLevel !== "staff"
+	p You are not authorized to view this page!
+	p Please contact your system administrator.
+else if !student
+	p That student doesn't exist in the database.
 else
 	.page-header
 		h1= student.givenName + " " + student.familyName

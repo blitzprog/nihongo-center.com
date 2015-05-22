@@ -27,6 +27,7 @@ module.exports = {
 			
 			render({
 				host: "http://localhost:8098",
+				user: request.user,
 				student: student,
 				humanized: humanized,
 				prioritizedKeys: [

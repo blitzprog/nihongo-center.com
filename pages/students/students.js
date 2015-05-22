@@ -5,7 +5,6 @@ let age = require("../../modules/age");
 
 module.exports = {
 	get: function(request, render) {
-		console.log(request.body);
 		let user = request.user;
 		
 		// Logged in?
@@ -15,7 +14,7 @@ module.exports = {
 		}
 		
 		// Access level check
-		if(user.accessLevel !== "admin") {
+		if(user.accessLevel !== "admin" && user.accessLevel !== "staff") {
 			render();
 			return;
 		}

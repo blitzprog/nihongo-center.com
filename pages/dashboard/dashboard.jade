@@ -1,5 +1,11 @@
 if !user
 	include ../login/login.jade
+else if user.accessLevel === "admin" || user.accessLevel === "staff"
+	.jumbotron
+		h1 Welcome, 
+			span= displayName + "!"
+		
+		p Here you can administer the students registering at Nihongo Center!
 else
 	mixin upload(name, purpose)
 		- var cssClass = "";
