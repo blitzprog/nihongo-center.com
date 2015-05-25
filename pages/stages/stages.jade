@@ -22,13 +22,5 @@ else
 					.glyphicon.glyphicon-ok(style="margin-right: 0.25em")
 					span= title
 		
-		+stage("Apply at Nihongo Center", "")
-		+stage("Pay the application fee", "payApplicationFee")
-		+stage("Receive the Certificate of Eligibility", "receiveCoE")
-		+stage("Payment of school fees", "paySchoolFee")
-		+stage("Acquire your visa", "acquireVisa")
-		+stage("Reserve accomodation", "reserveAccomodation")
-		+stage("Arrive in Japan", "arriveInJapan")
-		+stage("Take placement test", "placementTest")
-		+stage("Begin classes", "beginClasses")
-		+stage("Receive course certificate", "receiveCertification")
+		each val, index in stageList
+			+stage(val, index)

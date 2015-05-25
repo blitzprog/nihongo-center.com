@@ -38,6 +38,7 @@ module.exports = {
 			});
 			
 			render({
+				user: user,
 				students: students
 			});
 		});

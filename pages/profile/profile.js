@@ -27,8 +27,6 @@ module.exports = {
 			return;
 		}
 		
-		let currentYear = new Date().getFullYear();
-		
 		render({
 			user: user,
 			displayName: user.givenName + " " + user.familyName,
@@ -36,35 +34,16 @@ module.exports = {
 			nationalities: this.nationalities,
 			cities: this.cities,
 			countries: this.countries,
-			genderOptions: [
-				{name: "Please choose:", value: "", disabled: true},
-				{name: "♂ Male", value: "male"},
-				{name: "♀ Female", value: "female"}
-			],
-			maritalStatusOptions: [
-				{name: "Please choose:", value: "", disabled: true},
-				{name: "Single", value: "single"},
-				{name: "Married", value: "married"}
-			],
-			occupationTypeOptions: [
-				{name: "Please choose:", value: "", disabled: true},
-				{name: "Student", value: "student"},
-				{name: "Worker", value: "worker"},
-				{name: "Preparing to study in Japan", value: "preparingToStudy"},
-				{name: "Other", value: "other"}
-			],
-			startYearOptions: [
-				{name: "Please choose:", value: "", disabled: true},
-				{name: currentYear, value: currentYear.toString()},
-				{name: currentYear + 1, value: (currentYear + 1).toString()}
-			],
-			startMonthOptions: [
-				{name: "Please choose:", value: "", disabled: true},
-				{name: "April", value: "04"},
-				{name: "June", value: "06"},
-				{name: "October", value: "10"},
-				{name: "January", value: "01"}
-			],
+			genderOptions: require("./options/gender"),
+			maritalStatusOptions: require("./options/maritalStatus"),
+			occupationTypeOptions: require("./options/occupationType"),
+			startYearOptions: require("./options/startYear"),
+			startMonthOptions: require("./options/startMonth"),
+			portsOfEntry: require("./options/portsOfEntry"),
+			educationOptions: require("./options/education"),
+			planAfterGraduationOptions: require("./options/planAfterGraduation"),
+			jlptLevels: require("./options/jlptLevels"),
+			paymentMethods: require("./options/paymentMethods"),
 			courseOptions: [
 				{name: "Please choose:", value: "", disabled: true}
 			].concat(Object.keys(this.courseToTitle).map(function(courseId) {
@@ -72,58 +51,7 @@ module.exports = {
 					name: this.courseToTitle[courseId],
 					value: courseId
 				};
-			}.bind(this))),
-			portsOfEntry: [
-				{name: "Please choose:", value: "", disabled: true},
-				{name: "Osaka (Kansai International Airport)", value: "Kansai International Airport"},
-				{name: "Tokyo (Narita International Airport)", value: "Narita International Airport"},
-				{name: "Other", value: "other"}
-			],
-			educationOptions: [
-				{name: "Please choose:", value: "", disabled: true},
-				{name: "Graduated", value: "graduated"},
-				{name: "In school", value: "inSchool"},
-				{name: "Temporary absence", value: "temporaryAbsence"},
-				{name: "Withdrew from school", value: "withdrewFromSchool"},
-				{name: "Doctor", value: "doctor"},
-				{name: "Master", value: "master"},
-				{name: "Bachelor", value: "bachelor"},
-				{name: "Junior college", value: "juniorCollege"},
-				{name: "College of technology", value: "collegeOfTechnology"},
-				{name: "Senior high school", value: "seniorHighSchool"},
-				{name: "Junior high school", value: "juniorHighSchool"},
-				{name: "Other", value: "other"}
-			],
-			planAfterGraduationOptions: [
-				{name: "Please choose:", value: "", disabled: true},
-				{name: "Return to home country", value: "returnToHomeCountry"},
-				{name: "Graduate school", value: "graduateSchool"},
-				{name: "University", value: "university"},
-				{name: "Junior college", value: "juniorCollege"},
-				{name: "College of technology", value: "collegeOfTechnology"},
-				{name: "Work in Japan", value: "work"},
-				{name: "Other educational institution", value: "otherEducationalInstitution"},
-				{name: "Other", value: "other"}
-			],
-			jlptLevels: [
-				{name: "Please choose:", value: "", disabled: true},
-				{name: "I have not taken the JLPT yet.", value: "none"},
-				{name: "N1", value: "N1"},
-				{name: "N2", value: "N2"},
-				{name: "N3", value: "N3"},
-				{name: "N4", value: "N4"},
-				{name: "N5", value: "N5"},
-				{name: "Level 1 (before 2010)", value: "level 1"},
-				{name: "Level 2 (before 2010)", value: "level 2"},
-				{name: "Level 3 (before 2010)", value: "level 3"},
-				{name: "Level 4 (before 2010)", value: "level 4"}
-			],
-			paymentMethods: [
-				{name: "Please choose:", value: "", disabled: true},
-				{name: "PayPal", value: "payPal"},
-				{name: "Credit card", value: "creditCard"},
-				{name: "Bank transfer", value: "bankTransfer"}
-			]
+			}.bind(this)))
 		});
 	},
 	

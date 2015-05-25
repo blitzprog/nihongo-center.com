@@ -8,7 +8,7 @@ module.exports = {
 	
 	// System
 	accessLevel: "student",
-	stage: "",
+	stage: "apply",
 	applicationDate: null,
 	registrationDate: (new Date()).toISOString(),
 	
