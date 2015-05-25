@@ -38,7 +38,7 @@ module.exports = {
 			description += `<b>${student.heShe}</b> is from <b>${student.country}</b> and wants to start a <b>${student.course}</b> course in <b>${student.startMonthName} ${student.startYear}</b>.`;
 			
 			let japaneseDescription = `${student.givenName}は${student.age}歳です. `;
-			japaneseDescription += `${student.heSheJp}は${student.country}に住んでいて、${student.startMonth}月${student.startYear}年${student.course}コースに入りたいです。`;
+			japaneseDescription += `${student.heSheJp}は${student.country}住んでいて、${student.startYear}年${student.startMonth}月の${student.course}コースに入りたいです。`;
 			
 			render({
 				host: "http://localhost:8098",
