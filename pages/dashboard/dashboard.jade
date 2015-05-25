@@ -1,5 +1,5 @@
 if !user
-	include ../login/login.jade
+	p Not logged in!
 else if user.accessLevel === "admin" || user.accessLevel === "staff"
 	.jumbotron
 		h1 Welcome, 
@@ -20,7 +20,7 @@ else
 			span= " " + name
 	
 	//- Header
-	.jumbotron
+	.jumbotron(style="background-image:url(/images/dashboard-jumbotron-bg.jpg); color: white;")
 		h1 Welcome, 
 			span= displayName + "!"
 		

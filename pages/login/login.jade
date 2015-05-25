@@ -1,11 +1,11 @@
-.text-center
-	if user
-		p= "Already logged in as " + displayName + "!"
-	else
-		a(href="/")
-			img(src="/images/navbar-logo.png", alt="My Nihongo Center")
+if user
+	p= "Already logged in as " + displayName + "!"
+else
+	.login
+		a.logo(href="/")
+			img(src="/images/login-logo-lighton.png", alt="My Nihongo Center")
 		
-		div(style="margin-top: 40px")
+		div.auth-options
 			div
 				a(href="/auth/google")
 					img(src="/images/google-login.png", alt="Sign in with Google", width="220")
