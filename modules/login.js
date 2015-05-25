@@ -102,13 +102,11 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 			let userObject = userBucket.objects.new(account.email, account);
 			
 			// Save account in database
-			userObject.save(function(err, obj) {
+			userObject.save(function(err) {
 				if(err) {
 					console.error(err);
 					return;
 				}
-				
-				console.log("Saved " + obj.data.email + " to database");
 			});
 			
 			done(null, account.email);
