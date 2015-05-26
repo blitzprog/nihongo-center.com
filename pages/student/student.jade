@@ -1,3 +1,11 @@
+mixin display(key, cssClass)
+	tr(class=cssClass)
+		td= humanized[key]
+		if typeof renderKey[key] !== "undefined"
+			td!= renderKey[key]
+		else
+			td= student[key]
+
 if !user
 	p Not logged in!
 else if user.accessLevel !== "admin" && user.accessLevel !== "staff"
@@ -7,31 +15,54 @@ else if !student
 	p That student doesn't exist in the database.
 else
 	.page-header
-		h1= student.displayName
-		
+		h1
+			span.glyphicon.glyphicon-user(style="margin-right: 0.25em")
+			span= student.displayName
+	
 	.row
-		.col-sm-6!= description
-		.col-sm-6!= japaneseDescription
-
-	- var keys = Object.keys(student)
-
-	table.table.table-hover.table-condensed
+		.col-sm-6
+			.panel.panel-default
+				.panel-heading: h1 Summary
+				.panel-body!= description
+				
+		.col-sm-6
+			.panel.panel-default
+				.panel-heading: h1 概要
+				.panel-body!= japaneseDescription
+				
+		.col-sm-6
+			.panel.panel-default
+				.panel-heading: h1 Family
+				.panel-body
+					ul.list-group
+						each member in student.familyMembers
+							li.list-group-item= member.name
+		
+		.col-sm-6
+			.panel.panel-default
+				.panel-heading: h1 Financial supporters
+				.panel-body
+					ul.list-group
+						each member in student.financialSupporters
+							li.list-group-item= member.name
+			
+		.col-sm-6
+			.panel.panel-default
+				.panel-heading: h1 Uploads
+				.panel-body!= renderKey["uploads"]
+	
+	.page-header
+		h1 Details
+		
+	button.btn(onclick="$('#details').toggle();") Toggle
+	p &nbsp;
+		
+	table.table.table-hover.table-condensed(style="display: none;")#details
 		thead
 			tr
 				th Field
 				th Value
 		
-		mixin display(key, cssClass)
-			tr(class=cssClass)
-				td= humanized[key]
-				if typeof renderKey[key] !== "undefined"
-					td!= renderKey[key]
-				else
-					td= student[key]
-		
-		each key in prioritizedKeys
-			+display(key, "info")
-		
+		- var keys = Object.keys(student)
 		each key in keys
-			if prioritizedKeys.indexOf(key) === -1
-				+display(key)
+			+display(key)

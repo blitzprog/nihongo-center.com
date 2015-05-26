@@ -8,5 +8,6 @@
 	"arriveInJapan": "Arrive in Japan",
 	"placementTest": "Take placement test",
 	"beginClasses": "Begin classes",
-	"receiveCertification": "Receive course certificate"
+	"receiveCertification": "Receive course certificate",
+	"declined": "Application declined."
 }

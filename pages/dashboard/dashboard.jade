@@ -2,10 +2,20 @@ if !user
 	p Not logged in!
 else if user.accessLevel === "admin" || user.accessLevel === "staff"
 	.jumbotron
-		h1 Welcome, 
+		h1 Welcome back, 
 			span= displayName + "!"
 		
 		p Here you can administer the students registering at Nihongo Center!
+		
+	.row
+		.col-sm-4
+			.panel.panel-default
+				.panel-heading: h1
+					.glyphicon.glyphicon-tasks
+					|  Statistics
+				.panel-body
+					p!= `<b>${statistics.totalStudents}</b> students are registered on My Nihongo Center.`
+					p!= `<b>${statistics.totalApplicants}</b> students are currently waiting for their application to be accepted.`
 else
 	mixin upload(name, purpose)
 		- var cssClass = "";
@@ -14,13 +24,13 @@ else
 		if uploads[purpose]
 			- cssClass = " list-group-item-success";
 			- glyph = "ok";
-			
+		
 		li(class="list-group-item" + cssClass)
 			div(class="glyphicon glyphicon-" + glyph)
 			span= " " + name
 	
 	//- Header
-	.jumbotron(style="background-image:url(/images/dashboard-jumbotron-bg.jpg); color: white;")
+	.jumbotron.dashboard-header
 		h1 Welcome, 
 			span= displayName + "!"
 		

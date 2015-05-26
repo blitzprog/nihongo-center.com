@@ -4,23 +4,27 @@ else
 	.page-header
 		h1 Stages
 		
-	ol.list-group
-		- var currentStageReached = false;
-		
-		mixin stage(title, stageName)
-			if user.stage === stageName
-				li.list-group-item
-					.glyphicon.glyphicon-refresh(style="margin-right: 0.25em")
-					span= title
-				- currentStageReached = true
-			else if currentStageReached
-				li.list-group-item.disabled
-					.glyphicon.glyphicon-asterisk(style="margin-right: 0.25em")
-					span= title
-			else
-				li.list-group-item.list-group-item-success
-					.glyphicon.glyphicon-ok(style="margin-right: 0.25em")
-					span= title
-		
-		each val, index in stageList
-			+stage(val, index)
+	if user.stage === "declined"
+		p Your application has been declined.
+	else
+		ol.list-group
+			- var currentStageReached = false;
+			
+			mixin stage(title, stageName)
+				if user.stage === stageName
+					li.list-group-item
+						.glyphicon.glyphicon-refresh(style="margin-right: 0.25em")
+						span= title
+					- currentStageReached = true
+				else if currentStageReached
+					li.list-group-item.disabled
+						.glyphicon.glyphicon-asterisk(style="margin-right: 0.25em")
+						span= title
+				else
+					li.list-group-item.list-group-item-success
+						.glyphicon.glyphicon-ok(style="margin-right: 0.25em")
+						span= title
+			
+			each val, index in stageList
+				if index !== "declined"
+					+stage(val, index)

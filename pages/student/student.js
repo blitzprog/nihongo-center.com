@@ -40,6 +40,10 @@ module.exports = {
 			let japaneseDescription = `${student.givenName}は${student.age}歳です. `;
 			japaneseDescription += `${student.heSheJp}は${student.country}住んでいて、${student.startYear}年${student.startMonth}月の${student.course}コースに入りたいです。`;
 			
+			for(let key of ["heShe", "heSheJp", "startMonthName"]) {
+				delete student[key];
+			}
+			
 			render({
 				host: "http://localhost:8098",
 				user: request.user,
@@ -47,7 +51,7 @@ module.exports = {
 				humanized: humanized,
 				description: description,
 				japaneseDescription: japaneseDescription,
-				prioritizedKeys: [
+				/*prioritizedKeys: [
 					"email",
 					"givenName",
 					"familyName",
@@ -60,13 +64,13 @@ module.exports = {
 					"startMonth",
 					"uploads",
 					"stage"
-				],
+				],*/
 				renderKey: {
-					"uploads": student.uploads.map(function(upload) {
-						return "<div>" + S(upload.purpose).humanize().s + ": <a href='/" + upload.path + "'>" + upload.originalname + "</a></div>";
+					"uploads": "<ul class='list-group'>" + student.uploads.map(function(upload) {
+						return "<li class='list-group-item'><a href='/" + upload.path + "'>" + S(upload.purpose).humanize().s + "</a></li>";
 					}).reduce(function(a, b) {
 						return a + b;
-					}),
+					}) + "</ul>",
 					// TODO: Improve
 					"familyMembers": student.familyMembers.map(function(member) {
 						return "<div>" + JSON.stringify(member, null, "<br>") + "</div>";

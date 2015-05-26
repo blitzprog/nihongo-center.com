@@ -1,7 +1,7 @@
 {
 	"name": "nihongo-center.com",
 	"repository": "blitzprog/nihongo-center.com",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"dependencies": {
 		"aero": "*",
 		"passport": "*",

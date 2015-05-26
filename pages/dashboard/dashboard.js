@@ -1,6 +1,7 @@
 "use strict";
 
 let fs = require("fs");
+let riak = require("nodiak").getClient();
 let saveUserInDB = require("../../modules/save-user");
 
 module.exports = {
@@ -84,20 +85,47 @@ module.exports = {
 			"letterOfGuarantee"
 		];
 		
-		render({
-			user: user,
-			displayName: user.givenName, //+ " " + user.familyName,
-			profileCompleted: progress,
-			courseToTitle: this.courseToTitle,
-			uploads: uploads,
-			missingFields: missingFields,
-			studentVisaRequired: (user.course && user.course !== "10 weeks"),
-			readyToApply: (progress >= 100) && requiredUploads.map(function(purpose) {
-				return uploads[purpose] === true;
-			}).reduce(function(a, b) {
-				return a && b;
-			})
-		});
+		if(user.accessLevel === "admin" || user.accessLevel === "staff") {
+			riak.bucket("Accounts").objects.all(function(err, rObjects) {
+				if(err)
+					throw err;
+					
+				let students = rObjects.map(function(rObject) {
+					let student = rObject.data;
+					
+					if(student.accessLevel !== "student")
+						return null;
+					
+					return student;
+				}).filter(function(student) {
+					return student !== null;
+				});
+				
+				render({
+					user,
+					statistics: {
+						totalStudents: students.length,
+						totalApplicants: 5
+					},
+					displayName: user.givenName
+				});
+			});
+		} else {
+			render({
+				user,
+				displayName: user.givenName, //+ " " + user.familyName,
+				profileCompleted: progress,
+				courseToTitle: this.courseToTitle,
+				uploads,
+				missingFields,
+				studentVisaRequired: (user.course && user.course !== "10 weeks"),
+				readyToApply: (progress >= 100) && requiredUploads.map(function(purpose) {
+					return uploads[purpose] === true;
+				}).reduce(function(a, b) {
+					return a && b;
+				})
+			});
+		}
 	},
 	
 	// Save application date
