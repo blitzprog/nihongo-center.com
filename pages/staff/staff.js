@@ -2,6 +2,8 @@
 
 let riak = require("nodiak").getClient();
 let Accounts = riak.bucket("Accounts").objects;
+let JavaScriptPhase = require("../../modules/JavaScriptPhase");
+let mapPhase = new JavaScriptPhase("pages/staff/map.js");
 
 module.exports = {
 	get: function(request, render) {
@@ -19,21 +21,13 @@ module.exports = {
 			return;
 		}
 		
-		Accounts.all(function(err, rObjects) {
+		riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
 			if(err)
 				throw err;
 			
-			let staff = rObjects.map(function(rObject) {
-				let member = rObject.data;
-				
-				if(member.accessLevel === "student")
-					return null;
-				
+			let staff = results.data.map(function(member) {
 				member.permaLink = "/students/" + member.email;
-				
 				return member;
-			}).filter(function(member) {
-				return member !== null;
 			});
 			
 			render({

@@ -22,13 +22,11 @@ let facebookConfig = merge({
 // Init login
 login(
 	aero,
-	googleConfig,
-	[
+	googleConfig, [
 		"email",
 		"profile"
 	],
-	facebookConfig,
-	[
+	facebookConfig, [
 		"email",
 		"public_profile",
 		//"user_birthday",
