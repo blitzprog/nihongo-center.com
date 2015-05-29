@@ -12,7 +12,8 @@
 		"multer": "*",
 		"string": "*",
 		"fs-extra": "*",
-		"object-assign": "*"
+		"object-assign": "*",
+		"country-data": "*"
 	},
 	"author": {
 		"name": "Eduard Urbach",

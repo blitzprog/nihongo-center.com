@@ -21,35 +21,77 @@ else
 	
 	.row
 		.col-sm-6
+			//- Summary
 			.panel.panel-default
-				.panel-heading: h1 Summary
-				.panel-body!= description
-				
-		.col-sm-6
-			.panel.panel-default
-				.panel-heading: h1 概要
-				.panel-body!= japaneseDescription
-				
-		.col-sm-6
-			.panel.panel-default
-				.panel-heading: h1 Family
+				.panel-heading: h1
+					span.glyphicon.glyphicon-info-sign(style="margin-right: 0.25em")
+					span Summary
 				.panel-body
-					ul.list-group
-						each member in student.familyMembers
-							li.list-group-item= member.name
-		
-		.col-sm-6
+					p!= description
+			
+			//- Uploads
 			.panel.panel-default
-				.panel-heading: h1 Financial supporters
+				.panel-heading: h1
+					span.glyphicon.glyphicon-upload(style="margin-right: 0.25em")
+					span Uploads
+				.panel-body!= renderKey["uploads"]
+				
+			//- Financial supporters
+			.panel.panel-default
+				.panel-heading: h1
+					span.glyphicon.glyphicon-credit-card(style="margin-right: 0.25em")
+					span Financial supporters
 				.panel-body
 					ul.list-group
 						each member in student.financialSupporters
 							li.list-group-item= member.name
-			
+		
+		//- Country
 		.col-sm-6
-			.panel.panel-default
-				.panel-heading: h1 Uploads
-				.panel-body!= renderKey["uploads"]
+			if country
+				.panel.panel-default
+					.panel-heading: h1
+						span.glyphicon.glyphicon-globe(style="margin-right: 0.25em")
+						span= country.name
+					.panel-body
+						.text-center
+							img(src="http://flags.fmcdn.net/data/flags/small/" + country.alpha2.toLowerCase() + ".png")
+						
+						h4 Visa
+						if country.visaEasy
+							.alert.alert-info This is a low risk country!
+						else
+							.alert.alert-danger This is a high risk country!
+						
+						h4 Currencies
+						ul.list-group
+							each currency in country.currencies
+								li.list-group-item= currency
+						
+						h4 Languages
+						ul.list-group
+							each language in country.languages
+								li.list-group-item= language
+				//- Family		
+				.panel.panel-default
+					.panel-heading: h1
+						span.glyphicon.glyphicon-home(style="margin-right: 0.25em")
+						span Family
+					.panel-body
+						ul.list-group
+							each member in student.familyMembers
+								li.list-group-item= member.name
+								
+				//- Japanese education
+				.panel.panel-default
+					.panel-heading: h1
+						span.glyphicon.glyphicon-blackboard(style="margin-right: 0.25em")
+						span Japanese education
+					.panel-body
+						ul.list-group
+							h4= "JLPT level: " + student.jlptLevel 
+							each education in student.japaneseEducation
+								li.list-group-item= education.institution + " (" + education.totalHours + ")"
 	
 	.page-header
 		h1 Details

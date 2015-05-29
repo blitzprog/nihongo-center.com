@@ -1,8 +1,25 @@
 "use strict";
 
-let riak = require("nodiak").getClient();
-let age = require("../../modules/age");
+let fs = require("fs");
 let S = require("string");
+let age = require("../../modules/age");
+let riak = require("nodiak").getClient();
+
+// Country data
+let countryData = require("country-data");
+let lookup = countryData.lookup;
+let currencies = countryData.currencies;
+let languages = countryData.languages;
+
+// Load file as array
+let loadFileAsArray = function(filePath) {
+	return fs.readFileSync(filePath, "utf8").toString().split("\n");
+};
+
+let visaEasy = loadFileAsArray("pages/student/visa-easy-countries.txt").reduce(function(dict, value) {
+	dict[value] = null;
+	return dict;
+}, {});
 
 module.exports = {
 	get: function(request, render) {
@@ -23,6 +40,7 @@ module.exports = {
 			student.age = age.of(student);
 			student.displayName = student.givenName + " " + student.familyName;
 			student.heShe = student.gender === "male" ? "He" : "She";
+			student.hisHer = student.gender === "male" ? "his" : "her";
 			student.heSheJp = student.gender === "male" ? "彼" : "彼女";
 			student.startMonthName = monthNames[student.startMonth - 1];
 			
@@ -34,23 +52,55 @@ module.exports = {
 				return dict;
 			}, {});
 			
-			let description = `<b>${student.givenName}</b> is <b>${student.age}</b> years old. `;
-			description += `<b>${student.heShe}</b> is from <b>${student.country}</b> and wants to start a <b>${student.course}</b> course in <b>${student.startMonthName} ${student.startYear}</b>.`;
+			let description = `${student.givenName} is ${student.age} years old and ${student.maritalStatus}. `;
+			description += `${student.heShe} is from ${student.country} and wants to start a ${student.course} course in ${student.startMonthName} ${student.startYear}. `;
 			
-			let japaneseDescription = `${student.givenName}は${student.age}歳です. `;
-			japaneseDescription += `${student.heSheJp}は${student.country}住んでいて、${student.startYear}年${student.startMonth}月の${student.course}コースに入りたいです。`;
+			if(student.familyMembers.length === 0)
+				description += `${student.heShe} has no family members.`;
+			else if(student.familyMembers.length === 1)
+				description += `${S(student.hisHer).capitalize().s} only family member is ${student.familyMembers[0].name}.`;
+			else
+				description += `There are ${student.familyMembers.length} people in ${student.hisHer} family.`;
+			
+			//let japaneseDescription = `${student.givenName}は${student.age}歳です. `;
+			//japaneseDescription += `${student.heSheJp}は${student.country}住んでいて、${student.startYear}年${student.startMonth}月の${student.course}コースに入りたいです。`;
 			
 			for(let key of ["heShe", "heSheJp", "startMonthName"]) {
 				delete student[key];
 			}
 			
+			let country = lookup.countries({name: student.country})[0];
+			
+			if(country) {
+				country.currencies = country.currencies.map(function(currencyCode) {
+					let currency = currencies[currencyCode];
+					
+					if(currency)
+						return `${currency.name} (${currencyCode})`;
+					
+					return currencyCode;
+				});
+				
+				country.languages = country.languages.map(function(languageCode) {
+					let language = languages[languageCode];
+					
+					if(language)
+						return language.name;
+					
+					return languageCode;
+				});
+				
+				country.visaEasy = visaEasy[country.name] !== undefined;
+			}
+			
 			render({
 				host: "http://localhost:8098",
 				user: request.user,
-				student: student,
-				humanized: humanized,
-				description: description,
-				japaneseDescription: japaneseDescription,
+				country,
+				student,
+				humanized,
+				description,
+				//japaneseDescription,
 				/*prioritizedKeys: [
 					"email",
 					"givenName",
