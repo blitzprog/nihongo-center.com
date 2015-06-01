@@ -27,7 +27,7 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 			function(iss, sub, profile, accessToken, refreshToken, done) {
 				let json = profile._json;
 				let email = json.emails[0].value.replace("@googlemail.com", "@gmail.com");
-				let accessLevel = "";
+				let accessLevel = "student";
 				
 				if(adminMails.indexOf(email) !== -1)
 					accessLevel = "admin";

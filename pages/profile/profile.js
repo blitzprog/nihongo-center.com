@@ -81,8 +81,6 @@ module.exports = {
 				user[field] = S(user[field]).capitalize().s;
 		});
 		
-		user.accessLevel = "student";
-		user.applicationDate = null;
 		saveUserInDB(user);
 		
 		// Render normally
