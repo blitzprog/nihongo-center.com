@@ -10,13 +10,13 @@ let apiKeys = JSON.parse(fs.readFileSync("api-keys.json"));
 
 // Google
 let googleConfig = merge({
-	callbackURL: "http://localhost:3002/auth/google/callback",
+	callbackURL: "http://my.nihongo-center.com/auth/google/callback",
 	userInfoURL: "https://www.googleapis.com/plus/v1/people/me"
 }, apiKeys.google);
 
 // Facebook
 let facebookConfig = merge({
-	callbackURL: "http://localhost:3002/auth/facebook/callback"
+	callbackURL: "http://my.nihongo-center.com/auth/facebook/callback"
 }, apiKeys.facebook);
 
 // Init login
