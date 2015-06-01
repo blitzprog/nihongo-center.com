@@ -3,6 +3,10 @@
 let fs = require("fs");
 let riak = require("nodiak").getClient();
 let saveUserInDB = require("../../modules/save-user");
+let JavaScriptPhase = require("../../modules/JavaScriptPhase");
+
+let statisticsMapPhase = new JavaScriptPhase("pages/dashboard/statistics-map.js");
+let statisticsReducePhase = new JavaScriptPhase("pages/dashboard/statistics-reduce.js");
 
 module.exports = {
 	courseToTitle: JSON.parse(fs.readFileSync("data/courses.json", "utf8")),
@@ -86,27 +90,15 @@ module.exports = {
 		];
 		
 		if(user.accessLevel === "admin" || user.accessLevel === "staff") {
-			riak.bucket("Accounts").objects.all(function(err, rObjects) {
+			riak.mapred.inputs("Accounts").map(statisticsMapPhase).reduce(statisticsReducePhase).execute(function(err, result) {
 				if(err)
 					throw err;
-					
-				let students = rObjects.map(function(rObject) {
-					let student = rObject.data;
-					
-					if(student.accessLevel !== "student")
-						return null;
-					
-					return student;
-				}).filter(function(student) {
-					return student !== null;
-				});
+				
+				let statistics = result.data;
 				
 				render({
 					user,
-					statistics: {
-						totalStudents: students.length,
-						totalApplicants: 5
-					},
+					statistics,
 					displayName: user.givenName
 				});
 			});

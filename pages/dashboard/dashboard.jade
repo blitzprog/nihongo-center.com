@@ -1,7 +1,7 @@
 if !user
 	p Not logged in!
 else if user.accessLevel === "admin" || user.accessLevel === "staff"
-	.jumbotron
+	.jumbotron.dashboard-header
 		h1 Welcome back, 
 			span= displayName + "!"
 		
@@ -14,8 +14,26 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 					.glyphicon.glyphicon-tasks
 					|  Statistics
 				.panel-body
-					p!= `<b>${statistics.totalStudents}</b> students are registered on My Nihongo Center.`
 					p!= `<b>${statistics.totalApplicants}</b> students are currently waiting for their application to be accepted.`
+					p!= `<b>${statistics.totalStudents}</b> students are registered on My Nihongo Center.`
+		
+		.col-sm-4
+			.panel.panel-default
+				.panel-heading: h1
+					.glyphicon.glyphicon-globe
+					|  Countries
+				.panel-body
+					each count, country in statistics.countries
+						p!= `<b>${country}</b> (${count})`
+		
+		.col-sm-4
+			.panel.panel-default
+				.panel-heading: h1
+					.glyphicon.glyphicon-eye-open
+					|  Gender
+				.panel-body
+					p!= `<b>Male</b> (${statistics.gender.male})`
+					p!= `<b>Female</b> (${statistics.gender.female})`
 else
 	mixin upload(name, purpose)
 		- var cssClass = "";
