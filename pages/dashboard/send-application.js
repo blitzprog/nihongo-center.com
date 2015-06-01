@@ -1,5 +1,5 @@
 function sendApplication(email, name) {
-	var host = "http://localhost:3002";
+	var host = "http://my.nihongo-center-com";
 	
 	$.post("https://hooks.slack.com/services/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", {
 		payload: JSON.stringify({
