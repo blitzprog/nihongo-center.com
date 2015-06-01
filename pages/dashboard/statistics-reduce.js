@@ -7,7 +7,7 @@ function(students) {
 	
 	students.forEach(function(student) {
 		// Country
-		if(countries[student.country])
+		if(student.country && countries[student.country])
 			countries[student.country] += 1;
 		else
 			countries[student.country] = 1;
