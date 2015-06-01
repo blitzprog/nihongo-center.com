@@ -69,28 +69,32 @@ module.exports = {
 				delete student[key];
 			}
 			
-			let country = lookup.countries({name: student.country})[0];
+			let country = null;
 			
-			if(country) {
-				country.currencies = country.currencies.map(function(currencyCode) {
-					let currency = currencies[currencyCode];
-					
-					if(currency)
-						return `${currency.name} (${currencyCode})`;
-					
-					return currencyCode;
-				});
+			if(student.country) {
+				country = lookup.countries({name: student.country})[0];
 				
-				country.languages = country.languages.map(function(languageCode) {
-					let language = languages[languageCode];
+				if(country) {
+					country.currencies = country.currencies.map(function(currencyCode) {
+						let currency = currencies[currencyCode];
+						
+						if(currency)
+							return `${currency.name} (${currencyCode})`;
+						
+						return currencyCode;
+					});
 					
-					if(language)
-						return language.name;
+					country.languages = country.languages.map(function(languageCode) {
+						let language = languages[languageCode];
+						
+						if(language)
+							return language.name;
+						
+						return languageCode;
+					});
 					
-					return languageCode;
-				});
-				
-				country.visaEasy = visaEasy[country.name] !== undefined;
+					country.visaEasy = visaEasy[country.name] !== undefined;
+				}
 			}
 			
 			render({
@@ -119,7 +123,7 @@ module.exports = {
 						return "<li class='list-group-item'><a href='/" + upload.path + "'>" + S(upload.purpose).humanize().s + "</a></li>";
 					}).reduce(function(a, b) {
 						return a + b;
-					}) + "</ul>",
+					}, "") + "</ul>",
 					// TODO: Improve
 					"familyMembers": student.familyMembers.map(function(member) {
 						return "<div>" + JSON.stringify(member, null, "<br>") + "</div>";
