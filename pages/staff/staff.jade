@@ -16,8 +16,8 @@ else
 				th Name
 		each member in staff
 			tr
-				if user.accessLevel === "admin"
-					td.col-md-2= user.accessLevel
+				if member.accessLevel === "admin"
+					td.col-md-2= member.accessLevel
 						//-select
 							option(value="staff", selected=(member.accessLevel === "staff")) Staff
 							option(value="admin", selected=(member.accessLevel === "admin")) Admin
