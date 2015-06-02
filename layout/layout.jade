@@ -31,7 +31,7 @@ html(lang="en")
 							mixin navElement(nav)
 								li
 									a.navigation-link.ajax(href="/#{nav.url}")
-										if pageToGlyphIcon && nav.id in pageToGlyphIcon
+										if pageToGlyphIcon && pageToGlyphIcon[nav.id]
 											.navigation-button
 												div(class="glyphicon glyphicon-" + pageToGlyphIcon[nav.id])
 												span(style="margin-left: 0.4em")= nav.title

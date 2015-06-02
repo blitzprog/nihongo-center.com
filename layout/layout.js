@@ -14,8 +14,8 @@ module.exports = {
 		};
 		
 		render({
-			user: user,
-			pageToGlyphIcon: pageToGlyphIcon
+			user,
+			pageToGlyphIcon
 		});
 	}
 };
