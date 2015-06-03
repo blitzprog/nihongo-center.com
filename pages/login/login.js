@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-	get: function(request, render) {
+	render: function(request, render) {
 		let user = request.user;
 		
 		if(typeof user === "undefined") {

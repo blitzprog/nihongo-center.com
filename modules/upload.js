@@ -9,7 +9,7 @@ module.exports = function(aero) {
 	const kiloByte = 1024 * 1024;
 	const megaByte = 1024 * kiloByte;
 	
-	aero.app.use(multer({
+	aero.use(multer({
 		dest: "./uploads/",
 		/*changeDest: function(dest, req, res) {
 			if(typeof req.user === "undefined") {

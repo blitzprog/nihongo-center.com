@@ -22,7 +22,7 @@ let visaEasy = loadFileAsArray("pages/student/visa-easy-countries.txt").reduce(f
 }, {});
 
 module.exports = {
-	get: function(request, render) {
+	render: function(request, render) {
 		var email = request.params.email;
 		
 		riak.bucket("Accounts").objects.get(email, function(err, obj) {
@@ -65,7 +65,7 @@ module.exports = {
 			//let japaneseDescription = `${student.givenName}は${student.age}歳です. `;
 			//japaneseDescription += `${student.heSheJp}は${student.country}住んでいて、${student.startYear}年${student.startMonth}月の${student.course}コースに入りたいです。`;
 			
-			for(let key of ["heShe", "heSheJp", "startMonthName"]) {
+			for(let key of ["heShe", "heSheJp", "startMonthName", "hisHer"]) {
 				delete student[key];
 			}
 			

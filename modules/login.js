@@ -17,7 +17,7 @@ let FacebookStrategy = require("passport-facebook").Strategy;
 let adminMails = ["e.urbach@gmail.com"];
 
 module.exports = function(aero, googleConfig, googleScopes, facebookConfig, facebookScopes) {
-	aero.events.on("initialized", function() {
+	aero.events.on("config loaded", function() {
 		// Accounts
 		let userBucket = riak.bucket("Accounts");
 		let userDataJSON = JSON.stringify(userData);
@@ -125,26 +125,26 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 		});
 		
 		// Use a random secret
-		aero.app.use(session({
+		aero.use(session({
 			secret: require("crypto").randomBytes(64).toString("hex"),
 			resave: false,
 			saveUninitialized: false
 		}));
 		
-		aero.app.use(passport.initialize());
-		aero.app.use(passport.session());
+		aero.use(passport.initialize());
+		aero.use(passport.session());
 
 		// Redirect the user to Google for authentication.  When complete, Google
 		// will redirect the user back to the application at
 		//     /auth/google/return
-		aero.app.get("/auth/google", passport.authenticate("google-openidconnect", {
+		aero.get("/auth/google", passport.authenticate("google-openidconnect", {
 			scope: googleScopes
 		}));
 
 		// Google will redirect the user to this URL after authentication.  Finish
 		// the process by verifying the assertion.  If valid, the user will be
 		// logged in.  Otherwise, authentication has failed.
-		aero.app.get("/auth/google/callback",
+		aero.get("/auth/google/callback",
 			passport.authenticate("google-openidconnect", {
 				failureRedirect: "/"
 			}),
@@ -157,7 +157,7 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 		// Redirect the user to Facebook for authentication.  When complete,
 		// Facebook will redirect the user back to the application at
 		//     /auth/facebook/callback
-		aero.app.get("/auth/facebook", passport.authenticate("facebook", {
+		aero.get("/auth/facebook", passport.authenticate("facebook", {
 			scope: facebookScopes
 		}));
 
@@ -165,13 +165,13 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 		// authentication process by attempting to obtain an access token.  If
 		// access was granted, the user will be logged in.  Otherwise,
 		// authentication has failed.
-		aero.app.get("/auth/facebook/callback", passport.authenticate("facebook", {
+		aero.get("/auth/facebook/callback", passport.authenticate("facebook", {
 			successRedirect: "/",
 			failureRedirect: "/"
 		}));
 		
 		// Logout
-		aero.app.get("/logout", function(req, res) {
+		aero.get("/logout", function(req, res) {
 			req.logout();
 			res.redirect("/");
 		});

@@ -89,7 +89,9 @@ else
 						span Japanese education
 					.panel-body
 						ul.list-group
-							h4= "JLPT level: " + student.jlptLevel 
+							if student.jlptLevel
+								h4= "JLPT level: " + student.jlptLevel
+							
 							each education in student.japaneseEducation
 								li.list-group-item= education.institution + " (" + education.totalHours + ")"
 	

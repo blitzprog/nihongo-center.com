@@ -6,7 +6,7 @@ let fs = require("fs");
 
 module.exports = {
 	// Get
-	get: function(request, render) {
+	render: function(request, render) {
 		let user = request.user;
 		let fileTypes = [
 			{name: "Please choose:", value: "", disabled: true},

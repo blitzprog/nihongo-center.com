@@ -6,7 +6,7 @@ let JavaScriptPhase = require("../../modules/JavaScriptPhase");
 let mapPhase = new JavaScriptPhase("pages/staff/map.js");
 
 module.exports = {
-	get: function(request, render) {
+	render: function(request, render) {
 		let user = request.user;
 		
 		// Logged in?

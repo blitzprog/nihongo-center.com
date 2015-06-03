@@ -28,15 +28,15 @@ html(lang="en")
 							else
 								- var loggedInPages = ["dashboard", "profile", "uploads", "stages"]
 							
-							mixin navElement(nav)
+							mixin navElement(page)
 								li
-									a.navigation-link.ajax(href="/#{nav.url}")
-										if pageToGlyphIcon && pageToGlyphIcon[nav.id]
+									a.navigation-link.ajax(href="/#{page.url}")
+										if pageToGlyphIcon && pageToGlyphIcon[page.id]
 											.navigation-button
-												div(class="glyphicon glyphicon-" + pageToGlyphIcon[nav.id])
-												span(style="margin-left: 0.4em")= nav.title
+												div(class="glyphicon glyphicon-" + pageToGlyphIcon[page.id])
+												span(style="margin-left: 0.4em")= page.title
 										else
-											.navigation-button= nav.title
+											.navigation-button= page.title
 							
 							ul.nav.navbar-nav
 								each page in pages

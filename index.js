@@ -38,4 +38,4 @@ login(
 upload(aero);
 
 // Start Aero
-aero.start();
+aero.run();

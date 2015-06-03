@@ -24,7 +24,10 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 					|  Countries
 				.panel-body
 					each count, country in statistics.countries
-						p!= `<b>${country}</b> (${count})`
+						if country
+							p!= `<b>${country}</b> (${count})`
+						else
+							p!= `<b>Unknown</b> (${count})`
 		
 		.col-sm-4
 			.panel.panel-default

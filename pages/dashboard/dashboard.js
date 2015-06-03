@@ -11,7 +11,7 @@ let statisticsReducePhase = new JavaScriptPhase("pages/dashboard/statistics-redu
 module.exports = {
 	courseToTitle: JSON.parse(fs.readFileSync("data/courses.json", "utf8")),
 	
-	get: function(request, render) {
+	render: function(request, render) {
 		let user = request.user;
 		
 		if(typeof user === "undefined") {
