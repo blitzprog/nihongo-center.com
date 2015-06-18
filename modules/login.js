@@ -124,6 +124,26 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 			});
 		});
 		
+		aero.use(function(request, response, next) {
+			response.redirect = function(url) {
+				console.log("Redirecting to " + url);
+				response.writeHead(302, {
+					"Location": url,
+					"Content-Length": 0
+					//add other headers here...
+				});
+				response.end();
+			};
+			next();
+		});
+		
+		let cookieParser = require("cookie-parser");
+		aero.use(cookieParser());
+		
+		let bodyParser = require("body-parser");
+		let rawParser = bodyParser.raw();
+		//aero.use();
+		
 		// Use a random secret
 		aero.use(session({
 			secret: require("crypto").randomBytes(64).toString("hex"),
@@ -140,17 +160,35 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 		aero.get("/auth/google", passport.authenticate("google-openidconnect", {
 			scope: googleScopes
 		}));
+		
+		let googleAuth = passport.authenticate("google-openidconnect", {
+			failureRedirect: "/google-auth-error"
+		});
 
 		// Google will redirect the user to this URL after authentication.  Finish
 		// the process by verifying the assertion.  If valid, the user will be
 		// logged in.  Otherwise, authentication has failed.
 		aero.get("/auth/google/callback",
-			passport.authenticate("google-openidconnect", {
-				failureRedirect: "/"
-			}),
 			function(req, res) {
-				// Successful authentication, redirect home.
-				res.redirect("/");
+				rawParser(req, res, function(reqB, resB) {
+					let ask = req.url.indexOf("?");
+					req.url.substr(ask + 1).split("&").forEach(function(assignment) {
+						let vals = assignment.split("=");
+						let key = vals[0];
+						let value = vals[1];
+						req.body[key] = value;
+					});
+					
+					console.log(req.url);
+					console.log(req.body);
+					
+					googleAuth(req, res, function(req2, res2) {
+						console.log("Success!");
+						
+						// Successful authentication, redirect home.
+						res2.redirect("/");
+					});
+				});
 			}
 		);
 		
@@ -167,7 +205,7 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 		// authentication has failed.
 		aero.get("/auth/facebook/callback", passport.authenticate("facebook", {
 			successRedirect: "/",
-			failureRedirect: "/"
+			failureRedirect: "/facebook-auth-error"
 		}));
 		
 		// Logout

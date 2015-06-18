@@ -9,6 +9,8 @@
 		"passport-facebook": "*",
 		"nodiak": "*",
 		"express-session": "*",
+		"body-parser": "*",
+		"cookie-parser": "*",
 		"multer": "*",
 		"string": "*",
 		"fs-extra": "*",
