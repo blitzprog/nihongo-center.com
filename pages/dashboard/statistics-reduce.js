@@ -7,11 +7,13 @@ function(students) {
 	
 	students.forEach(function(student) {
 		// Country
-		if(student.country && countries[student.country])
-			countries[student.country] += 1;
-		else
-			countries[student.country] = 1;
-			
+		if(student.country && student.country.length > 1) {
+			if(countries[student.country])
+				countries[student.country] += 1;
+			else
+				countries[student.country] = 1;
+		}
+		
 		// Gender
 		gender[student.gender] += 1;
 	});

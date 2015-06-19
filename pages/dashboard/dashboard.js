@@ -95,6 +95,7 @@ module.exports = {
 					throw err;
 				
 				let statistics = result.data;
+				statistics.countries.sort();
 				
 				render({
 					user,
