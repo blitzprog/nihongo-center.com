@@ -40,5 +40,11 @@ login(
 // Init uploads
 upload(aero);
 
+let start = new Date;
+aero.on("server started", function() {
+	let startUpTime = new Date - start;
+	console.log(`Server started (${startUpTime} ms)`);
+});
+
 // Start Aero
 aero.run();

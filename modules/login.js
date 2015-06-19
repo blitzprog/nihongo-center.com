@@ -1,6 +1,7 @@
 "use strict";
 
 let
+	url = require("url"),
 	passport = require("passport"),
 	session = require("express-session"),
 	merge = require("object-assign"),
@@ -125,10 +126,13 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 		});
 		
 		aero.use(function(request, response, next) {
-			response.redirect = function(url) {
-				console.log("Redirecting to " + url);
+			let urlParts = url.parse(request.url, true);
+			request.query = urlParts.query;
+			
+			response.redirect = function(path) {
+				console.log("Redirecting to " + path);
 				response.writeHead(302, {
-					"Location": url,
+					"Location": path,
 					"Content-Length": 0
 					//add other headers here...
 				});
@@ -141,8 +145,15 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 		aero.use(cookieParser());
 		
 		let bodyParser = require("body-parser");
-		let rawParser = bodyParser.raw();
-		//aero.use();
+		aero.use(bodyParser.urlencoded({
+			extended: false
+		}));
+		
+		aero.use(function(req, res, next) {
+			console.log(req.url);
+			console.log(req.query);
+			next();
+		});
 		
 		// Use a random secret
 		aero.use(session({
@@ -156,40 +167,20 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 
 		// Redirect the user to Google for authentication.  When complete, Google
 		// will redirect the user back to the application at
-		//     /auth/google/return
-		aero.get("/auth/google", passport.authenticate("google-openidconnect", {
-			scope: googleScopes
-		}));
-		
-		let googleAuth = passport.authenticate("google-openidconnect", {
-			failureRedirect: "/google-auth-error"
-		});
+		//     /auth/google/callback
+		aero.get("/auth/google",
+			passport.authenticate("google-openidconnect", {
+				scope: googleScopes
+			})
+		);
 
 		// Google will redirect the user to this URL after authentication.  Finish
 		// the process by verifying the assertion.  If valid, the user will be
 		// logged in.  Otherwise, authentication has failed.
 		aero.get("/auth/google/callback",
-			function(req, res) {
-				rawParser(req, res, function(reqB, resB) {
-					let ask = req.url.indexOf("?");
-					req.url.substr(ask + 1).split("&").forEach(function(assignment) {
-						let vals = assignment.split("=");
-						let key = vals[0];
-						let value = vals[1];
-						req.body[key] = value;
-					});
-					
-					console.log(req.url);
-					console.log(req.body);
-					
-					googleAuth(req, res, function(req2, res2) {
-						console.log("Success!");
-						
-						// Successful authentication, redirect home.
-						res2.redirect("/");
-					});
-				});
-			}
+			passport.authenticate("google-openidconnect", {
+				failureRedirect: "/google-auth-error"
+			})
 		);
 		
 		// Redirect the user to Facebook for authentication.  When complete,
