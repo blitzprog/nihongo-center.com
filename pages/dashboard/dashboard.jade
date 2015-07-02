@@ -29,15 +29,16 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 						.panel-body
 							each count, country in statistics.countries
 								p!= `<b>${country}</b> (${count})`
-				
-			.col-sm-4
-				.panel.panel-default
-					.panel-heading: h1
-						.glyphicon.glyphicon-eye-open
-						|  Gender
-					.panel-body
-						p!= `<b>Male</b> (${statistics.gender.male})`
-						p!= `<b>Female</b> (${statistics.gender.female})`
+			
+			if statistics.gender
+				.col-sm-4
+					.panel.panel-default
+						.panel-heading: h1
+							.glyphicon.glyphicon-eye-open
+							|  Gender
+						.panel-body
+							p!= `<b>Male</b> (${statistics.gender.male})`
+							p!= `<b>Female</b> (${statistics.gender.female})`
 else
 	mixin upload(name, purpose)
 		- var cssClass = "";
