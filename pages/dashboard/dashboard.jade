@@ -6,34 +6,37 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 			span= displayName + "!"
 		
 		p Here you can administer the students registering at Nihongo Center!
-		
-	.row
-		.col-sm-4
-			.panel.panel-default
-				.panel-heading: h1
-					.glyphicon.glyphicon-tasks
-					|  Statistics
-				.panel-body
-					p!= `<b>${statistics.totalApplicants}</b> students are currently waiting for their application to be accepted.`
-					p!= `<b>${statistics.totalStudents}</b> students are registered on My Nihongo Center.`
-		
-		.col-sm-4
-			.panel.panel-default
-				.panel-heading: h1
-					.glyphicon.glyphicon-globe
-					|  Countries
-				.panel-body
-					each count, country in statistics.countries
-						p!= `<b>${country}</b> (${count})`
-		
-		.col-sm-4
-			.panel.panel-default
-				.panel-heading: h1
-					.glyphicon.glyphicon-eye-open
-					|  Gender
-				.panel-body
-					p!= `<b>Male</b> (${statistics.gender.male})`
-					p!= `<b>Female</b> (${statistics.gender.female})`
+	
+	if !statistics
+		.alert.alert-danger There was an error retrieving statistics.
+	else
+		.row
+			.col-sm-4
+				.panel.panel-default
+					.panel-heading: h1
+						.glyphicon.glyphicon-tasks
+						|  Statistics
+					.panel-body
+						p!= `<b>${statistics.totalApplicants}</b> students are currently waiting for their application to be accepted.`
+						p!= `<b>${statistics.totalStudents}</b> students are registered on My Nihongo Center.`
+			
+			.col-sm-4
+				.panel.panel-default
+					.panel-heading: h1
+						.glyphicon.glyphicon-globe
+						|  Countries
+					.panel-body
+						each count, country in statistics.countries
+							p!= `<b>${country}</b> (${count})`
+			
+			.col-sm-4
+				.panel.panel-default
+					.panel-heading: h1
+						.glyphicon.glyphicon-eye-open
+						|  Gender
+					.panel-body
+						p!= `<b>Male</b> (${statistics.gender.male})`
+						p!= `<b>Female</b> (${statistics.gender.female})`
 else
 	mixin upload(name, purpose)
 		- var cssClass = "";
