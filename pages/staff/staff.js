@@ -23,7 +23,7 @@ module.exports = {
 		
 		riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
 			if(err)
-				throw err;
+				console.error(err);
 			
 			let staff = results.data.map(function(member) {
 				member.permaLink = "/students/" + member.email;

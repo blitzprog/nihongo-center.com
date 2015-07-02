@@ -23,7 +23,7 @@ module.exports = {
 		
 		riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
 			if (err)
-				throw err;
+				console.error(err);
 
 			let students = results.data.map(function(student) {
 				student.age = age.of(student);

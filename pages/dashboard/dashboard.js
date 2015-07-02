@@ -92,7 +92,7 @@ module.exports = {
 		if(user.accessLevel === "admin" || user.accessLevel === "staff") {
 			riak.mapred.inputs("Accounts").map(statisticsMapPhase).reduce(statisticsReducePhase).execute(function(err, result) {
 				if(err)
-					throw err;
+					console.error(err);
 				
 				let statistics = result.data;
 				//statistics.countries.sort();
