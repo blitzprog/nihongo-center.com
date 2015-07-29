@@ -3,6 +3,7 @@
 let riak = require("nodiak").getClient();
 let age = require("../../modules/age");
 let JavaScriptPhase = require("../../modules/JavaScriptPhase");
+let getStudentProgress = require("../../modules/get-student-progress");
 let mapPhase = new JavaScriptPhase("pages/students/map.js");
 
 module.exports = {
@@ -28,6 +29,7 @@ module.exports = {
 			let students = results.data.map(function(student) {
 				student.age = age.of(student);
 				student.permaLink = "/students/" + student.email;
+				student.profileCompleted = getStudentProgress(student);
 				return student;
 			});
 

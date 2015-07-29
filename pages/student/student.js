@@ -65,7 +65,7 @@ module.exports = {
 			//let japaneseDescription = `${student.givenName}は${student.age}歳です. `;
 			//japaneseDescription += `${student.heSheJp}は${student.country}住んでいて、${student.startYear}年${student.startMonth}月の${student.course}コースに入りたいです。`;
 			
-			for(let key of ["heShe", "heSheJp", "startMonthName"]) {
+			for(let key of ["heShe", "heSheJp", "hisHer", "startMonthName"]) {
 				delete student[key];
 			}
 			
