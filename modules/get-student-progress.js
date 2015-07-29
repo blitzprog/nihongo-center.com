@@ -20,10 +20,9 @@ let atLeastOneElement = [
 	"financialSupporters"
 ];
 
-module.exports = function(user) {
+module.exports = function(user, missingFields) {
 	let progress = 0;
 	let fields = Object.keys(user);
-	let missingFields = [];
 	
 	// Prevent division by zero
 	if(fields.length !== 0) {
@@ -37,12 +36,14 @@ module.exports = function(user) {
 			
 			// Arrays that need at least 1 element
 			if(atLeastOneElement.indexOf(property) !== -1 && user[property].length === 0) {
-				missingFields.push(property)
+				if(missingFields !== undefined)
+					missingFields.push(property)
 				return 0;
 			}
 			
 			if(typeof user[property] === "undefined" || user[property] === "" || user[property] === null) {
-				missingFields.push(property);
+				if(missingFields !== undefined)
+					missingFields.push(property)
 				return 0;
 			}
 			

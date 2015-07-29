@@ -20,7 +20,8 @@ module.exports = {
 			return;
 		}
 		
-		let progress = getStudentProgress(user);
+		let missingFields = [];
+		let progress = getStudentProgress(user, missingFields);
 		
 		// Uploads
 		let uploads = {};
