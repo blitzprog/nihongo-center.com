@@ -5,6 +5,7 @@ let age = require("../../modules/age");
 let JavaScriptPhase = require("../../modules/JavaScriptPhase");
 let getStudentProgress = require("../../modules/get-student-progress");
 let mapPhase = new JavaScriptPhase("pages/students/map.js");
+let reducePhase = new JavaScriptPhase("pages/students/reduce.js");
 
 module.exports = {
 	get: function(request, render) {
@@ -22,7 +23,7 @@ module.exports = {
 			return;
 		}
 		
-		riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
+		riak.mapred.inputs("Accounts").map(mapPhase).reduce(reducePhase).execute(function(err, results) {
 			if (err)
 				console.error(err);
 
