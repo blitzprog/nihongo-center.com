@@ -28,11 +28,11 @@ else
 						span ✓
 				td.col-md-1
 					.progress
-						if profileCompleted >= 100
+						if student.profileCompleted >= 100
 							- var cssClass = "progress-bar progress-bar-success";
-						else if profileCompleted >= 50
+						else if student.profileCompleted >= 50
 							- var cssClass = "progress-bar progress-bar-warning progress-bar-striped";
-						else if profileCompleted >= 25
+						else if student.profileCompleted >= 25
 							- var cssClass = "progress-bar progress-bar-info progress-bar-striped";
 						else
 							- var cssClass = "progress-bar progress-bar-danger progress-bar-striped"
