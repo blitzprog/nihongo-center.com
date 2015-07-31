@@ -1,4 +1,4 @@
-function(students) {
+module.exports = function(students) {
 	var countries = {};
 	var gender = {
 		male: 0,
@@ -26,4 +26,4 @@ function(students) {
 		countries: countries,
 		gender: gender
 	};
-}
+};

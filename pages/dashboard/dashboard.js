@@ -4,10 +4,10 @@ let fs = require("fs");
 let riak = require("nodiak").getClient();
 let saveUserInDB = require("../../modules/save-user");
 let getStudentProgress = require("../../modules/get-student-progress");
+let getStatistics = require("../../modules/get-statistics");
 let JavaScriptPhase = require("../../modules/JavaScriptPhase");
 
 let statisticsMapPhase = new JavaScriptPhase("pages/dashboard/statistics-map.js");
-let statisticsReducePhase = new JavaScriptPhase("pages/dashboard/statistics-reduce.js");
 
 module.exports = {
 	courseToTitle: JSON.parse(fs.readFileSync("data/courses.json", "utf8")),
@@ -39,11 +39,11 @@ module.exports = {
 		];
 		
 		if(user.accessLevel === "admin" || user.accessLevel === "staff") {
-			riak.mapred.inputs("Accounts").map(statisticsMapPhase).reduce(statisticsReducePhase).execute(function(err, result) {
+			riak.mapred.inputs("Accounts").map(statisticsMapPhase).execute(function(err, result) {
 				if(err)
 					console.error(err);
 				
-				let statistics = result.data;
+				let statistics = getStatistics(result.data);
 				//statistics.countries.sort();
 				
 				render({
