@@ -1,5 +1,41 @@
-.page-header
-	h2= "Search: " + keyword
-	
-h3 Students
-h3 Uploads
+if !user
+	p Not logged in!
+else if typeof students === "undefined"
+	p You are not authorized to view this page!
+else if students.length === 0
+	p No students found!
+else
+	table.table.table-condensed
+		thead
+			tr
+				th Applied
+				th Completion
+				th Course
+				th Country
+				th Name
+		each student in students
+			tr
+				td.col-md-1
+					if student.applicationDate === null
+						span ❌
+					else
+						span ✓
+				td.col-md-1
+					.progress
+						if student.profileCompleted >= 100
+							- var cssClass = "progress-bar progress-bar-success";
+						else if student.profileCompleted >= 50
+							- var cssClass = "progress-bar progress-bar-warning progress-bar-striped";
+						else if student.profileCompleted >= 25
+							- var cssClass = "progress-bar progress-bar-info progress-bar-striped";
+						else
+							- var cssClass = "progress-bar progress-bar-danger progress-bar-striped"
+						
+						//-meter(min=0, max=100, low=25, value=student.profileCompleted, title=student.profileCompleted + "%")
+						div(class=cssClass, role="progressbar", aria-valuenow=student.profileCompleted, aria-valuemin="0" aria-valuemax="100", style="width: " + student.profileCompleted + "%", title=student.profileCompleted + "%")
+				td.col-md-2
+					.form-group
+						input.form-control(type="month", value=student.startYear + "-" + student.startMonth, disabled)
+				td.col-md-2= student.country
+				td.col-md-6
+					a(href=student.permaLink)= student.givenName + " " + student.familyName
