@@ -23,4 +23,11 @@ function search(e) {
 	});
 }
 
-document.onreadystatechange = search;
+var onReady = function() {
+	document.removeEventListener("DOMContentLoaded", onReady, false);
+	
+	// Show initial student list
+	search();
+};
+
+document.addEventListener("DOMContentLoaded", onReady, false);
