@@ -66,6 +66,7 @@ module.exports = {
 	// Japanese
 	jlptLevel: "",
 	japaneseEducation: [],
+	reasonForStudying: "",
 	
 	// Uploads
 	uploads: []
