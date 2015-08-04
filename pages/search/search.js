@@ -49,6 +49,9 @@ module.exports = {
 						if(!searchProperties[key])
 							return false;
 						
+						if(key === "gender" && value != term)
+							return false;
+						
 						if(value.toLowerCase().indexOf(term) !== -1)
 							return true;
 						
