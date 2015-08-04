@@ -42,9 +42,12 @@ else
 					span.glyphicon.glyphicon-credit-card(style="margin-right: 0.25em")
 					span Financial supporters
 				.panel-body
-					ul.list-group
-						each member in student.financialSupporters
-							li.list-group-item= member.name
+					if student.financialSupporters.length === 0
+						div.alert.alert-danger The student did not add any financial supporters yet!
+					else
+						ul.list-group
+							each member in student.financialSupporters
+								li.list-group-item= member.name
 		
 		//- Country
 		.col-sm-6
@@ -72,26 +75,42 @@ else
 						ul.list-group
 							each language in country.languages
 								li.list-group-item= language
-				//- Family		
-				.panel.panel-default
-					.panel-heading: h1
-						span.glyphicon.glyphicon-home(style="margin-right: 0.25em")
-						span Family
-					.panel-body
+			//- Family		
+			.panel.panel-default
+				.panel-heading: h1
+					span.glyphicon.glyphicon-home(style="margin-right: 0.25em")
+					span Family
+				.panel-body
+					if student.familyMembers.length === 0
+						div.alert.alert-danger The student did not add any family members yet!
+					else
 						ul.list-group
 							each member in student.familyMembers
-								li.list-group-item= member.name
-								
-				//- Japanese education
-				.panel.panel-default
-					.panel-heading: h1
-						span.glyphicon.glyphicon-blackboard(style="margin-right: 0.25em")
-						span Japanese education
-					.panel-body
-						ul.list-group
-							h4= "JLPT level: " + student.jlptLevel 
-							each education in student.japaneseEducation
-								li.list-group-item= education.institution + " (" + education.totalHours + ")"
+								li.list-group-item
+									span= member.name
+									span.label.label-info(style="margin-left: 0.65em")= member.relation
+							
+			//- Japanese education
+			.panel.panel-default
+				.panel-heading: h1
+					span.glyphicon.glyphicon-blackboard(style="margin-right: 0.25em")
+					span Japanese education
+				.panel-body
+					ul.list-group
+						h4= "JLPT level: " + student.jlptLevel 
+						each education in student.japaneseEducation
+							li.list-group-item= education.institution + " (" + education.totalHours + ")"
+							
+							
+			.panel.panel-default
+				.panel-heading: h1
+					span.glyphicon.glyphicon-pencil(style="margin-right: 0.25em")
+					span Motivation
+				.panel-body
+					if !student.reasonForStudying
+						div.alert.alert-danger The student did not write down the reason for studying yet!
+					else
+						p= '"' + student.reasonForStudying + '"'
 	
 	.page-header
 		h1 Details

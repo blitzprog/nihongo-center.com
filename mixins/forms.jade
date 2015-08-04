@@ -11,6 +11,13 @@ mixin text(mLabel, mId, mValue, mPlaceHolder, dataListId, disabled)
 		else
 			input.form-control(type="text", name=mId, id=mId, value=mValue, list=dataListId, placeholder=mPlaceHolder, data-toggle="tooltip", title=mPlaceHolder).text-input
 
+mixin textArea(mLabel, mId, mValue, placeholder, rows, cols)
+	if typeof mValue === "undefined"
+		- mValue = user[mId]
+	.field.form-group
+		label(for=mId)= mLabel
+		textarea.form-control.text-input(name=mId, id=mId, rows=rows, cols=cols, placeholder=placeholder)= mValue
+
 mixin textInArray(mLabel, mArray, mIndex, mKey, mValue, mPlaceHolder, dataListId)
 	- var mId = mArray + "-" + mIndex + "-" + mKey
 	if typeof mValue === "undefined"

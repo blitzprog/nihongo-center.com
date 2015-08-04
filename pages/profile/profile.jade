@@ -153,6 +153,9 @@ else
 		.profile
 			+select("Acquired JLPT level:", "jlptLevel", user.jlptLevel, jlptLevels)
 			
+		.profile
+			+textArea("Reason for studying Japanese:", "reasonForStudying", user.reasonForStudying, "What have you been doing for studying in Japan?\nWhy do you need to study Japanese?\nWhat are you going to do after you finish the Japanese course?", 12, 80)
+		
 		.page-header
 			h2 Japanese Study Experience
 		
