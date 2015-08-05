@@ -18,8 +18,11 @@ function search(e) {
 	if(!term)
 		term = "*";
 	
+	var $searchResult = $("#searchResult");
+	$searchResult.html("Searching...");
+	
 	oldAjaxRequest = $.get("/raw/students/search/" + term, function(data) {
-		$("#searchResult").html(data);
+		$searchResult.html(data);
 	});
 }
 
