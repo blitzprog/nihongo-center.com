@@ -8,6 +8,9 @@ module.exports = function(students) {
 	students.forEach(function(student) {
 		// Country
 		if(student.country && student.country.length > 1) {
+			if(student.country === "America")
+				student.country = "United States";
+			
 			if(countries[student.country])
 				countries[student.country] += 1;
 			else
