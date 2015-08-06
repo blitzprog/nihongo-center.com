@@ -45,12 +45,9 @@ module.exports = {
 				
 				let statistics = getStatistics(result.data);
 				
-				let countries = statistics.countries;
-				let countriesSorted = Object.keys(countries).sort(function(a,b){
-					return countries[a] - countries[b];
+				statistics.countriesSorted = Object.keys(statistics.countries).sort(function(a,b){
+					return statistics.countries[b] - statistics.countries[a];
 				});
-				
-				statistics.countries = countriesSorted;
 				
 				render({
 					user,

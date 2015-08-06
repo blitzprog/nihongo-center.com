@@ -27,8 +27,8 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 							.glyphicon.glyphicon-globe
 							|  Countries
 						.panel-body
-							each count, country in statistics.countries
-								p!= `<b>${country}</b> (${count})`
+							each country in statistics.countriesSorted
+								p!= `<b>${country}</b> (${statistics.countries[country]})`
 			
 			if statistics.gender
 				.col-sm-4
