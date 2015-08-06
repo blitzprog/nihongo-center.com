@@ -26,6 +26,12 @@ module.exports = function(students) {
 		totalApplicants: students.filter(function(student) {
 			return student.applicationDate !== null;
 		}).length,
+		applicantsAccepted: students.filter(function(student) {
+			return student.stage !== "apply" && student.stage !== "rejected";
+		}).length,
+		applicantsRejected: students.filter(function(student) {
+			return student.stage === "rejected";
+		}).length,
 		countries: countries,
 		gender: gender
 	};

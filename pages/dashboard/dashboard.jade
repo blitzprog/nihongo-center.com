@@ -17,7 +17,9 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 						.glyphicon.glyphicon-tasks
 						|  Statistics
 					.panel-body
-						p!= `<b>${statistics.totalApplicants}</b> students are currently waiting for their application to be accepted.`
+						p!= `<b>${statistics.applicantsAccepted}</b> applications have been accepted.`
+						p!= `<b>${statistics.applicantsRejected}</b> applications have been rejected.`
+						p!= `<b>${statistics.totalApplicants}</b> students have applied at Nihongo Center.`
 						p!= `<b>${statistics.totalStudents}</b> students are registered on My Nihongo Center.`
 			
 			if statistics.countries
