@@ -47,10 +47,9 @@ module.exports = {
 		}
 		
 		// File uploads
-		let files = request.files.file;
+		let file = request.file;
 		
-		if(files && files.length > 0 && request.body.purpose) {
-			let file = files[0];
+		if(file && request.body.purpose) {
 			file.purpose = request.body.purpose;
 			file.dateTime = new Date();
 			

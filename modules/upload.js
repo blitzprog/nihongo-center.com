@@ -33,5 +33,5 @@ module.exports = function(aero) {
 			fieldNameSize: 100
 		},
 		putSingleFilesInArray: true
-	}));
+	}).single("file"));
 };
