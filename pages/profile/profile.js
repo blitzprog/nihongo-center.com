@@ -13,9 +13,9 @@ let loadFileAsArray = function(filePath) {
 
 module.exports = {
 	// List of nationalities
-	nationalities: loadFileAsArray("pages/profile/autocomplete/nationalities.txt"),
-	cities: loadFileAsArray("pages/profile/autocomplete/cities.txt"),
-	countries: loadFileAsArray("pages/profile/autocomplete/countries.txt"),
+	nationalities: loadFileAsArray("data/nationalities.txt"),
+	cities: loadFileAsArray("data/cities.txt"),
+	countries: loadFileAsArray("data/countries.txt"),
 	courseToTitle: JSON.parse(fs.readFileSync("data/courses.json", "utf8")),
 	
 	// Get

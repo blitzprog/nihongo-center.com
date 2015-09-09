@@ -16,7 +16,7 @@ let loadFileAsArray = function(filePath) {
 	return fs.readFileSync(filePath, "utf8").toString().split("\n");
 };
 
-let visaEasy = loadFileAsArray("pages/student/visa-easy-countries.txt").reduce(function(dict, value) {
+let visaEasy = loadFileAsArray("data/visa-easy-countries.txt").reduce(function(dict, value) {
 	dict[value] = null;
 	return dict;
 }, {});

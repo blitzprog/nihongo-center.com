@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-	stageList: JSON.parse(require("fs").readFileSync("pages/stages/stage-list.json")),
+	stageList: JSON.parse(require("fs").readFileSync("data/stage-list.json")),
 	
 	// Get
 	get: function(request, render) {
