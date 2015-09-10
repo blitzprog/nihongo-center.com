@@ -14,6 +14,7 @@ else
 				th Flag
 				th Country
 				th Name
+				th Mail
 		each student in students
 			tr
 				td.col-md-1
@@ -42,5 +43,8 @@ else
 						img(src="http://flags.fmcdn.net/data/flags/mini/" + student.countryCode + ".png", width="26")
 				td.col-md-2
 					span= student.country
-				td.col-md-5
+				td.col-md-4
 					a(href=student.permaLink)= student.givenName + " " + student.familyName
+				td.col-md-1
+					a(href=`mailto:${student.email}`)
+						.glyphicon.glyphicon-envelope
