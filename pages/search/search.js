@@ -49,7 +49,7 @@ module.exports = {
 						if(!searchProperties[key])
 							return false;
 						
-						if(key === "gender" && value != term)
+						if(key === "gender" && value !== term)
 							return false;
 						
 						if(value.toLowerCase().indexOf(term) !== -1)
@@ -79,12 +79,17 @@ module.exports = {
 			});
 			
 			students.sort(function(a, b) {
-				let appliedFactor = (b.applicationDate !== null) - (a.applicationDate !== null) * 2;
+				let appliedFactor = (b.applicationDate !== null) - (a.applicationDate !== null);
 				let progressFactor = b.profileCompleted - a.profileCompleted;
-				let registeredFactor = (b.registrationDate > a.registrationDate) * 2 - 1;
-				//let applicationDateFactor = (b.applicationDate > );
+				let registeredFactor = (Date.parse(b.registrationDate) > Date.parse(a.registrationDate)) * 2 - 1;
+				let courseFactor = 0;
 				
-				return registeredFactor + progressFactor * 100 + appliedFactor * 100000;
+				if(b.startYear === a.startYear)
+					courseFactor = (parseInt(b.startMonth) < parseInt(a.startMonth)) * 2 - 1;
+				else
+					courseFactor = (parseInt(b.startYear) < parseInt(a.startYear)) * 2 - 1;
+				
+				return registeredFactor + courseFactor * 10 + progressFactor * 100 + appliedFactor * 100000;
 			});
 
 			render({
