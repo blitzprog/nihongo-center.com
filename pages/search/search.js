@@ -86,9 +86,9 @@ module.exports = {
 				
 				if(a.startYear && b.startYear) {
 					if(b.startYear === a.startYear && a.startMonth && b.startMonth)
-						courseFactor = Math.sign(parseInt(b.startMonth) - parseInt(a.startMonth));
+						courseFactor = Math.sign(parseInt(a.startMonth) - parseInt(b.startMonth));
 					else
-						courseFactor = Math.sign(parseInt(b.startYear) - parseInt(a.startYear));
+						courseFactor = Math.sign(parseInt(a.startYear) - parseInt(b.startYear));
 				}
 				
 				return courseFactor + progressFactor * 2 + appliedFactor * 4;
