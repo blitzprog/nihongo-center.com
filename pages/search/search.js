@@ -81,7 +81,7 @@ module.exports = {
 			students.sort(function(a, b) {
 				let appliedFactor = (b.applicationDate !== null) - (a.applicationDate !== null);
 				let progressFactor = b.profileCompleted - a.profileCompleted;
-				let registeredFactor = (Date.parse(b.registrationDate) > Date.parse(a.registrationDate)) * 2 - 1;
+				//let registeredFactor = (Date.parse(b.registrationDate) > Date.parse(a.registrationDate)) * 2 - 1;
 				let courseFactor = 0;
 				
 				if(b.startYear === a.startYear)
@@ -89,7 +89,7 @@ module.exports = {
 				else
 					courseFactor = Math.sign(parseInt(b.startYear) - parseInt(a.startYear));
 				
-				return registeredFactor + courseFactor * 10 + progressFactor * 100 + appliedFactor * 100000;
+				return courseFactor + progressFactor * 2 + appliedFactor * 4;
 			});
 
 			render({
