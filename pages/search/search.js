@@ -6,6 +6,10 @@ let JavaScriptPhase = require("../../modules/JavaScriptPhase");
 let getStudentProgress = require("../../modules/get-student-progress");
 let mapPhase = new JavaScriptPhase("pages/search/map.js");
 
+// Country data
+let countryData = require("country-data");
+let lookup = countryData.lookup;
+
 let searchProperties = {
 	givenName: true,
 	familyName: true,
@@ -73,6 +77,13 @@ module.exports = {
 				student.age = age.of(student);
 				student.permaLink = "/students/" + student.email;
 				student.profileCompleted = getStudentProgress(student);
+				
+				if(student.country) {
+					let countryObject = lookup.countries({name: student.country})[0];
+					if(countryObject)
+						student.countryCode = countryObject.alpha2.toLowerCase();
+				}
+				
 				return student;
 			}).filter(function(student) {
 				return student !== null;

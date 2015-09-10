@@ -36,6 +36,10 @@ else
 				td.col-md-2
 					.form-group
 						input.form-control(type="month", value=student.startYear + "-" + student.startMonth, disabled)
-				td.col-md-2= student.country
+				td.col-md-2
+					if student.countryCode
+						img(src="http://flags.fmcdn.net/data/flags/mini/" + student.countryCode + ".png")
+						span &nbsp;
+					span= student.country
 				td.col-md-6
 					a(href=student.permaLink)= student.givenName + " " + student.familyName
