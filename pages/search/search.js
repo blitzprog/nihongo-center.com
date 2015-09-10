@@ -84,10 +84,12 @@ module.exports = {
 				//let registeredFactor = (Date.parse(b.registrationDate) > Date.parse(a.registrationDate)) * 2 - 1;
 				let courseFactor = 0;
 				
-				if(b.startYear === a.startYear)
-					courseFactor = Math.sign(parseInt(b.startMonth) - parseInt(a.startMonth));
-				else
-					courseFactor = Math.sign(parseInt(b.startYear) - parseInt(a.startYear));
+				if(a.startYear && b.startYear) {
+					if(b.startYear === a.startYear && a.startMonth && b.startMonth)
+						courseFactor = Math.sign(parseInt(b.startMonth) - parseInt(a.startMonth));
+					else
+						courseFactor = Math.sign(parseInt(b.startYear) - parseInt(a.startYear));
+				}
 				
 				return courseFactor + progressFactor * 2 + appliedFactor * 4;
 			});
