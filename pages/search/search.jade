@@ -11,6 +11,7 @@ else
 				th Applied
 				th Profile
 				th Course
+				th Flag
 				th Country
 				th Name
 		each student in students
@@ -36,10 +37,10 @@ else
 				td.col-md-2
 					.form-group
 						input.form-control(type="month", value=student.startYear + "-" + student.startMonth, disabled)
-				td.col-md-2
+				td.col-md-1
 					if student.countryCode
 						img(src="http://flags.fmcdn.net/data/flags/mini/" + student.countryCode + ".png", width="26")
-						span &nbsp;
+				td.col-md-2
 					span= student.country
-				td.col-md-6
+				td.col-md-5
 					a(href=student.permaLink)= student.givenName + " " + student.familyName
