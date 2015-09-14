@@ -131,8 +131,18 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 			saveUninitialized: false
 		}));
 		
+		// Use passport sessions
 		aero.app.use(passport.initialize());
 		aero.app.use(passport.session());
+		
+		// Apply user language setting to each request/response
+		aero.app.use(function(req, res, next) {
+			if(req.user && req.user.language) {
+				res.setLocale(req.user.language);
+			}
+			
+			next();
+		});
 
 		// Redirect the user to Google for authentication.  When complete, Google
 		// will redirect the user back to the application at

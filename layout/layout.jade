@@ -31,12 +31,13 @@ html(lang="en")
 							mixin navElement(nav)
 								li
 									a.navigation-link.ajax(href="/#{nav.url}")
+										- var menuTitle = __("menu." + nav.title.toLowerCase() + ":" + nav.title)
 										if pageToGlyphIcon && pageToGlyphIcon[nav.id]
 											.navigation-button
 												div(class="glyphicon glyphicon-" + pageToGlyphIcon[nav.id])
-												span(style="margin-left: 0.4em")= nav.title
+												span(style="margin-left: 0.4em")= menuTitle
 										else
-											.navigation-button= nav.title
+											.navigation-button= menuTitle
 							
 							ul.nav.navbar-nav
 								each page in pages

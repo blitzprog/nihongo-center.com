@@ -2,13 +2,11 @@ if !user
 	p Not logged in!
 else if user.accessLevel === "admin" || user.accessLevel === "staff"
 	.jumbotron.dashboard-header
-		h1 Welcome back, 
-			span= displayName + "!"
-		
-		p Here you can administer the students registering at Nihongo Center!
+		h1= __("staff.dashboard.title", displayName)
+		p= __("staff.dashboard.tagline")
 	
 	if !statistics
-		.alert.alert-danger There was an error retrieving statistics.
+		.alert.alert-danger __("statistics.There was an error retrieving statistics.")
 	else
 		.row
 			.col-sm-4
@@ -17,10 +15,10 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 						.glyphicon.glyphicon-tasks
 						|  Statistics
 					.panel-body
-						p!= `<b>${statistics.applicantsAccepted}</b> applications have been accepted.`
-						p!= `<b>${statistics.applicantsRejected}</b> applications have been rejected.`
-						p!= `<b>${statistics.totalApplicants}</b> students have applied at Nihongo Center.`
-						p!= `<b>${statistics.totalStudents}</b> students are registered on My Nihongo Center.`
+						p!= __("statistics.applicantsAccepted", `<b>${statistics.applicantsAccepted}</b>`)
+						p!= __("statistics.applicantsRejected", `<b>${statistics.applicantsRejected}</b>`)
+						p!= __("statistics.totalApplicants", `<b>${statistics.totalApplicants}</b>`)
+						p!= __("statistics.totalStudents", `<b>${statistics.totalStudents}</b>`)
 			
 			if statistics.countries
 				.col-sm-4

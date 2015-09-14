@@ -45,7 +45,7 @@ module.exports = {
 				
 				let statistics = getStatistics(result.data);
 				
-				statistics.countriesSorted = Object.keys(statistics.countries).sort(function(a,b){
+				statistics.countriesSorted = Object.keys(statistics.countries).sort(function(a, b){
 					return statistics.countries[b] - statistics.countries[a];
 				});
 				
@@ -75,7 +75,6 @@ module.exports = {
 	
 	// Save application date
 	post: function(request, render) {
-		let email = request.body.email;
 		request.user.applicationDate = (new Date()).toISOString();
 		saveUserInDB(request.user);
 		

@@ -13,7 +13,8 @@
 		"string": "*",
 		"fs-extra": "*",
 		"object-assign": "*",
-		"country-data": "*"
+		"country-data": "*",
+		"i18n": "*"
 	},
 	"author": {
 		"name": "Eduard Urbach",

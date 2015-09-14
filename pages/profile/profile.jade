@@ -131,7 +131,7 @@ else
 		#financial-supporters.profile
 			each supporter, index in user.financialSupporters
 				.profile.array-element.financial-supporter
-					+textInArray("Name:", "financialSupporters", index, "name")
+					+textInArray(__("name"), "financialSupporters", index, "name")
 					+textInArray("Address:", "financialSupporters", index, "address")
 					+textInArray("Telephone:", "financialSupporters", index, "telephone")
 					+textInArray("Occupation:", "financialSupporters", index, "occupation")
