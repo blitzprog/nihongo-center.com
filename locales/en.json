@@ -1,20 +1,109 @@
 {
-	"menu": {
-		"dashboard": "Dashboard",
-		"profile": "Profile",
-		"students": "Students",
-		"staff": "Staff"
+	"name": "Name",
+	"address": "Address",
+	"telephone": "Telephone",
+	"occupation": "Occupation",
+	"companyName": "Company name",
+	"companyTelephone": "Company telephone",
+	"annualIncome": "Annual income",
+	"relationshipWithApplicant": "Relationship with the applicant",
+	"fullName": "Full name",
+	"relation": "Relation",
+	"age": "Age",
+	"nationality": "Nationality",
+	"country": "Country",
+	"givenName": "Given name",
+	"familyName": "Family name",
+	"gender": "Gender",
+	"maritalStatus": "Marital status",
+	"birthDay": "Birthday",
+	"birthPlace": "Birthplace",
+	"occupationType": "Occupation type",
+	"addressAbroad": "Address in Japan",
+	"telephoneAbroad": "Telephone in Japan",
+	"course": "Course",
+	"startYear": "Start year",
+	"startMonth": "Start month",
+	"education": "Education",
+	"educationalInstitutionName": "Name of educational institution",
+	"graduationDate": "Graduation date",
+	"totalPeriodOfEducation": "Total period of education",
+	"planAfterGraduation": "Plan after graduating from Nihongo Center",
+	"passportId": "Passport number",
+	"passportDateOfExpiration": "Passport date of expiration",
+	"numberOfPastEntries": "Number of past entries into Japan",
+	"lastEntryFrom": "Last entry from",
+	"lastEntryTo": "Last entry to",
+	"paymentMethod": "Preferred payment method",
+	"jlptLevel": "Acquired JLPT level",
+	"reasonForStudying": "Reason for studying Japanese",
+	"portOfEntry": "Port of entry",
+	"visaApplicationPlace": "Place to apply for a visa in your country",
+	"purpose": "Purpose",
+	"personal": "Personal",
+	"work": "Work",
+	"contact": "Contact",
+	"passport": "Passport",
+	"family": "Family",
+	"finances": "Finances",
+	"japanese": "Japanese",
+	"japaneseStudyExperience": "Japanese Study Experience",
+	"visa": "Visa",
+	"profile": "Profile",
+	"uploads": "Uploads",
+	"apply": "Apply",
+	"dashboard": "Dashboard",
+	"stages": "Stages",
+	"logout": "Logout",
+	"greeting": {
+		"title": "Welcome, %s!",
+		"tagline": "Here you can apply for a course at Nihongo Center."
 	},
 	"staff": {
-		"dashboard": {
+		"greeting": {
 			"title": "Welcome back, %s!",
 			"tagline": "Here you can administer the students registering at Nihongo Center!"
+		},
+		"statistics": {
+			"applicantsAccepted": "%s applications have been accepted.",
+			"applicantsRejected": "%s applications have been rejected.",
+			"totalApplicants": "%s students have applied at Nihongo Center.",
+			"totalStudents": "%s students are registered on My Nihongo Center.",
+			"gender": {
+				"male": "<b>Male</b> (%d)",
+				"female": "<b>Female</b> (%d)"
+			}
 		}
 	},
-	"statistics": {
-		"applicantsAccepted": "%s applications have been accepted.",
-		"applicantsRejected": "%s applications have been rejected.",
-		"totalApplicants": "%s students have applied at Nihongo Center.",
-		"totalStudents": "%s students are registered on My Nihongo Center."
+	"error": {
+		"notLoggedIn": "Not logged in!",
+		"retrieveStatistics": "There was an error retrieving statistics."
+	},
+	"familyMembers": {
+		"name": "Full name",
+		"relation": "Relation",
+		"age": "Age",
+		"occupation": "Occupation",
+		"nationality": "Nationality",
+		"country": "Country"
+	},
+	"financialSupportPerMonth": {
+		"self": "Self",
+		"remittanceFromOutside": "Remittance from outside Japan",
+		"carryingFromAbroad": "Carrying from abroad",
+		"guarantorAbroad": "Guarantor in Japan",
+		"scholarship": "Scholarship",
+		"others": "Others"
+	},
+	"financialSupporters": {
+		"name": "Name",
+		"address": "Address",
+		"telephone": "Telephone",
+		"occupation": "Occupation",
+		"company": "Company name",
+		"companyTelephone": "Company telephone",
+		"annualIncome": "Annual income",
+		"relation": "Relationship with the applicant",
+		"title": "Financial Supporters"
 	}
 }

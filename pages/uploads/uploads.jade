@@ -10,10 +10,10 @@ else
 	
 	form(id="uploadForm", enctype="multipart/form-data", action="/uploads", method="post")
 		.field.form-group
-			label(for="file") File upload (max. 20 MB):
+			label(for="file") File upload (max. 20 MB)
 			input.form-control(type="file", name="file")
 		.form-group
-			+select("Purpose of this file upload:", "purpose", undefined, fileTypes)
+			+select("purpose", undefined, fileTypes)
 		button.btn.btn-primary(type="submit") Upload file
 	
 	p &nbsp;

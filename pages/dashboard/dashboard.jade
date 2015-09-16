@@ -1,31 +1,31 @@
 if !user
-	p Not logged in!
+	p= __("error.notLoggedIn")
 else if user.accessLevel === "admin" || user.accessLevel === "staff"
 	.jumbotron.dashboard-header
-		h1= __("staff.dashboard.title", displayName)
-		p= __("staff.dashboard.tagline")
+		h1= __("staff.greeting.title", displayName)
+		p= __("staff.greeting.tagline")
 	
 	if !statistics
-		.alert.alert-danger __("statistics.There was an error retrieving statistics.")
+		.alert.alert-danger= __("error.retrieveStatistics")
 	else
 		.row
 			.col-sm-4
 				.panel.panel-default
 					.panel-heading: h1
 						.glyphicon.glyphicon-tasks
-						|  Statistics
+						span= __("statistics")
 					.panel-body
-						p!= __("statistics.applicantsAccepted", `<b>${statistics.applicantsAccepted}</b>`)
-						p!= __("statistics.applicantsRejected", `<b>${statistics.applicantsRejected}</b>`)
-						p!= __("statistics.totalApplicants", `<b>${statistics.totalApplicants}</b>`)
-						p!= __("statistics.totalStudents", `<b>${statistics.totalStudents}</b>`)
+						p!= __("staff.statistics.applicantsAccepted", `<b>${statistics.applicantsAccepted}</b>`)
+						p!= __("staff.statistics.applicantsRejected", `<b>${statistics.applicantsRejected}</b>`)
+						p!= __("staff.statistics.totalApplicants", `<b>${statistics.totalApplicants}</b>`)
+						p!= __("staff.statistics.totalStudents", `<b>${statistics.totalStudents}</b>`)
 			
 			if statistics.countries
 				.col-sm-4
 					.panel.panel-default
 						.panel-heading: h1
 							.glyphicon.glyphicon-globe
-							|  Countries
+							span= __("countries")
 						.panel-body
 							each country in statistics.countriesSorted
 								p!= `<b>${country}</b> (${statistics.countries[country]})`
@@ -35,10 +35,10 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 					.panel.panel-default
 						.panel-heading: h1
 							.glyphicon.glyphicon-eye-open
-							|  Gender
+							span= __("gender")
 						.panel-body
-							p!= `<b>Male</b> (${statistics.gender.male})`
-							p!= `<b>Female</b> (${statistics.gender.female})`
+							p!= __("staff.statistics.gender.male", statistics.gender.male)
+							p!= __("staff.statistics.gender.female", statistics.gender.male)
 else
 	mixin upload(name, purpose)
 		- var cssClass = "";
@@ -54,10 +54,8 @@ else
 	
 	//- Header
 	.jumbotron.dashboard-header
-		h1 Welcome, 
-			span= displayName + "!"
-		
-		p Here you can apply for a course at Nihongo Center.
+		h1= __("greeting.title", displayName)
+		p= __("greeting.tagline")
 	
 	//- Panels
 	.row
@@ -65,7 +63,7 @@ else
 			.panel.panel-default
 				.panel-heading: h1
 					.glyphicon.glyphicon-user
-					|  Profile
+					span= __("profile")
 				.panel-body.text-center
 					.progress
 						if profileCompleted >= 100
@@ -90,7 +88,7 @@ else
 			.panel.panel-default
 				.panel-heading: h1
 					.glyphicon.glyphicon-upload
-					|  Uploads
+					span= __("uploads")
 				.panel-body
 					.list-group
 						+upload("Passport photo", "passportPhoto")
@@ -105,7 +103,7 @@ else
 			.panel.panel-default
 				.panel-heading: h1
 					.glyphicon.glyphicon-education
-					|  Course
+					span= __("course")
 				.panel-body
 					if !user.course
 						p You haven't selected a course yet!
@@ -127,7 +125,7 @@ else
 			div(class=cssClass)
 				.panel-heading: h1
 					.glyphicon.glyphicon-envelope
-					|  Apply
+					span= __("apply")
 				.panel-body
 					if user.applicationDate !== null
 						.text-center

@@ -120,6 +120,9 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 					return;
 				}
 				
+				// TEST
+				obj.data.accessLevel = "student";
+				
 				done(null, obj.data);
 			});
 		});

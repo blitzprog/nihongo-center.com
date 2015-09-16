@@ -31,7 +31,7 @@ html(lang="en")
 							mixin navElement(nav)
 								li
 									a.navigation-link.ajax(href="/#{nav.url}")
-										- var menuTitle = __("menu." + nav.title.toLowerCase() + ":" + nav.title)
+										- var menuTitle = __(nav.title.toLowerCase() + ":" + nav.title)
 										if pageToGlyphIcon && pageToGlyphIcon[nav.id]
 											.navigation-button
 												div(class="glyphicon glyphicon-" + pageToGlyphIcon[nav.id])
@@ -50,7 +50,7 @@ html(lang="en")
 										a.navigation-link(href="/logout")
 											.navigation-button
 												div(class="glyphicon glyphicon-eject")
-												span(style="margin-left: 0.4em") Logout
+												span(style="margin-left: 0.4em")= __("logout")
 			
 				#content-container.container
 					section#content!= content

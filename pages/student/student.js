@@ -24,7 +24,6 @@ let visaEasy = loadFileAsArray("data/visa-easy-countries.txt").reduce(function(d
 module.exports = {
 	get: function(request, render) {
 		var email = request.params.email;
-		console.log("E-mail:", email);
 		
 		riak.bucket("Accounts").objects.get(email, function(err, obj) {
 			if(err) {

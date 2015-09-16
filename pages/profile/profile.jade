@@ -10,95 +10,95 @@ else
 	+datalist("nationalities", nationalities)
 	
 	.page-header
-		h2 Personal
+		h2= __("personal")
 	
 	.profile
-		+text("Given name:", "givenName")
-		+text("Family name:", "familyName")
+		+text("givenName")
+		+text("familyName")
 		
 	if user.accessLevel === "student"
 		.profile
-			+select("Gender:", "gender", user.gender, genderOptions)
-			+select("Marital status:", "maritalStatus", user.maritalStatus, maritalStatusOptions)
+			+select("gender", user.gender, genderOptions)
+			+select("maritalStatus", user.maritalStatus, maritalStatusOptions)
 			
 		.profile
-			+date("Birthday:", "birthDay", user.birthDay)
-			+text("Birthplace:", "birthPlace", user.birthPlace, "", "cities")
-			+text("Age:", "age", age, "", "", true)
+			+date("birthDay", user.birthDay)
+			+text("birthPlace", user.birthPlace, "", "cities")
+			+text("age", age, "", "", true)
 		
 		.page-header
-			h2 Country
+			h2= __("country")
 		
 		.profile
-			+text("Country:", "country", user.country, "", "countries")
-			+text("Nationality:", "nationality", user.nationality, "", "nationalities")
-		
-		.page-header
-			h2 Work
-		
-		.profile
-			+text("Occupation:", "occupation", user.occupation)
-			+select("Occupation type:", "occupationType", user.occupationType, occupationTypeOptions)
-			
-		.page-header
-			h2 Contact
-		
-		.profile
-			+text("Home address:", "address", user.address, "🏠")
-			+text("Address in Japan:", "addressAbroad", user.addressAbroad, "🏠 Only if you have one.")
-			
-		.profile
-			+tel("Telephone:", "telephone", user.telephone, "☎")
-			+tel("Telephone in Japan:", "telephoneAbroad", user.telephoneAbroad, "☎ Only if you have one.")
+			+text("country", user.country, "", "countries")
+			+text("nationality", user.nationality, "", "nationalities")
 		
 		.page-header
-			h2 Course
+			h2= __("work")
 		
 		.profile
-			+select("Course:", "course", user.course, courseOptions)
-			
-		.profile
-			+select("Start year:", "startYear", user.startYear, startYearOptions)
-			+select("Start month:", "startMonth", user.startMonth, startMonthOptions)
+			+text("occupation", user.occupation)
+			+select("occupationType", user.occupationType, occupationTypeOptions)
 			
 		.page-header
-			h2 Education
+			h2= __("contact")
 		
 		.profile
-			+select("Education:", "education", user.education, educationOptions)
-			+text("Name of educational institution:", "educationalInstitutionName", user.educationalInstitutionName, "School or university name")
-			
-			+month("Graduation date:", "graduationDate", user.graduationDate)
-			+number("Total period of education:", "totalPeriodOfEducation", 何, "How many years?")
-			
-			+select("Plan after graduating from Nihongo Center:", "planAfterGraduation", user.planAfterGraduation, planAfterGraduationOptions)
-			
-		.page-header
-			h2 Passport
-		
-		.profile
-			+text("Passport number:", "passportId", user.passportId, "e.g. TK1234567")
-			+date("Passport date of expiration:", "passportDateOfExpiration", user.passportDateOfExpiration)
+			+text("address", user.address, "🏠")
+			+text("addressAbroad", user.addressAbroad, "🏠 Only if you have one.")
 			
 		.profile
-			+number("Number of past entries into Japan:", "numberOfPastEntries", 何, "How often did you go to Japan?")
-			
-		.profile
-			+date("Last entry from:", "lastEntryFrom")
-			+date("Last entry to:", "lastEntryTo")
+			+tel("telephone", user.telephone, "☎")
+			+tel("telephoneAbroad", user.telephoneAbroad, "☎ Only if you have one.")
 		
 		.page-header
-			h2 Family
+			h2= __("course")
+		
+		.profile
+			+select("course", user.course, courseOptions)
+			
+		.profile
+			+select("startYear", user.startYear, startYearOptions)
+			+select("startMonth", user.startMonth, startMonthOptions)
+			
+		.page-header
+			h2= __("education")
+		
+		.profile
+			+select("education", user.education, educationOptions)
+			+text("educationalInstitutionName", user.educationalInstitutionName, "School or university name")
+			
+			+month("graduationDate", user.graduationDate)
+			+number("totalPeriodOfEducation", 何, "How many years?")
+			
+			+select("planAfterGraduation", user.planAfterGraduation, planAfterGraduationOptions)
+			
+		.page-header
+			h2= __("passport")
+		
+		.profile
+			+text("passportId", user.passportId, "e.g. TK1234567")
+			+date("passportDateOfExpiration", user.passportDateOfExpiration)
+			
+		.profile
+			+number("numberOfPastEntries", 何, "How often did you go to Japan?")
+			
+		.profile
+			+date("lastEntryFrom")
+			+date("lastEntryTo")
+		
+		.page-header
+			h2= __("family")
 		
 		#family-members.profile
 			each member, index in user.familyMembers
 				.profile.array-element.family-member
-					+textInArray("Full name:", "familyMembers", index, "name", member.name)
-					+textInArray("Relation:", "familyMembers", index, "relation", member.relation)
-					+textInArray("Age:", "familyMembers", index, "age", member.age)
-					+textInArray("Occupation:", "familyMembers", index, "occupation", member.occupation)
-					+textInArray("Nationality:", "familyMembers", index, "nationality", member.nationality, "", "nationalities")
-					+textInArray("Country:", "familyMembers", index, "country", member.country, "", "countries")
+					+textInArray("familyMembers", index, "name", member.name)
+					+textInArray("familyMembers", index, "relation", member.relation)
+					+textInArray("familyMembers", index, "age", member.age)
+					+textInArray("familyMembers", index, "occupation", member.occupation)
+					+textInArray("familyMembers", index, "nationality", member.nationality, "", "nationalities")
+					+textInArray("familyMembers", index, "country", member.country, "", "countries")
 					
 					a(href="javascript:remove('profile', 'FamilyMember', " + index + ");").btn.btn-danger.delete-button
 						.glyphicon.glyphicon-remove
@@ -108,7 +108,7 @@ else
 				span(style="margin-left: 0.5em") Add family member
 		
 		.page-header
-			h2 Finances
+			h2= __("finances")
 		
 		p
 			| Please enter the average amount of support 
@@ -116,29 +116,29 @@ else
 			| in Yen (¥).
 			
 		.profile
-			+numberInObject("Self:", "financialSupportPerMonth", "self", "Monthly amount in Yen (¥)")
-			+numberInObject("Remittance from outside Japan:", "financialSupportPerMonth", "remittanceFromOutside", "Monthly amount in Yen (¥)")
-			+numberInObject("Carrying from abroad:", "financialSupportPerMonth", "carryingFromAbroad", "Monthly amount in Yen (¥)")
-			+numberInObject("Guarantor in Japan:", "financialSupportPerMonth", "guarantorAbroad", "Monthly amount in Yen (¥)")
-			+numberInObject("Scholarship:", "financialSupportPerMonth", "scholarship", "Monthly amount in Yen (¥)")
-			+numberInObject("Others:", "financialSupportPerMonth", "others", "Monthly amount in Yen (¥)")
+			+numberInObject("financialSupportPerMonth", "self", "Monthly amount in Yen (¥)")
+			+numberInObject("financialSupportPerMonth", "remittanceFromOutside", "Monthly amount in Yen (¥)")
+			+numberInObject("financialSupportPerMonth", "carryingFromAbroad", "Monthly amount in Yen (¥)")
+			+numberInObject("financialSupportPerMonth", "guarantorAbroad", "Monthly amount in Yen (¥)")
+			+numberInObject("financialSupportPerMonth", "scholarship", "Monthly amount in Yen (¥)")
+			+numberInObject("financialSupportPerMonth", "others", "Monthly amount in Yen (¥)")
 			
-			+select("Preferred payment method:", "paymentMethod", user.paymentMethod, paymentMethods)
+			+select("paymentMethod", user.paymentMethod, paymentMethods)
 		
 		.page-header
-			h2 Financial Supporters
+			h2= __("financialSupporters.title")
 		
 		#financial-supporters.profile
 			each supporter, index in user.financialSupporters
 				.profile.array-element.financial-supporter
-					+textInArray(__("name"), "financialSupporters", index, "name")
-					+textInArray("Address:", "financialSupporters", index, "address")
-					+textInArray("Telephone:", "financialSupporters", index, "telephone")
-					+textInArray("Occupation:", "financialSupporters", index, "occupation")
-					+textInArray("Company name:", "financialSupporters", index, "company", 何, "Full company name")
-					+textInArray("Company telephone:", "financialSupporters", index, "companyTelephone")
-					+numberInArray("Annual income:", "financialSupporters", index, "annualIncome", 何, "In Yen (¥)")
-					+textInArray("Relationship with the applicant:", "financialSupporters", index, "relation")
+					+textInArray("financialSupporters", index, "name")
+					+textInArray("financialSupporters", index, "address")
+					+textInArray("financialSupporters", index, "telephone")
+					+textInArray("financialSupporters", index, "occupation")
+					+textInArray("financialSupporters", index, "company", 何, "Full company name")
+					+textInArray("financialSupporters", index, "companyTelephone")
+					+numberInArray("financialSupporters", index, "annualIncome", 何, "In Yen (¥)")
+					+textInArray("financialSupporters", index, "relation")
 					
 					a(href="javascript:remove('profile', 'FinancialSupporter', " + index + ");").btn.btn-danger.delete-button
 						.glyphicon.glyphicon-remove
@@ -148,23 +148,23 @@ else
 				span(style="margin-left: 0.5em") Add financial supporter
 		
 		.page-header
-			h2 Japanese
+			h2= __("japanese")
 		
 		.profile
-			+select("Acquired JLPT level:", "jlptLevel", user.jlptLevel, jlptLevels)
+			+select("jlptLevel", user.jlptLevel, jlptLevels)
 			
 		.profile
-			+textArea("Reason for studying Japanese:", "reasonForStudying", user.reasonForStudying, "What have you been doing for studying in Japan?\nWhy do you need to study Japanese?\nWhat are you going to do after you finish the Japanese course?", 12, 80)
+			+textArea("reasonForStudying", user.reasonForStudying, "What have you been doing for studying in Japan?\nWhy do you need to study Japanese?\nWhat are you going to do after you finish the Japanese course?", 12, 80)
 		
 		.page-header
-			h2 Japanese Study Experience
+			h2= __("japaneseStudyExperience")
 		
 		#education-backgrounds.profile
 			each education, index in user.japaneseEducation
 				.profile.array-element.education-background
-					+textInArray("Institution:", "japaneseEducation", index, "institution")
-					+numberInArray("Total hours:", "japaneseEducation", index, "totalHours")
-					+textInArray("Text book:", "japaneseEducation", index, "textBook")
+					+textInArray("japaneseEducation", index, "institution")
+					+numberInArray("japaneseEducation", index, "totalHours")
+					+textInArray("japaneseEducation", index, "textBook")
 					
 					a(href="javascript:remove('profile', 'EducationBackground', " + index + ");").btn.btn-danger.delete-button
 						.glyphicon.glyphicon-remove
@@ -174,11 +174,11 @@ else
 				span(style="margin-left: 0.5em") Add education background
 		
 		.page-header
-			h2 Visa
+			h2= __("visa")
 		
 		.profile
-			+select("Port of entry:", "portOfEntry", user.portOfEntry, portsOfEntry)
-			+text("Place to apply for a visa in your country:", "visaApplicationPlace", 何, "🏢 Location of closest Japanese Embassy or Consulate")
+			+select("portOfEntry", user.portOfEntry, portsOfEntry)
+			+text("visaApplicationPlace", 何, "🏢 Location of closest Japanese Embassy or Consulate")
 	
 	script
 		include ../../scripts/arrays.js
