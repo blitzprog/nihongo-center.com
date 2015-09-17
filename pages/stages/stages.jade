@@ -2,7 +2,7 @@ if !user
 	p Not logged in!
 else
 	.page-header
-		h1 Stages
+		h1= __("stages")
 		
 	if user.stage === "declined"
 		p Your application has been declined.
@@ -25,6 +25,6 @@ else
 						.glyphicon.glyphicon-ok(style="margin-right: 0.25em")
 						span= title
 			
-			each val, index in stageList
+			each val, index in __("stageList")
 				if index !== "declined"
 					+stage(val, index)

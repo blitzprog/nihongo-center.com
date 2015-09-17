@@ -76,7 +76,7 @@
 	"uploadFile": "Upload file",
 	"link": "Link",
 	"delete": "Delete",
-	
+	"stagesTitle": "Stages",
 	"tooltip": {
 		"educationalInstitutionName": "School or university name",
 		"totalPeriodOfEducation": "How many years?",
@@ -93,6 +93,19 @@
 		"1 year": "Intensive | 1 year",
 		"1,5 years": "Intensive | 1.5 years",
 		"2 years": "Intensive | 2 years"
+	},
+	"stageList": {
+		"apply": "Apply at Nihongo Center",
+		"payApplicationFee": "Pay the application fee",
+		"receiveCoE": "Receive the Certificate of Eligibility",
+		"paySchoolFee": "Payment of school fees",
+		"acquireVisa": "Acquire your visa",
+		"reserveAccomodation": "Reserve accomodation",
+		"arriveInJapan": "Arrive in Japan",
+		"placementTest": "Take placement test",
+		"beginClasses": "Begin classes",
+		"receiveCertification": "Receive course certificate",
+		"declined": "Application declined."
 	},
 	"greeting": {
 		"title": "Welcome, %s!",
@@ -148,6 +161,7 @@
 	},
 	"error": {
 		"notLoggedIn": "Not logged in!",
+		"alreadyLoggedIn": "Already logged in as %s!",
 		"retrieveStatistics": "There was an error retrieving statistics.",
 		"noCourseSelected": "You haven't selected a course yet!",
 		"noStartDateSelected": "You haven't selected a start date yet!",
