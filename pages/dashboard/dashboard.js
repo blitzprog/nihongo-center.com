@@ -10,8 +10,6 @@ let JavaScriptPhase = require("../../modules/JavaScriptPhase");
 let statisticsMapPhase = new JavaScriptPhase("pages/dashboard/statistics-map.js");
 
 module.exports = {
-	courseToTitle: JSON.parse(fs.readFileSync("data/courses.json", "utf8")),
-	
 	get: function(request, render) {
 		let user = request.user;
 		
@@ -60,7 +58,6 @@ module.exports = {
 				user,
 				displayName: user.givenName, //+ " " + user.familyName,
 				profileCompleted: progress,
-				courseToTitle: this.courseToTitle,
 				uploads,
 				missingFields,
 				studentVisaRequired: (user.course && user.course !== "10 weeks"),

@@ -1,7 +1,7 @@
 include ../../mixins/forms.jade
 
 if !user
-	p Not logged in!
+	p= __("notLoggedIn")
 else
 	- var 何 = undefined;
 	
@@ -45,11 +45,11 @@ else
 		
 		.profile
 			+text("address", user.address, "🏠")
-			+text("addressAbroad", user.addressAbroad, "🏠 Only if you have one.")
+			+text("addressAbroad", user.addressAbroad, "🏠 " + __("onlyIfAvailable"))
 			
 		.profile
 			+tel("telephone", user.telephone, "☎")
-			+tel("telephoneAbroad", user.telephoneAbroad, "☎ Only if you have one.")
+			+tel("telephoneAbroad", user.telephoneAbroad, "☎ " + __("onlyIfAvailable"))
 		
 		.page-header
 			h2= __("course")
@@ -66,10 +66,10 @@ else
 		
 		.profile
 			+select("education", user.education, educationOptions)
-			+text("educationalInstitutionName", user.educationalInstitutionName, "School or university name")
+			+text("educationalInstitutionName", user.educationalInstitutionName, __("tooltip.educationalInstitutionName"))
 			
 			+month("graduationDate", user.graduationDate)
-			+number("totalPeriodOfEducation", 何, "How many years?")
+			+number("totalPeriodOfEducation", 何, __("tooltip.totalPeriodOfEducation"))
 			
 			+select("planAfterGraduation", user.planAfterGraduation, planAfterGraduationOptions)
 			
@@ -77,11 +77,11 @@ else
 			h2= __("passport")
 		
 		.profile
-			+text("passportId", user.passportId, "e.g. TK1234567")
+			+text("passportId", user.passportId, __("tooltip.passportId"))
 			+date("passportDateOfExpiration", user.passportDateOfExpiration)
 			
 		.profile
-			+number("numberOfPastEntries", 何, "How often did you go to Japan?")
+			+number("numberOfPastEntries", 何, __("tooltip.numberOfPastEntries"))
 			
 		.profile
 			+date("lastEntryFrom")
@@ -105,7 +105,7 @@ else
 		
 		button(onclick="add('profile', 'FamilyMember');").btn.btn-success
 			.glyphicon.glyphicon-plus
-				span(style="margin-left: 0.5em") Add family member
+			span(style="margin-left: 0.5em")= __("add.familyMember")
 		
 		.page-header
 			h2= __("finances")
@@ -116,12 +116,12 @@ else
 			| in Yen (¥).
 			
 		.profile
-			+numberInObject("financialSupportPerMonth", "self", "Monthly amount in Yen (¥)")
-			+numberInObject("financialSupportPerMonth", "remittanceFromOutside", "Monthly amount in Yen (¥)")
-			+numberInObject("financialSupportPerMonth", "carryingFromAbroad", "Monthly amount in Yen (¥)")
-			+numberInObject("financialSupportPerMonth", "guarantorAbroad", "Monthly amount in Yen (¥)")
-			+numberInObject("financialSupportPerMonth", "scholarship", "Monthly amount in Yen (¥)")
-			+numberInObject("financialSupportPerMonth", "others", "Monthly amount in Yen (¥)")
+			+numberInObject("financialSupportPerMonth", "self", __("monthlyAmountInYen"))
+			+numberInObject("financialSupportPerMonth", "remittanceFromOutside", __("monthlyAmountInYen"))
+			+numberInObject("financialSupportPerMonth", "carryingFromAbroad", __("monthlyAmountInYen"))
+			+numberInObject("financialSupportPerMonth", "guarantorAbroad", __("monthlyAmountInYen"))
+			+numberInObject("financialSupportPerMonth", "scholarship", __("monthlyAmountInYen"))
+			+numberInObject("financialSupportPerMonth", "others", __("monthlyAmountInYen"))
 			
 			+select("paymentMethod", user.paymentMethod, paymentMethods)
 		
@@ -135,9 +135,9 @@ else
 					+textInArray("financialSupporters", index, "address")
 					+textInArray("financialSupporters", index, "telephone")
 					+textInArray("financialSupporters", index, "occupation")
-					+textInArray("financialSupporters", index, "company", 何, "Full company name")
+					+textInArray("financialSupporters", index, "company", 何, __("tooltip.company"))
 					+textInArray("financialSupporters", index, "companyTelephone")
-					+numberInArray("financialSupporters", index, "annualIncome", 何, "In Yen (¥)")
+					+numberInArray("financialSupporters", index, "annualIncome", 何, __("inYen"))
 					+textInArray("financialSupporters", index, "relation")
 					
 					a(href="javascript:remove('profile', 'FinancialSupporter', " + index + ");").btn.btn-danger.delete-button
@@ -145,7 +145,7 @@ else
 		
 		button(onclick="add('profile', 'FinancialSupporter');").btn.btn-success
 			.glyphicon.glyphicon-plus
-				span(style="margin-left: 0.5em") Add financial supporter
+			span(style="margin-left: 0.5em")= __("add.financialSupporter")
 		
 		.page-header
 			h2= __("japanese")
@@ -154,7 +154,7 @@ else
 			+select("jlptLevel", user.jlptLevel, jlptLevels)
 			
 		.profile
-			+textArea("reasonForStudying", user.reasonForStudying, "What have you been doing for studying in Japan?\nWhy do you need to study Japanese?\nWhat are you going to do after you finish the Japanese course?", 12, 80)
+			+textArea("reasonForStudying", user.reasonForStudying, __("tooltip.reasonForStudying"), 12, 80)
 		
 		.page-header
 			h2= __("japaneseStudyExperience")
@@ -171,14 +171,14 @@ else
 		
 		button(onclick="add('profile', 'EducationBackground');").btn.btn-success
 			.glyphicon.glyphicon-plus
-				span(style="margin-left: 0.5em") Add education background
+			span(style="margin-left: 0.5em")= __("add.educationBackground")
 		
 		.page-header
 			h2= __("visa")
 		
 		.profile
 			+select("portOfEntry", user.portOfEntry, portsOfEntry)
-			+text("visaApplicationPlace", 何, "🏢 Location of closest Japanese Embassy or Consulate")
+			+text("visaApplicationPlace", 何, "🏢 " + __("tooltip.visaApplicationPlace"))
 	
 	script
 		include ../../scripts/arrays.js

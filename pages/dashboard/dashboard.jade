@@ -40,7 +40,7 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 							p!= __("staff.statistics.gender.male", statistics.gender.male)
 							p!= __("staff.statistics.gender.female", statistics.gender.male)
 else
-	mixin upload(name, purpose)
+	mixin upload(purpose)
 		- var cssClass = "";
 		- var glyph = "minus";
 		
@@ -50,7 +50,7 @@ else
 		
 		li(class="list-group-item" + cssClass)
 			div(class="glyphicon glyphicon-" + glyph)
-			span= " " + name
+			span(style="margin-left: 0.4em")= __(purpose)
 	
 	//- Header
 	.jumbotron.dashboard-header
@@ -77,12 +77,10 @@ else
 						
 						div(class=cssClass, role="progressbar", aria-valuenow=profileCompleted, aria-valuemin="0" aria-valuemax="100", style="width: " + profileCompleted + "%")
 					h2= profileCompleted + "%"
-					p completed.
+					p= __("percentCompleted")
 					
 					if missingFields.length === 1
-						p You're missing the 
-							strong= missingFields[0]
-							|  field.
+						p!= __("missingField", missingFields[0])
 		
 		.col-sm-4
 			.panel.panel-default
@@ -91,13 +89,13 @@ else
 					span= __("uploads")
 				.panel-body
 					.list-group
-						+upload("Passport photo", "passportPhoto")
-						+upload("Passport", "passport")
-						+upload("Curriculum Vitae", "curriculumVitae")
-						+upload("Letter of Guarantee", "letterOfGuarantee")
+						+upload("passportPhoto")
+						+upload("passport")
+						+upload("curriculumVitae")
+						+upload("letterOfGuarantee")
 						if studentVisaRequired
-							+upload("Diploma", "diploma")
-						+upload("Pledge", "pledge")
+							+upload("diploma")
+						+upload("pledge")
 		
 		.col-sm-4
 			.panel.panel-default
@@ -106,13 +104,11 @@ else
 					span= __("course")
 				.panel-body
 					if !user.course
-						p You haven't selected a course yet!
+						p= __("error.noCourseSelected")
 					else if !user.startYear || !user.startMonth
-						p You haven't selected a start date yet!
+						p= __("error.noStartDateSelected")
 					else
-						p Your course 
-							span.course-name= courseToTitle[user.course]
-							|  will begin on:
+						p!= __("courseStart", "<span class='course-name'>" + __("courses." + user.course.replace(".", ",")) + "</span>") 
 							.form-group
 								input.form-control(type="month", value=user.startYear + "-" + user.startMonth, disabled)
 		.col-sm-4
@@ -129,24 +125,22 @@ else
 				.panel-body
 					if user.applicationDate !== null
 						.text-center
-							h4 Thank you for applying!
-							p We'll get back to you soon.
+							h4= __("thankYouForApplying")
+							p= __("contactSoon")
 					else if readyToApply
 						.text-center
 							button.btn.btn-primary(onclick="sendApplication('" + user.email + "', '" + user.givenName + " " + user.familyName + "');")
 								.glyphicon.glyphicon-thumbs-up
-								span  Send my application
+								span= __("sendApplication")
 							p
-							p
-								| Thank you for preparing all the documents we need for
-								| the course registration. Please click on the button to send your application.
-								
+							p= __("thankYouForPreparing")
+							
 							script
 								include send-application.js
 					else
 						.text-center
 							button.btn.btn-disabled
 								.glyphicon.glyphicon-thumbs-up
-								span  Send my application
+								span(style="margin-left: 0.4em")= __("sendApplication")
 						p
-						p You'll be able to send an application once you completed your profile and uploaded the necessary documents.
+						p= __("sendApplicationRequirements")

@@ -55,6 +55,39 @@
 	"dashboard": "Dashboard",
 	"stages": "Stages",
 	"logout": "Logout",
+	"passportPhoto": "Passport photo",
+	"curriculumVitae": "Curriculum Vitae",
+	"letterOfGuarantee": "Letter of Guarantee",
+	"diploma": "Diploma",
+	"pledge": "Pledge",
+	"percentCompleted": "completed.",
+	"missingField": "You're missing the <strong>%s</strong> field.",
+	"courseStart": "Your course %s will begin on:",
+	"thankYouForApplying": "Thank you for applying!",
+	"contactSoon": "We'll get back to you soon.",
+	"sendApplication": "Send my application",
+	"sendApplicationRequirements": "You'll be able to send an application once you completed your profile and uploaded the necessary documents.",
+	"thankYouForPreparing": "Thank you for preparing all the documents we need for the course registration. Please click on the button to send your application.",
+	"onlyIfAvailable": "Only if you have one",
+	"inYen": "In Yen (¥)",
+	"monthlyAmountInYen": "Monthly amount in Yen (¥)",
+	"tooltip": {
+		"educationalInstitutionName": "School or university name",
+		"totalPeriodOfEducation": "How many years?",
+		"passportId": "e.g. TK1234567",
+		"numberOfPastEntries": "How often did you go to Japan?",
+		"company": "Full company name",
+		"reasonForStudying": "What have you been doing for studying in Japan?\nWhy do you need to study Japanese?\nWhat are you going to do after you finish the Japanese course?",
+		"visaApplicationPlace": "Location of closest Japanese Embassy or Consulate"
+	},
+	"courses": {
+		"10 weeks": "Regular | 10 weeks",
+		"20 weeks": "Regular | 20 weeks",
+		"6 months": "Intensive | 6 months",
+		"1 year": "Intensive | 1 year",
+		"1,5 years": "Intensive | 1.5 years",
+		"2 years": "Intensive | 2 years"
+	},
 	"greeting": {
 		"title": "Welcome, %s!",
 		"tagline": "Here you can apply for a course at Nihongo Center."
@@ -75,9 +108,10 @@
 			}
 		}
 	},
-	"error": {
-		"notLoggedIn": "Not logged in!",
-		"retrieveStatistics": "There was an error retrieving statistics."
+	"add": {
+		"familyMember": "Add family member",
+		"financialSupporter": "Add financial supporter",
+		"educationBackground": "Add education background"
 	},
 	"familyMembers": {
 		"name": "Full name",
@@ -105,5 +139,12 @@
 		"annualIncome": "Annual income",
 		"relation": "Relationship with the applicant",
 		"title": "Financial Supporters"
-	}
+	},
+	"error": {
+		"notLoggedIn": "Not logged in!",
+		"retrieveStatistics": "There was an error retrieving statistics.",
+		"noCourseSelected": "You haven't selected a course yet!",
+		"noStartDateSelected": "You haven't selected a start date yet!"
+	},
+	"notLoggedIn": "notLoggedIn"
 }

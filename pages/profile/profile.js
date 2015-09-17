@@ -2,6 +2,7 @@
 
 let S = require("string");
 let fs = require("fs");
+let i18n = require("i18n");
 let saveUserInDB = require("../../modules/save-user");
 let age = require("../../modules/age");
 let dbArray = require("../../modules/db-array");
@@ -16,7 +17,6 @@ module.exports = {
 	nationalities: loadFileAsArray("data/nationalities.txt"),
 	cities: loadFileAsArray("data/cities.txt"),
 	countries: loadFileAsArray("data/countries.txt"),
-	courseToTitle: JSON.parse(fs.readFileSync("data/courses.json", "utf8")),
 	
 	// Get
 	get: function(request, render) {
@@ -46,9 +46,9 @@ module.exports = {
 			paymentMethods: require("./options/paymentMethods"),
 			courseOptions: [
 				{name: "Please choose:", value: "", disabled: true}
-			].concat(Object.keys(this.courseToTitle).map(function(courseId) {
+			].concat(Object.keys(i18n.__("courses")).map(function(courseId) {
 				return {
-					name: this.courseToTitle[courseId],
+					name: i18n.__("courses." + courseId.replace(".", ",")),
 					value: courseId
 				};
 			}.bind(this)))
