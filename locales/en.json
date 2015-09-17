@@ -71,6 +71,12 @@
 	"onlyIfAvailable": "Only if you have one",
 	"inYen": "In Yen (¥)",
 	"monthlyAmountInYen": "Monthly amount in Yen (¥)",
+	"uploadNewFile": "Upload new file",
+	"uploadFileLabel": "File upload (max. 20 MB)",
+	"uploadFile": "Upload file",
+	"link": "Link",
+	"delete": "Delete",
+	
 	"tooltip": {
 		"educationalInstitutionName": "School or university name",
 		"totalPeriodOfEducation": "How many years?",
@@ -144,7 +150,7 @@
 		"notLoggedIn": "Not logged in!",
 		"retrieveStatistics": "There was an error retrieving statistics.",
 		"noCourseSelected": "You haven't selected a course yet!",
-		"noStartDateSelected": "You haven't selected a start date yet!"
-	},
-	"notLoggedIn": "notLoggedIn"
+		"noStartDateSelected": "You haven't selected a start date yet!",
+		"emailNotAvailable": "An error occured: E-Mail not available."
+	}
 }

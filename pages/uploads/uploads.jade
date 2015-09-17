@@ -1,20 +1,20 @@
 include ../../mixins/forms.jade
 
 if !user
-	p Not logged in!
+	p= __("error.notLoggedIn")
 else if !user.email
-	p An error occured: E-Mail not available.
+	p= __("error.emailNotAvailable")
 else
 	.page-header
-		h1 Upload new file
+		h1= __("uploadNewFile")
 	
 	form(id="uploadForm", enctype="multipart/form-data", action="/uploads", method="post")
 		.field.form-group
-			label(for="file") File upload (max. 20 MB)
+			label(for="file")= __("uploadFileLabel")
 			input.form-control(type="file", name="file")
 		.form-group
 			+select("purpose", undefined, fileTypes)
-		button.btn.btn-primary(type="submit") Upload file
+		button.btn.btn-primary(type="submit")= __("uploadFile")
 	
 	p &nbsp;
 	
@@ -24,12 +24,12 @@ else
 	table.uploads.table
 		thead
 			tr
-				th Purpose
-				th Link
-				th Delete
+				th= __("purpose")
+				th= __("link")
+				th= __("delete")
 		each upload, index in user.uploads
 			tr.upload
-				td.purpose= purposeToName[upload.purpose]
+				td.purpose= __(upload.purpose)
 				td
 					if upload.mimetype.indexOf("image/") !== -1
 						.glyphicon.glyphicon-picture(style="margin-right: 0.25em")
@@ -39,6 +39,6 @@ else
 				td
 					a(href="javascript:remove('uploads', 'Upload', " + index + ");", role="button").btn.btn-danger
 						.glyphicon.glyphicon-trash
-				
+	
 	script
 		include ../../scripts/arrays.js
