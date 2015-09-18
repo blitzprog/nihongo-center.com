@@ -24,14 +24,14 @@ html(lang="en")
 							//- 		img(alt="Nihongo Center", src="/images/navbar-logo.png", width="210", height="20")
 							
 							if user.accessLevel === "admin" || user.accessLevel === "staff"
-								- var loggedInPages = ["dashboard", "students", "profile", "staff"]
+								- var loggedInPages = ["dashboard", "students", "profile", "staff", "settings"]
 							else
-								- var loggedInPages = ["dashboard", "profile", "uploads", "stages"]
+								- var loggedInPages = ["dashboard", "profile", "uploads", "stages", "settings"]
 							
 							mixin navElement(nav)
 								li
 									a.navigation-link.ajax(href="/#{nav.url}")
-										- var menuTitle = __(nav.title.toLowerCase() + ":" + nav.title)
+										- var menuTitle = __(nav.title.toLowerCase())
 										if pageToGlyphIcon && pageToGlyphIcon[nav.id]
 											.navigation-button
 												div(class="glyphicon glyphicon-" + pageToGlyphIcon[nav.id])

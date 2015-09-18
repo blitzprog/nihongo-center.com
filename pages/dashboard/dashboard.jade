@@ -2,8 +2,8 @@ if !user
 	p= __("error.notLoggedIn")
 else if user.accessLevel === "admin" || user.accessLevel === "staff"
 	.jumbotron.dashboard-header
-		h1= __("staff.greeting.title", displayName)
-		p= __("staff.greeting.tagline")
+		h1= __("staffView.greeting.title", displayName)
+		p= __("staffView.greeting.tagline")
 	
 	if !statistics
 		.alert.alert-danger= __("error.retrieveStatistics")
@@ -15,10 +15,10 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 						.glyphicon.glyphicon-tasks
 						span= __("statistics")
 					.panel-body
-						p!= __("staff.statistics.applicantsAccepted", `<b>${statistics.applicantsAccepted}</b>`)
-						p!= __("staff.statistics.applicantsRejected", `<b>${statistics.applicantsRejected}</b>`)
-						p!= __("staff.statistics.totalApplicants", `<b>${statistics.totalApplicants}</b>`)
-						p!= __("staff.statistics.totalStudents", `<b>${statistics.totalStudents}</b>`)
+						p!= __("staffView.statistics.applicantsAccepted", `<b>${statistics.applicantsAccepted}</b>`)
+						p!= __("staffView.statistics.applicantsRejected", `<b>${statistics.applicantsRejected}</b>`)
+						p!= __("staffView.statistics.totalApplicants", `<b>${statistics.totalApplicants}</b>`)
+						p!= __("staffView.statistics.totalStudents", `<b>${statistics.totalStudents}</b>`)
 			
 			if statistics.countries
 				.col-sm-4
@@ -37,8 +37,8 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 							.glyphicon.glyphicon-eye-open
 							span= __("gender")
 						.panel-body
-							p!= __("staff.statistics.gender.male", statistics.gender.male)
-							p!= __("staff.statistics.gender.female", statistics.gender.male)
+							p!= __("staffView.statistics.gender.male", statistics.gender.male)
+							p!= __("staffView.statistics.gender.female", statistics.gender.male)
 else
 	mixin upload(purpose)
 		- var cssClass = "";
@@ -118,6 +118,9 @@ else
 			else
 				- cssClass = "panel panel-default"
 			
+	.row
+		.col-sm-3
+		.col-sm-6
 			div(class=cssClass)
 				.panel-heading: h1
 					.glyphicon.glyphicon-envelope
@@ -144,3 +147,4 @@ else
 								span(style="margin-left: 0.4em")= __("sendApplication")
 						p
 						p= __("sendApplicationRequirements")
+		.col-sm-3

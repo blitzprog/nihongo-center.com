@@ -2,7 +2,6 @@
 
 let S = require("string");
 let fs = require("fs");
-let i18n = require("i18n");
 let saveUserInDB = require("../../modules/save-user");
 let age = require("../../modules/age");
 let dbArray = require("../../modules/db-array");
@@ -21,6 +20,7 @@ module.exports = {
 	// Get
 	get: function(request, render) {
 		let user = request.user;
+		let __ = request.__;
 		
 		if(typeof user === "undefined") {
 			render();
@@ -46,9 +46,9 @@ module.exports = {
 			paymentMethods: require("./options/paymentMethods"),
 			courseOptions: [
 				{name: "Please choose:", value: "", disabled: true}
-			].concat(Object.keys(i18n.__("courses")).map(function(courseId) {
+			].concat(Object.keys(__("courses")).map(function(courseId) {
 				return {
-					name: i18n.__("courses." + courseId.replace(".", ",")),
+					name: __("courses." + courseId.replace(".", ",")),
 					value: courseId
 				};
 			}.bind(this)))

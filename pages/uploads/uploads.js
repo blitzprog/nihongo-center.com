@@ -8,15 +8,17 @@ module.exports = {
 	// Get
 	get: function(request, render) {
 		let user = request.user;
+		let __ = request.__;
+		
 		let fileTypes = [
-			{name: "", value: "", disabled: true},
-			{name: "", value: "passport"},
-			{name: "", value: "passportPhoto"},
-			{name: "", value: "curriculumVitae"},
-			{name: "", value: "letterOfGuarantee"},
-			{name: "", value: "diploma"},
-			{name: "", value: "pledge"},
-			{name: "", value: "other"}
+			{name: __("pleaseChoose"), value: "", disabled: true},
+			{name: __("passport"), value: "passport"},
+			{name: __("passportPhoto"), value: "passportPhoto"},
+			{name: __("curriculumVitae"), value: "curriculumVitae"},
+			{name: __("letterOfGuarantee"), value: "letterOfGuarantee"},
+			{name: __("diploma"), value: "diploma"},
+			{name: __("pledge"), value: "pledge"},
+			{name: __("other"), value: "other"}
 		];
 		
 		// Create an inverted dictionary based on fileTypes

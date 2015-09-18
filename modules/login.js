@@ -4,7 +4,16 @@ let
 	passport = require("passport"),
 	session = require("express-session"),
 	merge = require("object-assign"),
-	userData = require("./user-data");
+	userData = require("./user-data"),
+	i18n = require("i18n");
+
+// Translations
+i18n.configure({
+	locales: ["en", "ja", "fr"],
+	defaultLocale: "en",
+	directory: "locales",
+	objectNotation: true
+});
 
 // Database
 let riak = require("nodiak").getClient();
@@ -121,7 +130,7 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 				}
 				
 				// TEST
-				obj.data.accessLevel = "student";
+				//obj.data.accessLevel = "admin";
 				
 				done(null, obj.data);
 			});
@@ -138,10 +147,15 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 		aero.app.use(passport.initialize());
 		aero.app.use(passport.session());
 		
+		// Translation
+		aero.translate = i18n;
+		aero.app.use(i18n.init);
+		
 		// Apply user language setting to each request/response
 		aero.app.use(function(req, res, next) {
 			if(req.user && req.user.language) {
-				res.setLocale(req.user.language);
+				req.locale = req.user.language;
+				req.setLocale(req.user.language);
 			}
 			
 			next();

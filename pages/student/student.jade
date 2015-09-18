@@ -7,12 +7,11 @@ mixin display(key, cssClass)
 			td= student[key]
 
 if !user
-	p Not logged in!
+	p= __("error.notLoggedIn")
 else if user.accessLevel !== "admin" && user.accessLevel !== "staff"
-	p You are not authorized to view this page!
-	p Please contact your system administrator.
+	p= __("error.notAuthorized")
 else if !student
-	p That student doesn't exist in the database.
+	p= __("error.studentDoesntExist")
 else
 	.page-header
 		h1

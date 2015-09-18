@@ -10,7 +10,8 @@ module.exports = {
 			"stages": "list",
 			"login": "home",
 			"students": "book",
-			"staff": "flash"
+			"staff": "flash",
+			"settings": "cog"
 		};
 		
 		render({
