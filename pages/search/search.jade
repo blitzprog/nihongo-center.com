@@ -10,6 +10,7 @@ else
 			tr
 				th= __("applied")
 				th= __("profile")
+				th= __("uploads")
 				th= __("course")
 				th= __("countryFlag")
 				th= __("country")
@@ -35,6 +36,8 @@ else
 						
 						//-meter(min=0, max=100, low=25, value=student.profileCompleted, title=student.profileCompleted + "%")
 						div(class=cssClass, role="progressbar", aria-valuenow=student.profileCompleted, aria-valuemin="0" aria-valuemax="100", style="width: " + student.profileCompleted + "%", title=student.profileCompleted + "%")
+				td.col-md-1
+					span= student.uploads.length
 				td.col-md-2
 					.form-group
 						input.form-control(type="month", value=student.startYear + "-" + student.startMonth, disabled)
@@ -43,7 +46,7 @@ else
 						img(src="http://flags.fmcdn.net/data/flags/mini/" + student.countryCode + ".png", width="26")
 				td.col-md-2
 					span= student.country
-				td.col-md-4
+				td.col-md-3
 					a(href=student.permaLink)= student.givenName + " " + student.familyName
 				td.col-md-1
 					a(href=`mailto:${student.email}`)
