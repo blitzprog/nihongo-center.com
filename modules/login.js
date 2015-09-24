@@ -10,6 +10,10 @@ let
 // Translations
 i18n.configure({
 	locales: ["en", "ja", "fr"],
+	fallbacks: {
+		"en_US": "en",
+		"en_GB": "en"
+	},
 	defaultLocale: "en",
 	directory: "locales",
 	objectNotation: true
