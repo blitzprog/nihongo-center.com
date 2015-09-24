@@ -49,12 +49,12 @@
 	"japanese": "Japanese",
 	"japaneseStudyExperience": "Japanese Study Experience",
 	"visa": "Visa",
-	"profile": "Profile FR",
-	"uploads": "Uploads FR",
+	"profile": "Profile",
+	"uploads": "Uploads",
 	"apply": "Apply",
-	"dashboard": "Dashboard FR",
-	"stages": "Stages FR",
-	"logout": "Logout FR",
+	"dashboard": "Dashboard",
+	"stages": "Stages",
+	"logout": "Logout",
 	"passportPhoto": "Passport photo",
 	"curriculumVitae": "Curriculum Vitae",
 	"letterOfGuarantee": "Letter of Guarantee",
@@ -79,8 +79,19 @@
 	"stagesTitle": "Stages",
 	"pleaseChoose": "Please choose:",
 	"other": "Other",
-	"settings": "Settings FR",
-	"language": "Language FR",
+	"settings": "Settings",
+	"language": "Language",
+	"statistics": "Statistics",
+	"countries": "Countries",
+	"students": "Students",
+	"staff": "Staff",
+	"applied": "Applied",
+	"countryFlag": "Flag",
+	"mail": "Mail",
+	"lowRiskCountry": "This is a low risk country!",
+	"highRiskCountry" : "This is a high risk country!",
+	"japaneseEducationTitle": "Japanese education",
+	"motivation": "Motivation",
 	"tooltip": {
 		"educationalInstitutionName": "School or university name",
 		"totalPeriodOfEducation": "How many years?",
@@ -115,7 +126,7 @@
 		"title": "Welcome, %s!",
 		"tagline": "Here you can apply for a course at Nihongo Center."
 	},
-	"staff": {
+	"staffView": {
 		"greeting": {
 			"title": "Welcome back, %s!",
 			"tagline": "Here you can administer the students registering at Nihongo Center!"
@@ -163,21 +174,23 @@
 		"relation": "Relationship with the applicant",
 		"title": "Financial Supporters"
 	},
+	"japaneseEducation": {
+		"institution": "Institution",
+		"totalHours": "Total hours",
+		"textBook": "Text book"
+	},
 	"error": {
 		"notLoggedIn": "Not logged in!",
+		"notAuthorized": "You are not authorized to view this page!",
+		"noStudents": "No students found!",
 		"alreadyLoggedIn": "Already logged in as %s!",
 		"retrieveStatistics": "There was an error retrieving statistics.",
 		"noCourseSelected": "You haven't selected a course yet!",
 		"noStartDateSelected": "You haven't selected a start date yet!",
-		"emailNotAvailable": "An error occured: E-Mail not available."
-	},
-	"japaneseEducation": {
-		"institution": "undefined",
-		"totalHours": "undefined",
-		"textBook": "undefined"
-	},
-	"students": "students",
-	"applied": "applied",
-	"flag": "flag",
-	"mail": "mail"
+		"emailNotAvailable": "An error occured: E-Mail not available.",
+		"studentDoesntExist": "That student doesn't exist in the database.",
+		"noFinancialSupporters": "The student did not add any financial supporters yet!",
+		"noFamilyMembers": "The student did not add any family members yet!",
+		"noReasonForStudying": "The student did not write down the reason for studying yet!"
+	}
 }

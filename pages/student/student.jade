@@ -24,7 +24,7 @@ else
 			.panel.panel-default
 				.panel-heading: h1
 					span.glyphicon.glyphicon-info-sign(style="margin-right: 0.25em")
-					span Summary
+					span= __("summary")
 				.panel-body
 					p!= description
 			
@@ -32,17 +32,17 @@ else
 			.panel.panel-default
 				.panel-heading: h1
 					span.glyphicon.glyphicon-upload(style="margin-right: 0.25em")
-					span Uploads
+					span= __("uploads")
 				.panel-body!= renderKey["uploads"]
 				
 			//- Financial supporters
 			.panel.panel-default
 				.panel-heading: h1
 					span.glyphicon.glyphicon-credit-card(style="margin-right: 0.25em")
-					span Financial supporters
+					span= __("financialSupporters")
 				.panel-body
 					if student.financialSupporters.length === 0
-						div.alert.alert-danger The student did not add any financial supporters yet!
+						div.alert.alert-danger= __("error.noFinancialSupporters")
 					else
 						ul.list-group
 							each member in student.financialSupporters
@@ -61,9 +61,9 @@ else
 						
 						h4 Visa
 						if country.visaEasy
-							.alert.alert-info This is a low risk country!
+							.alert.alert-info= __("lowRiskCountry")
 						else
-							.alert.alert-danger This is a high risk country!
+							.alert.alert-danger= __("highRiskCountry")
 						
 						h4 Currencies
 						ul.list-group
@@ -81,7 +81,7 @@ else
 					span Family
 				.panel-body
 					if student.familyMembers.length === 0
-						div.alert.alert-danger The student did not add any family members yet!
+						div.alert.alert-danger= __("error.noFamilyMembers")
 					else
 						ul.list-group
 							each member in student.familyMembers
@@ -93,21 +93,20 @@ else
 			.panel.panel-default
 				.panel-heading: h1
 					span.glyphicon.glyphicon-blackboard(style="margin-right: 0.25em")
-					span Japanese education
+					span= __("japaneseEducationTitle")
 				.panel-body
 					ul.list-group
 						h4= "JLPT level: " + student.jlptLevel 
 						each education in student.japaneseEducation
 							li.list-group-item= education.institution + " (" + education.totalHours + ")"
 							
-							
 			.panel.panel-default
 				.panel-heading: h1
 					span.glyphicon.glyphicon-pencil(style="margin-right: 0.25em")
-					span Motivation
+					span= __("motivation")
 				.panel-body
 					if !student.reasonForStudying
-						div.alert.alert-danger The student did not write down the reason for studying yet!
+						div.alert.alert-danger= __("error.noReasonForStudying")
 					else
 						p= '"' + student.reasonForStudying + '"'
 	

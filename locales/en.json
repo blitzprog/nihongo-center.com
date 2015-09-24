@@ -88,6 +88,10 @@
 	"applied": "Applied",
 	"countryFlag": "Flag",
 	"mail": "Mail",
+	"lowRiskCountry": "This is a low risk country!",
+	"highRiskCountry" : "This is a high risk country!",
+	"japaneseEducationTitle": "Japanese education",
+	"motivation": "Motivation",
 	"tooltip": {
 		"educationalInstitutionName": "School or university name",
 		"totalPeriodOfEducation": "How many years?",
@@ -184,6 +188,9 @@
 		"noCourseSelected": "You haven't selected a course yet!",
 		"noStartDateSelected": "You haven't selected a start date yet!",
 		"emailNotAvailable": "An error occured: E-Mail not available.",
-		"studentDoesntExist": "That student doesn't exist in the database."
+		"studentDoesntExist": "That student doesn't exist in the database.",
+		"noFinancialSupporters": "The student did not add any financial supporters yet!",
+		"noFamilyMembers": "The student did not add any family members yet!",
+		"noReasonForStudying": "The student did not write down the reason for studying yet!"
 	}
 }

@@ -36,6 +36,9 @@ module.exports = {
 			"letterOfGuarantee"
 		];
 		
+		if(user.course === "10 weeks")
+			requiredUploads.splice(requiredUploads.indexOf("diploma"), 1);
+		
 		if(user.accessLevel === "admin" || user.accessLevel === "staff") {
 			riak.mapred.inputs("Accounts").map(statisticsMapPhase).execute(function(err, result) {
 				if(err)
