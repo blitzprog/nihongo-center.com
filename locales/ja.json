@@ -89,9 +89,11 @@
 	"countryFlag": "Flag",
 	"mail": "Mail",
 	"lowRiskCountry": "This is a low risk country!",
-	"highRiskCountry" : "This is a high risk country!",
+	"highRiskCountry": "This is a high risk country!",
 	"japaneseEducationTitle": "Japanese education",
 	"motivation": "Motivation",
+	"summary": "Summary",
+	"financialSupportersTitle": "Financial supporters",
 	"tooltip": {
 		"educationalInstitutionName": "School or university name",
 		"totalPeriodOfEducation": "How many years?",
