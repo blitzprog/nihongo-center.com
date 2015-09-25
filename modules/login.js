@@ -158,6 +158,7 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 		// Apply user language setting to each request/response
 		aero.app.use(function(req, res, next) {
 			if(req.user && req.user.language) {
+				req.user.language = req.user.language.substring(0, 2);
 				req.locale = req.user.language;
 				req.setLocale(req.user.language);
 			}
