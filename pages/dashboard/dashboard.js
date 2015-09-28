@@ -50,6 +50,12 @@ module.exports = {
 					return statistics.countries[b] - statistics.countries[a];
 				});
 				
+				let pieChartData = statistics.countriesSorted.map(function(country) {
+					return "[\"" + country + "\", " + statistics.countries[country] + "]"
+				}).join(", ");
+				
+				statistics.script = "var countryToStudents = [[\"Country\", \"Students\"], " + pieChartData + "];";
+				
 				render({
 					user,
 					statistics,

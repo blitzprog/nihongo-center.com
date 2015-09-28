@@ -20,6 +20,11 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 						p!= __("staffView.statistics.totalApplicants", `<b>${statistics.totalApplicants}</b>`)
 						p!= __("staffView.statistics.totalStudents", `<b>${statistics.totalStudents}</b>`)
 			
+			script(src="https://www.google.com/jsapi")
+			script!= statistics.script
+			script
+				include google-charts.js
+			
 			if statistics.countries
 				.col-sm-4
 					.panel.panel-default
@@ -27,8 +32,7 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 							.glyphicon.glyphicon-globe
 							span= __("countries")
 						.panel-body
-							each country in statistics.countriesSorted
-								p!= `<b>${country}</b> (${statistics.countries[country]})`
+							#countryChart
 			
 			if statistics.gender
 				.col-sm-4
