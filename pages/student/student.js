@@ -97,14 +97,10 @@ module.exports = {
 				}
 			}
 			
-			let uploadsHTML = "<div class='alert alert-danger'>The student did not upload any files yet!</div>";
-			
 			if(student.uploads.length > 0) {
-				uploadsHTML = "<ul class='list-group'>" + student.uploads.map(function(upload) {
-					return "<li class='list-group-item'><a href='/" + upload.path + "'>" + S(upload.purpose).humanize().s + "</a></li>";
-				}).reduce(function(a, b) {
-					return a + b;
-				}, "") + "</ul>";
+				for(let i = 0; i < student.uploads.length; i++) {
+					student.uploads[i].purposeHumanized = S(student.uploads[i].purpose).humanize().s;
+				};
 			}
 			
 			render({
@@ -129,7 +125,9 @@ module.exports = {
 					"stage"
 				],*/
 				renderKey: {
-					"uploads": uploadsHTML,
+					"uploads": student.uploads.map(function(upload) {
+						return "<div>" + JSON.stringify(upload, null, "<br>") + "</div>";
+					}),
 					// TODO: Improve
 					"familyMembers": student.familyMembers.map(function(member) {
 						return "<div>" + JSON.stringify(member, null, "<br>") + "</div>";

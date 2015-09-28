@@ -33,8 +33,16 @@ else
 				.panel-heading: h1
 					span.glyphicon.glyphicon-upload(style="margin-right: 0.25em")
 					span= __("uploads")
-				.panel-body!= renderKey["uploads"]
-				
+				//.panel-body!= renderKey["uploads"]
+				.panel-body
+					if student.uploads.length === 0
+						.alert.alert-danger The student did not upload any files yet!
+					else
+						ul.list-group
+							each upload in student.uploads
+								li.list-group-item
+									a(href="/" + upload.path, title=upload.mimetype)= upload.purposeHumanized
+			
 			//- Financial supporters
 			.panel.panel-default
 				.panel-heading: h1
