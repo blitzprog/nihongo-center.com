@@ -6,6 +6,8 @@ let saveUserInDB = require("../../modules/save-user");
 let age = require("../../modules/age");
 let dbArray = require("../../modules/db-array");
 
+let americaSynonyms = ["America", "U.S.A", "U.S.A.", "USA"];
+
 // Load file as array
 let loadFileAsArray = function(filePath) {
 	return fs.readFileSync(filePath, "utf8").toString().split("\n");
@@ -80,6 +82,9 @@ module.exports = {
 			if(user[field])
 				user[field] = S(user[field]).capitalize().s;
 		});
+		
+		if(americaSynonyms.indexOf(user.country) !== -1)
+			user.country = "United States";
 		
 		//user.applicationDate = null;
 		saveUserInDB(user);
