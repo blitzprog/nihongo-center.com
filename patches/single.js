@@ -3,7 +3,7 @@
 // Database
 let riak = require("nodiak").getClient();
 
-let email = "eva_zeng@foxmail.com";
+let email = "ing.mohamed.samy@gmail.com";
 
 riak.bucket("Accounts").objects.get(email, function(err, obj) {
 	if(err) {
@@ -12,6 +12,6 @@ riak.bucket("Accounts").objects.get(email, function(err, obj) {
 	}
 	
 	let student = obj.data;
-	student.country = "China";
+	student.startYear = "2016";
 	obj.save();
 });
