@@ -7,9 +7,11 @@ let
 	userData = require("./user-data"),
 	i18n = require("i18n");
 
+let availableLanguages = ["en", "ja", "fr"];
+
 // Translations
 i18n.configure({
-	locales: ["en", "ja", "fr"],
+	locales: availableLanguages,
 	fallbacks: {
 		"en_US": "en",
 		"en_GB": "en"
@@ -159,8 +161,10 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 		aero.app.use(function(req, res, next) {
 			if(req.user && req.user.language) {
 				req.user.language = req.user.language.substring(0, 2);
-				req.locale = req.user.language;
-				req.setLocale(req.user.language);
+				if(availableLanguages.indexOf(req.user.language) !== -1) {
+					req.locale = req.user.language;
+					req.setLocale(req.user.language);
+				}
 			}
 			
 			next();
