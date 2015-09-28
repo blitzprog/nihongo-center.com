@@ -1,5 +1,7 @@
 "use strict";
 
+let year = 1000 * 60 * 60 * 24 * 365.25;
+
 module.exports = {
 	// Of
 	of: function(user) {
@@ -10,6 +12,6 @@ module.exports = {
 	getAge: function(d1, d2) {
 		d2 = d2 || new Date();
 		let diff = d2.getTime() - d1.getTime();
-		return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+		return Math.floor(diff / year);
 	}
 };
