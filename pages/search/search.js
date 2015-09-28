@@ -105,8 +105,8 @@ module.exports = {
 				return registeredFactor + courseFactor * 2 + progressFactor * 4 + appliedFactor * 8;
 			});
 			
-			if(students.length > 20)
-				students.length = 20;
+			if(students.length > 30)
+				students.length = 30;
 
 			render({
 				user: user,
