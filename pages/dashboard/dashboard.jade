@@ -20,10 +20,6 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 						p!= __("staffView.statistics.totalApplicants", `<b>${statistics.totalApplicants}</b>`)
 						p!= __("staffView.statistics.totalStudents", `<b>${statistics.totalStudents}</b>`)
 			
-			script!= statistics.script
-			script
-				include google-charts.js
-			
 			if statistics.countries
 				.col-sm-4
 					.panel.panel-default
@@ -41,6 +37,10 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 							span= __("gender")
 						.panel-body
 							#genderChart
+			
+			script!= statistics.script
+			script
+				include google-charts.js
 			
 else
 	mixin upload(purpose)
