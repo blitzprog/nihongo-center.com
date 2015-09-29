@@ -1,5 +1,4 @@
 google.load("visualization", "1", {packages:["corechart"]});
-//google.setOnLoadCallback(drawChart);
 
 function drawGraph(array, id) {
 	var data = google.visualization.arrayToDataTable(array);

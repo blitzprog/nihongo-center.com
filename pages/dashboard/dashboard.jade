@@ -20,7 +20,6 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 						p!= __("staffView.statistics.totalApplicants", `<b>${statistics.totalApplicants}</b>`)
 						p!= __("staffView.statistics.totalStudents", `<b>${statistics.totalStudents}</b>`)
 			
-			script(src="https://www.google.com/jsapi")
 			script!= statistics.script
 			script
 				include google-charts.js
