@@ -12,6 +12,7 @@ let statisticsMapPhase = new JavaScriptPhase("pages/dashboard/statistics-map.js"
 module.exports = {
 	get: function(request, render) {
 		let user = request.user;
+		let __ = request.__;
 		
 		if(typeof user === "undefined") {
 			render();
@@ -54,7 +55,18 @@ module.exports = {
 					return "[\"" + country + "\", " + statistics.countries[country] + "]"
 				}).join(", ");
 				
-				statistics.script = "var countryToStudents = [[\"Country\", \"Students\"], " + pieChartData + "];";
+				let genderData = Object.keys(statistics.gender).map(function(gender) {
+					return "[\"" + gender + "\", " + statistics.gender[gender] + "]"
+				}).join(", ");
+				
+				let buildDataArray = function(varName, keyName, valueName, dataString) {
+					return `var ${varName} = [["${keyName}", "${valueName}"], ` + dataString + "];";
+				};
+				
+				let countryToStudents = buildDataArray("countryToStudents", __("country"), __("students"), pieChartData);
+				let genderToStudents = buildDataArray("genderToStudents", __("gender"), __("students"), genderData);
+				
+				statistics.script = countryToStudents + genderToStudents;
 				
 				render({
 					user,

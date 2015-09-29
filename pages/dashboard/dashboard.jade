@@ -41,8 +41,8 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 							.glyphicon.glyphicon-eye-open
 							span= __("gender")
 						.panel-body
-							p!= __("staffView.statistics.gender.male", statistics.gender.male)
-							p!= __("staffView.statistics.gender.female", statistics.gender.male)
+							#genderChart
+							
 else
 	mixin upload(purpose)
 		- var cssClass = "";
