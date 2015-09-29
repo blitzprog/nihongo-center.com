@@ -48,9 +48,9 @@ module.exports = {
 			paymentMethods: require("./options/paymentMethods"),
 			courseOptions: [
 				{name: "Please choose:", value: "", disabled: true}
-			].concat(Object.keys(__("courses")).map(function(courseId) {
+			].concat(Object.keys(__("courseList")).map(function(courseId) {
 				return {
-					name: __("courses." + courseId.replace(".", ",")),
+					name: __("courseList." + courseId.replace(".", ",")),
 					value: courseId
 				};
 			}.bind(this)))

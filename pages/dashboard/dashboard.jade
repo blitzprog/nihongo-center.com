@@ -42,7 +42,7 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 							span= __("gender")
 						.panel-body
 							#genderChart
-							
+			
 else
 	mixin upload(purpose)
 		- var cssClass = "";
@@ -112,7 +112,7 @@ else
 					else if !user.startYear || !user.startMonth
 						p= __("error.noStartDateSelected")
 					else
-						p!= __("courseStart", "<span class='course-name'>" + __("courses." + user.course.replace(".", ",")) + "</span>") 
+						p!= __("courseStart", "<span class='course-name'>" + __("courseList." + user.course.replace(".", ",")) + "</span>") 
 							.form-group
 								input.form-control(type="month", value=user.startYear + "-" + user.startMonth, disabled)
 		.col-sm-4

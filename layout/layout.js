@@ -10,6 +10,7 @@ module.exports = {
 			"stages": "list",
 			"login": "home",
 			"students": "book",
+			"courses": "blackboard",
 			"staff": "flash",
 			"settings": "cog"
 		};
