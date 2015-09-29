@@ -49,5 +49,5 @@ else
 				td.col-md-3
 					a(href=student.permaLink)= student.givenName + " " + student.familyName
 				td.col-md-1
-					a(href=`mailto:${student.email}`)
+					a(href=`mailto:${student.email}`, target="_blank")
 						.glyphicon.glyphicon-envelope
