@@ -83,6 +83,9 @@ module.exports = {
 				user[field] = S(user[field]).capitalize().s;
 		});
 		
+		// Country
+		user.country = user.country.trim();
+		
 		if(americaSynonyms.indexOf(user.country) !== -1)
 			user.country = "United States";
 		

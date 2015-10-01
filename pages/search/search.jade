@@ -43,7 +43,8 @@ else
 						input.form-control(type="month", value=student.startYear + "-" + student.startMonth, disabled)
 				td.col-md-1
 					if student.countryCode
-						img(src="http://flags.fmcdn.net/data/flags/mini/" + student.countryCode + ".png", width="26", style="border: 1px solid black")
+						//- "http://flags.fmcdn.net/data/flags/mini/"
+						img(src="https://nihongo-center.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/" + student.countryCode + ".png")
 				td.col-md-2
 					span= student.country
 				td.col-md-3

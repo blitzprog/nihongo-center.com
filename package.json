@@ -14,7 +14,8 @@
 		"fs-extra": "*",
 		"object-assign": "*",
 		"country-data": "*",
-		"i18n": "*"
+		"i18n": "*",
+		"mime-types": "*"
 	},
 	"author": {
 		"name": "Eduard Urbach",

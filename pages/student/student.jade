@@ -41,7 +41,12 @@ else
 						ul.list-group
 							each upload in student.uploads
 								li.list-group-item
-									a(href="/" + upload.path, title=upload.mimetype)= upload.purposeHumanized
+									a(href="/" + upload.path)= upload.purposeHumanized
+									
+									if upload.extension
+										span.label.label-default(style="float: right")= upload.extension.toLowerCase()
+									else if upload.mimetype && upload.mimetype.indexOf('/') !== -1
+										span.label.label-default(style="float: right")= mimeTypes.extension(upload.mimetype)
 			
 			//- Financial supporters
 			.panel.panel-default
@@ -95,7 +100,7 @@ else
 							each member in student.familyMembers
 								li.list-group-item
 									span= member.name
-									span.label.label-info(style="margin-left: 0.65em")= member.relation
+									span.label.label-info= member.relation
 							
 			//- Japanese education
 			.panel.panel-default

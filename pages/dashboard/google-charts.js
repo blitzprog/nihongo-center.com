@@ -1,8 +1,13 @@
-google.load("visualization", "1", {packages:["corechart"]});
-
 function drawGraph(array, id) {
 	var data = google.visualization.arrayToDataTable(array);
-	var chart = new google.visualization.PieChart(document.getElementById(id));
+	var container = document.getElementById(id);
+	
+	console.log(array, id, container);
+	
+	if(!container)
+		return;
+	
+	var chart = new google.visualization.PieChart(container);
 	chart.draw(data, {});
 }
 

@@ -4,6 +4,7 @@ let fs = require("fs");
 let S = require("string");
 let age = require("../../modules/age");
 let riak = require("nodiak").getClient();
+let mimeTypes = require("mime-types");
 
 // Country data
 let countryData = require("country-data");
@@ -109,6 +110,7 @@ module.exports = {
 				student,
 				humanized,
 				description,
+				mimeTypes,
 				//japaneseDescription,
 				/*prioritizedKeys: [
 					"email",

@@ -5,7 +5,10 @@ html(lang="en")
 		meta(name="viewport", content="width=device-width, initial-scale=1")
 		link(rel="stylesheet", href="/bootstrap/css/bootstrap.min.css")
 		style!= css
-		script(src="https://www.google.com/jsapi")
+		
+		if user && (user.accessLevel === "admin" || user.accessLevel === "staff")
+			script(src="https://www.google.com/jsapi")
+			script google.load("visualization", "1", {packages:["corechart"]});
 	
 	if user
 		body(role="document", style="background: white;")
