@@ -1,6 +1,6 @@
 mixin display(key, cssClass)
 	tr(class=cssClass)
-		td= humanized[key]
+		td(style="width: 30%")= humanized[key]
 		if typeof renderKey[key] !== "undefined"
 			td!= renderKey[key]
 		else

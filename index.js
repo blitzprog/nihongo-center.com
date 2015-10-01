@@ -6,6 +6,8 @@ let os = require("os");
 let merge = require("object-assign");
 let login = require("./modules/login");
 let upload = require("./modules/upload");
+let availableLanguages = require("./modules/languages");
+let i18n = require("i18n");
 
 let apiKeys = JSON.parse(fs.readFileSync("api-keys.json"));
 let production = os.hostname() === "ncenter";
@@ -13,6 +15,18 @@ let host = production ? "my.nihongo-center.com" : "localhost:3002";
 
 if(!production)
 	console.log("Development Version");
+
+// Translations
+i18n.configure({
+	locales: availableLanguages,
+	defaultLocale: "en",
+	directory: "locales",
+	objectNotation: true
+});
+
+// Translation
+aero.translate = i18n;
+aero.app.use(i18n.init);
 
 // Google
 let googleConfig = merge({

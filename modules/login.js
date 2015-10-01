@@ -5,21 +5,7 @@ let
 	session = require("express-session"),
 	merge = require("object-assign"),
 	userData = require("./user-data"),
-	i18n = require("i18n");
-
-let availableLanguages = ["en", "ja", "fr"];
-
-// Translations
-i18n.configure({
-	locales: availableLanguages,
-	fallbacks: {
-		"en_US": "en",
-		"en_GB": "en"
-	},
-	defaultLocale: "en",
-	directory: "locales",
-	objectNotation: true
-});
+	availableLanguages = require("./languages");
 
 // Database
 let riak = require("nodiak").getClient();
@@ -152,10 +138,6 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 		// Use passport sessions
 		aero.app.use(passport.initialize());
 		aero.app.use(passport.session());
-		
-		// Translation
-		aero.translate = i18n;
-		aero.app.use(i18n.init);
 		
 		// Apply user language setting to each request/response
 		aero.app.use(function(req, res, next) {

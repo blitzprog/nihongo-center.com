@@ -116,14 +116,14 @@
 	"stageList": {
 		"apply": "Apply at Nihongo Center",
 		"payApplicationFee": "Pay the application fee",
-		"receiveCoE": "Receive the Certificate of Eligibility",
+		"receiveCopyOfInvoiceAndCoE": "Receive a copy of the Certificate of Eligibility and the invoice",
 		"paySchoolFee": "Payment of school fees",
+		"receiveCoE": "Receive the Certificate of Eligibility",
 		"acquireVisa": "Acquire your visa",
 		"reserveAccomodation": "Reserve accomodation",
 		"arriveInJapan": "Arrive in Japan",
 		"placementTest": "Take placement test",
 		"beginClasses": "Begin classes",
-		"receiveCertification": "Receive course certificate",
 		"declined": "Application declined."
 	},
 	"greeting": {
