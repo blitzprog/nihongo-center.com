@@ -6,7 +6,7 @@
 	"companyName": "Nom de l'entreprise",
 	"companyTelephone": "Téléphone de l'entreprise",
 	"annualIncome": "Revenu annuel",
-	"relationshipWithApplicant": "Relation avec l'applicant",
+	"relationshipWithApplicant": "Relation avec le demandeur",
 	"fullName": "Nom et Prénom",
 	"relation": "Relation",
 	"age": "Âge",
@@ -43,22 +43,22 @@
 	"purpose": "Type de fichier",
 	"personal": "Personnel",
 	"work": "Travail",
-	"contact": "Contacts",
+	"contact": "Contact",
 	"passport": "Passeport",
 	"family": "Famille",
 	"finances": "Finances",
 	"japanese": "Japonais",
-	"japaneseStudyExperience": "Etudes japonaises précédentes",
+	"japaneseStudyExperience": "Etudes japonaises antérieures",
 	"visa": "Visa",
 	"profile": "Profil",
 	"uploads": "Uploads",
-	"apply": "Application",
+	"apply": "Souscription",
 	"dashboard": "Récapitulatif",
 	"stages": "Etapes",
 	"logout": "Déconnexion",
 	"passportPhoto": "Photo officielle",
 	"curriculumVitae": "Curriculum Vitae",
-	"letterOfGuarantee": "Letter de Garantie",
+	"letterOfGuarantee": "Lettre de Garantie",
 	"diploma": "Diplômes",
 	"pledge": "Déclaration sur l'honneur",
 	"percentCompleted": "complet.",
@@ -94,14 +94,14 @@
 	"japaneseEducationTitle": "Expérience en Japonais",
 	"motivation": "Motivation",
 	"summary": "Résumé",
-	"financialSupportersTitle": "Supports financiers",
+	"financialSupportersTitle": "Supports financier",
 	"tooltip": {
 		"educationalInstitutionName": "Nom de l'école ou de l'université",
 		"totalPeriodOfEducation": "Combien d'année ?",
-		"passportId": "Par exemple TK1234567",
+		"passportId": "ex: TK1234567",
 		"numberOfPastEntries": "Combien de fois êtes-vous aller au Japon ?",
 		"company": "Nom de l'entreprise",
-		"reasonForStudying": "What have you been doing for studying in Japan?\nWhy do you need to study Japanese?\nWhat are you going to do after you finish the Japanese course?",
+		"reasonForStudying": "Qu'avez-vous fait pour étudier au Japon?\nPourquoi avez-vous besoin d'étudier au Japon?\nQue prévoyez-vous de faire après avoir étudier au Japon?",
 		"visaApplicationPlace": "Lieu du Consulat ou de l'Ambassade du Japon la plus proche"
 	},
 	"courseList": {
@@ -132,68 +132,68 @@
 	"staffView": {
 		"greeting": {
 			"title": "Re-bonjour, %s!",
-			"tagline": "Here you can administer the students registering at Nihongo Center!"
+			"tagline": "D'ici vous pouvez gérer les inscriptions des étudiants au Nihongo Center!"
 		},
 		"statistics": {
-			"applicantsAccepted": "%s applications have been accepted.",
-			"applicantsRejected": "%s applications have been rejected.",
-			"totalApplicants": "%s students have applied at Nihongo Center.",
-			"totalStudents": "%s students are registered on My Nihongo Center.",
+			"applicantsAccepted": "%s l'inscription a été acceptée.",
+			"applicantsRejected": "%s l'inscription a été rejetée.",
+			"totalApplicants": "%s étudiants se sont inscrits au Nihongo Center.",
+			"totalStudents": "%s étudiants se sont enregistrés au Nihongo Center.",
 			"gender": {
-				"male": "<b>Male</b> (%d)",
-				"female": "<b>Female</b> (%d)"
+				"male": "<b>Hommes</b> (%d)",
+				"female": "<b>Femmes</b> (%d)"
 			}
 		}
 	},
 	"add": {
-		"familyMember": "Add family member",
-		"financialSupporter": "Add financial supporter",
-		"educationBackground": "Add education background"
+		"familyMember": "Ajouter un membre de la famille",
+		"financialSupporter": "Ajouter un support financier",
+		"educationBackground": "Ajouter un cursus scolaire"
 	},
 	"familyMembers": {
-		"name": "Full name",
+		"name": "Nom complet",
 		"relation": "Relation",
-		"age": "Age",
+		"age": "Âge",
 		"occupation": "Occupation",
-		"nationality": "Nationality",
-		"country": "Country"
+		"nationality": "Nationalité",
+		"country": "Pays"
 	},
 	"financialSupportPerMonth": {
-		"self": "Self",
-		"remittanceFromOutside": "Remittance from outside Japan",
-		"carryingFromAbroad": "Carrying from abroad",
-		"guarantorAbroad": "Guarantor in Japan",
-		"scholarship": "Scholarship",
-		"others": "Others"
+		"self": "Soi",
+		"remittanceFromOutside": "Versement vers le Japon",
+		"carryingFromAbroad": "Apporter de l'étranger",
+		"guarantorAbroad": "Guarrant au Japon",
+		"scholarship": "Bourse",
+		"others": "Autre"
 	},
 	"financialSupporters": {
-		"name": "Name",
-		"address": "Address",
-		"telephone": "Telephone",
+		"name": "Nom",
+		"address": "Addresse",
+		"telephone": "Téléphone",
 		"occupation": "Occupation",
-		"company": "Company name",
-		"companyTelephone": "Company telephone",
-		"annualIncome": "Annual income",
-		"relation": "Relationship with the applicant",
-		"title": "Financial Supporters"
+		"company": "Nom de l'entreprise",
+		"companyTelephone": "Téléphone de l'entreprise",
+		"annualIncome": "Revenu annuel",
+		"relation": "Relation avec le demandeur",
+		"title": "Supports financier"
 	},
 	"japaneseEducation": {
-		"institution": "Institution",
-		"totalHours": "Total hours",
-		"textBook": "Text book"
+		"institution": "Etablissement",
+		"totalHours": "Nombre total d'heures",
+		"textBook": "Manuels"
 	},
 	"error": {
-		"notLoggedIn": "Not logged in!",
-		"notAuthorized": "You are not authorized to view this page!",
-		"noStudents": "No students found!",
-		"alreadyLoggedIn": "Already logged in as %s!",
+		"notLoggedIn": "Vous n'êtes pas connecté!",
+		"notAuthorized": "Vous n'avez pas l'autorisation d'accéder à cette page!",
+		"noStudents": "Etudiant non trouvé!",
+		"alreadyLoggedIn": "Déjà connecté en tant que %s!",
 		"retrieveStatistics": "There was an error retrieving statistics.",
-		"noCourseSelected": "You haven't selected a course yet!",
-		"noStartDateSelected": "You haven't selected a start date yet!",
-		"emailNotAvailable": "An error occured: E-Mail not available.",
-		"studentDoesntExist": "That student doesn't exist in the database.",
-		"noFinancialSupporters": "The student did not add any financial supporters yet!",
-		"noFamilyMembers": "The student did not add any family members yet!",
-		"noReasonForStudying": "The student did not write down the reason for studying yet!"
+		"noCourseSelected": "Vous n'avez pas encore choisi de cours!",
+		"noStartDateSelected": "Vous n'avez pas encore choisi de date de rentrée!",
+		"emailNotAvailable": "Une erreur s'est produite : E-mail introuvable.",
+		"studentDoesntExist": "Cet étudiant n'existe pas dans la base de données.",
+		"noFinancialSupporters": "Cet étudiant n'a pas encore ajouter de supports financier!",
+		"noFamilyMembers": "Cet étudiant n'a pas encore ajouter de membres de sa famille!",
+		"noReasonForStudying": "L'étudiant n'a pas encore écrit ses raisons concernant ses études!"
 	}
 }
