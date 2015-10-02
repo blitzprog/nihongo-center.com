@@ -14,8 +14,6 @@ module.exports = {
 		let user = request.user;
 		let __ = request.__;
 		
-		console.log(__("logout"));
-		
 		if(typeof user === "undefined") {
 			render();
 			return;

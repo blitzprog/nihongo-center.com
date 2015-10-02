@@ -73,7 +73,7 @@
 	"inYen": "In Yen (¥)",
 	"monthlyAmountInYen": "Monthly amount in Yen (¥)",
 	"uploadNewFile": "Upload new file",
-	"uploadFileLabel": "File upload (max. 20 MB)",
+	"uploadFileLabel": "Select a file (max. 20 MB)",
 	"uploadFile": "Upload file",
 	"yourUploads": "Your uploads",
 	"link": "Link",
@@ -139,17 +139,14 @@
 			"applicantsAccepted": "%s applications have been accepted.",
 			"applicantsRejected": "%s applications have been rejected.",
 			"totalApplicants": "%s students have applied at Nihongo Center.",
-			"totalStudents": "%s students are registered on My Nihongo Center.",
-			"gender": {
-				"male": "<b>Male</b> (%d)",
-				"female": "<b>Female</b> (%d)"
-			}
+			"totalStudents": "%s students are registered on My Nihongo Center."
 		}
 	},
 	"add": {
 		"familyMember": "Add family member",
 		"financialSupporter": "Add financial supporter",
-		"educationBackground": "Add education background"
+		"educationBackground": "Add education background",
+		"staffMember": "Add staff member"
 	},
 	"familyMembers": {
 		"name": "Full name",

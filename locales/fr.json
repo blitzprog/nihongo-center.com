@@ -139,17 +139,14 @@
 			"applicantsAccepted": "%s l'inscription a été acceptée.",
 			"applicantsRejected": "%s l'inscription a été rejetée.",
 			"totalApplicants": "%s étudiants se sont inscrits au Nihongo Center.",
-			"totalStudents": "%s étudiants se sont enregistrés au Nihongo Center.",
-			"gender": {
-				"male": "<b>Hommes</b> (%d)",
-				"female": "<b>Femmes</b> (%d)"
-			}
+			"totalStudents": "%s étudiants se sont enregistrés au Nihongo Center."
 		}
 	},
 	"add": {
 		"familyMember": "Ajouter un membre de la famille",
 		"financialSupporter": "Ajouter un support financier",
-		"educationBackground": "Ajouter un cursus scolaire"
+		"educationBackground": "Ajouter un cursus scolaire",
+		"staffMember": "Ajouter un membre du personnel"
 	},
 	"familyMembers": {
 		"name": "Nom complet",

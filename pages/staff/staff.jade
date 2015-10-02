@@ -28,7 +28,7 @@ else
 	if user.accessLevel === "admin"
 		.form-group
 			input.form-control(type="email", id="email", name="email", style="max-width: 250px; display: inline-block; margin-right: 0.5em;")
-			.btn.btn-primary(onclick="addStaffMember();") Add staff member
+			.btn.btn-primary(onclick="addStaffMember();")= __("add.staffMember")
 			
 	script
 		include add-staff.js
