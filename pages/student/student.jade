@@ -109,7 +109,11 @@ else
 					span= __("japaneseEducationTitle")
 				.panel-body
 					ul.list-group
-						h4= "JLPT level: " + student.jlptLevel 
+						if student.jlptLevel
+							h2(style="text-align: center")= student.jlptLevel
+						else if student.japaneseEducation.length === 0
+							div.alert.alert-info= __("error.noJapaneseEducationOrJLPT")
+						
 						each education in student.japaneseEducation
 							li.list-group-item= education.institution + " (" + education.totalHours + ")"
 							

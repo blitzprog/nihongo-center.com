@@ -192,6 +192,7 @@
 		"studentDoesntExist": "Cet étudiant n'existe pas dans la base de données.",
 		"noFinancialSupporters": "Cet étudiant n'a pas encore ajouter de supports financier!",
 		"noFamilyMembers": "Cet étudiant n'a pas encore ajouter de membres de sa famille!",
-		"noReasonForStudying": "L'étudiant n'a pas encore écrit ses raisons concernant ses études!"
+		"noReasonForStudying": "L'étudiant n'a pas encore écrit ses raisons concernant ses études!",
+		"noJapaneseEducationOrJLPT": "L'étudiant n'a pas encore étudier le japonais et n'a pas non plus de certificat du JLPT."
 	}
 }

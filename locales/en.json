@@ -192,6 +192,7 @@
 		"studentDoesntExist": "That student doesn't exist in the database.",
 		"noFinancialSupporters": "The student did not add any financial supporters yet!",
 		"noFamilyMembers": "The student did not add any family members yet!",
-		"noReasonForStudying": "The student did not write down the reason for studying yet!"
+		"noReasonForStudying": "The student did not write down the reason for studying yet!",
+		"noJapaneseEducationOrJLPT": "The student did not study Japanese and did not take the JLPT yet."
 	}
 }

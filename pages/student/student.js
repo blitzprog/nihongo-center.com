@@ -53,7 +53,15 @@ module.exports = {
 				return dict;
 			}, {});
 			
-			let description = `${student.givenName} is ${student.age} years old and ${student.maritalStatus}. `;
+			let description = "";
+			
+			if(student.age && student.maritalStatus)
+				description += `${student.displayName} is ${student.age} years old and ${student.maritalStatus}. `;
+			else if(student.age)
+				description += `${student.displayName} is ${student.age} years old. `;
+			else if(student.maritalStatus)
+				description += `${student.displayName} is ${student.maritalStatus}. `;
+			
 			description += `${student.heShe} is from ${student.country} and wants to start a ${student.course} course in ${student.startMonthName} ${student.startYear}. `;
 			
 			if(student.familyMembers.length === 0)
