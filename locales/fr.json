@@ -73,6 +73,7 @@
 	"inYen": "En Yen (¥)",
 	"monthlyAmountInYen": "Montant mensuel en Yen (¥)",
 	"uploadNewFile": "Uploader un nouveau fichier",
+	"uploadFileLabel": "Choisissez un fichier (max. 20 MB)",
 	"uploadFile": "Envoyer",
 	"yourUploads": "Fichiers envoyés",
 	"link": "Lien",
