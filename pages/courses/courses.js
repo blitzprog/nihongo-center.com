@@ -25,7 +25,7 @@ module.exports = {
 				
 				if(!courses[startYear]) {
 					courses[startYear] = {
-						startMonth: [student]
+						[startMonth]: [student]
 					};
 				} else {
 					if(courses[startYear][startMonth])
