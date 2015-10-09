@@ -75,9 +75,24 @@ else
 						ul.list-group
 							each member in student.financialSupporters
 								li.list-group-item= member.name
-		
-		//- Country
+			
+			//- Japanese education
+			.panel.panel-default
+				.panel-heading: h1
+					span.glyphicon.glyphicon-blackboard(style="margin-right: 0.25em")
+					span= __("japaneseEducationTitle")
+				.panel-body
+					ul.list-group
+						if student.jlptLevel
+							h2(style="text-align: center")= student.jlptLevel
+						else if student.japaneseEducation.length === 0
+							div.alert.alert-info= __("error.noJapaneseEducationOrJLPT")
+						
+						each education in student.japaneseEducation
+							li.list-group-item= education.institution + " (" + education.totalHours + ")"
+			
 		.col-sm-6
+			//- Country
 			if country
 				.panel.panel-default
 					.panel-heading: h1
@@ -129,22 +144,8 @@ else
 					ul.list-group
 						each stage, index in __("stageList")
 							+stage(stage, index)
-							
-			//- Japanese education
-			.panel.panel-default
-				.panel-heading: h1
-					span.glyphicon.glyphicon-blackboard(style="margin-right: 0.25em")
-					span= __("japaneseEducationTitle")
-				.panel-body
-					ul.list-group
-						if student.jlptLevel
-							h2(style="text-align: center")= student.jlptLevel
-						else if student.japaneseEducation.length === 0
-							div.alert.alert-info= __("error.noJapaneseEducationOrJLPT")
-						
-						each education in student.japaneseEducation
-							li.list-group-item= education.institution + " (" + education.totalHours + ")"
-							
+			
+			//- Motivation				
 			.panel.panel-default
 				.panel-heading: h1
 					span.glyphicon.glyphicon-pencil(style="margin-right: 0.25em")
