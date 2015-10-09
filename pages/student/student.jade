@@ -48,6 +48,21 @@ else
 									else if upload.mimetype && upload.mimetype.indexOf('/') !== -1
 										span.label.label-default(style="float: right")= mimeTypes.extension(upload.mimetype)
 			
+			//- Family		
+			.panel.panel-default
+				.panel-heading: h1
+					span.glyphicon.glyphicon-home(style="margin-right: 0.25em")
+					span Family
+				.panel-body
+					if student.familyMembers.length === 0
+						div.alert.alert-danger= __("error.noFamilyMembers")
+					else
+						ul.list-group
+							each member in student.familyMembers
+								li.list-group-item
+									span= member.name
+									span.label.label-info= member.relation
+			
 			//- Financial supporters
 			.panel.panel-default
 				.panel-heading: h1
@@ -87,20 +102,33 @@ else
 						ul.list-group
 							each language in country.languages
 								li.list-group-item= language
-			//- Family		
+			
+			- var currentStageReached = false;
+			
+			mixin stage(title, stageName)
+				if student.stage === stageName
+					li.list-group-item
+						.glyphicon.glyphicon-refresh(style="margin-right: 0.25em")
+						span= title
+					- currentStageReached = true
+				else if currentStageReached
+					li.list-group-item.disabled
+						.glyphicon.glyphicon-asterisk(style="margin-right: 0.25em")
+						span= title
+				else
+					li.list-group-item.list-group-item-success
+						.glyphicon.glyphicon-ok(style="margin-right: 0.25em")
+						span= title
+			
+			//- Stage
 			.panel.panel-default
 				.panel-heading: h1
-					span.glyphicon.glyphicon-home(style="margin-right: 0.25em")
-					span Family
+					span.glyphicon.glyphicon-list(style="margin-right: 0.25em")
+					span= __("progress")
 				.panel-body
-					if student.familyMembers.length === 0
-						div.alert.alert-danger= __("error.noFamilyMembers")
-					else
-						ul.list-group
-							each member in student.familyMembers
-								li.list-group-item
-									span= member.name
-									span.label.label-info= member.relation
+					ul.list-group
+						each stage, index in __("stageList")
+							+stage(stage, index)
 							
 			//- Japanese education
 			.panel.panel-default

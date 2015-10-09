@@ -96,6 +96,7 @@
 	"motivation": "Motivation",
 	"summary": "Résumé",
 	"financialSupportersTitle": "Supports financier",
+	"progress": "Progression",
 	"tooltip": {
 		"educationalInstitutionName": "Nom de l'école ou de l'université",
 		"totalPeriodOfEducation": "Combien d'année ?",
