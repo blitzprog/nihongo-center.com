@@ -5,7 +5,8 @@ else
 		h1= __("courses")
 		
 	each monthList, year in courses
-		h2= year
+		.page-header
+			h2= year
 		
 		each studentList, month in monthList
 			h3= __("monthNames." + month)
