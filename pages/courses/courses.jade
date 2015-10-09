@@ -9,8 +9,8 @@ else
 			h2= year
 		
 		.row
-			.col-sm-6
-				each studentList, month in monthList
+			each studentList, month in monthList
+				.col-sm-6
 					h3= __("monthNames." + month)
 					
 					each student in studentList
