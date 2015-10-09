@@ -5,6 +5,10 @@ let S = require("string");
 let age = require("../../modules/age");
 let riak = require("nodiak").getClient();
 let mimeTypes = require("mime-types");
+let monthNames = [
+	"January", "February", "March", "April", "May", "June",
+	"July", "August", "September", "October", "November", "December"
+];
 
 // Country data
 let countryData = require("country-data");
@@ -32,10 +36,7 @@ module.exports = {
 				return;
 			}
 			
-			var monthNames = [
-				"January", "February", "March", "April", "May", "June",
-				"July", "August", "September", "October", "November", "December"
-			];
+			let monthNames = request.__("monthNames");
 			
 			let student = obj.data;
 			student.age = age.of(student);
@@ -43,7 +44,7 @@ module.exports = {
 			student.heShe = student.gender === "male" ? "He" : "She";
 			student.hisHer = student.gender === "male" ? "his" : "her";
 			student.heSheJp = student.gender === "male" ? "彼" : "彼女";
-			student.startMonthName = monthNames[student.startMonth - 1];
+			student.startMonthName = monthNames[student.startMonth];
 			
 			// Create an inverted dictionary based on fileTypes
 			let humanized = Object.keys(student).reduce(function(dict, key) {

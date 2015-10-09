@@ -180,6 +180,20 @@
 		"totalHours": "Nombre total d'heures",
 		"textBook": "Manuels"
 	},
+	"monthNames": {
+		"1": "Janvier",
+		"2": "Février",
+		"3": "Mars",
+		"4": "Avril",
+		"5": "Mai",
+		"6": "Juin",
+		"7": "Juillet",
+		"8": "Aout",
+		"9": "Septembre",
+		"10": "October",
+		"11": "Novembre",
+		"12": "Décembre"
+	},
 	"error": {
 		"notLoggedIn": "Vous n'êtes pas connecté!",
 		"notAuthorized": "Vous n'avez pas l'autorisation d'accéder à cette page!",
