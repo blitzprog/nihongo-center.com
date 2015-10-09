@@ -8,9 +8,11 @@ else
 		.page-header
 			h2= year
 		
-		each studentList, month in monthList
-			h3= __("monthNames." + month)
-			
-			each student in studentList
-				p
-					a(href=`/students/${student.email}`)= student.givenName + " " + student.familyName
+		.row
+			.col-sm-6
+				each studentList, month in monthList
+					h3= __("monthNames." + month)
+					
+					each student in studentList
+						p
+							a(href=`/students/${student.email}`)= student.givenName + " " + student.familyName
