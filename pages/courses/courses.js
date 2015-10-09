@@ -22,12 +22,17 @@ module.exports = {
 				
 				let startYear = parseInt(student.startYear);
 				let startMonth = parseInt(student.startMonth);
-				let key = startYear;
 				
-				if(courses[key])
-					courses[key].push(student);
-				else
-					courses[key] = [student];
+				if(!courses[startYear]) {
+					courses[startYear] = {
+						startMonth: [student]
+					};
+				} else {
+					if(courses[startYear][startMonth])
+						courses[startYear][startMonth].push(student);
+					else
+						courses[startYear][startMonth] = [student];
+				}
 			});
 			
 			// Render the page

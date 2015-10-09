@@ -4,8 +4,12 @@ else
 	.page-header
 		h1= __("courses")
 		
-	each studentList, courseName in courses
-		h2= courseName
-		each student in studentList
-			p
-				a(href=`/students/${student.email}`)= student.givenName + " " + student.familyName
+	each monthList, year in courses
+		h2= year
+		
+		each studentList, month in monthList
+			h3= month
+			
+			each student in studentList
+				p
+					a(href=`/students/${student.email}`)= student.givenName + " " + student.familyName
