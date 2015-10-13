@@ -12,8 +12,8 @@ module.exports = {
 			user,
 			languages: {
 				"en": "English",
-				"fr": "Français"
-				//"ja": "日本語"
+				"fr": "Français",
+				"zh": "中國"
 			}
 		});
 	},
