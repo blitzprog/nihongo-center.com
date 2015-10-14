@@ -97,6 +97,10 @@
 	"summary": "Résumé",
 	"financialSupportersTitle": "Supports financier",
 	"progress": "Progression",
+	"enterAverageAmountOfSupportPerMonthInYen": "Please enter the average amount of support per month in Yen (¥).",
+	"financialSupportTotalAmount": "Total amount: %s Yen per month.",
+	"pleaseBringAtLeast": "Please bring at least %s Yen per month.",
+	"schoolFees": "School fees",
 	"tooltip": {
 		"educationalInstitutionName": "Nom de l'école ou de l'université",
 		"totalPeriodOfEducation": "Combien d'année ?",

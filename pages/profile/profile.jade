@@ -110,11 +110,8 @@ else
 		.page-header
 			h2= __("finances")
 		
-		p
-			| Please enter the average amount of support 
-			strong per month 
-			| in Yen (¥).
-			
+		p= __("enterAverageAmountOfSupportPerMonthInYen")
+		
 		.profile
 			+numberInObject("financialSupportPerMonth", "self", __("monthlyAmountInYen"))
 			+numberInObject("financialSupportPerMonth", "remittanceFromOutside", __("monthlyAmountInYen"))
@@ -123,6 +120,23 @@ else
 			+numberInObject("financialSupportPerMonth", "scholarship", __("monthlyAmountInYen"))
 			+numberInObject("financialSupportPerMonth", "others", __("monthlyAmountInYen"))
 			
+			if user.financialSupportPerMonth.total < 50000
+				- var alertClass = "alert-danger";
+			else if user.financialSupportPerMonth.total < 80000
+				- var alertClass = "alert-warning";
+			else
+				- var alertClass = "alert-info";
+			
+			div(class=`alert ${alertClass} totalAmount`)
+				p!= __("financialSupportTotalAmount", `<strong>${user.financialSupportPerMonth.total}</strong>`)
+				
+				if user.financialSupportPerMonth.total < 80000
+					p!= __("pleaseBringAtLeast", "<strong>80000</strong>")
+		
+		.page-header
+			h2= __("schoolFees")
+		
+		.profile
 			+select("paymentMethod", user.paymentMethod, paymentMethods)
 		
 		.page-header

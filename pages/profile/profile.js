@@ -29,6 +29,10 @@ module.exports = {
 			return;
 		}
 		
+		user.financialSupportPerMonth.total = Object.keys(user.financialSupportPerMonth)
+			.map(key => user.financialSupportPerMonth[key])
+			.reduce((a, b) => a + b)
+		
 		render({
 			user: user,
 			displayName: user.givenName + " " + user.familyName,
