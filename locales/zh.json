@@ -100,7 +100,7 @@
 	"enterAverageAmountOfSupportPerMonthInYen": "Please enter the average amount of support per month in Yen (¥).",
 	"financialSupportTotalAmount": "Total amount: %s Yen per month.",
 	"pleaseBringAtLeast": "Please bring at least %s Yen per month.",
-	"schoolFees": "School fees",
+	"applicationFees": "Application fees",
 	"tooltip": {
 		"educationalInstitutionName": "大學名稱",
 		"totalPeriodOfEducation": "於該校就讀幾年？",
