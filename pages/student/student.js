@@ -5,6 +5,8 @@ let S = require("string");
 let age = require("../../modules/age");
 let riak = require("nodiak").getClient();
 let mimeTypes = require("mime-types");
+let sumOfValues = require("../../modules/sumOfValues");
+
 let monthNames = [
 	"January", "February", "March", "April", "May", "June",
 	"July", "August", "September", "October", "November", "December"
@@ -71,6 +73,9 @@ module.exports = {
 				description += `${S(student.hisHer).capitalize().s} only family member is ${student.familyMembers[0].name}.`;
 			else
 				description += `There are ${student.familyMembers.length} people in ${student.hisHer} family.`;
+			
+			student.financialSupportPerMonth.total = sumOfValues(student.financialSupportPerMonth);
+			description += ` ${student.heShe} will bring ${student.financialSupportPerMonth.total} Yen per month.`;
 			
 			//let japaneseDescription = `${student.givenName}は${student.age}歳です. `;
 			//japaneseDescription += `${student.heSheJp}は${student.country}住んでいて、${student.startYear}年${student.startMonth}月の${student.course}コースに入りたいです。`;

@@ -5,6 +5,7 @@ let fs = require("fs");
 let saveUserInDB = require("../../modules/save-user");
 let age = require("../../modules/age");
 let dbArray = require("../../modules/db-array");
+let sumOfValues = require("../../modules/sumOfValues");
 
 let americaSynonyms = ["America", "U.S.A", "U.S.A.", "USA"];
 
@@ -29,9 +30,7 @@ module.exports = {
 			return;
 		}
 		
-		user.financialSupportPerMonth.total = Object.keys(user.financialSupportPerMonth)
-			.map(key => user.financialSupportPerMonth[key])
-			.reduce((a, b) => a + b)
+		user.financialSupportPerMonth.total = sumOfValues(user.financialSupportPerMonth);
 		
 		render({
 			user: user,
