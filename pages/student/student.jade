@@ -18,6 +18,9 @@ else
 			span.glyphicon.glyphicon-user(style="margin-right: 0.25em")
 			span= student.displayName
 	
+	script
+		include save.js
+	
 	.row
 		.col-sm-6
 			//- Summary
@@ -121,19 +124,22 @@ else
 			- var currentStageReached = false;
 			
 			mixin stage(title, stageName)
+				- var saveStage = `javascript:saveStage('${student.email}', '${stageName}');`;
 				if student.stage === stageName
 					li.list-group-item
 						.glyphicon.glyphicon-refresh(style="margin-right: 0.25em")
 						span= title
 					- currentStageReached = true
 				else if currentStageReached
-					li.list-group-item.disabled
-						.glyphicon.glyphicon-asterisk(style="margin-right: 0.25em")
-						span= title
+					li.list-group-item
+						a.stage-link(href=saveStage)
+							.glyphicon.glyphicon-asterisk(style="margin-right: 0.25em")
+							span= title
 				else
 					li.list-group-item.list-group-item-success
-						.glyphicon.glyphicon-ok(style="margin-right: 0.25em")
-						span= title
+						a.stage-link(href=saveStage)
+							.glyphicon.glyphicon-ok(style="margin-right: 0.25em")
+							span= title
 			
 			//- Stage
 			.panel.panel-default

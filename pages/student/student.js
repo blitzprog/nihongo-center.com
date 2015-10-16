@@ -5,6 +5,7 @@ let S = require("string");
 let age = require("../../modules/age");
 let riak = require("nodiak").getClient();
 let mimeTypes = require("mime-types");
+let saveUserInDB = require("../../modules/save-user");
 let sumOfValues = require("../../modules/sumOfValues");
 
 let monthNames = [
@@ -158,6 +159,30 @@ module.exports = {
 					"stage": student.stage
 				}
 			});
+		});
+	},
+	
+	// Post: Save
+	post: function(request, render) {
+		render(this[request.body.function](request, render));
+	},
+	
+	// Save stage
+	saveStage: function(request, render) {
+		let email = request.body.email;
+		let stageName = request.body.stageName;
+		
+		riak.bucket("Accounts").objects.get(email, function(err, obj) {
+			if(err) {
+				render();
+				return;
+			}
+			
+			let student = obj.data;
+			student.stage = stageName;
+			
+			// Save in DB
+			saveUserInDB(student);
 		});
 	}
 };
