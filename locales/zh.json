@@ -22,7 +22,7 @@
 	"addressAbroad": "日本住址",
 	"telephoneAbroad": "日本聯絡電話",
 	"course": "課程",
-	"courses": "課程",
+	"courses": "課程選擇",
 	"startYear": "開始年份",
 	"startMonth": "開始月份",
 	"education": "教育程度",
@@ -40,8 +40,8 @@
 	"reasonForStudying": "學日語的理由",
 	"portOfEntry": "抵達日本城市名稱",
 	"visaApplicationPlace": "申請簽證的城市",
-	"purpose": "目的",
-	"personal": "個人",
+	"purpose": "項目",
+	"personal": "個人資料",
 	"work": "工作",
 	"contact": "聯絡",
 	"passport": "護照",
@@ -101,6 +101,7 @@
 	"financialSupportTotalAmount": "Total amount: %s Yen per month.",
 	"pleaseBringAtLeast": "Please bring at least %s Yen per month.",
 	"applicationFees": "Application fees",
+	"pleaseChoose": "Please choose:",
 	"tooltip": {
 		"educationalInstitutionName": "大學名稱",
 		"totalPeriodOfEducation": "於該校就讀幾年？",
@@ -110,30 +111,23 @@
 		"reasonForStudying": "之前是如何學習過日文？\n您為何需要學習日文？\n課程結束後有什麼計畫？",
 		"visaApplicationPlace": "最近的日本大使館或領事館的位置"
 	},
-	"courseList": {
-		"10 weeks": "一般 | 10週",
-		"20 weeks": "一般 | 20週",
-		"6 months": "長期 | 6個月",
-		"1 year": "長期 | 1年",
-		"1,5 years": "長期 | 1.5年",
-		"2 years": "長期 | 2年"
-	},
 	"stageList": {
 		"apply": "申請",
 		"payApplicationFee": "付申請費用",
 		"receiveCopyOfInvoiceAndCoE": "取得入學資格證明和收據的複印",
 		"paySchoolFee": "學費",
 		"receiveCoE": "收到入學資格證明",
-		"acquireVisa": "獲取簽證",
 		"reserveAccomodation": "預約宿舍",
+		"acquireVisa": "獲取簽證",
 		"arriveInJapan": "抵達日本",
 		"placementTest": "分班測驗",
 		"beginClasses": "課程開始",
-		"declined": "申請駁回"
+		"declined": "申請駁回",
+		"canceled": "Application canceled"
 	},
 	"greeting": {
 		"title": "歡迎您，%s!",
-		"tagline": "您可以在這邊申請日本語中心的課程"
+		"tagline": "您可以在這裡申請日本語中心的課程"
 	},
 	"staffView": {
 		"greeting": {
@@ -154,7 +148,7 @@
 		"staffMember": "新增工作人員"
 	},
 	"familyMembers": {
-		"name": "全名",
+		"name": "姓名",
 		"relation": "關係",
 		"age": "年齡",
 		"occupation": "職業",
@@ -183,7 +177,7 @@
 	"japaneseEducation": {
 		"institution": "學習機構",
 		"totalHours": "總時數",
-		"textBook": "課本"
+		"textBook": "使用教材"
 	},
 	"monthNames": {
 		"1": "January",
@@ -213,5 +207,83 @@
 		"noFamilyMembers": "此學生尚未填寫家庭成員！",
 		"noReasonForStudying": "此學生尚未填寫學習日文理由！",
 		"noJapaneseEducationOrJLPT": "此學生沒有學過日文也沒有考過JPTT測驗"
+	},
+	"options": {
+		"course": {
+			"10 weeks": "一般 | 10週",
+			"20 weeks": "一般 | 20週",
+			"6 months": "長期 | 6個月",
+			"1 year": "長期 | 1年",
+			"1,5 years": "長期 | 1.5年",
+			"2 years": "長期 | 2年"
+		},
+		"purpose": {
+			"passport": "Passport",
+			"passportPhoto": "Passport photo",
+			"curriculumVitae": "Curriculum Vitae",
+			"letterOfGuarantee": "Letter of Guarantee",
+			"diploma": "Diploma",
+			"pledge": "Pledge",
+			"other": "Other"
+		},
+		"gender": {
+			"male": "♂ Male",
+			"female": "♀ Female"
+		},
+		"maritalStatus": {
+			"single": "Single",
+			"married": "Married"
+		},
+		"occupationType": {
+			"student": "Student",
+			"worker": "Worker",
+			"preparingToStudy": "Preparing to study in Japan",
+			"other": "Other"
+		},
+		"education": {
+			"graduated": "Graduated",
+			"inSchool": "In school",
+			"temporaryAbsence": "Temporary absence",
+			"withdrewFromSchool": "Withdrew from school",
+			"doctor": "Doctor",
+			"master": "Master",
+			"bachelor": "Bachelor",
+			"juniorCollege": "Junior college",
+			"collegeOfTechnology": "College of technology",
+			"seniorHighSchool": "Senior high school",
+			"juniorHighSchool": "Junior high school",
+			"other": "Other"
+		},
+		"planAfterGraduation": {
+			"returnToHomeCountry": "Return to home country",
+			"graduateSchool": "Graduate school",
+			"university": "University",
+			"juniorCollege": "Junior college",
+			"collegeOfTechnology": "College of technology",
+			"work": "Work in Japan",
+			"otherEducationalInstitution": "Other educational institution",
+			"other": "Other"
+		},
+		"paymentMethod": {
+			"payPal": "PayPal",
+			"bankTransfer": "Bank transfer"
+		},
+		"jlptLevel": {
+			"none": "I have not taken the JLPT yet.",
+			"N1": "N1",
+			"N2": "N2",
+			"N3": "N3",
+			"N4": "N4",
+			"N5": "N5",
+			"level 1": "Level 1 (before 2010)",
+			"level 2": "Level 2 (before 2010)",
+			"level 3": "Level 3 (before 2010)",
+			"level 4": "Level 4 (before 2010)"
+		},
+		"portOfEntry": {
+			"Kansai International Airport": "Osaka (Kansai International Airport)",
+			"Narita International Airport": "Tokyo (Narita International Airport)",
+			"other": "Other"
+		}
 	}
 }

@@ -30,7 +30,7 @@ module.exports = function(students) {
 			return student.stage !== "apply" && student.stage !== "rejected";
 		}).length,
 		applicantsRejected: students.filter(function(student) {
-			return student.stage === "rejected";
+			return student.stage === "declined";
 		}).length,
 		countries: countries,
 		gender: gender

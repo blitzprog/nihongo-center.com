@@ -130,7 +130,7 @@ else
 						.glyphicon.glyphicon-refresh(style="margin-right: 0.25em")
 						span= title
 					- currentStageReached = true
-				else if currentStageReached
+				else if currentStageReached || student.stage === "declined" || student.stage === "canceled"
 					li.list-group-item
 						a.stage-link(href=saveStage)
 							.glyphicon.glyphicon-asterisk(style="margin-right: 0.25em")
@@ -149,10 +149,16 @@ else
 				.panel-body
 					ul.list-group
 						each stage, index in __("stageList")
-							if index !== "declined"
+							if (index !== "declined" && index !== "canceled")
 								+stage(stage, index)
+					
+					ul.list-group
+						+stage(__("stageList.canceled"), "canceled")
+					
+					ul.list-group
+						+stage(__("stageList.declined"), "declined")
 			
-			//- Motivation				
+			//- Motivation
 			.panel.panel-default
 				.panel-heading: h1
 					span.glyphicon.glyphicon-pencil(style="margin-right: 0.25em")

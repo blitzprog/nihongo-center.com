@@ -32,6 +32,12 @@ module.exports = {
 		
 		user.financialSupportPerMonth.total = sumOfValues(user.financialSupportPerMonth);
 		
+		let selection = function(options) {
+			let choose = {};
+			choose[""] = __("pleaseChoose");
+			return Object.assign(choose, options);
+		};
+		
 		render({
 			user: user,
 			displayName: user.givenName + " " + user.familyName,
@@ -39,21 +45,21 @@ module.exports = {
 			nationalities: this.nationalities,
 			cities: this.cities,
 			countries: this.countries,
-			genderOptions: require("./options/gender"),
-			maritalStatusOptions: require("./options/maritalStatus"),
-			occupationTypeOptions: require("./options/occupationType"),
-			startYearOptions: require("./options/startYear"),
-			startMonthOptions: require("./options/startMonth"),
-			portsOfEntry: require("./options/portsOfEntry"),
-			educationOptions: require("./options/education"),
-			planAfterGraduationOptions: require("./options/planAfterGraduation"),
-			jlptLevels: require("./options/jlptLevels"),
-			paymentMethods: require("./options/paymentMethods"),
+			genderOptions: selection(__("options.gender")),
+			maritalStatusOptions: selection(__("options.maritalStatus")),
+			occupationTypeOptions: selection(__("options.occupationType")),
+			startYearOptions: selection(require("./options/startYear")),
+			startMonthOptions: selection(require("./options/startMonth")(__)),
+			portsOfEntry: selection(__("options.portOfEntry")),
+			educationOptions: selection(__("options.education")),
+			planAfterGraduationOptions: selection(__("options.planAfterGraduation")),
+			jlptLevels: selection(__("options.jlptLevel")),
+			paymentMethods: selection(__("options.paymentMethod")),
 			courseOptions: [
 				{name: "Please choose:", value: "", disabled: true}
-			].concat(Object.keys(__("courseList")).map(function(courseId) {
+			].concat(Object.keys(__("options.course")).map(function(courseId) {
 				return {
-					name: __("courseList." + courseId.replace(".", ",")),
+					name: __("options.course." + courseId.replace(".", ",")),
 					value: courseId
 				};
 			}.bind(this)))

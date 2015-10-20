@@ -10,16 +10,16 @@ module.exports = {
 		let user = request.user;
 		let __ = request.__;
 		
-		let fileTypes = [
-			{name: __("pleaseChoose"), value: "", disabled: true},
-			{name: __("passport"), value: "passport"},
-			{name: __("passportPhoto"), value: "passportPhoto"},
-			{name: __("curriculumVitae"), value: "curriculumVitae"},
-			{name: __("letterOfGuarantee"), value: "letterOfGuarantee"},
-			{name: __("diploma"), value: "diploma"},
-			{name: __("pledge"), value: "pledge"},
-			{name: __("other"), value: "other"}
-		];
+		let fileTypes = {
+			"": __("pleaseChoose"),
+			passport: __("passport"),
+			passportPhoto: __("passportPhoto"),
+			curriculumVitae: __("curriculumVitae"),
+			letterOfGuarantee: __("letterOfGuarantee"),
+			diploma: __("diploma"),
+			pledge: __("pledge"),
+			other: __("other")
+		};
 		
 		// Create an inverted dictionary based on fileTypes
 		let purposeToName = fileTypes.reduce(function(previous, current) {

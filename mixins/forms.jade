@@ -69,17 +69,17 @@ mixin select(mId, mValue, mOptions)
 	.field.form-group
 		label(for=mId)= __(mId)
 		select.form-control(name=mId, id=mId)
-			each option in mOptions
-				if option.value === mValue || (typeof mValue === "undefined" && option.value === "")
-					if option.disabled === true
-						option(value=option.value, disabled, selected)= option.name
+			each translation, index in mOptions
+				if index === mValue || (typeof mValue === "undefined" && index === "")
+					if index === ""
+						option(value=index, disabled, selected)= translation
 					else
-						option(value=option.value, selected)= option.name
+						option(value=index, selected)= translation
 				else
-					if option.disabled === true
-						option(value=option.value, disabled)= option.name
+					if index === ""
+						option(value=index, disabled)= translation
 					else
-						option(value=option.value)= option.name
+						option(value=index)= translation
 
 mixin datalist(mId, mOptions)
 	datalist(id=mId)

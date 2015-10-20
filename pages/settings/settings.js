@@ -13,7 +13,7 @@ module.exports = {
 			languages: {
 				"en": "English",
 				"fr": "Français",
-				"zh": "中國"
+				"zh": "繁體中文"
 			}
 		});
 	},

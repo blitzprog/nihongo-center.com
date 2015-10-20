@@ -101,6 +101,7 @@
 	"financialSupportTotalAmount": "Total amount: %s Yen per month.",
 	"pleaseBringAtLeast": "Please bring at least %s Yen per month.",
 	"applicationFees": "Application fees",
+	"pleaseChoose": "Please choose:",
 	"tooltip": {
 		"educationalInstitutionName": "School or university name",
 		"totalPeriodOfEducation": "How many years?",
@@ -110,26 +111,19 @@
 		"reasonForStudying": "What have you been doing for studying in Japan?\nWhy do you need to study Japanese?\nWhat are you going to do after you finish the Japanese course?",
 		"visaApplicationPlace": "Location of closest Japanese Embassy or Consulate"
 	},
-	"courseList": {
-		"10 weeks": "Regular | 10 weeks",
-		"20 weeks": "Regular | 20 weeks",
-		"6 months": "Intensive | 6 months",
-		"1 year": "Intensive | 1 year",
-		"1,5 years": "Intensive | 1.5 years",
-		"2 years": "Intensive | 2 years"
-	},
 	"stageList": {
 		"apply": "Apply at Nihongo Center",
 		"payApplicationFee": "Pay the application fee",
 		"receiveCopyOfInvoiceAndCoE": "Receive a copy of the Certificate of Eligibility and the invoice",
 		"paySchoolFee": "Payment of school fees",
 		"receiveCoE": "Receive the Certificate of Eligibility",
-		"acquireVisa": "Acquire your visa",
 		"reserveAccomodation": "Reserve accomodation",
+		"acquireVisa": "Acquire your visa",
 		"arriveInJapan": "Arrive in Japan",
 		"placementTest": "Take placement test",
 		"beginClasses": "Begin classes",
-		"declined": "Application declined."
+		"declined": "Application declined (by Nihongo Center)",
+		"canceled": "Application canceled (by the student)"
 	},
 	"greeting": {
 		"title": "Welcome, %s!",
@@ -213,5 +207,83 @@
 		"noFamilyMembers": "The student did not add any family members yet!",
 		"noReasonForStudying": "The student did not write down the reason for studying yet!",
 		"noJapaneseEducationOrJLPT": "The student did not study Japanese and did not take the JLPT yet."
+	},
+	"options": {
+		"course": {
+			"10 weeks": "Regular | 10 weeks",
+			"20 weeks": "Regular | 20 weeks",
+			"6 months": "Intensive | 6 months",
+			"1 year": "Intensive | 1 year",
+			"1,5 years": "Intensive | 1.5 years",
+			"2 years": "Intensive | 2 years"
+		},
+		"purpose": {
+			"passport": "Passport",
+			"passportPhoto": "Passport photo",
+			"curriculumVitae": "Curriculum Vitae",
+			"letterOfGuarantee": "Letter of Guarantee",
+			"diploma": "Diploma",
+			"pledge": "Pledge",
+			"other": "Other"
+		},
+		"gender": {
+			"male": "♂ Male",
+			"female": "♀ Female"
+		},
+		"maritalStatus": {
+			"single": "Single",
+			"married": "Married"
+		},
+		"occupationType": {
+			"student": "Student",
+			"worker": "Worker",
+			"preparingToStudy": "Preparing to study in Japan",
+			"other": "Other"
+		},
+		"education": {
+			"graduated": "Graduated",
+			"inSchool": "In school",
+			"temporaryAbsence": "Temporary absence",
+			"withdrewFromSchool": "Withdrew from school",
+			"doctor": "Doctor",
+			"master": "Master",
+			"bachelor": "Bachelor",
+			"juniorCollege": "Junior college",
+			"collegeOfTechnology": "College of technology",
+			"seniorHighSchool": "Senior high school",
+			"juniorHighSchool": "Junior high school",
+			"other": "Other"
+		},
+		"planAfterGraduation": {
+			"returnToHomeCountry": "Return to home country",
+			"graduateSchool": "Graduate school",
+			"university": "University",
+			"juniorCollege": "Junior college",
+			"collegeOfTechnology": "College of technology",
+			"work": "Work in Japan",
+			"otherEducationalInstitution": "Other educational institution",
+			"other": "Other"
+		},
+		"paymentMethod": {
+			"payPal": "PayPal",
+			"bankTransfer": "Bank transfer"
+		},
+		"jlptLevel": {
+			"none": "I have not taken the JLPT yet.",
+			"N1": "N1",
+			"N2": "N2",
+			"N3": "N3",
+			"N4": "N4",
+			"N5": "N5",
+			"level 1": "Level 1 (before 2010)",
+			"level 2": "Level 2 (before 2010)",
+			"level 3": "Level 3 (before 2010)",
+			"level 4": "Level 4 (before 2010)"
+		},
+		"portOfEntry": {
+			"Kansai International Airport": "Osaka (Kansai International Airport)",
+			"Narita International Airport": "Tokyo (Narita International Airport)",
+			"other": "Other"
+		}
 	}
 }

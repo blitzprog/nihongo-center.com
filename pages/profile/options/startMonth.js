@@ -1,7 +1,10 @@
-module.exports = [
-	{name: "Please choose:", value: "", disabled: true},
-	{name: "April", value: "04"},
-	{name: "June", value: "06"},
-	{name: "October", value: "10"},
-	{name: "January", value: "01"}
-];
+"use strict";
+
+module.exports = function(__) {
+	let months = {};
+	months["04"] = __("monthNames.4");
+	months["06"] = __("monthNames.6");
+	months["10"] = __("monthNames.10");
+	months["01"] = __("monthNames.1");
+	return months;
+};

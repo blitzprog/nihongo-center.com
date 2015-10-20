@@ -5,7 +5,9 @@ else
 		h1= __("stages")
 		
 	if user.stage === "declined"
-		p Your application has been declined.
+		p= __("stageList.declined")
+	else if user.stage === "canceled"
+		p= __("stageList.canceled")
 	else
 		ol.list-group
 			- var currentStageReached = false;
@@ -26,5 +28,5 @@ else
 						span= title
 			
 			each val, index in __("stageList")
-				if index !== "declined"
+				if index !== "declined" && index !== "canceled"
 					+stage(val, index)
