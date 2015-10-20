@@ -21,22 +21,10 @@ module.exports = {
 			other: __("other")
 		};
 		
-		// Create an inverted dictionary based on fileTypes
-		let purposeToName = fileTypes.reduce(function(previous, current) {
-			let key = current.value;
-			let value = current.name;
-			
-			if(key)
-				previous[key] = value;
-			
-			return previous;
-		}, {});
-		
 		// Render the page
 		render({
 			user: user,
-			fileTypes: fileTypes,
-			purposeToName: purposeToName
+			fileTypes: fileTypes
 		});
 	},
 	
