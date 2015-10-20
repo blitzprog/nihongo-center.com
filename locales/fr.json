@@ -221,69 +221,69 @@
 			"passport": "Passport",
 			"passportPhoto": "Passport photo",
 			"curriculumVitae": "Curriculum Vitae",
-			"letterOfGuarantee": "Letter of Guarantee",
-			"diploma": "Diploma",
-			"pledge": "Pledge",
-			"other": "Other"
+			"letterOfGuarantee": "Lettre de Garantie",
+			"diploma": "Diplomes",
+			"pledge": "Déclaration sur l'honneur",
+			"other": "Autre"
 		},
 		"gender": {
-			"male": "♂ Male",
-			"female": "♀ Female"
+			"male": "♂ Homme",
+			"female": "♀ Femme"
 		},
 		"maritalStatus": {
-			"single": "Single",
-			"married": "Married"
+			"single": "Célibataire",
+			"married": "Marrié(e)"
 		},
 		"occupationType": {
-			"student": "Student",
-			"worker": "Worker",
-			"preparingToStudy": "Preparing to study in Japan",
-			"other": "Other"
+			"student": "Etudiant",
+			"worker": "Employé(e)",
+			"preparingToStudy": "Se prépare à étudier au Japon",
+			"other": "Autre"
 		},
 		"education": {
-			"graduated": "Graduated",
-			"inSchool": "In school",
-			"temporaryAbsence": "Temporary absence",
-			"withdrewFromSchool": "Withdrew from school",
-			"doctor": "Doctor",
+			"graduated": "Diplomé(e)",
+			"inSchool": "A l'école",
+			"temporaryAbsence": "Année sabatique",
+			"withdrewFromSchool": "Arret des études",
+			"doctor": "Doctorat",
 			"master": "Master",
-			"bachelor": "Bachelor",
-			"juniorCollege": "Junior college",
-			"collegeOfTechnology": "College of technology",
-			"seniorHighSchool": "Senior high school",
-			"juniorHighSchool": "Junior high school",
-			"other": "Other"
+			"bachelor": "Licence",
+			"juniorCollege": "Ecole préparatoire",
+			"collegeOfTechnology": "IUT",
+			"seniorHighSchool": "Lycée",
+			"juniorHighSchool": "Collège",
+			"other": "Autre"
 		},
 		"planAfterGraduation": {
-			"returnToHomeCountry": "Return to home country",
-			"graduateSchool": "Graduate school",
-			"university": "University",
-			"juniorCollege": "Junior college",
-			"collegeOfTechnology": "College of technology",
-			"work": "Work in Japan",
-			"otherEducationalInstitution": "Other educational institution",
-			"other": "Other"
+			"returnToHomeCountry": "Retourner au pays",
+			"graduateSchool": "Master",
+			"university": "Université",
+			"juniorCollege": "Ecole préparatoire",
+			"collegeOfTechnology": "IUT",
+			"work": "Travail au Japon",
+			"otherEducationalInstitution": "Autre établissement d'enseignement",
+			"other": "Autre"
 		},
 		"paymentMethod": {
 			"payPal": "PayPal",
-			"bankTransfer": "Bank transfer"
+			"bankTransfer": "Virement Bancaire"
 		},
 		"jlptLevel": {
-			"none": "I have not taken the JLPT yet.",
+			"none": "Je n'ai pas encore passé le JLPT.",
 			"N1": "N1",
 			"N2": "N2",
 			"N3": "N3",
 			"N4": "N4",
 			"N5": "N5",
-			"level 1": "Level 1 (before 2010)",
-			"level 2": "Level 2 (before 2010)",
-			"level 3": "Level 3 (before 2010)",
-			"level 4": "Level 4 (before 2010)"
+			"level 1": "Niveau 1 (avant 2010)",
+			"level 2": "Niveau 2 (avant 2010)",
+			"level 3": "Niveau 3 (avant 2010)",
+			"level 4": "Niveau 4 (avant 2010)"
 		},
 		"portOfEntry": {
 			"Kansai International Airport": "Osaka (Kansai International Airport)",
 			"Narita International Airport": "Tokyo (Narita International Airport)",
-			"other": "Other"
+			"other": "Autre"
 		}
 	}
 }
