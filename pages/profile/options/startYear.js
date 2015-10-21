@@ -1,9 +1,9 @@
 "use strict";
 
-let currentYear = new Date().getFullYear();
-
-module.exports = [
-	{name: "Please choose:", value: "", disabled: true},
-	{name: currentYear, value: currentYear.toString()},
-	{name: currentYear + 1, value: (currentYear + 1).toString()}
-];
+module.exports = function() {
+	let currentYear = new Date().getFullYear();
+	let years = {};
+	years[currentYear] = currentYear.toString();
+	years[currentYear + 1] = (currentYear + 1).toString();
+	return years;
+};

@@ -48,21 +48,14 @@ module.exports = {
 			genderOptions: selection(__("options.gender")),
 			maritalStatusOptions: selection(__("options.maritalStatus")),
 			occupationTypeOptions: selection(__("options.occupationType")),
-			startYearOptions: selection(require("./options/startYear")),
+			startYearOptions: selection(require("./options/startYear")()),
 			startMonthOptions: selection(require("./options/startMonth")(__)),
 			portsOfEntry: selection(__("options.portOfEntry")),
 			educationOptions: selection(__("options.education")),
 			planAfterGraduationOptions: selection(__("options.planAfterGraduation")),
 			jlptLevels: selection(__("options.jlptLevel")),
 			paymentMethods: selection(__("options.paymentMethod")),
-			courseOptions: [
-				{name: "Please choose:", value: "", disabled: true}
-			].concat(Object.keys(__("options.course")).map(function(courseId) {
-				return {
-					name: __("options.course." + courseId.replace(".", ",")),
-					value: courseId
-				};
-			}.bind(this)))
+			courseOptions: selection(__("options.course"))
 		});
 	},
 	
