@@ -19,7 +19,7 @@ function search(e) {
 		term = "*";
 	
 	var $searchResult = $("#searchResult");
-	$searchResult.html("Searching...");
+	$searchResult.html("<div style='text-align: center; width: 100%'><img src='/images/loading.svg' alt='Searching...'></div>");
 	
 	oldAjaxRequest = $.get("/raw/students/search/" + term, function(data) {
 		$searchResult.html(data);
