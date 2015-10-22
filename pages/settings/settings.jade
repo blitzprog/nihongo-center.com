@@ -16,5 +16,11 @@ else
 				- cssClass = "btn-default";
 			button(class="btn " + cssClass, onclick="saveLanguage('" + code + "');", type="button", data-languagecode=code)= language
 	
+	if user.accessLevel === "admin" || user.accessLevel === "staff"
+		.page-header
+			h2= __("profile")
+		
+		a.ajax(href="/profile") Change name
+	
 	script
 		include save.js

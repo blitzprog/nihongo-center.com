@@ -1,9 +1,12 @@
+
 if !user
 	p= __("error.notLoggedIn")
+else if Object.keys(courses).length === 0
+	p= __("error.noStudents")
 else
 	.page-header
 		h1= __("courses")
-		
+	
 	each monthList, year in courses
 		.page-header
 			h2= year
