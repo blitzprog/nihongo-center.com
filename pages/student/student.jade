@@ -1,8 +1,8 @@
 mixin display(key, cssClass)
 	tr(class=cssClass)
 		td(style="width: 30%")= humanized[key]
-		if typeof renderKey[key] !== "undefined"
-			td!= renderKey[key]
+		if typeof translateOptions[key] !== "undefined"
+			td!= __(`options.${key}.${student[key]}`)
 		else
 			td= student[key]
 
@@ -36,7 +36,6 @@ else
 				.panel-heading: h2
 					span.glyphicon.glyphicon-upload(style="margin-right: 0.25em")
 					span= __("uploads")
-				//.panel-body!= renderKey["uploads"]
 				.panel-body
 					if student.uploads.length === 0
 						.alert.alert-danger The student did not upload any files yet!
@@ -156,7 +155,7 @@ else
 							each member in student.familyMembers
 								li.list-group-item
 									span= member.name
-									span.label.label-info= member.relation
+									span.label.label-info(style="float: right")= member.relation
 			
 			//- Financial supporters
 			.panel.panel-default

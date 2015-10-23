@@ -120,7 +120,15 @@ module.exports = {
 				humanized,
 				description,
 				mimeTypes,
-				renderKey: {
+				translateOptions: {
+					"gender": true,
+					"maritalStatus": true,
+					"occupationType": true,
+					"education": true,
+					"planAfterGraduation": true,
+					"paymentMethod": true,
+					"jlptLevel": true,
+					"portOfEntry": true
 					/*"uploads": student.uploads.map(function(upload) {
 						return "<div>" + JSON.stringify(upload, null, "<br>") + "</div>";
 					}),
@@ -144,7 +152,8 @@ module.exports = {
 					"japaneseEducation": true,
 					"financialSupportPerMonth": true,
 					"stage": true,
-					"reasonForStudying": true
+					"reasonForStudying": true,
+					"accessLevel": true
 				}
 			});
 		});
