@@ -19,24 +19,23 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 						p!= __("staffView.statistics.applicantsRejected", `<b>${statistics.applicantsRejected}</b>`)
 						p!= __("staffView.statistics.totalApplicants", `<b>${statistics.totalApplicants}</b>`)
 						p!= __("staffView.statistics.totalStudents", `<b>${statistics.totalStudents}</b>`)
-			
-			if statistics.countries
-				.col-sm-4
-					.panel.panel-default
-						.panel-heading: h1
-							.glyphicon.glyphicon-globe
-							span= __("countries")
-						.panel-body
-							#countryChart
-			
-			if statistics.gender
-				.col-sm-4
+						
+				if statistics.gender
 					.panel.panel-default
 						.panel-heading: h1
 							.glyphicon.glyphicon-eye-open
 							span= __("gender")
 						.panel-body
 							#genderChart
+			
+			if statistics.countries
+				.col-sm-8
+					.panel.panel-default
+						.panel-heading: h1
+							.glyphicon.glyphicon-globe
+							span= __("countries")
+						.panel-body
+							#countryChart
 			
 			script!= statistics.script
 			script
