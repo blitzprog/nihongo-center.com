@@ -21,6 +21,9 @@ module.exports = {
 			
 			let students = results.data;
 			students.forEach(function(student) {
+				if(!student.applicationDate)
+					return;
+				
 				let startYear = parseInt(student.startYear);
 				let startMonth = parseInt(student.startMonth);
 				

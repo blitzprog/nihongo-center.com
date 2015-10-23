@@ -5,4 +5,5 @@ else
 		h1= __("monthNames." + month) + " " + year
 		
 	each student in course.students
-		a(href=`/students/${student.email}`)= student.givenName + " " + student.familyName
+		p
+			a(href=`/students/${student.email}`)= student.givenName + " " + student.familyName

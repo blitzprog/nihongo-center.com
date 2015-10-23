@@ -8,11 +8,6 @@ let mimeTypes = require("mime-types");
 let saveUserInDB = require("../../modules/save-user");
 let sumOfValues = require("../../modules/sumOfValues");
 
-let monthNames = [
-	"January", "February", "March", "April", "May", "June",
-	"July", "August", "September", "October", "November", "December"
-];
-
 // Country data
 let countryData = require("country-data");
 let lookup = countryData.lookup;
@@ -39,8 +34,6 @@ module.exports = {
 				render();
 				return;
 			}
-			
-			let monthNames = request.__("monthNames");
 			
 			let student = obj.data;
 			student.age = age.of(student);
