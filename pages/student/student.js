@@ -151,7 +151,7 @@ module.exports = {
 					"japaneseEducation": true,
 					"financialSupportPerMonth": true,
 					"stage": true,
-					"uploads": true
+					"reasonForStudying": true
 				}
 			});
 		});
