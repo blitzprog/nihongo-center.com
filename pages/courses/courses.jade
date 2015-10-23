@@ -14,8 +14,14 @@ else
 			each studentList, month in monthList
 				.col-sm-6
 					.panel.panel-default
-						.panel-heading: h3= __("monthNames." + month)
+						.panel-heading
+							h3
+								a(href="/courses/" + year + "/" + month)= __("monthNames." + month)
+						
 						.panel-body
 							each student in studentList
 								p
+									if student.countryCode
+										img(src="https://nihongo-center.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/" + student.countryCode + ".png", title=student.country)
+									
 									a(href=`/students/${student.email}`)= student.givenName + " " + student.familyName

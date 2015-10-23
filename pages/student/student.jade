@@ -22,10 +22,10 @@ else
 		include save.js
 	
 	.row
-		.col-sm-6
+		.col-sm-8
 			//- Summary
 			.panel.panel-default
-				.panel-heading: h1
+				.panel-heading: h2
 					span.glyphicon.glyphicon-info-sign(style="margin-right: 0.25em")
 					span= __("summary")
 				.panel-body
@@ -33,7 +33,7 @@ else
 			
 			//- Uploads
 			.panel.panel-default
-				.panel-heading: h1
+				.panel-heading: h2
 					span.glyphicon.glyphicon-upload(style="margin-right: 0.25em")
 					span= __("uploads")
 				//.panel-body!= renderKey["uploads"]
@@ -51,54 +51,39 @@ else
 									else if upload.mimetype && upload.mimetype.indexOf('/') !== -1
 										span.label.label-default(style="float: right")= mimeTypes.extension(upload.mimetype)
 			
-			//- Family		
+			//- Motivation
 			.panel.panel-default
-				.panel-heading: h1
-					span.glyphicon.glyphicon-home(style="margin-right: 0.25em")
-					span Family
+				.panel-heading: h2
+					span.glyphicon.glyphicon-pencil(style="margin-right: 0.25em")
+					span= __("motivation")
 				.panel-body
-					if student.familyMembers.length === 0
-						div.alert.alert-danger= __("error.noFamilyMembers")
+					if !student.reasonForStudying
+						div.alert.alert-danger= __("error.noReasonForStudying")
 					else
-						ul.list-group
-							each member in student.familyMembers
-								li.list-group-item
-									span= member.name
-									span.label.label-info= member.relation
+						p= '"' + student.reasonForStudying + '"'
 			
-			//- Financial supporters
+			//- Details
 			.panel.panel-default
-				.panel-heading: h1
-					span.glyphicon.glyphicon-credit-card(style="margin-right: 0.25em")
-					span= __("financialSupportersTitle")
-				.panel-body
-					if student.financialSupporters.length === 0
-						div.alert.alert-danger= __("error.noFinancialSupporters")
-					else
-						ul.list-group
-							each member in student.financialSupporters
-								li.list-group-item= member.name
-			
-			//- Japanese education
-			.panel.panel-default
-				.panel-heading: h1
+				.panel-heading: h2
 					span.glyphicon.glyphicon-blackboard(style="margin-right: 0.25em")
-					span= __("japaneseEducationTitle")
+					span= __("details:Details")
 				.panel-body
-					ul.list-group
-						if student.jlptLevel
-							h2(style="text-align: center")= student.jlptLevel
-						else if student.japaneseEducation.length === 0
-							div.alert.alert-info= __("error.noJapaneseEducationOrJLPT")
+					table.table.table-hover.table-condensed#details
+						thead
+							tr
+								th Field
+								th Value
 						
-						each education in student.japaneseEducation
-							li.list-group-item= education.institution + " (" + education.totalHours + ")"
+						- var keys = Object.keys(student)
+						each key in keys
+							if(!keysNotRendered[key])
+								+display(key)
 			
-		.col-sm-6
+		.col-sm-4
 			//- Country
 			if country
 				.panel.panel-default
-					.panel-heading: h1
+					.panel-heading: h2
 						span.glyphicon.glyphicon-globe(style="margin-right: 0.25em")
 						span= country.name
 					.panel-body
@@ -143,7 +128,7 @@ else
 			
 			//- Stage
 			.panel.panel-default
-				.panel-heading: h1
+				.panel-heading: h2
 					span.glyphicon.glyphicon-list(style="margin-right: 0.25em")
 					span= __("progress")
 				.panel-body
@@ -158,29 +143,45 @@ else
 					ul.list-group
 						+stage(__("stageList.declined"), "declined")
 			
-			//- Motivation
+			//- Family
 			.panel.panel-default
-				.panel-heading: h1
-					span.glyphicon.glyphicon-pencil(style="margin-right: 0.25em")
-					span= __("motivation")
+				.panel-heading: h2
+					span.glyphicon.glyphicon-home(style="margin-right: 0.25em")
+					span Family
 				.panel-body
-					if !student.reasonForStudying
-						div.alert.alert-danger= __("error.noReasonForStudying")
+					if student.familyMembers.length === 0
+						div.alert.alert-danger= __("error.noFamilyMembers")
 					else
-						p= '"' + student.reasonForStudying + '"'
-	
-	.page-header
-		h1 Details
-		
-	button.btn(onclick="$('#details').toggle();") View details
-	p &nbsp;
-		
-	table.table.table-hover.table-condensed(style="display: none;")#details
-		thead
-			tr
-				th Field
-				th Value
-		
-		- var keys = Object.keys(student)
-		each key in keys
-			+display(key)
+						ul.list-group
+							each member in student.familyMembers
+								li.list-group-item
+									span= member.name
+									span.label.label-info= member.relation
+			
+			//- Financial supporters
+			.panel.panel-default
+				.panel-heading: h2
+					span.glyphicon.glyphicon-credit-card(style="margin-right: 0.25em")
+					span= __("financialSupportersTitle")
+				.panel-body
+					if student.financialSupporters.length === 0
+						div.alert.alert-danger= __("error.noFinancialSupporters")
+					else
+						ul.list-group
+							each member in student.financialSupporters
+								li.list-group-item= member.name
+			
+			//- Japanese education
+			.panel.panel-default
+				.panel-heading: h2
+					span.glyphicon.glyphicon-blackboard(style="margin-right: 0.25em")
+					span= __("japaneseEducationTitle")
+				.panel-body
+					ul.list-group
+						if student.jlptLevel
+							h2(style="text-align: center")= student.jlptLevel
+						else if student.japaneseEducation.length === 0
+							div.alert.alert-info= __("error.noJapaneseEducationOrJLPT")
+						
+						each education in student.japaneseEducation
+							li.list-group-item= education.institution + " (" + education.totalHours + ")"

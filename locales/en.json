@@ -101,7 +101,7 @@
 	"financialSupportTotalAmount": "Total amount: %s Yen per month.",
 	"pleaseBringAtLeast": "Please bring at least %s Yen per month.",
 	"applicationFees": "Application fees",
-	"pleaseChoose": "Please choose:",
+	"details": "Details",
 	"tooltip": {
 		"educationalInstitutionName": "School or university name",
 		"totalPeriodOfEducation": "How many years?",

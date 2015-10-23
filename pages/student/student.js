@@ -31,7 +31,8 @@ let visaEasy = loadFileAsArray("data/visa-easy-countries.txt").reduce(function(d
 
 module.exports = {
 	get: function(request, render) {
-		var email = request.params.email;
+		let email = request.params.email;
+		let __ = request.__;
 		
 		riak.bucket("Accounts").objects.get(email, function(err, obj) {
 			if(err) {
@@ -47,7 +48,7 @@ module.exports = {
 			student.heShe = student.gender === "male" ? "He" : "She";
 			student.hisHer = student.gender === "male" ? "his" : "her";
 			student.heSheJp = student.gender === "male" ? "彼" : "彼女";
-			student.startMonthName = monthNames[student.startMonth];
+			student.startMonthName = __("monthNames." + parseInt(student.startMonth));
 			
 			// Create an inverted dictionary based on fileTypes
 			let humanized = Object.keys(student).reduce(function(dict, key) {
@@ -126,23 +127,8 @@ module.exports = {
 				humanized,
 				description,
 				mimeTypes,
-				//japaneseDescription,
-				/*prioritizedKeys: [
-					"email",
-					"givenName",
-					"familyName",
-					"age",
-					"gender",
-					"country",
-					"nationality",
-					"course",
-					"startYear",
-					"startMonth",
-					"uploads",
-					"stage"
-				],*/
 				renderKey: {
-					"uploads": student.uploads.map(function(upload) {
+					/*"uploads": student.uploads.map(function(upload) {
 						return "<div>" + JSON.stringify(upload, null, "<br>") + "</div>";
 					}),
 					// TODO: Improve
@@ -156,7 +142,16 @@ module.exports = {
 						return "<div>" + JSON.stringify(education, null, "<br>") + "</div>";
 					}),
 					"financialSupportPerMonth": JSON.stringify(student.financialSupportPerMonth, null, "<br>"),
-					"stage": student.stage
+					"stage": student.stage*/
+				},
+				keysNotRendered: {
+					"uploads": true,
+					"familyMembers": true,
+					"financialSupporters": true,
+					"japaneseEducation": true,
+					"financialSupportPerMonth": true,
+					"stage": true,
+					"uploads": true
 				}
 			});
 		});

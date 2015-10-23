@@ -1,0 +1,8 @@
+if !user
+	p= __("error.notLoggedIn")
+else
+	.page-header
+		h1= __("monthNames." + month) + " " + year
+		
+	each student in course.students
+		a(href=`/students/${student.email}`)= student.givenName + " " + student.familyName

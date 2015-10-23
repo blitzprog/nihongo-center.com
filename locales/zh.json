@@ -102,6 +102,7 @@
 	"pleaseBringAtLeast": "Please bring at least %s Yen per month.",
 	"applicationFees": "Application fees",
 	"pleaseChoose": "Please choose:",
+	"details": "Details",
 	"tooltip": {
 		"educationalInstitutionName": "大學名稱",
 		"totalPeriodOfEducation": "於該校就讀幾年？",

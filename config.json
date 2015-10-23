@@ -13,8 +13,9 @@
 		"stages",
 		"search",
 		"students",
-		"courses",
 		"student",
+		"courses",
+		"course",
 		"staff",
 		"settings",
 		"login"
