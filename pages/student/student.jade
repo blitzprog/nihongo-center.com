@@ -1,7 +1,7 @@
 mixin display(key, cssClass)
 	tr(class=cssClass)
 		td(style="width: 30%")= humanized[key]
-		if typeof translateOptions[key] !== "undefined"
+		if student[key] && typeof translateOptions[key] !== "undefined"
 			td!= __(`options.${key}.${student[key]}`)
 		else
 			td= student[key]
