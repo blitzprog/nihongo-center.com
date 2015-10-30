@@ -42,9 +42,9 @@ else
 					else
 						ul.list-group
 							each upload in student.uploads
-								li.list-group-item
+								li.upload-item.list-group-item
 									a(href="/" + upload.path)= upload.purposeHumanized
-									span= ` (${upload.originalname})`
+									span.upload-original-name= ` (${upload.originalname})`
 									
 									if upload.extension
 										span.label.label-default(style="float: right")= upload.extension.toLowerCase()
