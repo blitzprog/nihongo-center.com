@@ -30,7 +30,7 @@ module.exports = function(students) {
 	var applicantsRejected = students.filter(function(student) {
 		return student.stage === "declined";
 	}).length;
-	var applicantsRemaining = statistics.totalApplicants - statistics.applicantsAccepted - statistics.applicantsRejected
+	var applicantsRemaining = totalApplicants - applicantsAccepted - applicantsRejected
 
 	return {
 		totalStudents: students.length,
