@@ -145,9 +145,9 @@ else
 								include send-application.js
 					else
 						.text-center
-							button.btn.btn-disabled
+							button.btn.btn-disabled(onclick=`alert("${__("sendApplicationRequirements")}");`)
 								.glyphicon.glyphicon-thumbs-up
-								span(style="margin-left: 0.4em", onclick=__("sendApplicationRequirements"))= __("sendApplication")
+								span(style="margin-left: 0.4em")= __("sendApplication")
 						p
 						p= __("sendApplicationRequirements")
 		.col-sm-3
