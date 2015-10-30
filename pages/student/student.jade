@@ -44,6 +44,7 @@ else
 							each upload in student.uploads
 								li.list-group-item
 									a(href="/" + upload.path)= upload.purposeHumanized
+									span= ` (${upload.originalname})`
 									
 									if upload.extension
 										span.label.label-default(style="float: right")= upload.extension.toLowerCase()
