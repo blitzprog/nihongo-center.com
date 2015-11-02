@@ -3,7 +3,7 @@
 	"repository": "blitzprog/nihongo-center.com",
 	"version": "1.0.0",
 	"dependencies": {
-		"aero": "0.2.x",
+		"aero": "*",
 		"passport": "*",
 		"passport-google-openidconnect": "*",
 		"passport-facebook": "*",

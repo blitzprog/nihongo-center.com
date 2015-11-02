@@ -9,7 +9,7 @@ let
 module.exports = function(aero) {
 	const kiloByte = 1024 * 1024;
 	const megaByte = 1024 * kiloByte;
-	
+
 	let storage = multer.diskStorage({
 		destination: "./uploads/",
 		filename: function(req, file, cb) {
@@ -21,22 +21,22 @@ module.exports = function(aero) {
 			});
 		}
 	});
-	
-	aero.app.use(multer({
+
+	aero.use(multer({
 		storage,
 		/*changeDest: function(dest, req, res) {
 			if(typeof req.user === "undefined") {
 				console.error("User is undefined on file upload");
 				return dest;
 			}
-			
+
 			let uploadPath = path.join(dest, req.user.email);
-			
+
 			fs.ensureDirSync(uploadPath, function(error) {
 				if(error)
 					throw error;
 			});
-			
+
 			return uploadPath;
 		},*/
 		limits: {

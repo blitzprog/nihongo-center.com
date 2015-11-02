@@ -7,24 +7,14 @@
 		"base",
 		"loading"
 	],
-	"pages": [
-		"dashboard",
-		"profile",
-		"uploads",
-		"stages",
-		"search",
-		"students",
-		"student",
-		"courses",
-		"course",
-		"staff",
-		"settings",
-		"login"
-	],
 	"static": [
 		"images",
 		"uploads",
 		"bootstrap"
 	],
+	"plugins": {
+		"jquery": {},
+		"kaze": {}
+	},
 	"port": 3002
 }

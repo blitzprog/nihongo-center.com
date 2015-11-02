@@ -25,8 +25,7 @@ i18n.configure({
 });
 
 // Translation
-aero.translate = i18n;
-aero.app.use(i18n.init);
+aero.use(i18n.init);
 
 // Google
 let googleConfig = merge({
@@ -57,5 +56,13 @@ login(
 // Init uploads
 upload(aero);
 
+// Translation functions
+aero.use(function(request, response, next) {
+	request.globals = {
+		__: request.__
+	}
+	next()
+})
+
 // Start Aero
-aero.start();
+aero.run();

@@ -6,23 +6,23 @@ let mapPhase = new JavaScriptPhase("pages/search/map.js");
 
 module.exports = {
 	// Get
-	get: function(request, render) {
+	render: function(request, render) {
 		let user = request.user;
-		
+
 		riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
 			if(err)
 				console.error(err);
-			
+
 			let courses = {};
 			let students = results.data;
-			
+
 			students.forEach(function(student) {
 				if(!student.applicationDate)
 					return;
-				
+
 				let startYear = parseInt(student.startYear);
 				let startMonth = parseInt(student.startMonth);
-				
+
 				if(!courses[startYear]) {
 					courses[startYear] = {
 						[startMonth]: [student]
@@ -34,7 +34,7 @@ module.exports = {
 						courses[startYear][startMonth] = [student];
 				}
 			});
-			
+
 			// Render the page
 			render({
 				user,

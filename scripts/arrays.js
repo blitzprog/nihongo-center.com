@@ -1,16 +1,16 @@
 // Update content
 var updateContent = function(page, response) {
 	var focusedElementId = $(document.activeElement).attr("id");
-	
-	aero.$content.html(response);
-	aero.fireContentLoadedEvent();
-	
+
+	kaze.$content.html(response);
+	kaze.fireContentLoadedEvent();
+
 	// Re-focus previously selected element
 	if(typeof focusedElementId !== "undefined")
 		$("#" + focusedElementId).focus();
-	
+
 	// Remove from cache
-	delete aero.cache[page];
+	//delete kaze.cache[page];
 };
 
 // Add

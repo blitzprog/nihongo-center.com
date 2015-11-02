@@ -4,9 +4,9 @@ let saveUserInDB = require("../../modules/save-user");
 
 module.exports = {
 	// Get
-	get: function(request, render) {
+	render: function(request, render) {
 		let user = request.user;
-		
+
 		// Render the page
 		render({
 			user,
@@ -17,13 +17,13 @@ module.exports = {
 			}
 		});
 	},
-	
+
 	// Post: Save to database
 	post: function(request, render) {
 		this[request.body.function](request);
 		render();
 	},
-	
+
 	// Save language
 	saveLanguage: function(request) {
 		let user = request.user;

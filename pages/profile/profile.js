@@ -19,25 +19,25 @@ module.exports = {
 	nationalities: loadFileAsArray("data/nationalities.txt"),
 	cities: loadFileAsArray("data/cities.txt"),
 	countries: loadFileAsArray("data/countries.txt"),
-	
+
 	// Get
-	get: function(request, render) {
+	render: function(request, render) {
 		let user = request.user;
 		let __ = request.__;
-		
+
 		if(typeof user === "undefined") {
 			render();
 			return;
 		}
-		
+
 		user.financialSupportPerMonth.total = sumOfValues(user.financialSupportPerMonth);
-		
+
 		let selection = function(options) {
 			let choose = {};
 			choose[""] = __("pleaseChoose");
 			return Object.assign(choose, options);
 		};
-		
+
 		render({
 			user: user,
 			displayName: user.givenName + " " + user.familyName,
@@ -58,22 +58,22 @@ module.exports = {
 			courseOptions: selection(__("options.course"))
 		});
 	},
-	
+
 	// Post: Save to database
 	post: function(request, render) {
 		render(this[request.body.function](request, render));
 	},
-	
+
 	// Save profile
 	saveProfile: function(request, render) {
 		let user = request.user;
 		let key = request.body.key;
-		
+
 		if(request.body.dataType === "numeric")
 			user[key] = parseInt(request.body.value);
 		else
 			user[key] = request.body.value;
-		
+
 		// Capitalize
 		[
 			"givenName",
@@ -84,21 +84,21 @@ module.exports = {
 			if(user[field])
 				user[field] = S(user[field]).capitalize().s;
 		});
-		
+
 		// Country
 		user.country = user.country.trim();
-		
+
 		if(americaSynonyms.indexOf(user.country) !== -1)
 			user.country = "United States";
-		
+
 		//user.applicationDate = null;
 		saveUserInDB(user);
-		
+
 		// Render normally
 		request.user = user;
 		this.get(request, render);
 	},
-	
+
 	// Save array element
 	saveArrayElement: function(request, render) {
 		let user = request.user;
@@ -106,52 +106,52 @@ module.exports = {
 		let arrayName = request.body.array;
 		let index = request.body.index;
 		let key = request.body.key;
-		
+
 		// Trim
 		value = value.trim();
-		
+
 		// Capitalize all parts
 		if(["name", "occupation"].indexOf(key) !== -1) {
 			value = value.split(" ").map(function(part) {
 				return S(part).capitalize().s;
 			}).join(" ");
 		}
-		
+
 		// Capitalize beginning only
 		if(["relation", "nationality"].indexOf(key) !== -1)
 			value = S(value).capitalize().s;
-		
+
 		if(request.body.dataType === "numeric")
 			user[arrayName][index][key] = parseInt(value);
 		else
 			user[arrayName][index][key] = value;
-		
+
 		saveUserInDB(user);
-		
+
 		// Render normally
 		request.user = user;
 		this.get(request, render);
 	},
-	
+
 	// Save object
 	saveObject: function(request, render) {
 		let user = request.user;
 		let value = request.body.value;
 		let object = request.body.object;
 		let key = request.body.key;
-		
+
 		if(request.body.dataType === "numeric")
 			user[object][key] = parseInt(value);
 		else
 			user[object][key] = value;
-		
+
 		saveUserInDB(user);
-		
+
 		// Render normally
 		request.user = user;
 		this.get(request, render);
 	},
-	
+
 	// Add family member
 	addFamilyMember: function(request, render) {
 		dbArray.add(this, request, render, "familyMembers", {
@@ -163,12 +163,12 @@ module.exports = {
 			country: ""
 		});
 	},
-	
+
 	// Remove family member
 	removeFamilyMember: function(request, render) {
 		dbArray.remove(this, request, render, "familyMembers");
 	},
-	
+
 	// Add education background
 	addEducationBackground: function(request, render) {
 		dbArray.add(this, request, render, "japaneseEducation", {
@@ -177,12 +177,12 @@ module.exports = {
 			textBook: ""
 		});
 	},
-	
+
 	// Remove education background
 	removeEducationBackground: function(request, render) {
 		dbArray.remove(this, request, render, "japaneseEducation");
 	},
-	
+
 	// Add financial supporter
 	addFinancialSupporter: function(request, render) {
 		dbArray.add(this, request, render, "financialSupporters", {
@@ -196,7 +196,7 @@ module.exports = {
 			relation: ""
 		});
 	},
-	
+
 	// Remove financial supporter
 	removeFinancialSupporter: function(request, render) {
 		dbArray.remove(this, request, render, "financialSupporters");
