@@ -5,13 +5,13 @@ module.exports = {
 		let user = request.user;
 
 		// Logged in?
-		if (typeof user === "undefined") {
+		if(typeof user === "undefined") {
 			render();
 			return;
 		}
 
 		// Access level check
-		if (user.accessLevel !== "admin" && user.accessLevel !== "staff") {
+		if(user.accessLevel !== "admin" && user.accessLevel !== "staff") {
 			render();
 			return;
 		}

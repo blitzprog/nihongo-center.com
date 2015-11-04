@@ -15,7 +15,7 @@ var updateContent = function(page, response) {
 
 // Add
 var add = function(page, type) {
-	$.post("/raw/" + page, {
+	$.post("/_/" + page, {
 		function: "add" + type
 	}, function(response) {
 		updateContent(page, response);
@@ -24,7 +24,7 @@ var add = function(page, type) {
 
 // Remove
 var remove = function(page, type, index) {
-	$.post("/raw/" + page, {
+	$.post("/_/" + page, {
 		function: "remove" + type,
 		index: index
 	}, function(response) {

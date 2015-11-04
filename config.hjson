@@ -1,0 +1,20 @@
+{
+	siteName: My Nihongo Center
+	scripts: [
+		init
+	]
+	styles: [
+		base
+		loading
+	]
+	static: [
+		images
+		uploads
+		bootstrap
+	]
+	plugins: {
+		jquery: {}
+		kaze: {}
+	}
+	port: 3002
+}

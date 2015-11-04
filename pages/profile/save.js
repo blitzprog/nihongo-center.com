@@ -8,13 +8,13 @@ var save = function() {
 	var key = $this.attr("name");
 	var value = $this.val();
 	var dataType = "text";
-	
+
 	if($this.hasClass("number-input")) {
 		value = parseInt(value);
 		dataType = "numeric";
 	}
-	
-	$.post("/raw/" + page, {
+
+	$.post("/_/" + page, {
 		function: "saveProfile",
 		key: key,
 		value: value,
@@ -33,13 +33,13 @@ var saveArrayElement = function() {
 	var key = $this.data("key");
 	var value = $this.val();
 	var dataType = "text";
-	
+
 	if($this.hasClass("array-number-input")) {
 		value = parseInt(value);
 		dataType = "numeric";
 	}
-	
-	$.post("/raw/" + page, {
+
+	$.post("/_/" + page, {
 		function: "saveArrayElement",
 		array: array,
 		index: index,
@@ -59,13 +59,13 @@ var saveObject = function() {
 	var key = $this.data("key");
 	var value = $this.val();
 	var dataType = "text";
-	
+
 	if($this.hasClass("object-number-input")) {
 		value = parseInt(value);
 		dataType = "numeric";
 	}
-	
-	$.post("/raw/" + page, {
+
+	$.post("/_/" + page, {
 		function: "saveObject",
 		object: object,
 		key: key,
@@ -79,7 +79,7 @@ var saveObject = function() {
 // On content loaded
 var onContentLoaded = function() {
 	document.removeEventListener("DOMContentLoaded", onContentLoaded);
-	
+
 	$("select").change(save);
 	$(".text-input").change(save);
 	$(".date-input").blur(save);

@@ -3,8 +3,8 @@
 
 function saveStage(email, stageName) {
 	console.log(email, stageName);
-	
-	$.post("/raw/students/" + email, {
+
+	$.post("/_/students/" + email, {
 		function: "saveStage",
 		email: email,
 		stageName: stageName

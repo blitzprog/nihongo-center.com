@@ -8,8 +8,8 @@ module.exports = {
 	// Get
 	render: function(request, render) {
 		let user = request.user;
-		let year = parseInt(request.params.year);
-		let month = parseInt(request.params.month);
+		let year = parseInt(request.params[0]);
+		let month = parseInt(request.params[1]);
 
 		riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
 			if(err)

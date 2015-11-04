@@ -4,8 +4,8 @@
 // Save language
 var saveLanguage = function(languageCode) {
 	var page = "settings";
-	
-	$.post("/raw/" + page, {
+
+	$.post("/_/" + page, {
 		function: "saveLanguage",
 		languageCode: languageCode
 	}, function(response) {

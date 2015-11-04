@@ -3,32 +3,32 @@ var oldAjaxRequest = null;
 
 function search(e) {
 	var term = $("#search").val();
-	
+
 	// Don't repeat the same search
 	if(term === oldTerm)
 		return;
-	
+
 	oldTerm = term;
-	
+
 	if(oldAjaxRequest !== null)
 		oldAjaxRequest.abort();
-	
+
 	var queryUrl = "";
-	
+
 	if(!term)
 		term = "*";
-	
+
 	var $searchResult = $("#searchResult");
 	$searchResult.html("<div style='text-align: center; width: 100%'><img src='/images/loading.svg' alt='Searching...'></div>");
-	
-	oldAjaxRequest = $.get("/raw/students/search/" + term, function(data) {
+
+	oldAjaxRequest = $.get("/_/students/search/" + term, function(data) {
 		$searchResult.html(data);
 	});
 }
 
 var onReady = function() {
 	document.removeEventListener("DOMContentLoaded", onReady, false);
-	
+
 	// Show initial student list
 	search();
 };

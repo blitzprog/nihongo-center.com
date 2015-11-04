@@ -22,7 +22,7 @@ let searchProperties = {
 module.exports = {
 	render: function(request, render) {
 		let user = request.user;
-		let term = request.params.keyword;
+		let term = request.params[0];
 
 		if(!term)
 			term = "*";
@@ -75,7 +75,7 @@ module.exports = {
 				}
 
 				student.age = age.of(student);
-				student.permaLink = "/students/" + student.email;
+				student.permaLink = "/student/" + student.email;
 				student.profileCompleted = getStudentProgress(student);
 
 				if(student.country) {
