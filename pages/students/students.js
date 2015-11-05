@@ -1,22 +1,22 @@
 "use strict";
 
 module.exports = {
-	render: function(request, render) {
+	get: function(request, response) {
 		let user = request.user;
 
 		// Logged in?
 		if(typeof user === "undefined") {
-			render();
+			response.render();
 			return;
 		}
 
 		// Access level check
 		if(user.accessLevel !== "admin" && user.accessLevel !== "staff") {
-			render();
+			response.render();
 			return;
 		}
 
-		render({
+		response.render({
 			user: user
 		});
 	}

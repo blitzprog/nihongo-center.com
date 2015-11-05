@@ -6,7 +6,7 @@ let fs = require("fs");
 
 module.exports = {
 	// Get
-	render: function(request, render) {
+	get: function(request, response) {
 		let user = request.user;
 		let __ = request.__;
 
@@ -22,17 +22,17 @@ module.exports = {
 		};
 
 		// Render the page
-		render({
+		response.render({
 			user: user,
 			fileTypes: fileTypes
 		});
 	},
 
 	// Post
-	post: function(request, render) {
+	post: function(request, response) {
 		// Delete requests
 		if(typeof request.body.function !== "undefined") {
-			render(this[request.body.function](request, render));
+			this[request.body.function](request, response);
 			return;
 		}
 
@@ -47,12 +47,12 @@ module.exports = {
 			saveUserInDB(request.user);
 		}
 
-		this.get(request, render);
+		this.get(request, response);
 	},
 
 	// Remove upload
-	removeUpload: function(request, render) {
-		var removedFile = dbArray.remove(this, request, render, "uploads");
+	removeUpload: function(request, response) {
+		var removedFile = dbArray.remove(this, request, response, "uploads");
 		fs.unlink(removedFile.path, function() {
 			console.log("Deleted uploaded file: " + removedFile.path);
 		});

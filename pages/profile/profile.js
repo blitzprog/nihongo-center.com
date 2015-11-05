@@ -15,18 +15,23 @@ let loadFileAsArray = function(filePath) {
 };
 
 module.exports = {
-	// List of nationalities
-	nationalities: loadFileAsArray("data/nationalities.txt"),
-	cities: loadFileAsArray("data/cities.txt"),
-	countries: loadFileAsArray("data/countries.txt"),
+	init: function() {
+		this.nationalities = loadFileAsArray("data/nationalities.txt")
+		this.cities = loadFileAsArray("data/cities.txt")
+		this.countries = loadFileAsArray("data/countries.txt")
+
+		console.log("Loaded nationalities:", this.nationalities.length)
+		console.log("Loaded cities:", this.cities.length)
+		console.log("Loaded countries:", this.countries.length)
+	},
 
 	// Get
-	render: function(request, render) {
+	get: function(request, response) {
 		let user = request.user;
 		let __ = request.__;
 
 		if(typeof user === "undefined") {
-			render();
+			response.render();
 			return;
 		}
 
@@ -38,7 +43,7 @@ module.exports = {
 			return Object.assign(choose, options);
 		};
 
-		render({
+		response.render({
 			user: user,
 			displayName: user.givenName + " " + user.familyName,
 			age: age.of(user),
@@ -60,12 +65,12 @@ module.exports = {
 	},
 
 	// Post: Save to database
-	post: function(request, render) {
-		render(this[request.body.function](request, render));
+	post: function(request, response) {
+		this[request.body.function](request, response);
 	},
 
 	// Save profile
-	saveProfile: function(request, render) {
+	saveProfile: function(request, response) {
 		let user = request.user;
 		let key = request.body.key;
 
@@ -96,11 +101,11 @@ module.exports = {
 
 		// Render normally
 		request.user = user;
-		this.get(request, render);
+		this.get(request, response);
 	},
 
 	// Save array element
-	saveArrayElement: function(request, render) {
+	saveArrayElement: function(request, response) {
 		let user = request.user;
 		let value = request.body.value;
 		let arrayName = request.body.array;
@@ -130,11 +135,11 @@ module.exports = {
 
 		// Render normally
 		request.user = user;
-		this.get(request, render);
+		this.get(request, response);
 	},
 
 	// Save object
-	saveObject: function(request, render) {
+	saveObject: function(request, response) {
 		let user = request.user;
 		let value = request.body.value;
 		let object = request.body.object;
@@ -149,12 +154,12 @@ module.exports = {
 
 		// Render normally
 		request.user = user;
-		this.get(request, render);
+		this.get(request, response);
 	},
 
 	// Add family member
-	addFamilyMember: function(request, render) {
-		dbArray.add(this, request, render, "familyMembers", {
+	addFamilyMember: function(request, response) {
+		dbArray.add(this, request, response, "familyMembers", {
 			name: "",
 			relation: "",
 			age: "",
@@ -165,13 +170,13 @@ module.exports = {
 	},
 
 	// Remove family member
-	removeFamilyMember: function(request, render) {
-		dbArray.remove(this, request, render, "familyMembers");
+	removeFamilyMember: function(request, response) {
+		dbArray.remove(this, request, response, "familyMembers");
 	},
 
 	// Add education background
-	addEducationBackground: function(request, render) {
-		dbArray.add(this, request, render, "japaneseEducation", {
+	addEducationBackground: function(request, response) {
+		dbArray.add(this, request, response, "japaneseEducation", {
 			institution: "",
 			totalHours: null,
 			textBook: ""
@@ -179,13 +184,13 @@ module.exports = {
 	},
 
 	// Remove education background
-	removeEducationBackground: function(request, render) {
-		dbArray.remove(this, request, render, "japaneseEducation");
+	removeEducationBackground: function(request, response) {
+		dbArray.remove(this, request, response, "japaneseEducation");
 	},
 
 	// Add financial supporter
-	addFinancialSupporter: function(request, render) {
-		dbArray.add(this, request, render, "financialSupporters", {
+	addFinancialSupporter: function(request, response) {
+		dbArray.add(this, request, response, "financialSupporters", {
 			name: "",
 			address: "",
 			telephone: "",
@@ -198,7 +203,7 @@ module.exports = {
 	},
 
 	// Remove financial supporter
-	removeFinancialSupporter: function(request, render) {
-		dbArray.remove(this, request, render, "financialSupporters");
+	removeFinancialSupporter: function(request, response) {
+		dbArray.remove(this, request, response, "financialSupporters");
 	}
 };

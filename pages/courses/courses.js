@@ -6,7 +6,7 @@ let mapPhase = new JavaScriptPhase("pages/search/map.js");
 
 module.exports = {
 	// Get
-	render: function(request, render) {
+	get: function(request, response) {
 		let user = request.user;
 
 		riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
@@ -36,7 +36,7 @@ module.exports = {
 			});
 
 			// Render the page
-			render({
+			response.render({
 				user,
 				courses
 			});

@@ -6,18 +6,18 @@ let JavaScriptPhase = require("../../modules/JavaScriptPhase");
 let mapPhase = new JavaScriptPhase("pages/staff/map.js");
 
 module.exports = {
-	render: function(request, render) {
+	get: function(request, response) {
 		let user = request.user;
 
 		// Logged in?
 		if(typeof user === "undefined") {
-			render();
+			response.render();
 			return;
 		}
 
 		// Access level check
 		if(user.accessLevel !== "admin" && user.accessLevel !== "staff") {
-			render();
+			response.render();
 			return;
 		}
 
@@ -30,7 +30,7 @@ module.exports = {
 				return member;
 			});
 
-			render({
+			response.render({
 				user: user,
 				staff: staff
 			});
@@ -38,16 +38,16 @@ module.exports = {
 	},
 
 	// Add staff member
-	post: function(request, render) {
+	post: function(request, response) {
 		Accounts.get(request.body.email, function(err, member) {
 			if(err) {
 				console.error(err);
-				render();
+				response.render();
 				return;
 			}
 
 			if(member.data.accessLevel === "admin") {
-				render();
+				response.render();
 				return;
 			}
 
@@ -59,7 +59,7 @@ module.exports = {
 				if(saveError)
 					console.error(saveError);
 
-				render();
+				response.render();
 			});
 		});
 	}

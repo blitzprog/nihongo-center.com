@@ -2,11 +2,11 @@
 
 module.exports = {
 	// Get
-	render: function(request, render) {
+	get: function(request, response) {
 		let user = request.user;
 
 		// Render the page
-		render({
+		response.render({
 			user
 		});
 	}

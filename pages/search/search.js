@@ -20,7 +20,7 @@ let searchProperties = {
 };
 
 module.exports = {
-	render: function(request, render) {
+	get: function(request, response) {
 		let user = request.user;
 		let term = request.params[0];
 
@@ -31,7 +31,7 @@ module.exports = {
 
 		// Logged in?
 		if(typeof user === "undefined") {
-			render();
+			response.render();
 			return;
 		}
 
@@ -108,7 +108,7 @@ module.exports = {
 			if(students.length > 40)
 				students.length = 40;
 
-			render({
+			response.render({
 				user: user,
 				students: students
 			});

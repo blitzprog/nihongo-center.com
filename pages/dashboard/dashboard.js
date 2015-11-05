@@ -10,12 +10,12 @@ let JavaScriptPhase = require("../../modules/JavaScriptPhase");
 let statisticsMapPhase = new JavaScriptPhase("pages/dashboard/statistics-map.js");
 
 module.exports = {
-	render: function(request, render) {
+	get: function(request, response) {
 		let user = request.user;
 		let __ = request.__;
 
 		if(typeof user === "undefined") {
-			render();
+			response.render();
 			return;
 		}
 
@@ -68,14 +68,14 @@ module.exports = {
 
 				statistics.script = countryToStudents + genderToStudents;
 
-				render({
+				response.render({
 					user,
 					statistics,
 					displayName: user.givenName
 				});
 			});
 		} else {
-			render({
+			response.render({
 				user,
 				displayName: user.givenName, //+ " " + user.familyName,
 				profileCompleted: progress,
@@ -90,12 +90,12 @@ module.exports = {
 			});
 		}
 	},
-	
+
 	// Save application date
-	post: function(request, render) {
+	post: function(request, response) {
 		request.user.applicationDate = (new Date()).toISOString();
 		saveUserInDB(request.user);
 
-		render();
+		this.get(request, response)
 	}
 };

@@ -25,13 +25,13 @@ let visaEasy = loadFileAsArray("data/visa-easy-countries.txt").reduce(function(d
 }, {});
 
 module.exports = {
-	render: function(request, render) {
+	get: function(request, response) {
 		let email = request.params[0];
 		let __ = request.__;
 
 		riak.bucket("Accounts").objects.get(email, function(err, obj) {
 			if(err) {
-				render();
+				response.render();
 				return;
 			}
 
@@ -113,7 +113,7 @@ module.exports = {
 				};
 			}
 
-			render({
+			response.render({
 				user: request.user,
 				country,
 				student,
@@ -160,18 +160,18 @@ module.exports = {
 	},
 
 	// Post: Save
-	post: function(request, render) {
-		render(this[request.body.function](request, render));
+	post: function(request, response) {
+		this[request.body.function](request, response);
 	},
 
 	// Save stage
-	saveStage: function(request, render) {
+	saveStage: function(request, response) {
 		let email = request.body.email;
 		let stageName = request.body.stageName;
 
 		riak.bucket("Accounts").objects.get(email, function(err, obj) {
 			if(err) {
-				render();
+				response.render();
 				return;
 			}
 
@@ -180,6 +180,8 @@ module.exports = {
 
 			// Save in DB
 			saveUserInDB(student);
+
+			response.end()
 		});
 	}
 };

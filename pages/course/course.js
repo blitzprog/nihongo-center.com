@@ -6,7 +6,7 @@ let mapPhase = new JavaScriptPhase("pages/search/map.js");
 
 module.exports = {
 	// Get
-	render: function(request, render) {
+	get: function(request, response) {
 		let user = request.user;
 		let year = parseInt(request.params[0]);
 		let month = parseInt(request.params[1]);
@@ -32,7 +32,7 @@ module.exports = {
 			});
 
 			// Render the page
-			render({
+			response.render({
 				user,
 				year,
 				month,
