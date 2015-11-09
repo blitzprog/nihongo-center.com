@@ -66,6 +66,12 @@ module.exports = {
 
 	// Post: Save to database
 	post: function(request, response) {
+		if(!request.body.function) {
+			response.writeHead(400)
+			response.end();
+			return
+		}
+
 		this[request.body.function](request, response);
 	},
 

@@ -64,5 +64,9 @@ aero.use(function(request, response, next) {
 	next()
 })
 
+aero.use(require('body-parser').urlencoded({
+	extended: false
+}))
+
 // Start Aero
 aero.run();

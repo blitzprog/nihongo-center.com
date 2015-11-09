@@ -3,7 +3,7 @@ function sendApplication(email, name) {
 
 	$.post("https://hooks.slack.com/services/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", {
 		payload: JSON.stringify({
-			text: "<" + host + "/students/" + email + "|" + name + ">"
+			text: "<" + host + "/student/" + email + "|" + name + ">"
 		})
 	}, function(response) {
 		$.post("/_/", {

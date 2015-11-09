@@ -4,7 +4,7 @@
 function saveStage(email, stageName) {
 	console.log(email, stageName);
 
-	$.post("/_/students/" + email, {
+	$.post("/_/student/" + email, {
 		function: "saveStage",
 		email: email,
 		stageName: stageName

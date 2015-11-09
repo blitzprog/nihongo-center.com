@@ -11,7 +11,7 @@ module.exports = function(aero) {
 	const megaByte = 1024 * kiloByte;
 
 	let storage = multer.diskStorage({
-		destination: "./uploads/",
+		destination: "./upload/",
 		filename: function(req, file, cb) {
 			crypto.pseudoRandomBytes(16, function(err, raw) {
 				if(err)

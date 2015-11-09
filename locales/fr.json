@@ -79,7 +79,7 @@
 	"link": "Lien",
 	"delete": "Supprimer",
 	"stagesTitle": "Stages",
-	"pleaseChoose": "Choisissez:",
+	"pleaseChoose": "Please choose:",
 	"other": "Autre",
 	"settings": "Paramètres",
 	"language": "Langue",
@@ -101,7 +101,6 @@
 	"financialSupportTotalAmount": "Total amount: %s Yen per month.",
 	"pleaseBringAtLeast": "Please bring at least %s Yen per month.",
 	"applicationFees": "Application fees",
-	"pleaseChoose": "Please choose:",
 	"details": "Details",
 	"tooltip": {
 		"educationalInstitutionName": "Nom de l'école ou de l'université",
@@ -192,7 +191,8 @@
 		"9": "Septembre",
 		"10": "October",
 		"11": "Novembre",
-		"12": "Décembre"
+		"12": "Décembre",
+		"NaN": "monthNames.NaN"
 	},
 	"error": {
 		"notLoggedIn": "Vous n'êtes pas connecté!",

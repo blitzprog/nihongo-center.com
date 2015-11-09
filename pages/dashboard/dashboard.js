@@ -93,6 +93,12 @@ module.exports = {
 
 	// Save application date
 	post: function(request, response) {
+		if(!request.user) {
+			response.writeHead(400)
+			response.end();
+			return
+		}
+
 		request.user.applicationDate = (new Date()).toISOString();
 		saveUserInDB(request.user);
 

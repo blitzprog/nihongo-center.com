@@ -24,4 +24,4 @@ else
 									if student.countryCode
 										img(src="https://nihongo-center.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/" + student.countryCode + ".png", title=student.country)
 									
-									a(href=`/students/${student.email}`)= student.givenName + " " + student.familyName
+									a(href=`/student/${student.email}`)= student.givenName + " " + student.familyName

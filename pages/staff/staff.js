@@ -26,7 +26,7 @@ module.exports = {
 				console.error(err);
 
 			let staff = results.data.map(function(member) {
-				member.permaLink = "/students/" + member.email;
+				member.permaLink = "/student/" + member.email;
 				return member;
 			});
 
