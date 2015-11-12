@@ -15,7 +15,8 @@
 		"object-assign": "*",
 		"country-data": "*",
 		"i18n": "*",
-		"mime-types": "*"
+		"mime-types": "*",
+		"body-parser": "*"
 	},
 	"author": {
 		"name": "Eduard Urbach",
