@@ -1,7 +1,8 @@
 {
 	"siteName": "My Nihongo Center",
 	"scripts": [
-		"init"
+		"init",
+		"analytics"
 	],
 	"styles": [
 		"base",
