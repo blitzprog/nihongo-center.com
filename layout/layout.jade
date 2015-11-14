@@ -3,7 +3,6 @@ html(lang="en")
 	head
 		title= siteName
 		meta(name="viewport", content="width=device-width, initial-scale=1")
-		link(rel="stylesheet", href="/bootstrap/css/bootstrap.min.css")
 		style!= css
 		
 		if user && (user.accessLevel === "admin" || user.accessLevel === "staff")
@@ -57,8 +56,9 @@ html(lang="en")
 					.cube1
 					.cube2
 				
-				script!= js
+				link(rel="stylesheet", href="/bootstrap/css/bootstrap.min.css")
 				script(src="/bootstrap/js/bootstrap.min.js")
+				script!= js
 	else
 		body
 			include ../pages/login/login.jade

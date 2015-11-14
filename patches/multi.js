@@ -14,13 +14,17 @@ riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
 	let students = results.data;
 
 	students.forEach(function(student) {
-		student.uploads.forEach(function(upload) {
-			upload.destination = upload.destination.replace("uploads/", "upload/")
-			upload.path = upload.path.replace("uploads/", "upload/")
-		})
+		if(student.language === 'fr' || student.country === 'France' || student.applicationDate !== null)
+			return;
+		/*student.uploads.forEach(function(upload) {
+			if(upload.destination)
+				upload.destination = upload.destination.replace("uploads/", "upload/");
+			if(upload.path)
+				upload.path = upload.path.replace("uploads/", "upload/");
+		})*/
 
 		console.log(student.email);
-		saveUserInDB(student);
+		//saveUserInDB(student);
 
 		/*if(americaSynonyms.indexOf(student.country) !== -1) {
 			console.log(student.email);
