@@ -267,7 +267,8 @@
 		},
 		"paymentMethod": {
 			"payPal": "PayPal",
-			"bankTransfer": "Bank transfer"
+			"bankTransfer": "Bank transfer",
+			"creditCard": "Credit card"
 		},
 		"jlptLevel": {
 			"none": "I have not taken the JLPT yet.",
