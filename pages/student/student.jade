@@ -173,6 +173,12 @@ else
 								li.list-group-item
 									span= member.name
 									span.label.label-info(style="float: right")= member.relation
+									
+									.small(style="margin-top: 1em")
+										div= "Age: " + member.age
+										div= "Country: " + member.country
+										div= "Nationality: " + member.nationality
+										div= "Occupation: " + member.occupation
 			
 			//- Financial supporters
 			.panel.panel-default
@@ -185,7 +191,16 @@ else
 					else
 						ul.list-group
 							each member in student.financialSupporters
-								li.list-group-item= member.name
+								li.list-group-item
+									span= member.name
+									span.label.label-info(style="float: right")= member.relation
+									
+									.small(style="margin-top: 1em")
+										div= "Telephone: " + member.telephone
+										div= "Company: " + member.company
+										div= "Company tel.: " + member.companyTelephone
+										div= "Occupation: " + member.occupation
+										div= "Annual income: " + member.annualIncome
 			
 			//- Japanese education
 			.panel.panel-default
