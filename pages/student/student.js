@@ -153,7 +153,8 @@ module.exports = {
 					"financialSupportPerMonth": true,
 					"stage": true,
 					"reasonForStudying": true,
-					"accessLevel": true
+					"accessLevel": true,
+					"displayName": true
 				}
 			});
 		});
