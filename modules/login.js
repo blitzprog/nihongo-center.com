@@ -5,7 +5,8 @@ let
 	session = require("express-session"),
 	merge = require("object-assign"),
 	userData = require("./user-data"),
-	availableLanguages = require("./languages");
+	availableLanguages = require("./languages"),
+	request = require("request");
 
 // Database
 let riak = require("nodiak").getClient();
@@ -16,6 +17,23 @@ let FacebookStrategy = require("passport-facebook").Strategy;
 
 // Admins
 let adminMails = ["e.urbach@gmail.com"];
+
+let sendRegistrationMessageToSlack = function(student) {
+	let host = "http://my.nihongo-center.com";
+	let webhook = "https://hooks.slack.com/services/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";
+
+	request.post({
+		url: webhook,
+		body: JSON.stringify({
+			text: "<" + host + "/student/" + student.email + "|" + student.givenName + " " + student.familyName + ">"
+		}), function(err, res, body) {
+			if(err)
+				console.error(err)
+			else
+				console.log('Sent slack message.')
+		}
+	});
+};
 
 module.exports = function(aero, googleConfig, googleScopes, facebookConfig, facebookScopes) {
 	aero.on("server started", function() {
@@ -50,7 +68,12 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 							occupation: json.occupation
 						});
 
+						// Log
 						console.log("New user logged in: " + account.email);
+
+						// Send slack message
+						sendRegistrationMessageToSlack(account);
+
 						done(null, account);
 
 						return;
@@ -86,7 +109,12 @@ module.exports = function(aero, googleConfig, googleScopes, facebookConfig, face
 							language: json.locale
 						});
 
+						// Log
 						console.log("New user logged in: " + account.email);
+
+						// Send slack message
+						sendRegistrationMessageToSlack(account);
+
 						done(null, account);
 
 						return;
