@@ -34,17 +34,18 @@ else
 					p!= description
 			
 			//- Course
-			.panel.panel-default
-				.panel-heading: h2
-					span.glyphicon.glyphicon-calendar(style="margin-right: 0.25em")
-					span= __("course")
-				.panel-body
-					a.btn.btn-default(href="javascript:alert('Work in progress.')")= __("options.course." + student.course)
-					| 
-					a.btn.btn-default(href="javascript:alert('Work in progress.')")= __("monthNames." + parseInt(student.startMonth))
-					| 
-					a.btn.btn-default(href="javascript:alert('Work in progress.')")= student.startYear
-					a.btn.btn-default.ajax(style="float: right", href="/course/" + student.startYear + "/" + student.startMonth)= "View course"
+			if student.course && student.startYear && student.startMonth
+				.panel.panel-default
+					.panel-heading: h2
+						span.glyphicon.glyphicon-calendar(style="margin-right: 0.25em")
+						span= __("course")
+					.panel-body
+						a.btn.btn-default(href="javascript:alert('Work in progress.')")= __("options.course." + student.course)
+						| 
+						a.btn.btn-default(href="javascript:alert('Work in progress.')")= __("monthNames." + parseInt(student.startMonth))
+						| 
+						a.btn.btn-default(href="javascript:alert('Work in progress.')")= student.startYear
+						a.btn.btn-default.ajax(style="float: right", href="/course/" + student.startYear + "/" + student.startMonth)= "View course"
 			
 			//- Uploads
 			.panel.panel-default
