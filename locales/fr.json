@@ -2,7 +2,7 @@
 	"name": "Nom",
 	"address": "Adresse",
 	"telephone": "Téléphone",
-	"occupation": "Occupation",
+	"occupation": "Profession",
 	"companyName": "Nom de l'entreprise",
 	"companyTelephone": "Téléphone de l'entreprise",
 	"annualIncome": "Revenu annuel",
@@ -18,7 +18,7 @@
 	"maritalStatus": "Etat civil",
 	"birthDay": "Date de naissance",
 	"birthPlace": "Lieu de naissance",
-	"occupationType": "Type d'occupation",
+	"occupationType": "Type de profession",
 	"addressAbroad": "Adresse au Japon",
 	"telephoneAbroad": "Numéro de téléphone au Japon",
 	"course": "Cours",
@@ -78,8 +78,8 @@
 	"yourUploads": "Fichiers envoyés",
 	"link": "Lien",
 	"delete": "Supprimer",
-	"stagesTitle": "Stages",
-	"pleaseChoose": "Please choose:",
+	"stagesTitle": "Etapes",
+	"pleaseChoose": "Choisissez:",
 	"other": "Autre",
 	"settings": "Paramètres",
 	"language": "Langue",
@@ -97,10 +97,10 @@
 	"summary": "Résumé",
 	"financialSupportersTitle": "Supports financier",
 	"progress": "Progression",
-	"enterAverageAmountOfSupportPerMonthInYen": "Please enter the average amount of support per month in Yen (¥).",
-	"financialSupportTotalAmount": "Total amount: %s Yen per month.",
-	"pleaseBringAtLeast": "Please bring at least %s Yen per month.",
-	"applicationFees": "Application fees",
+	"enterAverageAmountOfSupportPerMonthInYen": "Entrez le montant moyen par mois en Yen (¥).",
+	"financialSupportTotalAmount": "Montant total: %s Yen par mois.",
+	"pleaseBringAtLeast": "Apportez au minimum %s Yen par mois.",
+	"applicationFees": "Frais d'inscription",
 	"details": "Details",
 	"tooltip": {
 		"educationalInstitutionName": "Nom de l'école ou de l'université",
@@ -123,7 +123,7 @@
 		"placementTest": "Test de placement",
 		"beginClasses": "Début des cours",
 		"declined": "Inscription refusée",
-		"canceled": "Application canceled"
+		"canceled": "Inscription annulée"
 	},
 	"greeting": {
 		"title": "Bienvenue, %s!",
@@ -151,7 +151,7 @@
 		"name": "Nom complet",
 		"relation": "Relation",
 		"age": "Âge",
-		"occupation": "Occupation",
+		"occupation": "Profession",
 		"nationality": "Nationalité",
 		"country": "Pays"
 	},
@@ -167,7 +167,7 @@
 		"name": "Nom",
 		"address": "Addresse",
 		"telephone": "Téléphone",
-		"occupation": "Occupation",
+		"occupation": "Profession",
 		"company": "Nom de l'entreprise",
 		"companyTelephone": "Téléphone de l'entreprise",
 		"annualIncome": "Revenu annuel",
@@ -191,8 +191,7 @@
 		"9": "Septembre",
 		"10": "October",
 		"11": "Novembre",
-		"12": "Décembre",
-		"NaN": "monthNames.NaN"
+		"12": "Décembre"
 	},
 	"error": {
 		"notLoggedIn": "Vous n'êtes pas connecté!",

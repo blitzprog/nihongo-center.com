@@ -11,6 +11,7 @@ else
 				th= __("mail")
 				th= __("country")
 				th= __("name")
+				th= __("progress")
 				th= __("course")
 				th= __("profile")
 				th= __("uploads")
@@ -25,8 +26,10 @@ else
 					if student.countryCode
 						//- "http://flags.fmcdn.net/data/flags/mini/"
 						img(src="https://nihongo-center.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/" + student.countryCode + ".png", title=student.country)
-				td.col-md-6
+				td.col-md-3
 					a(href=student.permaLink)= student.givenName + " " + student.familyName
+				td.col-md-3
+					p= __("stageList." + student.stage)
 				td.col-md-2
 					.form-group
 						input.form-control(type="month", value=student.startYear + "-" + student.startMonth, disabled)

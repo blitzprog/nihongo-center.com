@@ -17,6 +17,8 @@ else
 		h1
 			span.glyphicon.glyphicon-user(style="margin-right: 0.25em")
 			span= student.displayName
+			a(href="#country")
+				img(src="http://flags.fmcdn.net/data/flags/small/" + country.alpha2.toLowerCase() + ".png", style="float: right", height=48, alt=country.name, title=country.name)
 	
 	script
 		include save.js
@@ -30,6 +32,19 @@ else
 					span= __("summary")
 				.panel-body
 					p!= description
+			
+			//- Course
+			.panel.panel-default
+				.panel-heading: h2
+					span.glyphicon.glyphicon-calendar(style="margin-right: 0.25em")
+					span= __("course")
+				.panel-body
+					a.btn.btn-default(href="javascript:alert('Work in progress.')")= __("options.course." + student.course)
+					| 
+					a.btn.btn-default(href="javascript:alert('Work in progress.')")= __("monthNames." + student.startMonth)
+					| 
+					a.btn.btn-default(href="javascript:alert('Work in progress.')")= student.startYear
+					a.btn.btn-default.ajax(style="float: right", href="/course/" + student.startYear + "/" + student.startMonth)= "View course"
 			
 			//- Uploads
 			.panel.panel-default
@@ -80,9 +95,44 @@ else
 								+display(key)
 			
 		.col-sm-4
+			- var currentStageReached = false;
+			
+			mixin stage(title, stageName)
+				- var saveStage = `javascript:saveStage('${student.email}', '${stageName}');`;
+				if student.stage === stageName
+					a.list-group-item.list-group-item-danger
+						.glyphicon.glyphicon-refresh(style="margin-right: 0.35em")
+						span(title="Current stage")= title
+					- currentStageReached = true
+				else if currentStageReached || student.stage === "declined" || student.stage === "canceled"
+					a.list-group-item.stage-link(href=saveStage)
+						.glyphicon.glyphicon-menu-right(style="margin-right: 0.35em")
+						span= title
+				else
+					a.list-group-item.list-group-item-success.stage-link(href=saveStage)
+						.glyphicon.glyphicon-ok(style="margin-right: 0.35em")
+						span(title="Finished stage")= title
+			
+			//- Stage
+			.panel.panel-default
+				.panel-heading: h2
+					span.glyphicon.glyphicon-list(style="margin-right: 0.25em")
+					span= __("progress")
+				.panel-body
+					.list-group
+						each stage, index in __("stageList")
+							if (index !== "declined" && index !== "canceled")
+								+stage(stage, index)
+					
+					.list-group
+						+stage(__("stageList.canceled"), "canceled")
+					
+					.list-group
+						+stage(__("stageList.declined"), "declined")
+			
 			//- Country
 			if country
-				.panel.panel-default
+				#country.panel.panel-default
 					.panel-heading: h2
 						span.glyphicon.glyphicon-globe(style="margin-right: 0.25em")
 						span= country.name
@@ -106,43 +156,6 @@ else
 							each language in country.languages
 								li.list-group-item= language
 			
-			- var currentStageReached = false;
-			
-			mixin stage(title, stageName)
-				- var saveStage = `javascript:saveStage('${student.email}', '${stageName}');`;
-				if student.stage === stageName
-					li.list-group-item
-						.glyphicon.glyphicon-refresh(style="margin-right: 0.25em")
-						span= title
-					- currentStageReached = true
-				else if currentStageReached || student.stage === "declined" || student.stage === "canceled"
-					li.list-group-item
-						a.stage-link(href=saveStage)
-							.glyphicon.glyphicon-asterisk(style="margin-right: 0.25em")
-							span= title
-				else
-					li.list-group-item.list-group-item-success
-						a.stage-link(href=saveStage)
-							.glyphicon.glyphicon-ok(style="margin-right: 0.25em")
-							span= title
-			
-			//- Stage
-			.panel.panel-default
-				.panel-heading: h2
-					span.glyphicon.glyphicon-list(style="margin-right: 0.25em")
-					span= __("progress")
-				.panel-body
-					ul.list-group
-						each stage, index in __("stageList")
-							if (index !== "declined" && index !== "canceled")
-								+stage(stage, index)
-					
-					ul.list-group
-						+stage(__("stageList.canceled"), "canceled")
-					
-					ul.list-group
-						+stage(__("stageList.declined"), "declined")
-			
 			//- Money
 			.panel.panel-default
 				.panel-heading: h2
@@ -153,11 +166,19 @@ else
 					ul.list-group
 						each key in Object.keys(student.financialSupportPerMonth)
 							li.list-group-item
+								- var cssClass = "";
 								if key != "total"
 									span= __(`financialSupportPerMonth.${key}`)
+									- cssClass = "label-default"
 								else
 									span &nbsp;
-								span.label.label-default(style="float: right")= student.financialSupportPerMonth[key] + " ¥"
+									
+									if parseInt(student.financialSupportPerMonth.total) < 80000
+										- cssClass = "label-danger"
+									else
+										- cssClass = "label-primary"
+								
+								span(class="label " + cssClass, style="float: right")= student.financialSupportPerMonth[key] + " ¥"
 			
 			//- Family
 			.panel.panel-default
