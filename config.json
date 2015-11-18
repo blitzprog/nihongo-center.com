@@ -15,7 +15,8 @@
 		"bootstrap"
 	],
 	"plugins": {
-		"jquery": {}
+		"jquery": {},
+		"kaze": {}
 	},
 	"port": 3002
 }
