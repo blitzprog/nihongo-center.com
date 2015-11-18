@@ -135,14 +135,11 @@ else
 							p= __("contactSoon")
 					else if readyToApply
 						.text-center
-							button.btn.btn-primary(onclick="sendApplication('" + user.email + "', '" + user.givenName + " " + user.familyName + "');")
+							button.btn.btn-primary(onclick="window.sendApplication('" + user.email + "', '" + user.givenName + " " + user.familyName + "');")
 								.glyphicon.glyphicon-thumbs-up
 								span(style="margin-left: 0.4em")= __("sendApplication")
 							p
 							p= __("thankYouForPreparing")
-							
-							script
-								include send-application.js
 					else
 						.text-center
 							button.btn.btn-disabled(onclick=`alert("${__("sendApplicationRequirements")}");`)

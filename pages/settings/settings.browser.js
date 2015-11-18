@@ -1,8 +1,8 @@
 /*eslint-env browser, jquery */
-/*global aero*/
+/*global kaze*/
 
 // Save language
-var saveLanguage = function(languageCode) {
+window.saveLanguage = function(languageCode) {
 	var page = "settings";
 
 	$.post("/_/" + page, {

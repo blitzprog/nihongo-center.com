@@ -2,7 +2,7 @@
 var updateContent = function(page, response) {
 	var focusedElementId = $(document.activeElement).attr("id");
 
-	kaze.$content.html(response);
+	$(kaze.content).html(response);
 	kaze.emit('DOMContentLoaded');
 
 	// Re-focus previously selected element

@@ -1,4 +1,4 @@
-function addStaffMember() {
+window.addStaffMember = function() {
 	var $email = $("#email");
 	var email = $email.val();
 
