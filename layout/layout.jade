@@ -27,7 +27,11 @@ html(lang="en")
 							
 							mixin navElement(page)
 								li
-									a.navigation-link.ajax(href=`/${page.url}`)
+									- var cssClass = "ajax"
+									if page.url === "settings" || page.url === "staff"
+										- cssClass = ""
+									
+									a(class="navigation-link " + cssClass, href=`/${page.url}`)
 										- var menuTitle = __(page.id)
 										if page.icon
 											.navigation-button
@@ -49,9 +53,9 @@ html(lang="en")
 												span(style="margin-left: 0.4em")= __("logout")
 			
 				#content-container.container
-					section#content.fade!= content
+					#content.kaze-fade!= content
 				
-				#loading-animation.spinner
+				#loading-animation.spinner.kaze-fade
 					.cube1
 					.cube2
 				
