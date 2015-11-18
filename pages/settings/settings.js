@@ -34,6 +34,6 @@ module.exports = {
 		let user = request.user;
 		user.language = request.body.languageCode;
 		saveUserInDB(user);
-		this.get(request, response)
+		response.end();
 	}
 };
