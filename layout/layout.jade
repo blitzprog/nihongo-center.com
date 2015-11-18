@@ -27,11 +27,7 @@ html(lang="en")
 							
 							mixin navElement(page)
 								li
-									- var cssClass = "ajax"
-									if page.url === "settings" || page.url === "staff"
-										- cssClass = ""
-									
-									a(class="navigation-link " + cssClass, href=`/${page.url}`)
+									a.navigation-link.ajax(href=`/${page.url}`)
 										- var menuTitle = __(page.id)
 										if page.icon
 											.navigation-button
