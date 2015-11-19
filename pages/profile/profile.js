@@ -6,8 +6,9 @@ let saveUserInDB = require("../../modules/save-user");
 let age = require("../../modules/age");
 let dbArray = require("../../modules/db-array");
 let sumOfValues = require("../../modules/sumOfValues");
+let getCountry = require("../../modules/getCountry");
 
-let americaSynonyms = ["America", "U.S.A", "U.S.A.", "USA"];
+let americaSynonyms = ["America", "U.S.A", "U.S.A.", "USA", "United States of America"];
 
 // Load file as array
 let loadFileAsArray = function(filePath) {
@@ -36,12 +37,23 @@ module.exports = {
 		}
 
 		user.financialSupportPerMonth.total = sumOfValues(user.financialSupportPerMonth);
+		let country = getCountry(user.country);
 
 		let selection = function(options) {
 			let choose = {};
 			choose[""] = __("pleaseChoose");
 			return Object.assign(choose, options);
 		};
+
+		let courseOptions = __("options.course")
+
+		if(country && !country.visaEasy) {
+			// This way of copying will preserve the order, unlike Object.assign
+			let copy = {}
+			let keys = Object.keys(courseOptions).filter(course => course != "10 weeks")
+			keys.forEach(key => copy[key] = courseOptions[key])
+			courseOptions = copy
+		}
 
 		response.render({
 			user: user,
@@ -50,17 +62,18 @@ module.exports = {
 			nationalities: this.nationalities,
 			cities: this.cities,
 			countries: this.countries,
+			country: country,
 			genderOptions: selection(__("options.gender")),
 			maritalStatusOptions: selection(__("options.maritalStatus")),
 			occupationTypeOptions: selection(__("options.occupationType")),
 			startYearOptions: selection(require("./options/startYear")()),
-			startMonthOptions: selection(require("./options/startMonth")(__)),
+			startMonthOptions: selection(require("./options/startMonth")(__, user.startYear)),
 			portsOfEntry: selection(__("options.portOfEntry")),
 			educationOptions: selection(__("options.education")),
 			planAfterGraduationOptions: selection(__("options.planAfterGraduation")),
 			jlptLevels: selection(__("options.jlptLevel")),
 			paymentMethods: selection(__("options.paymentMethod")),
-			courseOptions: selection(__("options.course"))
+			courseOptions: selection(courseOptions)
 		});
 	},
 

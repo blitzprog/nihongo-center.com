@@ -191,8 +191,7 @@
 		"9": "September",
 		"10": "October",
 		"11": "November",
-		"12": "December",
-		"NaN": "monthNames.NaN"
+		"12": "December"
 	},
 	"error": {
 		"notLoggedIn": "Not logged in!",
@@ -207,7 +206,9 @@
 		"noFinancialSupporters": "The student did not add any financial supporters yet!",
 		"noFamilyMembers": "The student did not add any family members yet!",
 		"noReasonForStudying": "The student did not write down the reason for studying yet!",
-		"noJapaneseEducationOrJLPT": "The student did not study Japanese and did not take the JLPT yet."
+		"noJapaneseEducationOrJLPT": "The student did not study Japanese and did not take the JLPT yet.",
+		"weCantProvideVisa": "For long courses starting in January and June we can't provide a visa.",
+		"identifyCountry": "Couldn't identify country: '%s'"
 	},
 	"options": {
 		"course": {

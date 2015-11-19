@@ -27,11 +27,17 @@ else
 			+text("age", age, "", "", true)
 		
 		.page-header
-			h2= __("country")
+			h2
+				span= __("country")
+				if country
+					img(src="http://flags.fmcdn.net/data/flags/small/" + country.alpha2.toLowerCase() + ".png", style="float: right", height=48, alt=country.name, title=country.name)
 		
 		.profile
 			+text("country", user.country, "", "countries")
 			+text("nationality", user.nationality, "", "nationalities")
+			
+		if user.country && !country
+			.alert.alert-danger= __("error.identifyCountry", user.country)
 		
 		.page-header
 			h2= __("work")
@@ -60,7 +66,10 @@ else
 		.profile
 			+select("startYear", user.startYear, startYearOptions)
 			+select("startMonth", user.startMonth, startMonthOptions)
-			
+		
+		if user.course && (user.startMonth === "01" || user.startMonth === "06") && ["6 months", "1 year", "1.5 years", "2 years"].indexOf(user.course) !== -1
+			.alert.alert-danger= __("error.weCantProvideVisa")
+		
 		.page-header
 			h2= __("education")
 		

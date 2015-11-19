@@ -206,7 +206,9 @@
 		"noFinancialSupporters": "Cet étudiant n'a pas encore ajouter de supports financier!",
 		"noFamilyMembers": "Cet étudiant n'a pas encore ajouter de membres de sa famille!",
 		"noReasonForStudying": "L'étudiant n'a pas encore écrit ses raisons concernant ses études!",
-		"noJapaneseEducationOrJLPT": "L'étudiant n'a pas encore étudier le japonais et n'a pas non plus de certificat du JLPT."
+		"noJapaneseEducationOrJLPT": "L'étudiant n'a pas encore étudier le japonais et n'a pas non plus de certificat du JLPT.",
+		"weCantProvideVisa": "Pour les programmes longs commençant en janvier et juin, nous ne pouvons fournir de visa.",
+		"identifyCountry": "Nous n'avons pas pu identifier le pays: '%s'"
 	},
 	"options": {
 		"course": {

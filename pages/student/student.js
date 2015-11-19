@@ -7,22 +7,7 @@ let riak = require("nodiak").getClient();
 let mimeTypes = require("mime-types");
 let saveUserInDB = require("../../modules/save-user");
 let sumOfValues = require("../../modules/sumOfValues");
-
-// Country data
-let countryData = require("country-data");
-let lookup = countryData.lookup;
-let currencies = countryData.currencies;
-let languages = countryData.languages;
-
-// Load file as array
-let loadFileAsArray = function(filePath) {
-	return fs.readFileSync(filePath, "utf8").toString().split("\n");
-};
-
-let visaEasy = loadFileAsArray("data/visa-easy-countries.txt").reduce(function(dict, value) {
-	dict[value] = null;
-	return dict;
-}, {});
+let getCountry = require("../../modules/getCountry");
 
 module.exports = {
 	get: function(request, response) {
@@ -82,29 +67,7 @@ module.exports = {
 			let country = null;
 
 			if(student.country) {
-				country = lookup.countries({name: student.country})[0];
-
-				if(country) {
-					country.currencies = country.currencies.map(function(currencyCode) {
-						let currency = currencies[currencyCode];
-
-						if(currency)
-							return `${currency.name} (${currencyCode})`;
-
-						return currencyCode;
-					});
-
-					country.languages = country.languages.map(function(languageCode) {
-						let language = languages[languageCode];
-
-						if(language)
-							return language.name;
-
-						return languageCode;
-					});
-
-					country.visaEasy = visaEasy[country.name] !== undefined;
-				}
+				country = getCountry(student.country);
 			}
 
 			if(student.uploads.length > 0) {

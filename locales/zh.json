@@ -206,7 +206,9 @@
 		"noFinancialSupporters": "此學生尚未填寫付款人資料！",
 		"noFamilyMembers": "此學生尚未填寫家庭成員！",
 		"noReasonForStudying": "此學生尚未填寫學習日文理由！",
-		"noJapaneseEducationOrJLPT": "此學生沒有學過日文也沒有考過JPTT測驗"
+		"noJapaneseEducationOrJLPT": "此學生沒有學過日文也沒有考過JPTT測驗",
+		"weCantProvideVisa": "For long courses starting in January and June we can't provide a visa.",
+		"identifyCountry": "Couldn't identify country: '%s'"
 	},
 	"options": {
 		"course": {
