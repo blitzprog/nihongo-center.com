@@ -17,8 +17,9 @@ else
 		h1
 			span.glyphicon.glyphicon-user(style="margin-right: 0.25em")
 			span= student.displayName
-			a(href="#country")
-				img(src="http://flags.fmcdn.net/data/flags/small/" + country.alpha2.toLowerCase() + ".png", style="float: right", height=48, alt=country.name, title=country.name)
+			if country
+				a(href="#country")
+					img(src="http://flags.fmcdn.net/data/flags/small/" + country.alpha2.toLowerCase() + ".png", style="float: right", height=48, alt=country.name, title=country.name)
 	
 	script
 		include save.js
