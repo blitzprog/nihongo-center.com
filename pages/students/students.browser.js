@@ -2,6 +2,16 @@ window.oldTerm = null;
 window.oldAjaxRequest = null;
 
 window.search = function(e) {
+	if(e !== 'force-search') {
+		if(!e)
+			e = window.event;
+
+		var keyCode = e.keyCode || e.which;
+
+		if(keyCode !== 13)
+			return;
+	}
+
 	var term = $("#search").val();
 
 	// Don't repeat the same search
@@ -26,4 +36,4 @@ window.search = function(e) {
 	});
 };
 
-window.search();
+window.search('force-search');
