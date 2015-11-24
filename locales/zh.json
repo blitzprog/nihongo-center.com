@@ -69,7 +69,7 @@
 	"sendApplication": "送出申請",
 	"sendApplicationRequirements": "當您完成個人檔案並上傳所需文件之後，即提出入學申請",
 	"thankYouForPreparing": "感謝您提供註冊所需要的文件，請點擊送出您的申請",
-	"onlyIfAvailable": "如果有的話",
+	"onlyIfAvailable": "如果有請填寫",
 	"inYen": "日幣 (¥)",
 	"monthlyAmountInYen": "月收入 (請以日幣¥填寫)",
 	"uploadNewFile": "上傳新檔案",
@@ -97,11 +97,12 @@
 	"summary": "總結",
 	"financialSupportersTitle": "付款人資料",
 	"progress": "Progress",
-	"enterAverageAmountOfSupportPerMonthInYen": "Please enter the average amount of support per month in Yen (¥).",
-	"financialSupportTotalAmount": "Total amount: %s Yen per month.",
-	"pleaseBringAtLeast": "Please bring at least %s Yen per month.",
-	"applicationFees": "Application fees",
-	"details": "Details",
+	"enterAverageAmountOfSupportPerMonthInYen": "請輸入每月平均預計費用(日幣)。",
+	"financialSupportTotalAmount": "每月平均金額: %s 日幣",
+	"pleaseBringAtLeast": "請每月至少攜帶 %s 日圓。",
+	"applicationFees": "申請費用",
+	"pleaseChoose": "請選擇:",
+	"details": "細節",
 	"tooltip": {
 		"educationalInstitutionName": "大學名稱",
 		"totalPeriodOfEducation": "於該校就讀幾年？",
@@ -123,7 +124,7 @@
 		"placementTest": "分班測驗",
 		"beginClasses": "課程開始",
 		"declined": "申請駁回",
-		"canceled": "Application canceled"
+		"canceled": "取消申請"
 	},
 	"greeting": {
 		"title": "歡迎您，%s!",
@@ -156,7 +157,7 @@
 		"country": "國家"
 	},
 	"financialSupportPerMonth": {
-		"self": "本人",
+		"self": "本身持有",
 		"remittanceFromOutside": "海外匯款",
 		"carryingFromAbroad": "從國外攜入日本",
 		"guarantorAbroad": "日本的保證人",
@@ -180,18 +181,18 @@
 		"textBook": "使用教材"
 	},
 	"monthNames": {
-		"1": "January",
-		"2": "February",
-		"3": "March",
-		"4": "April",
-		"5": "May",
-		"6": "June",
-		"7": "July",
-		"8": "August",
-		"9": "September",
-		"10": "October",
-		"11": "November",
-		"12": "December"
+		"1": "一月",
+		"2": "二月",
+		"3": "三月",
+		"4": "四月",
+		"5": "五月",
+		"6": "六月",
+		"7": "七月",
+		"8": "八月",
+		"9": "九月",
+		"10": "十月",
+		"11": "十一月",
+		"12": "十二月"
 	},
 	"error": {
 		"notLoggedIn": "尚未登入！",
@@ -220,72 +221,72 @@
 			"2 years": "長期 | 2年"
 		},
 		"purpose": {
-			"passport": "Passport",
-			"passportPhoto": "Passport photo",
-			"curriculumVitae": "Curriculum Vitae",
-			"letterOfGuarantee": "Letter of Guarantee",
-			"diploma": "Diploma",
-			"pledge": "Pledge",
-			"other": "Other"
+			"passport": "護照",
+			"passportPhoto": "護照相片",
+			"curriculumVitae": "個人簡歷",
+			"letterOfGuarantee": "保證函",
+			"diploma": "學位",
+			"pledge": "誓約書",
+			"other": "其他"
 		},
 		"gender": {
-			"male": "♂ Male",
-			"female": "♀ Female"
+			"male": "♂ 男",
+			"female": "♀ 女"
 		},
 		"maritalStatus": {
-			"single": "Single",
-			"married": "Married"
+			"single": "單身",
+			"married": "已婚"
 		},
 		"occupationType": {
-			"student": "Student",
-			"worker": "Worker",
-			"preparingToStudy": "Preparing to study in Japan",
-			"other": "Other"
+			"student": "學生",
+			"worker": "上班族",
+			"preparingToStudy": "計畫在日本就學",
+			"other": "其他"
 		},
 		"education": {
-			"graduated": "Graduated",
-			"inSchool": "In school",
-			"temporaryAbsence": "Temporary absence",
-			"withdrewFromSchool": "Withdrew from school",
-			"doctor": "Doctor",
-			"master": "Master",
-			"bachelor": "Bachelor",
-			"juniorCollege": "Junior college",
-			"collegeOfTechnology": "College of technology",
-			"seniorHighSchool": "Senior high school",
-			"juniorHighSchool": "Junior high school",
-			"other": "Other"
+			"graduated": "畢業",
+			"inSchool": "在學",
+			"temporaryAbsence": "停學",
+			"withdrewFromSchool": "退學",
+			"doctor": "博士",
+			"master": "碩士",
+			"bachelor": "大學",
+			"juniorCollege": "專科",
+			"collegeOfTechnology": "技術學院",
+			"seniorHighSchool": "高中",
+			"juniorHighSchool": "國中",
+			"other": "其他"
 		},
 		"planAfterGraduation": {
-			"returnToHomeCountry": "Return to home country",
-			"graduateSchool": "Graduate school",
-			"university": "University",
-			"juniorCollege": "Junior college",
-			"collegeOfTechnology": "College of technology",
-			"work": "Work in Japan",
-			"otherEducationalInstitution": "Other educational institution",
-			"other": "Other"
+			"returnToHomeCountry": "回國",
+			"graduateSchool": "日本大學院就讀(碩士)",
+			"university": "日本大學就讀",
+			"juniorCollege": "日本短期大學就讀",
+			"collegeOfTechnology": "日本專門學校就讀",
+			"work": "在日本工作",
+			"otherEducationalInstitution": "其他教育機構就讀",
+			"other": "其他"
 		},
 		"paymentMethod": {
 			"payPal": "PayPal",
-			"bankTransfer": "Bank transfer"
+			"bankTransfer": "銀行轉帳"
 		},
 		"jlptLevel": {
-			"none": "I have not taken the JLPT yet.",
+			"none": "從未參加JLPT考試",
 			"N1": "N1",
 			"N2": "N2",
 			"N3": "N3",
 			"N4": "N4",
 			"N5": "N5",
-			"level 1": "Level 1 (before 2010)",
-			"level 2": "Level 2 (before 2010)",
-			"level 3": "Level 3 (before 2010)",
-			"level 4": "Level 4 (before 2010)"
+			"level 1": "Level 1 (2010之前)",
+			"level 2": "Level 2 (2010之前)",
+			"level 3": "Level 3 (2010之前)",
+			"level 4": "Level 4 (2010之前)"
 		},
 		"portOfEntry": {
-			"Kansai International Airport": "Osaka (Kansai International Airport)",
-			"Narita International Airport": "Tokyo (Narita International Airport)",
-			"other": "Other"
+			"Kansai International Airport": "大阪 (關西國際機場)",
+			"Narita International Airport": "東京 (成田國際機場)",
+			"other": "其他"
 		}
 	}
 }
