@@ -27,7 +27,12 @@ else
 						//- "http://flags.fmcdn.net/data/flags/mini/"
 						img(src="https://nihongo-center.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/" + student.countryCode + ".png", title=student.country)
 				td.col-md-3
-					a(href=student.permaLink)= student.givenName + " " + student.familyName
+					a(href=student.permaLink)
+						- var studentName = student.givenName + " " + student.familyName
+						if student.stage === "declined" || student.stage === "canceled"
+							strike= studentName
+						else
+							span= studentName
 				td.col-md-3
 					p= __("stageList." + student.stage)
 				td.col-md-2
@@ -36,11 +41,11 @@ else
 				td.col-md-1
 					.progress
 						if student.profileCompleted >= 100
-							- var cssClass = "progress-bar progress-bar-success";
+							- var cssClass = "progress-bar progress-bar-success"
 						else if student.profileCompleted >= 50
-							- var cssClass = "progress-bar progress-bar-warning progress-bar-striped";
+							- var cssClass = "progress-bar progress-bar-warning progress-bar-striped"
 						else if student.profileCompleted >= 25
-							- var cssClass = "progress-bar progress-bar-info progress-bar-striped";
+							- var cssClass = "progress-bar progress-bar-info progress-bar-striped"
 						else
 							- var cssClass = "progress-bar progress-bar-danger progress-bar-striped"
 						
