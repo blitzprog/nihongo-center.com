@@ -24,4 +24,9 @@ else
 									if student.countryCode
 										img(src="https://nihongo-center.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/" + student.countryCode + ".png", title=student.country)
 									
-									a(href=`/student/${student.email}`)= student.givenName + " " + student.familyName
+									a(href=`/student/${student.email}`)
+										- var studentName = student.givenName + " " + student.familyName
+										if student.stage === "declined" || student.stage === "canceled"
+											strike= studentName
+										else
+											span= studentName
