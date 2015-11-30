@@ -4,32 +4,32 @@ else
 	.page-header
 		h1= __("settings")
 	
-	// Settings for staff members
-	if user.accessLevel === "admin" || user.accessLevel === "staff"
-		.row
-			.col-sm-6
-				.panel.panel-default
-					.panel-heading: h2
-						span.glyphicon.glyphicon-text-background
-						span= __("language")
-					.panel-body
-						.btn-group(role="group", aria-label="...")
-							each language, code in languages
-								- var cssClass = "";
-								if user.language.substring(0, 2) === code || (code === "en" && user.language === "")
-									- cssClass = "btn-primary";
-								else
-									- cssClass = "btn-default";
-								button(class="btn " + cssClass, onclick="window.saveLanguage('" + code + "');", type="button", data-languagecode=code)= language
-			.col-sm-6
+	.row
+		.col-sm-6
+			.panel.panel-default
+				.panel-heading: h2
+					span.glyphicon.glyphicon-text-background
+					span= __("language")
+				.panel-body
+					.btn-group(role="group", aria-label="...")
+						each language, code in languages
+							- var cssClass = "";
+							if user.language.substring(0, 2) === code || (code === "en" && user.language === "")
+								- cssClass = "btn-primary";
+							else
+								- cssClass = "btn-default";
+							button(class="btn " + cssClass, onclick="window.saveLanguage('" + code + "');", type="button", data-languagecode=code)= language
+		.col-sm-6
+			if user.isStaff
 				.panel.panel-default
 					.panel-heading: h2
 						span.glyphicon.glyphicon-user
 						span= __("profile")
 					.panel-body
 						a.ajax(href="/profile") Change name
-		.row
-			.col-sm-6
+	.row
+		.col-sm-6
+			if user.isStaff
 				.panel.panel-default
 					.panel-heading: h2
 						span.glyphicon.glyphicon-flash

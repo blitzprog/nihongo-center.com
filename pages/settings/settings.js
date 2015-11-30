@@ -6,6 +6,7 @@ module.exports = {
 	// Get
 	get: function(request, response) {
 		let user = request.user;
+		user.isStaff = user.accessLevel === "admin" || user.accessLevel === "staff"
 
 		// Render the page
 		response.render({
