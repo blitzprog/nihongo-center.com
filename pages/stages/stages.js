@@ -3,6 +3,7 @@
 let riak = require("nodiak").getClient();
 let JavaScriptPhase = require("../../modules/JavaScriptPhase");
 let mapPhase = new JavaScriptPhase("pages/search/map.js");
+let countryData = require("country-data");
 
 module.exports = {
 	// Get
@@ -38,6 +39,15 @@ module.exports = {
 					stages[student.stage] = [student]
 				} else {
 					stages[student.stage].push(student)
+				}
+
+				if(student.country) {
+					let countryObject = countryData.lookup.countries({
+						name: student.country
+					})[0];
+
+					if(countryObject)
+						student.countryCode = countryObject.alpha2.toLowerCase();
 				}
 			});
 

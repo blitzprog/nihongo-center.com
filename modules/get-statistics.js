@@ -25,10 +25,10 @@ module.exports = function(students) {
 		return student.applicationDate !== null;
 	}).length;
 	var applicantsAccepted = students.filter(function(student) {
-		return student.stage !== "apply" && student.stage !== "rejected";
+		return student.stage !== "apply" && student.stage !== "declined" && student.stage !== "canceled";
 	}).length;
 	var applicantsRejected = students.filter(function(student) {
-		return student.stage === "declined";
+		return student.stage === "declined" || student.stage === "canceled";
 	}).length;
 	var applicantsRemaining = totalApplicants - applicantsAccepted - applicantsRejected
 

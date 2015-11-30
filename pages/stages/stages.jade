@@ -18,6 +18,9 @@ else if user.isStaff
 				div(class="panel " + panelStyle)
 					.panel-heading
 						h3
+							//if student.countryCode
+							//	img(src="https://nihongo-center.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/" + student.countryCode + ".png")
+							//| 
 							span= val
 							if stages[index]
 								span.badge.stage-student-count= stages[index].length
