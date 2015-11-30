@@ -58,6 +58,7 @@ module.exports = {
 				"dashboard",
 				"students",
 				"courses",
+				"stages",
 				"settings"
 			].map(id => pages[id])
 		} else {

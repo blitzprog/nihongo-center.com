@@ -1,5 +1,32 @@
 if !user
 	p Not logged in!
+else if user.isStaff
+	.page-header
+		h1 Stages
+	.row
+		each val, index in __("stageList")
+			.col-sm-6
+				- var panelStyle = "panel-default"
+				
+				if index === "apply"
+					- panelStyle = "panel-primary"
+				else if index === "beginClasses"
+					- panelStyle = "panel-success"
+				else if index === "declined" || index === "canceled"
+					- panelStyle = "panel-danger"
+				
+				div(class="panel " + panelStyle)
+					.panel-heading
+						h3
+							span= val
+							if stages[index]
+								span.badge.stage-student-count= stages[index].length
+							else
+								span.badge.stage-student-count 0
+					.panel-body
+						if stages[index]
+							each student in stages[index]
+								a.ajax(href='/student/' + student.email)= student.givenName + " " + student.familyName
 else
 	.page-header
 		h1= __("stages")
