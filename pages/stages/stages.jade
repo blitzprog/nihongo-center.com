@@ -26,7 +26,8 @@ else if user.isStaff
 					.panel-body
 						if stages[index]
 							each student in stages[index]
-								a.ajax(href='/student/' + student.email)= student.givenName + " " + student.familyName
+								.student
+									a.ajax(href='/student/' + student.email)= student.givenName + " " + student.familyName
 else
 	.page-header
 		h1= __("stages")
