@@ -37,8 +37,5 @@ else
 						.glyphicon.glyphicon-file(style="margin-right: 0.25em")
 					a(href="/" + upload.path)= upload.originalname
 				td
-					a(href="javascript:remove('uploads', 'Upload', " + index + ");", role="button").btn.btn-danger
+					a(href="javascript:window.remove('uploads', 'Upload', " + index + ");", role="button").btn.btn-danger
 						.glyphicon.glyphicon-trash
-	
-	script
-		include ../../scripts/arrays.js

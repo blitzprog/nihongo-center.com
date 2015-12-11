@@ -20,7 +20,7 @@ window.save = function() {
 		value: value,
 		dataType: dataType
 	}, function(response) {
-		updateContent(page, response);
+		window.updateContent(page, response);
 	});
 };
 
@@ -47,7 +47,7 @@ window.saveArrayElement = function() {
 		value: value,
 		dataType: dataType
 	}, function(response) {
-		updateContent(page, response);
+		window.updateContent(page, response);
 	});
 };
 
@@ -72,7 +72,7 @@ window.saveObject = function() {
 		value: value,
 		dataType: dataType
 	}, function(response) {
-		updateContent(page, response);
+		window.updateContent(page, response);
 	});
 };
 

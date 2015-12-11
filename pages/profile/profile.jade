@@ -109,7 +109,7 @@ else
 					+textInArray("familyMembers", index, "nationality", member.nationality, "", "nationalities")
 					+textInArray("familyMembers", index, "country", member.country, "", "countries")
 					
-					a(href="javascript:remove('profile', 'FamilyMember', " + index + ");").btn.btn-danger.delete-button
+					a(href="javascript:window.remove('profile', 'FamilyMember', " + index + ");").btn.btn-danger.delete-button
 						.glyphicon.glyphicon-remove
 		
 		button(onclick="window.add('profile', 'FamilyMember');").btn.btn-success
@@ -163,7 +163,7 @@ else
 					+numberInArray("financialSupporters", index, "annualIncome", 何, __("inYen"))
 					+textInArray("financialSupporters", index, "relation")
 					
-					a(href="javascript:remove('profile', 'FinancialSupporter', " + index + ");").btn.btn-danger.delete-button
+					a(href="javascript:window.remove('profile', 'FinancialSupporter', " + index + ");").btn.btn-danger.delete-button
 						.glyphicon.glyphicon-remove
 		
 		button(onclick="window.add('profile', 'FinancialSupporter');").btn.btn-success
@@ -189,7 +189,7 @@ else
 					+numberInArray("japaneseEducation", index, "totalHours")
 					+textInArray("japaneseEducation", index, "textBook")
 					
-					a(href="javascript:remove('profile', 'EducationBackground', " + index + ");").btn.btn-danger.delete-button
+					a(href="javascript:window.remove('profile', 'EducationBackground', " + index + ");").btn.btn-danger.delete-button
 						.glyphicon.glyphicon-remove
 		
 		if user.japaneseEducation.length === 0
@@ -205,6 +205,3 @@ else
 		.profile
 			+select("portOfEntry", user.portOfEntry, portsOfEntry)
 			+text("visaApplicationPlace", 何, "🏢 " + __("tooltip.visaApplicationPlace"))
-	
-	script
-		include ../../scripts/arrays.js
