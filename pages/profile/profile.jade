@@ -192,6 +192,9 @@ else
 					a(href="javascript:remove('profile', 'EducationBackground', " + index + ");").btn.btn-danger.delete-button
 						.glyphicon.glyphicon-remove
 		
+		if user.japaneseEducation.length === 0
+			.alert.alert-danger= __("error.noStudyExperience")
+		
 		button(onclick="add('profile', 'EducationBackground');").btn.btn-success
 			.glyphicon.glyphicon-plus
 			span(style="margin-left: 0.5em")= __("add.educationBackground")

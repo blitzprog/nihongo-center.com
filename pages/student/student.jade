@@ -237,5 +237,8 @@ else
 						else if student.japaneseEducation.length === 0
 							div.alert.alert-info= __("error.noJapaneseEducationOrJLPT")
 						
-						each education in student.japaneseEducation
-							li.list-group-item= education.institution + " (" + education.totalHours + ")"
+						if student.japaneseEducation.length === 0
+							.alert.alert-danger The student does not seem to have any Japanese study experience!
+						else
+							each education in student.japaneseEducation
+								li.list-group-item= education.institution + " (" + education.totalHours + ")"

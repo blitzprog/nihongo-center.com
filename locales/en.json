@@ -208,7 +208,8 @@
 		"noReasonForStudying": "The student did not write down the reason for studying yet!",
 		"noJapaneseEducationOrJLPT": "The student did not study Japanese and did not take the JLPT yet.",
 		"weCantProvideVisa": "For long courses starting in January and June we can't provide a visa.",
-		"identifyCountry": "Couldn't identify country: '%s'"
+		"identifyCountry": "Couldn't identify country: '%s'",
+		"noStudyExperience": "Please inform us about your previous Japanese study experiences."
 	},
 	"options": {
 		"course": {
