@@ -1,7 +1,7 @@
 /*eslint-env browser, jquery */
 /*global aero*/
 
-function saveStage(email, stageName) {
+window.saveStage = function(email, stageName) {
 	console.log(email, stageName);
 
 	$.post("/_/student/" + email, {
@@ -11,4 +11,4 @@ function saveStage(email, stageName) {
 	}, function(response) {
 		location.reload();
 	});
-}
+};

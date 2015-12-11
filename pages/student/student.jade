@@ -21,9 +21,6 @@ else
 				a(href="#country")
 					img(src="http://flags.fmcdn.net/data/flags/small/" + country.alpha2.toLowerCase() + ".png", style="float: right", height=48, alt=country.name, title=country.name)
 	
-	script
-		include save.js
-	
 	.row
 		.col-sm-8
 			//- Summary
@@ -100,7 +97,7 @@ else
 			- var currentStageReached = false;
 			
 			mixin stage(title, stageName)
-				- var saveStage = `javascript:saveStage('${student.email}', '${stageName}');`;
+				- var saveStage = `javascript:window.saveStage('${student.email}', '${stageName}');`;
 				if student.stage === stageName
 					a.list-group-item.list-group-item-danger
 						.glyphicon.glyphicon-refresh(style="margin-right: 0.35em")

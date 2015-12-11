@@ -112,7 +112,7 @@ else
 					a(href="javascript:remove('profile', 'FamilyMember', " + index + ");").btn.btn-danger.delete-button
 						.glyphicon.glyphicon-remove
 		
-		button(onclick="add('profile', 'FamilyMember');").btn.btn-success
+		button(onclick="window.add('profile', 'FamilyMember');").btn.btn-success
 			.glyphicon.glyphicon-plus
 			span(style="margin-left: 0.5em")= __("add.familyMember")
 		
@@ -166,7 +166,7 @@ else
 					a(href="javascript:remove('profile', 'FinancialSupporter', " + index + ");").btn.btn-danger.delete-button
 						.glyphicon.glyphicon-remove
 		
-		button(onclick="add('profile', 'FinancialSupporter');").btn.btn-success
+		button(onclick="window.add('profile', 'FinancialSupporter');").btn.btn-success
 			.glyphicon.glyphicon-plus
 			span(style="margin-left: 0.5em")= __("add.financialSupporter")
 		
@@ -195,7 +195,7 @@ else
 		if user.japaneseEducation.length === 0
 			.alert.alert-danger= __("error.noStudyExperience")
 		
-		button(onclick="add('profile', 'EducationBackground');").btn.btn-success
+		button(onclick="window.add('profile', 'EducationBackground');").btn.btn-success
 			.glyphicon.glyphicon-plus
 			span(style="margin-left: 0.5em")= __("add.educationBackground")
 		
@@ -208,4 +208,3 @@ else
 	
 	script
 		include ../../scripts/arrays.js
-		include save.js

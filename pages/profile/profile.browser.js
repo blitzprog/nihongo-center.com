@@ -2,7 +2,7 @@
 /*global aero*/
 
 // Save
-var save = function() {
+window.save = function() {
 	var page = "profile";
 	var $this = $(this);
 	var key = $this.attr("name");
@@ -25,7 +25,7 @@ var save = function() {
 };
 
 // Save array element
-var saveArrayElement = function() {
+window.saveArrayElement = function() {
 	var page = "profile";
 	var $this = $(this);
 	var array = $this.data("array");
@@ -52,7 +52,7 @@ var saveArrayElement = function() {
 };
 
 // Save object
-var saveObject = function() {
+window.saveObject = function() {
 	var page = "profile";
 	var $this = $(this);
 	var object = $this.data("object");
@@ -77,17 +77,11 @@ var saveObject = function() {
 };
 
 // On content loaded
-var onContentLoaded = function() {
-	document.removeEventListener("DOMContentLoaded", onContentLoaded);
-
-	$("select").change(save);
-	$(".text-input").change(save);
-	$(".date-input").blur(save);
-	$(".tel-input").change(save);
-	$(".number-input").change(save);
-	$(".object-number-input").change(saveObject);
-	$(".array-text-input").change(saveArrayElement);
-	$(".array-number-input").change(saveArrayElement);
-};
-
-document.addEventListener("DOMContentLoaded", onContentLoaded);
+$("select").change(save);
+$(".text-input").change(save);
+$(".date-input").blur(save);
+$(".tel-input").change(save);
+$(".number-input").change(save);
+$(".object-number-input").change(saveObject);
+$(".array-text-input").change(saveArrayElement);
+$(".array-number-input").change(saveArrayElement);

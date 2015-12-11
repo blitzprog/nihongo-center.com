@@ -1,5 +1,5 @@
 // Update content
-var updateContent = function(page, response) {
+window.updateContent = function(page, response) {
 	var focusedElementId = $(document.activeElement).attr("id");
 
 	$(kaze.content).html(response);
@@ -14,20 +14,20 @@ var updateContent = function(page, response) {
 };
 
 // Add
-var add = function(page, type) {
+window.add = function(page, type) {
 	$.post("/_/" + page, {
 		function: "add" + type
 	}, function(response) {
-		updateContent(page, response);
+		window.updateContent(page, response);
 	});
 };
 
 // Remove
-var remove = function(page, type, index) {
+window.remove = function(page, type, index) {
 	$.post("/_/" + page, {
 		function: "remove" + type,
 		index: index
 	}, function(response) {
-		updateContent(page, response);
+		window.updateContent(page, response);
 	});
 };
