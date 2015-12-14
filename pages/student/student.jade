@@ -46,7 +46,7 @@ else
 						a.btn.btn-default.ajax(style="float: right", href="/course/" + student.startYear + "/" + student.startMonth)= "View course"
 			
 			//- Uploads
-			.panel.panel-default
+			#uploads.panel.panel-default
 				.panel-heading: h2
 					span.glyphicon.glyphicon-upload(style="margin-right: 0.25em")
 					span= __("uploads")
@@ -113,7 +113,7 @@ else
 						span(title="Finished stage")= title
 			
 			//- Stage
-			.panel.panel-default
+			#stage.panel.panel-default
 				.panel-heading: h2
 					span.glyphicon.glyphicon-list(style="margin-right: 0.25em")
 					span= __("progress")
@@ -230,7 +230,9 @@ else
 				.panel-body
 					ul.list-group
 						if student.jlptLevel
-							h2(style="text-align: center")= student.jlptLevel
+							p
+								| JLPT level: 
+								strong= student.jlptLevel
 						else if student.japaneseEducation.length === 0
 							div.alert.alert-info= __("error.noJapaneseEducationOrJLPT")
 						
