@@ -2,7 +2,6 @@ doctype html
 html(lang="en")
 	head
 		title= siteName
-		meta(name="viewport", content="width=device-width, initial-scale=1")
 		
 		if user && (user.accessLevel === "admin" || user.accessLevel === "staff")
 			script(src="https://www.google.com/jsapi")
