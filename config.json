@@ -19,5 +19,9 @@
 		"jquery": {},
 		"kaze": {}
 	},
-	"port": 3002
+	"ports": {
+	    "http": 3002,
+	    "https": 3003,
+	    "liveReload": 9000
+	}
 }
