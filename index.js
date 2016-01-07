@@ -11,7 +11,7 @@ let i18n = require("i18n");
 
 let apiKeys = JSON.parse(fs.readFileSync("api-keys.json"));
 let production = os.hostname() === "ncenter";
-let host = production ? "my.nihongo-center.com" : "localhost:3002";
+let host = production ? "my.nihongo-center.com" : "localhost:3003";
 
 if(!production)
 	console.log("Development Version");
