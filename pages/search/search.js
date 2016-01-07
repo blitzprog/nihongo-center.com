@@ -5,6 +5,10 @@ let age = require("../../modules/age");
 let JavaScriptPhase = require("../../modules/JavaScriptPhase");
 let getStudentProgress = require("../../modules/get-student-progress");
 let mapPhase = new JavaScriptPhase("pages/search/map.js");
+let NodeCache = require('node-cache');
+let cache = new NodeCache({
+	stdTTL: 300
+});
 
 // Country data
 let countryData = require("country-data");
@@ -35,82 +39,94 @@ module.exports = {
 			return;
 		}
 
-		riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
-			if(err)
-				console.error(err);
+		cache.get(term, function(error, studentsCached) {
+			if(!error && studentsCached !== undefined) {
+				response.render({
+					user: user,
+					students: studentsCached
+				});
+				return
+			}
 
-			let students = results.data.map(function(student) {
-				if(term !== "*") {
-					var found = Object.keys(student).some(function(key) {
-						var value = student[key];
+			riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
+				if(err)
+					console.error(err);
 
-						if(value === null)
+				let students = results.data.map(function(student) {
+					if(term !== "*") {
+						var found = Object.keys(student).some(function(key) {
+							var value = student[key];
+
+							if(value === null)
+								return false;
+
+							if(typeof value !== "string")
+								return false;
+
+							if(!searchProperties[key])
+								return false;
+
+							if(key === "gender" && value !== term)
+								return false;
+
+							if(value.toLowerCase().indexOf(term) !== -1)
+								return true;
+
 							return false;
+						});
 
-						if(typeof value !== "string")
-							return false;
+						// Name: Western style
+						if(!found)
+							found = found || (student.givenName + " " + student.familyName).toLowerCase().indexOf(term) !== -1;
 
-						if(!searchProperties[key])
-							return false;
+						// Name: Japanese style
+						if(!found)
+							found = found || (student.familyName + " " + student.givenName).toLowerCase().indexOf(term) !== -1;
 
-						if(key === "gender" && value !== term)
-							return false;
+						if(!found)
+							return null;
+					}
 
-						if(value.toLowerCase().indexOf(term) !== -1)
-							return true;
+					student.age = age.of(student);
+					student.permaLink = "/student/" + student.email;
+					student.profileCompleted = getStudentProgress(student);
 
-						return false;
+					if(student.country) {
+						let countryObject = lookup.countries({name: student.country})[0];
+						if(countryObject)
+							student.countryCode = countryObject.alpha2.toLowerCase();
+					}
+
+					return student;
+				}).filter(function(student) {
+					return student !== null;
+				});
+
+				students.sort(function(a, b) {
+					let appliedFactor = (b.applicationDate !== null) - (a.applicationDate !== null);
+					let progressFactor = b.profileCompleted - a.profileCompleted;
+					let registeredFactor = Math.sign(Date.parse(b.registrationDate) - Date.parse(a.registrationDate));
+					let courseFactor = 0;
+
+					if(a.startYear && b.startYear) {
+						if(b.startYear === a.startYear && a.startMonth && b.startMonth)
+							courseFactor = Math.sign(parseInt(a.startMonth) - parseInt(b.startMonth));
+						else
+							courseFactor = Math.sign(parseInt(a.startYear) - parseInt(b.startYear));
+					}
+
+					return registeredFactor + courseFactor * 2 + progressFactor * 4 + appliedFactor * 8;
+				});
+
+				//if(students.length > 40)
+				//	students.length = 40;
+
+				cache.set(term, students, function(error, success) {
+					response.render({
+						user: user,
+						students: students
 					});
-
-					// Name: Western style
-					if(!found)
-						found = found || (student.givenName + " " + student.familyName).toLowerCase().indexOf(term) !== -1;
-
-					// Name: Japanese style
-					if(!found)
-						found = found || (student.familyName + " " + student.givenName).toLowerCase().indexOf(term) !== -1;
-
-					if(!found)
-						return null;
-				}
-
-				student.age = age.of(student);
-				student.permaLink = "/student/" + student.email;
-				student.profileCompleted = getStudentProgress(student);
-
-				if(student.country) {
-					let countryObject = lookup.countries({name: student.country})[0];
-					if(countryObject)
-						student.countryCode = countryObject.alpha2.toLowerCase();
-				}
-
-				return student;
-			}).filter(function(student) {
-				return student !== null;
-			});
-
-			students.sort(function(a, b) {
-				let appliedFactor = (b.applicationDate !== null) - (a.applicationDate !== null);
-				let progressFactor = b.profileCompleted - a.profileCompleted;
-				let registeredFactor = Math.sign(Date.parse(b.registrationDate) - Date.parse(a.registrationDate));
-				let courseFactor = 0;
-
-				if(a.startYear && b.startYear) {
-					if(b.startYear === a.startYear && a.startMonth && b.startMonth)
-						courseFactor = Math.sign(parseInt(a.startMonth) - parseInt(b.startMonth));
-					else
-						courseFactor = Math.sign(parseInt(a.startYear) - parseInt(b.startYear));
-				}
-
-				return registeredFactor + courseFactor * 2 + progressFactor * 4 + appliedFactor * 8;
-			});
-
-			//if(students.length > 40)
-			//	students.length = 40;
-
-			response.render({
-				user: user,
-				students: students
+				});
 			});
 		});
 	}
