@@ -19,6 +19,10 @@
 		"jquery": {},
 		"kaze": {}
 	},
+	"security": {
+		"key": "privkey.pem",
+		"cert": "fullchain.pem"
+	},
 	"ports": {
 	    "http": 3002,
 	    "https": 3003,

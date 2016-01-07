@@ -29,13 +29,13 @@ aero.use(i18n.init);
 
 // Google
 let googleConfig = merge({
-	callbackURL: `http://${host}/auth/google/callback`,
+	callbackURL: `https://${host}/auth/google/callback`,
 	userInfoURL: "https://www.googleapis.com/plus/v1/people/me"
 }, apiKeys.google);
 
 // Facebook
 let facebookConfig = merge({
-	callbackURL: `http://${host}/auth/facebook/callback`
+	callbackURL: `https://${host}/auth/facebook/callback`
 }, apiKeys.facebook);
 
 // Init login

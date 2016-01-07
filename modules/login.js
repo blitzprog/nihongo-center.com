@@ -19,7 +19,7 @@ let FacebookStrategy = require("passport-facebook").Strategy;
 let adminMails = ["e.urbach@gmail.com"];
 
 let sendRegistrationMessageToSlack = function(student) {
-	let host = "http://my.nihongo-center.com";
+	let host = "https://my.nihongo-center.com";
 	let webhook = "https://hooks.slack.com/services/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";
 
 	request.post({
