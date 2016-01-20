@@ -37,8 +37,10 @@ module.exports = {
 			"letterOfGuarantee"
 		];
 
-		if(user.course === "10 weeks")
-			requiredUploads.splice(requiredUploads.indexOf("diploma"), 1);
+		let studentVisaRequired = (user.course && user.course !== "10 weeks")
+
+		if(studentVisaRequired)
+			requiredUploads.splice(requiredUploads.indexOf("pledge"), 3);
 
 		if(user.accessLevel === "admin" || user.accessLevel === "staff") {
 			riak.mapred.inputs("Accounts").map(statisticsMapPhase).execute(function(err, result) {
@@ -81,7 +83,7 @@ module.exports = {
 				profileCompleted: progress,
 				uploads,
 				missingFields,
-				studentVisaRequired: (user.course && user.course !== "10 weeks"),
+				studentVisaRequired: studentVisaRequired,
 				readyToApply: (progress >= 100) && requiredUploads.map(function(purpose) {
 					return uploads[purpose] === true;
 				}).reduce(function(a, b) {

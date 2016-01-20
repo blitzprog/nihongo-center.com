@@ -1,6 +1,6 @@
 {
-	"name": "nihongo-center.com",
-	"repository": "blitzprog/nihongo-center.com",
+	"name": "my.nihongo-center.com",
+	"repository": "nihongocenter/my.nihongo-center.com",
 	"version": "1.0.0",
 	"dependencies": {
 		"aero": "*",
