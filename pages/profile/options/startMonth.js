@@ -1,6 +1,6 @@
 "use strict";
 
-let monthsBefore = 4
+let monthsBefore = 1
 
 module.exports = function(__, startYear) {
 	startYear = parseInt(startYear)
@@ -19,18 +19,18 @@ module.exports = function(__, startYear) {
 
 	// Same year
 	if(startYear === currentYear) {
-		//if(currentMonth <= 3 - monthsBefore)
+		if(currentMonth <= 3 - monthsBefore)
 			months["04"] = __("monthNames.4")
-		//if(currentMonth <= 9 - monthsBefore)
+		if(currentMonth <= 9 - monthsBefore)
 			months["10"] = __("monthNames.10")
 		return months
 	}
 
 	// Next year
 	if(startYear === currentYear + 1) {
-		//if(currentMonth <= 15 - monthsBefore)
+		if(currentMonth <= 15 - monthsBefore)
 			months["04"] = __("monthNames.4")
-		//if(currentMonth <= 21 - monthsBefore)
+		if(currentMonth <= 21 - monthsBefore)
 			months["10"] = __("monthNames.10")
 	}
 
