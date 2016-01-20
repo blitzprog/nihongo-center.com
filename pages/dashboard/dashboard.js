@@ -39,7 +39,7 @@ module.exports = {
 
 		let studentVisaRequired = (user.course && user.course !== "10 weeks")
 
-		if(studentVisaRequired)
+		if(!studentVisaRequired)
 			requiredUploads.splice(requiredUploads.indexOf("pledge"), 3);
 
 		if(user.accessLevel === "admin" || user.accessLevel === "staff") {
