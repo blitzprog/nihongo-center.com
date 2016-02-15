@@ -23,7 +23,7 @@ module.exports = {
 
 	// Post: Save to database
 	post: function(request, response) {
-		if(!request.body.function) {
+		if(!request.body || !request.body.function) {
 			response.writeHead(400)
 			response.end();
 			return

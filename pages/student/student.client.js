@@ -8,7 +8,7 @@ window.saveStage = function(email, stageName) {
 		function: "saveStage",
 		email: email,
 		stageName: stageName
-	}, function(response) {
+	}).then(function(response) {
 		location.reload();
 	});
 };

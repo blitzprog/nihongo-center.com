@@ -4,12 +4,11 @@
 // Save
 window.save = function() {
 	var page = "profile";
-	var $this = $(this);
-	var key = $this.attr("name");
-	var value = $this.val();
+	var key = this.name;
+	var value = this.value;
 	var dataType = "text";
 
-	if($this.hasClass("number-input")) {
+	if(this.classList.contains("number-input")) {
 		value = parseInt(value);
 		dataType = "numeric";
 	}
@@ -19,7 +18,7 @@ window.save = function() {
 		key: key,
 		value: value,
 		dataType: dataType
-	}, function(response) {
+	}).then(function(response) {
 		window.updateContent(page, response);
 	});
 };
@@ -27,14 +26,13 @@ window.save = function() {
 // Save array element
 window.saveArrayElement = function() {
 	var page = "profile";
-	var $this = $(this);
-	var array = $this.data("array");
-	var index = $this.data("index");
-	var key = $this.data("key");
-	var value = $this.val();
+	var array = this.dataset.array;
+	var index = this.dataset.index;
+	var key = this.dataset.key;
+	var value = this.value;
 	var dataType = "text";
 
-	if($this.hasClass("array-number-input")) {
+	if(this.classList.contains("array-number-input")) {
 		value = parseInt(value);
 		dataType = "numeric";
 	}
@@ -46,7 +44,7 @@ window.saveArrayElement = function() {
 		key: key,
 		value: value,
 		dataType: dataType
-	}, function(response) {
+	}).then(function(response) {
 		window.updateContent(page, response);
 	});
 };
@@ -54,13 +52,12 @@ window.saveArrayElement = function() {
 // Save object
 window.saveObject = function() {
 	var page = "profile";
-	var $this = $(this);
-	var object = $this.data("object");
-	var key = $this.data("key");
-	var value = $this.val();
+	var object = this.dataset.object;
+	var key = this.dataset.key;
+	var value = this.value;
 	var dataType = "text";
 
-	if($this.hasClass("object-number-input")) {
+	if(this.classList.contains("object-number-input")) {
 		value = parseInt(value);
 		dataType = "numeric";
 	}
@@ -71,17 +68,17 @@ window.saveObject = function() {
 		key: key,
 		value: value,
 		dataType: dataType
-	}, function(response) {
+	}).then(function(response) {
 		window.updateContent(page, response);
 	});
 };
 
 // On content loaded
-$("select").change(save);
-$(".text-input").change(save);
-$(".date-input").blur(save);
-$(".tel-input").change(save);
-$(".number-input").change(save);
-$(".object-number-input").change(saveObject);
-$(".array-text-input").change(saveArrayElement);
-$(".array-number-input").change(saveArrayElement);
+jQuery("select").change(save);
+jQuery(".text-input").change(save);
+jQuery(".date-input").blur(save);
+jQuery(".tel-input").change(save);
+jQuery(".number-input").change(save);
+jQuery(".object-number-input").change(saveObject);
+jQuery(".array-text-input").change(saveArrayElement);
+jQuery(".array-number-input").change(saveArrayElement);

@@ -4,8 +4,10 @@
 	"version": "1.0.0",
 	"dependencies": {
 		"aero": "*",
+		"aero-jquery": "*",
+		"aero-ajax": "*",
 		"passport": "*",
-		"passport-google-openidconnect": "*",
+		"passport-google-oauth": "*",
 		"passport-facebook": "*",
 		"nodiak": "*",
 		"express-session": "*",
@@ -18,7 +20,8 @@
 		"mime-types": "*",
 		"node-cache": "*",
 		"body-parser": "*",
-		"request": "*"
+		"request": "*",
+		"shortid": "*"
 	},
 	"author": {
 		"name": "Eduard Urbach",

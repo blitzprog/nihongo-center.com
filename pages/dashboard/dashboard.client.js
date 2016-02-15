@@ -5,10 +5,10 @@ window.sendApplication = function(email, name) {
 		payload: JSON.stringify({
 			text: "<" + host + "/student/" + email + "|" + name + ">"
 		})
-	}, function(response) {
+	}).then(function(response) {
 		$.post("/_/", {
 			email: email
-		}, function(saveResponse) {
+		}).then(function(saveResponse) {
 			location.reload();
 		});
 	});

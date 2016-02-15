@@ -30,7 +30,7 @@ else
 			h2
 				span= __("country")
 				if country
-					img(src="http://flags.fmcdn.net/data/flags/small/" + country.alpha2.toLowerCase() + ".png", style="float: right", height=48, alt=country.name, title=country.name)
+					img(src="https://flags.fmcdn.net/data/flags/small/" + country.alpha2.toLowerCase() + ".png", style="float: right", height=48, alt=country.name, title=country.name)
 		
 		.profile
 			+text("country", user.country, "", "countries")

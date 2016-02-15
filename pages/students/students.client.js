@@ -12,7 +12,7 @@ window.search = function(e) {
 			return;
 	}
 
-	var term = $("#search").val();
+	var term = $("search").value;
 
 	// Don't repeat the same search
 	if(term === window.oldTerm)
@@ -28,11 +28,11 @@ window.search = function(e) {
 	if(!term)
 		term = "*";
 
-	var $searchResult = $("#searchResult");
-	$searchResult.html("<div style='text-align: center; width: 100%'><img src='/images/loading.svg' alt='Searching...'></div>");
+	var $searchResult = $("searchResult");
+	$searchResult.innerHTML = "<div style='text-align: center; width: 100%'><img src='/images/loading.svg' alt='Searching...'></div>";
 
-	window.oldAjaxRequest = $.get("/_/students/search/" + term, function(data) {
-		$searchResult.html(data);
+	window.oldAjaxRequest = $.get("/_/students/search/" + term).then(function(data) {
+		$searchResult.innerHTML = data;
 	});
 };
 

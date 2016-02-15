@@ -3,12 +3,10 @@
 
 // Save language
 window.saveLanguage = function(languageCode) {
-	var page = "settings";
-
-	$.post("/_/" + page, {
+	$.post("/_/settings", {
 		function: "saveLanguage",
 		languageCode: languageCode
-	}, function(response) {
+	}).then(function(response) {
 		location.reload();
 	});
 };

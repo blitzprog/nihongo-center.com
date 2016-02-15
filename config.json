@@ -1,5 +1,5 @@
 {
-	"siteName": "My Nihongo Center",
+	"title": "My Nihongo Center",
 	"scripts": [
 		"init",
 		"analytics",
@@ -15,14 +15,6 @@
 		"upload",
 		"bootstrap"
 	],
-	"plugins": {
-		"jquery": {},
-		"kaze": {}
-	},
-	"security": {
-		"key": "privkey.pem",
-		"cert": "fullchain.pem"
-	},
 	"ports": {
 	    "http": 3002,
 	    "https": 3003,

@@ -1,6 +1,4 @@
-"use strict";
-
-let aero = require("aero");
+let app = require("aero")();
 let fs = require("fs");
 let os = require("os");
 let merge = require("object-assign");
@@ -25,12 +23,12 @@ i18n.configure({
 });
 
 // Translation
-aero.use(i18n.init);
+app.use(i18n.init);
 
 // Google
 let googleConfig = merge({
 	callbackURL: `https://${host}/auth/google/callback`,
-	userInfoURL: "https://www.googleapis.com/plus/v1/people/me"
+	passReqToCallback: true
 }, apiKeys.google);
 
 // Facebook
@@ -40,10 +38,10 @@ let facebookConfig = merge({
 
 // Init login
 login(
-	aero,
+	app,
 	googleConfig, [
-		"email",
-		"profile"
+		"https://www.googleapis.com/auth/plus.login",
+	    "email"
 	],
 	facebookConfig, [
 		"email",
@@ -54,19 +52,17 @@ login(
 );
 
 // Init uploads
-upload(aero);
+upload(app);
 
 // Translation functions
-aero.use(function(request, response, next) {
+app.use(function(request, response, next) {
 	request.globals = {
 		__: request.__
 	}
 	next()
 })
 
-aero.use(require('body-parser').urlencoded({
-	extended: false
-}))
+app.use(require('body-parser').json())
 
 // Start Aero
-aero.run();
+app.run();
