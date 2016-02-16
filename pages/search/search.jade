@@ -13,6 +13,7 @@ else
 				th= __("name")
 				th= __("progress")
 				th= __("course")
+				th= __("duration")
 				th= __("profile")
 				th= __("uploads")
 				th= __("applied")
@@ -38,6 +39,10 @@ else
 				td.col-md-2
 					.form-group
 						input.form-control(type="month", value=student.startYear + "-" + student.startMonth, disabled)
+					
+				td.col-md-1
+					span= student.course
+					
 				td.col-md-1
 					.progress
 						if student.profileCompleted >= 100
