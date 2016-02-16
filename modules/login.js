@@ -7,7 +7,10 @@ let
 	userData = require("./user-data"),
 	availableLanguages = require("./languages"),
 	shortid = require('shortid'),
+	apiKeys = require("../api-keys.json"),
 	request = require("request");
+
+let FileStore = require('session-file-store')(session)
 
 // Database
 let riak = require("nodiak").getClient();
@@ -78,6 +81,8 @@ module.exports = function(app, googleConfig, googleScopes, facebookConfig, faceb
 
 					return;
 				}
+
+				obj.data.accessLevel = "student";
 
 				// Log in existing account
 				done(null, obj.data);
@@ -159,9 +164,15 @@ module.exports = function(app, googleConfig, googleScopes, facebookConfig, faceb
 	// Middleware
 	app.use(
 		session({
-			secret: require("crypto").randomBytes(64).toString("hex"),
+			store: new FileStore(),
+			name: 'sid',
+			secret: apiKeys.session.secret,
+			saveUninitialized: false,
 			resave: false,
-			saveUninitialized: false
+			cookie: {
+				secure: true,
+				maxAge: 30 * 24 * 60 * 60 * 1000
+			}
 		}),
 		passport.initialize(),
 		passport.session(),

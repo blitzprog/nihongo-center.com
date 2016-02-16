@@ -7,7 +7,7 @@ let upload = require("./modules/upload");
 let availableLanguages = require("./modules/languages");
 let i18n = require("i18n");
 
-let apiKeys = JSON.parse(fs.readFileSync("api-keys.json"));
+let apiKeys = require("./api-keys.json");
 let production = os.hostname() === "ncenter";
 let host = production ? "my.nihongo-center.com" : "localhost:3003";
 

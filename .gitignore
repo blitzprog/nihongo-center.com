@@ -36,3 +36,4 @@ node_modules
 
 # API keys
 /api-keys.json
+/sessions

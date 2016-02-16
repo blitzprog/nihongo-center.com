@@ -33,8 +33,8 @@ else
 					img(src="https://flags.fmcdn.net/data/flags/small/" + country.alpha2.toLowerCase() + ".png", style="float: right", height=48, alt=country.name, title=country.name)
 		
 		.profile
-			+text("country", user.country, "", "countries")
-			+text("nationality", user.nationality, "", "nationalities")
+			+text("country", user.country, "Where do you live?", "countries")
+			+text("nationality", user.nationality, "What is your official nationality?", "nationalities")
 			
 		if user.country && !country
 			.alert.alert-danger= __("error.identifyCountry", user.country)
@@ -112,9 +112,10 @@ else
 					a(href="javascript:window.remove('profile', 'FamilyMember', " + index + ");").btn.btn-danger.delete-button
 						.glyphicon.glyphicon-remove
 		
-		button(onclick="window.add('profile', 'FamilyMember');").btn.btn-success
-			.glyphicon.glyphicon-plus
-			span(style="margin-left: 0.5em")= __("add.familyMember")
+		.buttons
+			button(onclick="window.add('profile', 'FamilyMember');").btn.btn-success.add-button
+				.glyphicon.glyphicon-plus
+				span(style="margin-left: 0.5em")= __("add.familyMember")
 		
 		.page-header
 			h2= __("finances")
@@ -166,9 +167,10 @@ else
 					a(href="javascript:window.remove('profile', 'FinancialSupporter', " + index + ");").btn.btn-danger.delete-button
 						.glyphicon.glyphicon-remove
 		
-		button(onclick="window.add('profile', 'FinancialSupporter');").btn.btn-success
-			.glyphicon.glyphicon-plus
-			span(style="margin-left: 0.5em")= __("add.financialSupporter")
+		.buttons
+			button(onclick="window.add('profile', 'FinancialSupporter');").btn.btn-success.add-button
+				.glyphicon.glyphicon-plus
+				span(style="margin-left: 0.5em")= __("add.financialSupporter")
 		
 		.page-header
 			h2= __("japanese")
@@ -195,9 +197,10 @@ else
 		if user.japaneseEducation.length === 0
 			.alert.alert-danger= __("error.noStudyExperience")
 		
-		button(onclick="window.add('profile', 'EducationBackground');").btn.btn-success
-			.glyphicon.glyphicon-plus
-			span(style="margin-left: 0.5em")= __("add.educationBackground")
+		.buttons
+			button(onclick="window.add('profile', 'EducationBackground');").btn.btn-success
+				.glyphicon.glyphicon-plus
+				span(style="margin-left: 0.5em")= __("add.educationBackground")
 		
 		.page-header
 			h2= __("visa")

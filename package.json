@@ -21,7 +21,8 @@
 		"node-cache": "*",
 		"body-parser": "*",
 		"request": "*",
-		"shortid": "*"
+		"shortid": "*",
+		"session-file-store": "*"
 	},
 	"author": {
 		"name": "Eduard Urbach",
