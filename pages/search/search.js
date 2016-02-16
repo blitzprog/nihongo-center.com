@@ -14,14 +14,14 @@ let cache = new NodeCache({
 let countryData = require("country-data");
 let lookup = countryData.lookup;
 
-let searchProperties = {
-	givenName: true,
-	familyName: true,
-	gender: true,
-	startYear: true,
-	country: true,
-	jlptLevel: true
-};
+const searchProperties = [
+	'givenName',
+	'familyName',
+	'gender',
+	'startYear',
+	'country',
+	'jlptLevel'
+]
 
 module.exports = {
 	get: function(request, response) {
@@ -52,39 +52,48 @@ module.exports = {
 				if(err)
 					console.error(err);
 
+				let exactDateSearch = false
+
+				if(/^[0-9]{1,2}.[0-9]{4}$/.test(term)) {
+					exactDateSearch = true
+				}
+				
 				let students = results.data.map(function(student) {
 					if(term !== "*") {
-						var found = Object.keys(student).some(function(key) {
-							var value = student[key];
+						if(exactDateSearch) {
+							if(!student.startMonth || !student.startYear || student.startMonth + '-' + student.startYear !== term) {
+								return null
+							}
+						} else {
+							var found = searchProperties.some(function(key) {
+								var value = student[key];
 
-							if(value === null)
+								if(value === null)
+									return false;
+
+								if(typeof value !== "string")
+									return false;
+
+								if(key === "gender" && value !== term)
+									return false;
+
+								if(value.toLowerCase().indexOf(term) !== -1)
+									return true;
+
 								return false;
+							});
 
-							if(typeof value !== "string")
-								return false;
+							// Name: Western style
+							if(!found)
+								found = (student.givenName + " " + student.familyName).toLowerCase().indexOf(term) !== -1;
 
-							if(!searchProperties[key])
-								return false;
+							// Name: Japanese style
+							if(!found)
+								found = (student.familyName + " " + student.givenName).toLowerCase().indexOf(term) !== -1;
 
-							if(key === "gender" && value !== term)
-								return false;
-
-							if(value.toLowerCase().indexOf(term) !== -1)
-								return true;
-
-							return false;
-						});
-
-						// Name: Western style
-						if(!found)
-							found = found || (student.givenName + " " + student.familyName).toLowerCase().indexOf(term) !== -1;
-
-						// Name: Japanese style
-						if(!found)
-							found = found || (student.familyName + " " + student.givenName).toLowerCase().indexOf(term) !== -1;
-
-						if(!found)
-							return null;
+							if(!found)
+								return null;
+						}
 					}
 
 					student.age = age.of(student);

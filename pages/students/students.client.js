@@ -20,9 +20,6 @@ window.search = function(e) {
 
 	window.oldTerm = term;
 
-	if(window.oldAjaxRequest !== null)
-		window.oldAjaxRequest.abort();
-
 	var queryUrl = "";
 
 	if(!term)
