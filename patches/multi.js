@@ -9,7 +9,7 @@ let mapPhase = new JavaScriptPhase("pages/search/map.js");
 
 riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
 	if(err)
-		console.error(err);
+		console.error(err, err.stack);
 
 	let students = results.data;
 

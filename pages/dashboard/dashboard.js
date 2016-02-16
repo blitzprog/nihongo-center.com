@@ -45,7 +45,7 @@ module.exports = {
 		if(user.accessLevel === "admin" || user.accessLevel === "staff") {
 			riak.mapred.inputs("Accounts").map(statisticsMapPhase).execute(function(err, result) {
 				if(err)
-					console.error(err);
+					console.error(err, err.stack);
 
 				let statistics = getStatistics(result.data);
 

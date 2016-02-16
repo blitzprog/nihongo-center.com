@@ -13,7 +13,7 @@ module.exports = {
 
 		riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
 			if(err)
-				console.error(err);
+				console.error(err, err.stack);
 
 			let course = {
 				students: []

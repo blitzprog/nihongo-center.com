@@ -14,6 +14,11 @@ module.exports = {
 		let email = request.params[0];
 		let __ = request.__;
 
+		if(!email) {
+			response.end()
+			return
+		}
+
 		riak.bucket("Accounts").objects.get(email, function(err, obj) {
 			if(err) {
 				response.render();

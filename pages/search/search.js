@@ -49,15 +49,20 @@ module.exports = {
 			}
 
 			riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
-				if(err)
-					console.error(err);
+				if(err) {
+					console.error(err, err.stack);
+					response.render({
+						user
+					})
+					return
+				}
 
 				let exactDateSearch = false
 
 				if(/^[0-9]{1,2}.[0-9]{4}$/.test(term)) {
 					exactDateSearch = true
 				}
-				
+
 				let students = results.data.map(function(student) {
 					if(term !== "*") {
 						if(exactDateSearch) {

@@ -23,7 +23,7 @@ module.exports = {
 
 		riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
 			if(err)
-				console.error(err);
+				console.error(err, err.stack);
 
 			let staff = results.data.map(function(member) {
 				member.permaLink = "/student/" + member.email;
@@ -39,9 +39,14 @@ module.exports = {
 
 	// Add staff member
 	post: function(request, response) {
+		if(!request.body.email) {
+			response.end()
+			return
+		}
+
 		Accounts.get(request.body.email, function(err, member) {
 			if(err) {
-				console.error(err);
+				console.error(err, err.stack);
 				response.render();
 				return;
 			}
@@ -57,7 +62,7 @@ module.exports = {
 			// Save
 			member.save(function(saveError) {
 				if(saveError)
-					console.error(saveError);
+					console.error(saveError, saveError.stack);
 
 				response.render();
 			});

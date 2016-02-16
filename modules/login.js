@@ -32,7 +32,7 @@ let sendRegistrationMessageToSlack = function(student) {
 			text: "<" + host + "/student/" + student.email + "|" + student.givenName + " " + student.familyName + ">"
 		}), function(err, res, body) {
 			if(err)
-				console.error(err)
+				console.error(err, err.stack)
 			else
 				console.log('Sent slack message.')
 		}
@@ -136,7 +136,7 @@ module.exports = function(app, googleConfig, googleScopes, facebookConfig, faceb
 		// Save account in database
 		userObject.save(function(err) {
 			if(err) {
-				console.error(err);
+				console.error(err, err.stack);
 				return;
 			}
 		});
@@ -148,7 +148,7 @@ module.exports = function(app, googleConfig, googleScopes, facebookConfig, faceb
 	passport.deserializeUser(function(email, done) {
 		userBucket.objects.get(email, function(err, obj) {
 			if(err) {
-				console.error(err);
+				console.error(err, err.stack);
 				return;
 			}
 
