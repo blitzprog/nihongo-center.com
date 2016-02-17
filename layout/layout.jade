@@ -2,7 +2,6 @@ doctype html
 html(lang="en")
 	head
 		title= app.config.title
-		script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js")
 		
 		if user && (user.accessLevel === "admin" || user.accessLevel === "staff")
 			script(src="https://www.google.com/jsapi")
@@ -56,6 +55,7 @@ html(lang="en")
 					.cube2
 				
 				link(rel="stylesheet", href="/bootstrap/css/bootstrap.min.css")
+				script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js")
 				//script(src="/bootstrap/js/bootstrap.min.js")
 	else
 		body
