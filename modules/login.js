@@ -91,7 +91,7 @@ module.exports = function(app, googleConfig, googleScopes, facebookConfig, faceb
 	// Facebook login
 	passport.use(new FacebookStrategy(
 		facebookConfig,
-		function(accessToken, refreshToken, profile, done) {
+		function(request, accessToken, refreshToken, profile, done) {
 			let json = profile._json;
 			let email = json.email.replace("@googlemail.com", "@gmail.com");
 			let occupation = (typeof json.work !== "undefined" && json.work.length >= 0) ? json.work[0].position.name : "";

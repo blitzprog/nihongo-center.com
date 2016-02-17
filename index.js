@@ -33,7 +33,8 @@ let googleConfig = merge({
 
 // Facebook
 let facebookConfig = merge({
-	callbackURL: `https://${host}/auth/facebook/callback`
+	callbackURL: `https://${host}/auth/facebook/callback`,
+	passReqToCallback: true
 }, apiKeys.facebook);
 
 // Init login
