@@ -7,7 +7,7 @@
 		"aero-ajax": "*",
 		"passport": "*",
 		"passport-google-oauth": "*",
-		"passport-facebook": "*",
+		"passport-facebook": "2.0.0",
 		"nodiak": "*",
 		"express-session": "*",
 		"multer": "*",
