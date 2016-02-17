@@ -1,4 +1,11 @@
-let app = require("aero")();
+'use strict'
+
+var app = null
+
+require('strict-mode')(function () {
+	app = require("aero")();
+})
+
 let fs = require("fs");
 let os = require("os");
 let merge = require("object-assign");
