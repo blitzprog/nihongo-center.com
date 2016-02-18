@@ -131,24 +131,25 @@ module.exports = {
 		let index = request.body.index;
 		let key = request.body.key;
 
-		// Trim
-		value = value.trim();
-
-		// Capitalize all parts
-		if(["name", "occupation"].indexOf(key) !== -1) {
-			value = value.split(" ").map(function(part) {
-				return S(part).capitalize().s;
-			}).join(" ");
-		}
-
-		// Capitalize beginning only
-		if(["relation", "nationality"].indexOf(key) !== -1)
-			value = S(value).capitalize().s;
-
-		if(request.body.dataType === "numeric")
+		if(request.body.dataType === "numeric") {
 			user[arrayName][index][key] = parseInt(value);
-		else
+		} else {
+			// Trim
+			value = value.trim();
+
+			// Capitalize beginning only
+			if(["relation", "nationality"].indexOf(key) !== -1)
+				value = S(value).capitalize().s;
+
+			// Capitalize all parts
+			if(["name", "occupation"].indexOf(key) !== -1) {
+				value = value.split(" ").map(function(part) {
+					return S(part).capitalize().s;
+				}).join(" ");
+			}
+
 			user[arrayName][index][key] = value;
+		}
 
 		saveUserInDB(user);
 

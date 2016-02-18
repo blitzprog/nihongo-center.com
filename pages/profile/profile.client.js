@@ -39,11 +39,11 @@ window.saveArrayElement = function() {
 
 	$.post("/_/" + page, {
 		function: "saveArrayElement",
-		array: array,
-		index: index,
-		key: key,
-		value: value,
-		dataType: dataType
+		array,
+		index,
+		key,
+		value,
+		dataType
 	}).then(function(response) {
 		window.updateContent(page, response);
 	});
