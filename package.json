@@ -20,6 +20,7 @@
 		"node-cache": "*",
 		"body-parser": "*",
 		"request": "*",
+		"request-promise": "*",
 		"shortid": "*",
 		"session-file-store": "*",
 		"strict-mode": "*"
