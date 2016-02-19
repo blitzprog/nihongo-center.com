@@ -1,7 +1,7 @@
 window.sendApplication = function(email, name) {
 	var host = "https://my.nihongo-center.com";
 
-	$.post("/api/apply", {
+	$.post("/_/api/apply", {
 		host,
 		email,
 		name
