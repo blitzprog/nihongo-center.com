@@ -1,3 +1,5 @@
+'use strict'
+
 const fetch = require('request-promise')
 
 exports.post = (request, response) => {
