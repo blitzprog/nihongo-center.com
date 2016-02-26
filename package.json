@@ -8,7 +8,7 @@
 		"passport": "*",
 		"passport-google-oauth": "*",
 		"passport-facebook": "2.0.0",
-		"nodiak": "*",
+		"nodiak": "0.4.3",
 		"express-session": "*",
 		"multer": "*",
 		"string": "*",
