@@ -5,13 +5,13 @@ module.exports = {
 	familyName: "",
 	gender: "",
 	language: "",
-	
+
 	// System
 	accessLevel: "student",
 	stage: "apply",
 	applicationDate: null,
 	registrationDate: (new Date()).toISOString(),
-	
+
 	country: "",
 	nationality: "",
 	maritalStatus: "",
@@ -23,27 +23,28 @@ module.exports = {
 	addressAbroad: "",
 	telephone: "",
 	telephoneAbroad: "",
-	
+	contactEmail: "",
+
 	// Course
 	course: "",
 	startYear: "",
 	startMonth: "",
-	
+
 	// Education
 	education: "",
 	educationalInstitutionName: "",
 	graduationDate: "",
 	planAfterGraduation: "",
 	totalPeriodOfEducation: null,
-	
+
 	// Passport
 	passportId: "",
 	passportDateOfExpiration: "",
-	
+
 	// Family
 	familyMembers: [],
 	relativesAbroad: [],
-	
+
 	// Financial
 	paymentMethod: "",
 	financialSupporters: [],
@@ -55,19 +56,19 @@ module.exports = {
 		scholarship: 0,
 		others: 0
 	},
-	
+
 	// Visa
 	portOfEntry: "",
 	visaApplicationPlace: "",
 	numberOfPastEntries: null,
 	lastEntryFrom: "",
 	lastEntryTo: "",
-	
+
 	// Japanese
 	jlptLevel: "",
 	japaneseEducation: [],
 	reasonForStudying: "",
-	
+
 	// Uploads
 	uploads: []
 };

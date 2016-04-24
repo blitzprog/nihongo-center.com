@@ -5,6 +5,7 @@
 	"occupation": "Occupation",
 	"companyName": "Company name",
 	"companyTelephone": "Company telephone",
+	"contactEmail": "Email",
 	"annualIncome": "Annual income",
 	"relationshipWithApplicant": "Relationship with the applicant",
 	"fullName": "Full name",

@@ -56,6 +56,9 @@ else
 		.profile
 			+tel("telephone", user.telephone, "☎")
 			+tel("telephoneAbroad", user.telephoneAbroad, "☎ " + __("onlyIfAvailable"))
+			
+		.profile
+			+text("contactEmail", user.contactEmail, "✉")
 		
 		.page-header
 			h2= __("course")

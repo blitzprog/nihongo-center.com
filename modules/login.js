@@ -62,6 +62,7 @@ module.exports = function(app, googleConfig, googleScopes, facebookConfig, faceb
 
 					account = merge(account, {
 						email: email,
+						contactEmail: email,
 						accessLevel: accessLevel,
 						givenName: json.name.givenName,
 						familyName: json.name.familyName,
@@ -104,6 +105,7 @@ module.exports = function(app, googleConfig, googleScopes, facebookConfig, faceb
 
 					account = merge(account, {
 						email: email,
+						contactEmail: email,
 						givenName: json.first_name,
 						familyName: json.last_name,
 						gender: json.gender,

@@ -5,6 +5,7 @@
 	"occupation": "Profession",
 	"companyName": "Nom de l'entreprise",
 	"companyTelephone": "Téléphone de l'entreprise",
+	"contactEmail": "Email",
 	"annualIncome": "Revenu annuel",
 	"relationshipWithApplicant": "Relation avec le demandeur",
 	"fullName": "Nom et Prénom",
