@@ -139,7 +139,7 @@ module.exports = {
 		// Slack message
 		sendToSlack(
 			'https://hooks.slack.com/services/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',
-			`<https://my.nihongo-center.com/student/${user.email}|${user.givenName} ${user.familyName}> changed '_${key}_' to '*${user[key]}*'`
+			`<https://my.nihongo-center.com/student/${user.email}|${user.givenName} ${user.familyName}> changed _${key}_ to *${user[key]}*`
 		);
 	},
 
