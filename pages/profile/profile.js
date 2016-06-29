@@ -106,6 +106,7 @@ module.exports = {
 	saveProfile: function(request, response) {
 		let user = request.user;
 		let key = request.body.key;
+		let old = user[key];
 
 		if(request.body.dataType === "numeric")
 			user[key] = parseInt(request.body.value);
@@ -137,9 +138,14 @@ module.exports = {
 		this.get(request, response);
 
 		// Slack message
+		let userLink = `<https://my.nihongo-center.com/student/${user.email}|${user.givenName} ${user.familyName}>`
+		let message = old ?
+			`${userLink} changed _${key}_ from *${old}* to *${user[key]}*` :
+			`${userLink} added _${key}_: *${user[key]}*`;
+
 		sendToSlack(
 			'https://hooks.slack.com/services/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',
-			`<https://my.nihongo-center.com/student/${user.email}|${user.givenName} ${user.familyName}> changed _${key}_ to *${user[key]}*`
+			message
 		);
 	},
 
