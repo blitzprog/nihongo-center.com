@@ -3,6 +3,20 @@
 let saveUserInDB = require("../../modules/save-user");
 let dbArray = require("../../modules/db-array");
 let fs = require("fs");
+let fetch = require('request-promise');
+
+let sendToSlack = function(url, message) {
+	let data = {
+		text: message
+	}
+
+	return fetch({
+		method: 'POST',
+		uri: url,
+		body: data,
+		json: true
+	}).then(() => response.end())
+};
 
 module.exports = {
 	// Get
@@ -45,6 +59,15 @@ module.exports = {
 
 			request.user.uploads.unshift(file);
 			saveUserInDB(request.user);
+
+			// Slack message
+			let userLink = `<https://my.nihongo-center.com/student/${user.email}|${user.givenName} ${user.familyName}>`
+			let message = `${userLink} uploaded _${file.purpose}_: *${file.originalname}*`
+
+			sendToSlack(
+				'https://hooks.slack.com/services/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',
+				message
+			);
 		}
 
 		this.get(request, response);
