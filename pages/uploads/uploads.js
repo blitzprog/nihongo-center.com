@@ -61,6 +61,7 @@ module.exports = {
 			saveUserInDB(request.user);
 
 			// Slack message
+			let user = request.user
 			let userLink = `<https://my.nihongo-center.com/student/${user.email}|${user.givenName} ${user.familyName}>`
 			let message = `${userLink} uploaded _${file.purpose}_: *${file.originalname}*`
 
