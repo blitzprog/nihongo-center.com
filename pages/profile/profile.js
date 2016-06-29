@@ -7,12 +7,26 @@ let age = require("../../modules/age");
 let dbArray = require("../../modules/db-array");
 let sumOfValues = require("../../modules/sumOfValues");
 let getCountry = require("../../modules/getCountry");
+let fetch = require('request-promise');
 
 let americaSynonyms = ["America", "U.S.A", "U.S.A.", "USA", "United States of America"];
 
 // Load file as array
 let loadFileAsArray = function(filePath) {
 	return fs.readFileSync(filePath, "utf8").toString().split("\n");
+};
+
+let sendToSlack = function(url, message) {
+	let data = {
+		text: message
+	}
+
+	return fetch({
+		method: 'POST',
+		uri: url,
+		body: data,
+		json: true
+	}).then(() => response.end())
 };
 
 module.exports = {
@@ -121,6 +135,12 @@ module.exports = {
 		// Render normally
 		request.user = user;
 		this.get(request, response);
+
+		// Slack message
+		sendToSlack(
+			'https://hooks.slack.com/services/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',
+			`<https://my.nihongo-center.com/student/${user.email}|${user.givenName} ${user.familyName}> changed '_${key}_' to '*${user[key]}*'`
+		);
 	},
 
 	// Save array element
