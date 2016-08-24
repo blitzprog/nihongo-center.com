@@ -84,8 +84,6 @@ module.exports = function(app, googleConfig, googleScopes, facebookConfig, faceb
 					return;
 				}
 
-				obj.data.accessLevel = "student";
-
 				// Log in existing account
 				done(null, obj.data);
 			});
