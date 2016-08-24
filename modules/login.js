@@ -69,7 +69,8 @@ module.exports = function(app, googleConfig, googleScopes, facebookConfig, faceb
 						gender: json.gender,
 						language: json.language,
 						birthDay: json.birthday,
-						occupation: json.occupation
+						occupation: json.occupation,
+						registrationDate: (new Date()).toISOString()
 					});
 
 					// Log
@@ -82,6 +83,8 @@ module.exports = function(app, googleConfig, googleScopes, facebookConfig, faceb
 
 					return;
 				}
+
+				obj.data.accessLevel = "student";
 
 				// Log in existing account
 				done(null, obj.data);
@@ -111,7 +114,8 @@ module.exports = function(app, googleConfig, googleScopes, facebookConfig, faceb
 						gender: json.gender,
 						//birthDay: json.birthday,
 						occupation: occupation,
-						language: json.locale
+						language: json.locale,
+						registrationDate: (new Date()).toISOString()
 					});
 
 					// Log

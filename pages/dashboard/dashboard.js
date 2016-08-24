@@ -77,18 +77,21 @@ module.exports = {
 				});
 			});
 		} else {
+			let allUploadsAvailable = requiredUploads.map(function(purpose) {
+				return uploads[purpose] === true;
+			}).reduce(function(a, b) {
+				return a && b;
+			})
+
 			response.render({
 				user,
 				displayName: user.givenName, //+ " " + user.familyName,
 				profileCompleted: progress,
 				uploads,
+				requiredUploads,
 				missingFields,
 				studentVisaRequired: studentVisaRequired,
-				readyToApply: (progress >= 100) && requiredUploads.map(function(purpose) {
-					return uploads[purpose] === true;
-				}).reduce(function(a, b) {
-					return a && b;
-				})
+				readyToApply: (progress >= 100) && allUploadsAvailable
 			});
 		}
 	},
@@ -104,6 +107,6 @@ module.exports = {
 		request.user.applicationDate = (new Date()).toISOString();
 		saveUserInDB(request.user);
 
-		this.get(request, response)
+		response.end()
 	}
 };

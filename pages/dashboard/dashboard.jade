@@ -91,14 +91,8 @@ else
 					span= __("uploads")
 				.panel-body
 					.list-group
-						+upload("passportPhoto")
-						+upload("passport")
-						+upload("curriculumVitae")
-						
-						if studentVisaRequired
-							+upload("letterOfGuarantee")
-							+upload("diploma")
-							+upload("pledge")
+						each purpose in requiredUploads
+							+upload(purpose)
 		
 		.col-sm-4
 			.panel.panel-default

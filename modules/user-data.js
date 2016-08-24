@@ -10,7 +10,7 @@ module.exports = {
 	accessLevel: "student",
 	stage: "apply",
 	applicationDate: null,
-	registrationDate: (new Date()).toISOString(),
+	registrationDate: null,
 
 	country: "",
 	nationality: "",
