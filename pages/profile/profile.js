@@ -26,7 +26,7 @@ let sendToSlack = function(url, message) {
 		uri: url,
 		body: data,
 		json: true
-	}).then(() => response.end())
+	})
 };
 
 module.exports = {
