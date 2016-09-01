@@ -15,6 +15,9 @@
 		"upload",
 		"bootstrap"
 	],
+	"headers": [
+		"Content-Security-Policy": ""
+	],
 	"ports": {
 	    "http": 3002,
 	    "https": 3003,
