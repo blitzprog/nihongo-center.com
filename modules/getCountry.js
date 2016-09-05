@@ -1,16 +1,14 @@
-"use strict"
-
-let fs = require("fs")
-let countryData = require("country-data")
+let fs = require('fs')
+let countryData = require('country-data')
 let lookup = countryData.lookup
 let currencies = countryData.currencies
 let languages = countryData.languages
 
 let loadFileAsArray = function(filePath) {
-	return fs.readFileSync(filePath, "utf8").toString().split("\n")
+	return fs.readFileSync(filePath, 'utf8').toString().split('\n')
 }
 
-let visaEasy = loadFileAsArray("data/visa-easy-countries.txt").reduce(function(dict, value) {
+let visaEasy = loadFileAsArray('data/visa-easy-countries.txt').reduce(function(dict, value) {
 	dict[value] = null
 	return dict
 }, {})

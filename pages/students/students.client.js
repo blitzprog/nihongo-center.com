@@ -1,36 +1,36 @@
-window.oldTerm = null;
-window.oldAjaxRequest = null;
+window.oldTerm = null
+window.oldAjaxRequest = null
 
 window.search = function(e) {
 	if(e !== 'force-search') {
 		if(!e)
-			e = window.event;
+			e = window.event
 
-		var keyCode = e.keyCode || e.which;
+		let keyCode = e.keyCode || e.which
 
 		if(keyCode !== 13)
-			return;
+			return
 	}
 
-	var term = $("search").value;
+	let term = $('search').value
 
 	// Don't repeat the same search
 	if(term === window.oldTerm)
-		return;
+		return
 
-	window.oldTerm = term;
+	window.oldTerm = term
 
-	var queryUrl = "";
+	let queryUrl = ''
 
 	if(!term)
-		term = "*";
+		term = '*'
 
-	var $searchResult = $("searchResult");
-	$searchResult.innerHTML = "<div style='text-align: center; width: 100%'><img src='/images/loading.svg' alt='Searching...'></div>";
+	let $searchResult = $('searchResult')
+	$searchResult.innerHTML = '<div style="text-align: center width: 100%"><img src="/images/loading.svg" alt="Searching..."></div>'
 
-	window.oldAjaxRequest = $.get("/_/students/search/" + term).then(function(data) {
-		$searchResult.innerHTML = data;
-	});
-};
+	window.oldAjaxRequest = $.get('/_/students/search/' + term).then(function(data) {
+		$searchResult.innerHTML = data
+	})
+}
 
-window.search('force-search');
+window.search('force-search')

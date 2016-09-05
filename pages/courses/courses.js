@@ -1,45 +1,30 @@
-"use strict";
+exports.get = function*(request, response) {
+	let user = request.user
 
-let riak = require("nodiak").getClient();
-let JavaScriptPhase = require("../../modules/JavaScriptPhase");
-let mapPhase = new JavaScriptPhase("pages/search/map.js");
+	let students = yield app.db.filter('Users', user => user.accessLevel === 'student')
+	let courses = {}
 
-module.exports = {
-	// Get
-	get: function(request, response) {
-		let user = request.user;
+	students.forEach(student => {
+		if(!student.application)
+			return
 
-		riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
-			if(err)
-				console.error(err, err.stack);
+		let startYear = parseInt(student.startYear)
+		let startMonth = parseInt(student.startMonth)
 
-			let courses = {};
-			let students = results.data;
+		if(!courses[startYear]) {
+			courses[startYear] = {
+				[startMonth]: [student]
+			}
+		} else {
+			if(courses[startYear][startMonth])
+				courses[startYear][startMonth].push(student)
+			else
+				courses[startYear][startMonth] = [student]
+		}
+	})
 
-			students.forEach(function(student) {
-				if(!student.applicationDate)
-					return;
-
-				let startYear = parseInt(student.startYear);
-				let startMonth = parseInt(student.startMonth);
-
-				if(!courses[startYear]) {
-					courses[startYear] = {
-						[startMonth]: [student]
-					};
-				} else {
-					if(courses[startYear][startMonth])
-						courses[startYear][startMonth].push(student);
-					else
-						courses[startYear][startMonth] = [student];
-				}
-			});
-
-			// Render the page
-			response.render({
-				user,
-				courses
-			});
-		});
-	}
-};
+	response.render({
+		user,
+		courses
+	})
+}

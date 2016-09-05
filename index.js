@@ -1,76 +1,28 @@
-'use strict'
+global.app = require('aero')()
 
-var app = null
+if(!app.production)
+	console.log('Development Version')
 
-require('strict-mode')(function () {
-	app = require("aero")()
-})
+app.sendRegistrationMessageToSlack = function(student) {
+	if(!app.production)
+		return
 
-let fs = require("fs")
-let os = require("os")
-let merge = require("object-assign")
-let login = require("./modules/login")
-let upload = require("./modules/upload")
-let availableLanguages = require("./modules/languages")
-let i18n = require("i18n")
+	let host = 'https://my.nihongo-center.com'
+	let webhook = 'https://hooks.slack.com/services/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'
 
-let apiKeys = require("./api-keys.json")
-let production = os.hostname() === "ncenter"
-let host = production ? "my.nihongo-center.com" : "localhost:3003"
-
-if(!production)
-	console.log("Development Version")
-
-// Translations
-i18n.configure({
-	locales: availableLanguages,
-	defaultLocale: "en",
-	directory: "locales",
-	objectNotation: true
-})
-
-// Translation
-app.use(i18n.init)
-
-// Google
-let googleConfig = merge({
-	callbackURL: `https://${host}/auth/google/callback`,
-	passReqToCallback: true
-}, apiKeys.google)
-
-// Facebook
-let facebookConfig = merge({
-	callbackURL: `https://${host}/auth/facebook/callback`,
-	passReqToCallback: true
-}, apiKeys.facebook)
-
-// Init login
-login(
-	app,
-	googleConfig, [
-		"https://www.googleapis.com/auth/plus.login",
-	    "email"
-	],
-	facebookConfig, [
-		"email",
-		"public_profile",
-		//"user_birthday",
-		"user_work_history"
-	]
-)
-
-// Init uploads
-upload(app)
-
-// Translation functions
-app.use(function(request, response, next) {
-	request.globals = {
-		__: request.__
-	}
-	next()
-})
+	require('request').post({
+		url: webhook,
+		body: JSON.stringify({
+			text: '<' + host + '/student/' + student.email + '|' + student.givenName + ' ' + student.familyName + ' (' + student.email + ')>'
+		}), function(err, res, body) {
+			if(err)
+				console.error(err, err.stack)
+			else
+				console.log('Sent slack message.')
+		}
+	})
+}
 
 app.use(require('body-parser').json())
 
-// Start Aero
 app.run()

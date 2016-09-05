@@ -1,9 +1,7 @@
 window.addStaffMember = function() {
-	var email = $("email");
+	let email = $('email')
 
-	$.post("/_/staff", {
+	$.post('/_/staff', {
 		email: email.value
-	}).then(function(response) {
-		location.reload();
-	});
-};
+	}).then(response => location.reload())
+}

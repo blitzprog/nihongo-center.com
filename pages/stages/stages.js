@@ -1,61 +1,48 @@
-"use strict";
+let countryData = require('country-data')
 
-let riak = require("nodiak").getClient();
-let JavaScriptPhase = require("../../modules/JavaScriptPhase");
-let mapPhase = new JavaScriptPhase("pages/search/map.js");
-let countryData = require("country-data");
+exports.get = function*(request, response) {
+	let user = request.user
 
-module.exports = {
-	// Get
-	get: function(request, response) {
-		let user = request.user;
-
-		if(!user) {
-			response.render()
-			return
-		}
-
-		user.isStaff = user.accessLevel === "admin" || user.accessLevel === "staff"
-
-		if(!user.isStaff) {
-			response.render({
-				user
-			})
-			return
-		}
-
-		riak.mapred.inputs("Accounts").map(mapPhase).execute(function(err, results) {
-			if(err)
-				console.error(err, err.stack);
-
-			let stages = {};
-			let students = results.data;
-
-			students.forEach(function(student) {
-				if(!student.applicationDate && student.stage === "apply")
-					return;
-
-				if(!stages[student.stage]) {
-					stages[student.stage] = [student]
-				} else {
-					stages[student.stage].push(student)
-				}
-
-				if(student.country) {
-					let countryObject = countryData.lookup.countries({
-						name: student.country
-					})[0];
-
-					if(countryObject)
-						student.countryCode = countryObject.alpha2.toLowerCase();
-				}
-			});
-
-			// Render the page
-			response.render({
-				user,
-				stages
-			});
-		});
+	if(!user) {
+		response.render()
+		return
 	}
-};
+
+	user.isStaff = user.accessLevel === 'admin' || user.accessLevel === 'staff'
+
+	if(!user.isStaff) {
+		response.render({
+			user
+		})
+		return
+	}
+
+	let stages = {}
+	let students = yield app.db.filter('Users', user => user.accessLevel === 'student')
+
+	students.forEach(student => {
+		if(!student.application && student.stage === 'apply')
+			return
+
+		if(!stages[student.stage]) {
+			stages[student.stage] = [student]
+		} else {
+			stages[student.stage].push(student)
+		}
+
+		if(student.country) {
+			let countryObject = countryData.lookup.countries({
+				name: student.country
+			})[0]
+
+			if(countryObject)
+				student.countryCode = countryObject.alpha2.toLowerCase()
+		}
+	})
+
+	// Render the page
+	response.render({
+		user,
+		stages
+	})
+}

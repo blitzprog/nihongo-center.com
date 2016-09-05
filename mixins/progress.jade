@@ -1,0 +1,12 @@
+mixin progress(value)
+	.progress(title=value + ' %')
+		if value >= 100
+			- var cssClass = "progress-bar progress-bar-success";
+		else if value >= 50
+			- var cssClass = "progress-bar progress-bar-warning progress-bar-striped";
+		else if value >= 25
+			- var cssClass = "progress-bar progress-bar-info progress-bar-striped";
+		else
+			- var cssClass = "progress-bar progress-bar-danger progress-bar-striped"
+		
+		div(class=cssClass, role="progressbar", aria-valuenow=value, aria-valuemin="0" aria-valuemax="100", style="width: " + value + "%")

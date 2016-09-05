@@ -27,13 +27,6 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
-# Symlinks
-/.eslintrc
-/.jscs.json
-
-# Uploads
+# NCenter
 /upload
-
-# API keys
-/api-keys.json
-/sessions
+/db

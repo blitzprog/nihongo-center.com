@@ -3,8 +3,6 @@ include ../../mixins/forms.jade
 if !user
 	p= __("error.notLoggedIn")
 else
-	- var 何 = undefined;
-	
 	+datalist("cities", cities)
 	+datalist("countries", countries)
 	+datalist("nationalities", nationalities)
@@ -18,12 +16,12 @@ else
 		
 	if user.accessLevel === "student"
 		.profile
-			+select("gender", user.gender, genderOptions)
-			+select("maritalStatus", user.maritalStatus, maritalStatusOptions)
+			+select("gender", user.profile.gender, genderOptions)
+			+select("maritalStatus", user.profile.maritalStatus, maritalStatusOptions)
 			
 		.profile
-			+date("birthDay", user.birthDay)
-			+text("birthPlace", user.birthPlace, "", "cities")
+			+date("birthDay", user.profile.birthDay)
+			+text("birthPlace", user.profile.birthPlace, "", "cities")
 			+text("age", age, "", "", true)
 		
 		.page-header
@@ -33,67 +31,67 @@ else
 					img(src="https://flags.fmcdn.net/data/flags/small/" + country.alpha2.toLowerCase() + ".png", style="float: right", height=48, alt=country.name, title=country.name)
 		
 		.profile
-			+text("country", user.country, "Where do you live?", "countries")
-			+text("nationality", user.nationality, "What is your official nationality?", "nationalities")
+			+text("country", user.profile.country, "Where do you live?", "countries")
+			+text("nationality", user.profile.nationality, "What is your official nationality?", "nationalities")
 			
-		if user.country && !country
-			.alert.alert-danger= __("error.identifyCountry", user.country)
+		if user.profile.country && !country
+			.alert.alert-danger= __("error.identifyCountry", user.profile.country)
 		
 		.page-header
 			h2= __("work")
 		
 		.profile
-			+text("occupation", user.occupation)
-			+select("occupationType", user.occupationType, occupationTypeOptions)
+			+text("occupation", user.profile.occupation)
+			+select("occupationType", user.profile.occupationType, occupationTypeOptions)
 			
 		.page-header
 			h2= __("contact")
 		
 		.profile
-			+text("address", user.address, "🏠")
-			+text("addressAbroad", user.addressAbroad, "🏠 " + __("onlyIfAvailable"))
+			+text("address", user.profile.address, "🏠")
+			+text("addressAbroad", user.profile.addressAbroad, "🏠 " + __("onlyIfAvailable"))
 			
 		.profile
-			+tel("telephone", user.telephone, "☎")
-			+tel("telephoneAbroad", user.telephoneAbroad, "☎ " + __("onlyIfAvailable"))
+			+tel("telephone", user.profile.telephone, "☎")
+			+tel("telephoneAbroad", user.profile.telephoneAbroad, "☎ " + __("onlyIfAvailable"))
 			
 		.profile
-			+text("contactEmail", user.contactEmail, "✉")
+			+text("contactEmail", user.profile.contactEmail, "✉")
 		
 		.page-header
 			h2= __("course")
 		
 		.profile
-			+select("course", user.course, courseOptions)
+			+select("course", user.profile.course, courseOptions)
 			
 		.profile
-			+select("startYear", user.startYear, startYearOptions)
-			+select("startMonth", user.startMonth, startMonthOptions)
+			+select("startYear", user.profile.startYear, startYearOptions)
+			+select("startMonth", user.profile.startMonth, startMonthOptions)
 		
-		if user.course && (user.startMonth === "01" || user.startMonth === "06") && ["6 months", "1 year", "1.5 years", "2 years"].indexOf(user.course) !== -1
+		if user.profile.course && (user.profile.startMonth === "01" || user.profile.startMonth === "06") && ["6 months", "1 year", "1.5 years", "2 years"].indexOf(user.profile.course) !== -1
 			.alert.alert-danger= __("error.weCantProvideVisa")
 		
 		.page-header
 			h2= __("education")
 		
 		.profile
-			+select("education", user.education, educationOptions)
-			+text("educationalInstitutionName", user.educationalInstitutionName, __("tooltip.educationalInstitutionName"))
+			+select("education", user.profile.education, educationOptions)
+			+text("educationalInstitutionName", user.profile.educationalInstitutionName, __("tooltip.educationalInstitutionName"))
 			
-			+month("graduationDate", user.graduationDate)
-			+number("totalPeriodOfEducation", 何, __("tooltip.totalPeriodOfEducation"))
+			+month("graduationDate", user.profile.graduationDate)
+			+number("totalPeriodOfEducation", undefined, __("tooltip.totalPeriodOfEducation"))
 			
-			+select("planAfterGraduation", user.planAfterGraduation, planAfterGraduationOptions)
+			+select("planAfterGraduation", user.profile.planAfterGraduation, planAfterGraduationOptions)
 			
 		.page-header
 			h2= __("passport")
 		
 		.profile
-			+text("passportId", user.passportId, __("tooltip.passportId"))
-			+date("passportDateOfExpiration", user.passportDateOfExpiration)
+			+text("passportId", user.profile.passportId, __("tooltip.passportId"))
+			+date("passportDateOfExpiration", user.profile.passportDateOfExpiration)
 			
 		.profile
-			+number("numberOfPastEntries", 何, __("tooltip.numberOfPastEntries"))
+			+number("numberOfPastEntries", undefined, __("tooltip.numberOfPastEntries"))
 			
 		.profile
 			+date("lastEntryFrom")
@@ -103,7 +101,7 @@ else
 			h2= __("family")
 		
 		#family-members.profile
-			each member, index in user.familyMembers
+			each member, index in user.profile.familyMembers
 				.profile.array-element.family-member
 					+textInArray("familyMembers", index, "name", member.name)
 					+textInArray("familyMembers", index, "relation", member.relation)
@@ -133,38 +131,38 @@ else
 			+numberInObject("financialSupportPerMonth", "scholarship", __("monthlyAmountInYen"))
 			+numberInObject("financialSupportPerMonth", "others", __("monthlyAmountInYen"))
 			
-			if user.financialSupportPerMonth.total < 50000
+			if user.profile.financialSupportPerMonth.total < 50000
 				- var alertClass = "alert-danger";
-			else if user.financialSupportPerMonth.total < 80000
+			else if user.profile.financialSupportPerMonth.total < 80000
 				- var alertClass = "alert-warning";
 			else
 				- var alertClass = "alert-info";
 			
 			div(class=`alert ${alertClass} totalAmount`)
-				p!= __("financialSupportTotalAmount", `<strong>${user.financialSupportPerMonth.total}</strong>`)
+				p!= __("financialSupportTotalAmount", `<strong>${user.profile.financialSupportPerMonth.total}</strong>`)
 				
-				if user.financialSupportPerMonth.total < 80000
+				if user.profile.financialSupportPerMonth.total < 80000
 					p!= __("pleaseBringAtLeast", "<strong>80000</strong>")
 		
 		.page-header
 			h2= __("applicationFees")
 		
 		.profile
-			+select("paymentMethod", user.paymentMethod, paymentMethods)
+			+select("paymentMethod", user.profile.paymentMethod, paymentMethods)
 		
 		.page-header
 			h2= __("financialSupporters.title")
 		
 		#financial-supporters.profile
-			each supporter, index in user.financialSupporters
+			each supporter, index in user.profile.financialSupporters
 				.profile.array-element.financial-supporter
 					+textInArray("financialSupporters", index, "name")
 					+textInArray("financialSupporters", index, "address")
 					+textInArray("financialSupporters", index, "telephone")
 					+textInArray("financialSupporters", index, "occupation")
-					+textInArray("financialSupporters", index, "company", 何, __("tooltip.company"))
+					+textInArray("financialSupporters", index, "company", undefined, __("tooltip.company"))
 					+textInArray("financialSupporters", index, "companyTelephone")
-					+numberInArray("financialSupporters", index, "annualIncome", 何, __("inYen"))
+					+numberInArray("financialSupporters", index, "annualIncome", undefined, __("inYen"))
 					+textInArray("financialSupporters", index, "relation")
 					
 					a(href="javascript:window.remove('profile', 'FinancialSupporter', " + index + ");").btn.btn-danger.delete-button
@@ -179,16 +177,16 @@ else
 			h2= __("japanese")
 		
 		.profile
-			+select("jlptLevel", user.jlptLevel, jlptLevels)
+			+select("jlptLevel", user.profile.jlptLevel, jlptLevels)
 			
 		.profile
-			+textArea("reasonForStudying", user.reasonForStudying, __("tooltip.reasonForStudying"), 12, 80)
+			+textArea("reasonForStudying", user.profile.reasonForStudying, __("tooltip.reasonForStudying"), 12, 80)
 		
 		.page-header
 			h2= __("japaneseStudyExperience")
 		
 		#education-backgrounds.profile
-			each education, index in user.japaneseEducation
+			each education, index in user.profile.japaneseEducation
 				.profile.array-element.education-background
 					+textInArray("japaneseEducation", index, "institution")
 					+numberInArray("japaneseEducation", index, "totalHours")
@@ -197,7 +195,7 @@ else
 					a(href="javascript:window.remove('profile', 'EducationBackground', " + index + ");").btn.btn-danger.delete-button
 						.glyphicon.glyphicon-remove
 		
-		if user.japaneseEducation.length === 0
+		if user.profile.japaneseEducation.length === 0
 			.alert.alert-danger= __("error.noStudyExperience")
 		
 		.buttons
@@ -209,5 +207,11 @@ else
 			h2= __("visa")
 		
 		.profile
-			+select("portOfEntry", user.portOfEntry, portsOfEntry)
-			+text("visaApplicationPlace", 何, "🏢 " + __("tooltip.visaApplicationPlace"))
+			+select("portOfEntry", user.profile.portOfEntry, portsOfEntry)
+			+text("visaApplicationPlace", undefined, "🏢 " + __("tooltip.visaApplicationPlace"))
+		
+		include ../../mixins/progress.jade
+		+progress(profileCompleted)
+		
+		br
+		br

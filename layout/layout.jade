@@ -1,28 +1,28 @@
 doctype html
-html(lang="en")
+html(lang='en')
 	head
 		title= app.config.title
 		
-		if user && (user.accessLevel === "admin" || user.accessLevel === "staff")
-			script(src="https://www.google.com/jsapi")
-			script google.load("visualization", "1", {packages:["corechart"]});
+		if user && (user.accessLevel === 'admin' || user.accessLevel === 'staff')
+			script(src='https://www.google.com/jsapi')
+			script google.load('visualization', '1', {packages:['corechart']});
 	
 	if user
-		body(role="document", style="background: white;")
+		body(role='document', style='background: white')
 			#container
 				#header-container
 					#header.navbar.navbar-inverse.navbar-fixed-top
 						#title.hide
 							h1
-								a(href="/")= siteName
+								a(href='/')= siteName
 						
 						nav#navigation.container
 							header.hide
 								h2 Navigation
 							
 							//- .navbar-header
-							//- 	a.navbar-brand.ajax(href="/")
-							//- 		img(alt="Nihongo Center", src="/images/navbar-logo.png", width="210", height="20")
+							//- 	a.navbar-brand.ajax(href='/')
+							//- 		img(alt='Nihongo Center', src='/images/navbar-logo.png', width='210', height='20')
 							
 							mixin navElement(page)
 								li
@@ -30,8 +30,8 @@ html(lang="en")
 										- var menuTitle = __(page.id)
 										if page.icon
 											.navigation-button
-												div(class="glyphicon glyphicon-" + page.icon)
-												span(style="margin-left: 0.4em")= menuTitle
+												div(class='glyphicon glyphicon-' + page.icon)
+												span(style='margin-left: 0.4em')= menuTitle
 										else
 											.navigation-button= menuTitle
 							
@@ -42,21 +42,21 @@ html(lang="en")
 							ul.nav.navbar-nav.navbar-right
 								if user
 									li
-										a.navigation-link(href="/logout")
+										a.navigation-link(href='/logout')
 											.navigation-button
-												div(class="glyphicon glyphicon-eject")
-												span(style="margin-left: 0.4em")= __("logout")
+												div(class='glyphicon glyphicon-eject')
+												span(style='margin-left: 0.4em')= __('logout')
 			
 				#content-container.container
-					#content.kaze-fade!= content
+					main#content.kaze-fade!= content
 				
 				#loading-animation.spinner.kaze-fade
 					.cube1
 					.cube2
 				
-				link(rel="stylesheet", href="/bootstrap/css/bootstrap.min.css")
-				script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js")
-				//script(src="/bootstrap/js/bootstrap.min.js")
+				link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css')
+				script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js')
 	else
 		body
-			include ../pages/login/login.jade
+			main#content.kaze-fade(style='width: 100%; height: 100%; padding: 0; margin: 0;')
+				include ../pages/login/login.jade

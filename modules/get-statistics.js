@@ -1,44 +1,47 @@
 module.exports = function(students) {
-	var countries = {};
-	var gender = {
+	let countries = {}
+	let gender = {
 		male: 0,
 		female: 0
-	};
+	}
 
 	students.forEach(function(student) {
 		// Country
-		if(student.country && student.country.length > 1) {
-			if(student.country === "America")
-				student.country = "United States";
+		if(student.profile.country && student.profile.country.length > 1) {
+			if(student.profile.country === 'America')
+				student.profile.country = 'United States'
 
-			if(countries[student.country])
-				countries[student.country] += 1;
+			if(countries[student.profile.country])
+				countries[student.profile.country] += 1
 			else
-				countries[student.country] = 1;
+				countries[student.profile.country] = 1
 		}
 
 		// Gender
-		gender[student.gender] += 1;
-	});
+		gender[student.profile.gender] += 1
+	})
 
-	var totalApplicants = students.filter(function(student) {
-		return student.applicationDate !== null;
-	}).length;
-	var applicantsAccepted = students.filter(function(student) {
-		return student.stage !== "apply" && student.stage !== "declined" && student.stage !== "canceled";
-	}).length;
-	var applicantsRejected = students.filter(function(student) {
-		return student.stage === "declined" || student.stage === "canceled";
-	}).length;
-	var applicantsRemaining = totalApplicants - applicantsAccepted - applicantsRejected
+	let totalApplicants = students.filter(function(student) {
+		return student.application !== null
+	}).length
+
+	let applicantsAccepted = students.filter(function(student) {
+		return student.stage !== 'apply' && student.stage !== 'declined' && student.stage !== 'canceled'
+	}).length
+
+	let applicantsRejected = students.filter(function(student) {
+		return student.stage === 'declined' || student.stage === 'canceled'
+	}).length
+
+	let applicantsRemaining = totalApplicants - applicantsAccepted - applicantsRejected
 
 	return {
 		totalStudents: students.length,
-		totalApplicants: totalApplicants,
-		applicantsAccepted: applicantsAccepted,
-		applicantsRejected: applicantsRejected,
-		applicantsRemaining: applicantsRemaining,
-		countries: countries,
-		gender: gender
-	};
-};
+		totalApplicants,
+		applicantsAccepted,
+		applicantsRejected,
+		applicantsRemaining,
+		countries,
+		gender
+	}
+}

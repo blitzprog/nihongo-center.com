@@ -1,42 +1,37 @@
-"use strict";
-
-let saveUserInDB = require("../../modules/save-user");
-
 module.exports = {
 	// Get
 	get: function(request, response) {
-		let user = request.user;
+		let user = request.user
 
 		if(user)
-			user.isStaff = user.accessLevel === "admin" || user.accessLevel === "staff"
+			user.isStaff = user.accessLevel === 'admin' || user.accessLevel === 'staff'
 
 		// Render the page
 		response.render({
 			user,
 			languages: {
-				"en": "English",
-				"fr": "Français",
-				"zh": "繁體中文"
+				'en': 'English',
+				'fr': 'Français',
+				'zh': '繁體中文'
 			}
-		});
+		})
 	},
 
 	// Post: Save to database
 	post: function(request, response) {
-		if(!request.body || !request.body.function) {
+		if(!request.body || !request.body.func) {
 			response.writeHead(400)
-			response.end();
+			response.end()
 			return
 		}
 
-		this[request.body.function](request, response);
+		this[request.body.func](request, response)
 	},
 
 	// Save language
 	saveLanguage: function(request, response) {
-		let user = request.user;
-		user.language = request.body.languageCode;
-		saveUserInDB(user);
-		response.end();
+		let user = request.user
+		user.language = request.body.languageCode
+		app.db.saveUser(user).then(() => response.end())
 	}
-};
+}

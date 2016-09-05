@@ -1,5 +1,3 @@
-"use strict";
-
 let monthsBefore = 1
 
 module.exports = function(__, startYear) {
@@ -10,8 +8,8 @@ module.exports = function(__, startYear) {
 	let months = {}
 
 	// Short courses
-	months["01"] = __("monthNames.1")
-	months["06"] = __("monthNames.6")
+	months['01'] = __('monthNames.1')
+	months['06'] = __('monthNames.6')
 
 	// Invalid year
 	if(startYear < currentYear)
@@ -20,18 +18,18 @@ module.exports = function(__, startYear) {
 	// Same year
 	if(startYear === currentYear) {
 		if(currentMonth <= 3 - monthsBefore)
-			months["04"] = __("monthNames.4")
+			months['04'] = __('monthNames.4')
 		if(currentMonth <= 9 - monthsBefore)
-			months["10"] = __("monthNames.10")
+			months['10'] = __('monthNames.10')
 		return months
 	}
 
 	// Next year
 	if(startYear === currentYear + 1) {
 		if(currentMonth <= 15 - monthsBefore)
-			months["04"] = __("monthNames.4")
+			months['04'] = __('monthNames.4')
 		if(currentMonth <= 21 - monthsBefore)
-			months["10"] = __("monthNames.10")
+			months['10'] = __('monthNames.10')
 	}
 
 	return months

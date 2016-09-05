@@ -1,4 +1,5 @@
 {
+	"domain": "my.nihongo-center.com",
 	"title": "My Nihongo Center",
 	"scripts": [
 		"init",
@@ -12,15 +13,22 @@
 	],
 	"static": [
 		"images",
-		"upload",
-		"bootstrap"
+		"upload"
 	],
+	"database": {
+		"namespace": "ncenter"
+	},
+	"admin": {
+		"emails": [
+			"e.urbach@gmail.com"
+		]
+	},
 	"headers": {
 		"Content-Security-Policy": ""
 	},
 	"ports": {
-	    "http": 3002,
-	    "https": 3003,
+	    "http": 4002,
+	    "https": 4003,
 	    "liveReload": 9000
 	}
 }
