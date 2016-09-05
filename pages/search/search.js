@@ -39,7 +39,7 @@ exports.get = function*(request, response) {
 	students = students.map(student => {
 		if(term !== '*') {
 			if(exactDateSearch) {
-				if(!student.startMonth || !student.startYear || student.startMonth + '-' + student.startYear !== term) {
+				if(!student.profile.startMonth || !student.profile.startYear || student.profile.startMonth + '-' + student.profile.startYear !== term) {
 					return null
 				}
 			} else {
@@ -63,11 +63,11 @@ exports.get = function*(request, response) {
 
 				// Name: Western style
 				if(!found)
-					found = (student.givenName + ' ' + student.familyName).toLowerCase().indexOf(term) !== -1
+					found = (student.profile.givenName + ' ' + student.profile.familyName).toLowerCase().indexOf(term) !== -1
 
 				// Name: Japanese style
 				if(!found)
-					found = (student.familyName + ' ' + student.givenName).toLowerCase().indexOf(term) !== -1
+					found = (student.profile.familyName + ' ' + student.profile.givenName).toLowerCase().indexOf(term) !== -1
 
 				if(!found)
 					return null
@@ -78,8 +78,8 @@ exports.get = function*(request, response) {
 		student.permaLink = '/student/' + student.email
 		student.profileCompleted = getStudentProgress(student)
 
-		if(student.country) {
-			let countryObject = lookup.countries({name: student.country})[0]
+		if(student.profile.country) {
+			let countryObject = lookup.countries({name: student.profile.country})[0]
 			if(countryObject)
 				student.countryCode = countryObject.alpha2.toLowerCase()
 		}
@@ -95,11 +95,11 @@ exports.get = function*(request, response) {
 		let registeredFactor = Math.sign(Date.parse(b.registration) - Date.parse(a.registration))
 		let courseFactor = 0
 
-		if(a.startYear && b.startYear) {
-			if(b.startYear === a.startYear && a.startMonth && b.startMonth)
-				courseFactor = Math.sign(parseInt(a.startMonth) - parseInt(b.startMonth))
+		if(a.profile.startYear && b.profile.startYear) {
+			if(b.profile.startYear === a.profile.startYear && a.profile.startMonth && b.profile.startMonth)
+				courseFactor = Math.sign(parseInt(a.profile.startMonth) - parseInt(b.profile.startMonth))
 			else
-				courseFactor = Math.sign(parseInt(a.startYear) - parseInt(b.startYear))
+				courseFactor = Math.sign(parseInt(a.profile.startYear) - parseInt(b.profile.startYear))
 		}
 
 		return registeredFactor + courseFactor * 2 + progressFactor * 4 + appliedFactor * 8

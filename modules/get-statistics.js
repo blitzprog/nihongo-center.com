@@ -22,7 +22,7 @@ module.exports = function(students) {
 	})
 
 	let totalApplicants = students.filter(function(student) {
-		return student.application !== null
+		return student.application
 	}).length
 
 	let applicantsAccepted = students.filter(function(student) {

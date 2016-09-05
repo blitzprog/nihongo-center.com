@@ -30,9 +30,9 @@ exports.get = function*(request, response) {
 			stages[student.stage].push(student)
 		}
 
-		if(student.country) {
+		if(student.profile.country) {
 			let countryObject = countryData.lookup.countries({
-				name: student.country
+				name: student.profile.country
 			})[0]
 
 			if(countryObject)

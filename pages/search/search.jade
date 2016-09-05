@@ -29,7 +29,7 @@ else
 						img(src="https://nihongo-center.com/images/flags/" + student.countryCode + ".png", title=student.country)
 				td.col-md-3
 					a(href=student.permaLink)
-						- var studentName = student.givenName + " " + student.familyName
+						- var studentName = student.profile.givenName + " " + student.profile.familyName
 						if student.stage === "declined" || student.stage === "canceled"
 							strike= studentName
 						else
@@ -38,24 +38,14 @@ else
 					p= __("stageList." + student.stage)
 				td.col-md-2
 					.form-group
-						input.form-control(type="month", value=student.startYear + "-" + student.startMonth, disabled)
+						input.form-control(type="month", value=student.profile.startYear + "-" + student.profile.startMonth, disabled)
 					
 				td.col-md-1
-					span= student.course
+					span= student.profile.course
 					
 				td.col-md-1
-					.progress
-						if student.profileCompleted >= 100
-							- var cssClass = "progress-bar progress-bar-success"
-						else if student.profileCompleted >= 50
-							- var cssClass = "progress-bar progress-bar-warning progress-bar-striped"
-						else if student.profileCompleted >= 25
-							- var cssClass = "progress-bar progress-bar-info progress-bar-striped"
-						else
-							- var cssClass = "progress-bar progress-bar-danger progress-bar-striped"
-						
-						//-meter(min=0, max=100, low=25, value=student.profileCompleted, title=student.profileCompleted + "%")
-						div(class=cssClass, role="progressbar", aria-valuenow=student.profileCompleted, aria-valuemin="0" aria-valuemax="100", style="width: " + student.profileCompleted + "%", title=student.profileCompleted + "%")
+					include ../../mixins/progress.jade
+					+progress(student.profileCompleted)
 				td.col-md-1
 					span= student.uploads.length
 				td.col-md-1

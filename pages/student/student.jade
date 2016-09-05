@@ -1,10 +1,10 @@
 mixin display(key, cssClass)
 	tr(class=cssClass)
 		td(style="width: 30%")= humanized[key]
-		if student[key] && typeof translateOptions[key] !== "undefined"
-			td!= __(`options.${key}.${student[key]}`)
+		if student.profile[key] && typeof translateOptions[key] !== "undefined"
+			td!= __(`options.${key}.${student.profile[key]}`)
 		else
-			td= student[key]
+			td= student.profile[key]
 
 if !user
 	p= __("error.notLoggedIn")
@@ -32,18 +32,18 @@ else
 					p!= description
 			
 			//- Course
-			if student.course && student.startYear && student.startMonth
+			if student.profile.course && student.profile.startYear && student.profile.startMonth
 				.panel.panel-default
 					.panel-heading: h2
 						span.glyphicon.glyphicon-calendar(style="margin-right: 0.25em")
 						span= __("course")
 					.panel-body
-						a.btn.btn-default(href="javascript:alert('Work in progress.')")= __("options.course." + student.course)
+						a.btn.btn-default(href="javascript:alert('Work in progress.')")= __("options.course." + student.profile.course)
 						| 
-						a.btn.btn-default(href="javascript:alert('Work in progress.')")= __("monthNames." + parseInt(student.startMonth))
+						a.btn.btn-default(href="javascript:alert('Work in progress.')")= __("monthNames." + parseInt(student.profile.startMonth))
 						| 
-						a.btn.btn-default(href="javascript:alert('Work in progress.')")= student.startYear
-						a.btn.btn-default.ajax(style="float: right", href="/course/" + student.startYear + "/" + student.startMonth)= "View course"
+						a.btn.btn-default(href="javascript:alert('Work in progress.')")= student.profile.startYear
+						a.btn.btn-default.ajax(style="float: right", href="/course/" + student.profile.startYear + "/" + student.profile.startMonth)= "View course"
 			
 			//- Uploads
 			#uploads.panel.panel-default
@@ -71,10 +71,10 @@ else
 					span.glyphicon.glyphicon-pencil(style="margin-right: 0.25em")
 					span= __("motivation")
 				.panel-body
-					if !student.reasonForStudying
+					if !student.profile.reasonForStudying
 						div.alert.alert-danger= __("error.noReasonForStudying")
 					else
-						p= '"' + student.reasonForStudying + '"'
+						p= '"' + student.profile.reasonForStudying + '"'
 			
 			//- Details
 			.panel.panel-default
@@ -88,9 +88,9 @@ else
 								th Field
 								th Value
 						
-						- var keys = Object.keys(student)
-						each key in keys
-							if(!keysNotRendered[key])
+						- var profileKeys = Object.keys(student.profile).sort()
+						each key in profileKeys
+							if !(keysNotRendered[key])
 								+display(key)
 			
 		.col-sm-4
@@ -163,7 +163,7 @@ else
 				
 				.panel-body
 					ul.list-group
-						each key in Object.keys(student.financialSupportPerMonth)
+						each key in Object.keys(student.profile.financialSupportPerMonth)
 							li.list-group-item
 								- var cssClass = "";
 								if key != "total"
@@ -172,12 +172,12 @@ else
 								else
 									span &nbsp;
 									
-									if parseInt(student.financialSupportPerMonth.total) < 80000
+									if parseInt(student.profile.financialSupportPerMonth.total) < 80000
 										- cssClass = "label-danger"
 									else
 										- cssClass = "label-primary"
 								
-								span(class="label " + cssClass, style="float: right")= student.financialSupportPerMonth[key] + " ¥"
+								span(class="label " + cssClass, style="float: right")= student.profile.financialSupportPerMonth[key] + " ¥"
 			
 			//- Family
 			.panel.panel-default
@@ -185,11 +185,11 @@ else
 					span.glyphicon.glyphicon-home(style="margin-right: 0.25em")
 					span Family
 				.panel-body
-					if student.familyMembers.length === 0
+					if student.profile.familyMembers.length === 0
 						div.alert.alert-danger= __("error.noFamilyMembers")
 					else
 						ul.list-group
-							each member in student.familyMembers
+							each member in student.profile.familyMembers
 								li.list-group-item
 									span= member.name
 									span.label.label-info(style="float: right")= member.relation
@@ -206,11 +206,11 @@ else
 					span.glyphicon.glyphicon-credit-card(style="margin-right: 0.25em")
 					span= __("financialSupportersTitle")
 				.panel-body
-					if student.financialSupporters.length === 0
+					if student.profile.financialSupporters.length === 0
 						div.alert.alert-danger= __("error.noFinancialSupporters")
 					else
 						ul.list-group
-							each member in student.financialSupporters
+							each member in student.profile.financialSupporters
 								li.list-group-item
 									span= member.name
 									span.label.label-info(style="float: right")= member.relation
@@ -229,15 +229,15 @@ else
 					span= __("japaneseEducationTitle")
 				.panel-body
 					ul.list-group
-						if student.jlptLevel
+						if student.profile.jlptLevel
 							p
 								| JLPT level: 
-								strong= student.jlptLevel
-						else if student.japaneseEducation.length === 0
+								strong= student.profile.jlptLevel
+						else if student.profile.japaneseEducation.length === 0
 							div.alert.alert-info= __("error.noJapaneseEducationOrJLPT")
 						
-						if student.japaneseEducation.length === 0
+						if student.profile.japaneseEducation.length === 0
 							.alert.alert-danger The student does not seem to have any Japanese study experience!
 						else
-							each education in student.japaneseEducation
+							each education in student.profile.japaneseEducation
 								li.list-group-item= education.institution + " (" + education.totalHours + ")"

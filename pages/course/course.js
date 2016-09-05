@@ -13,8 +13,8 @@ exports.get = function*(request, response) {
 		if(!student.application)
 			return
 
-		let startYear = parseInt(student.startYear)
-		let startMonth = parseInt(student.startMonth)
+		let startYear = parseInt(student.profile.startYear)
+		let startMonth = parseInt(student.profile.startMonth)
 
 		if(startYear === year && startMonth === month)
 			course.students.push(student)

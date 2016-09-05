@@ -19,13 +19,22 @@ module.exports = {
 
 		student.age = age.of(student)
 		student.displayName = student.profile.givenName + ' ' + student.profile.familyName
-		student.heShe = student.profile.gender === 'male' ? 'He' : 'She'
-		student.hisHer = student.profile.gender === 'male' ? 'his' : 'her'
-		student.heSheJp = student.profile.gender === 'male' ? '彼' : '彼女'
+
+		if(student.profile.gender === 'male') {
+			student.heShe = 'He'
+			student.hisHer = 'his'
+		} else if(student.profile.gender === 'female') {
+			student.heShe = 'She'
+			student.hisHer = 'her'
+		} else {
+			student.heShe = 'The applicant'
+			student.hisHer = 'The applicant\'s'
+		}
+
 		student.startMonthName = __('monthNames.' + parseInt(student.profile.startMonth))
 
 		// Create an inverted dictionary based on fileTypes
-		let humanized = Object.keys(student).reduce(function(dict, key) {
+		let humanized = Object.keys(student.profile).reduce(function(dict, key) {
 			if(key)
 				dict[key] = S(key).humanize().s
 
@@ -38,8 +47,8 @@ module.exports = {
 			description += `${student.displayName} is ${student.age} years old and ${student.profile.maritalStatus}. `
 		else if(student.age)
 			description += `${student.displayName} is ${student.age} years old. `
-		else if(student.maritalStatus)
-			description += `${student.displayName} is ${student.maritalStatus}. `
+		else if(student.profile.maritalStatus)
+			description += `${student.displayName} is ${student.profile.maritalStatus}. `
 
 		description += `${student.heShe} is from ${student.profile.country} and wants to start a ${student.profile.course} course in ${student.profile.startMonthName} ${student.profile.startYear}. `
 
@@ -52,9 +61,6 @@ module.exports = {
 
 		student.profile.financialSupportPerMonth.total = sumOfValues(student.profile.financialSupportPerMonth)
 		description += ` ${student.heShe} will bring ${student.profile.financialSupportPerMonth.total} Yen per month.`
-
-		//let japaneseDescription = `${student.givenName}は${student.age}歳です. `
-		//japaneseDescription += `${student.heSheJp}は${student.country}住んでいて、${student.startYear}年${student.startMonth}月の${student.course}コースに入りたいです。`
 
 		for(let key of ['heShe', 'heSheJp', 'hisHer', 'startMonthName']) {
 			delete student[key]

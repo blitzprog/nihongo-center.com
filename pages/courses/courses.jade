@@ -23,10 +23,10 @@ else
 							each student in studentList
 								p
 									if student.countryCode
-										img(src="https://nihongo-center.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/" + student.countryCode + ".png", title=student.country)
+										img(src="https://nihongo-center.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/" + student.countryCode + ".png", title=student.profile.country)
 									
 									a(href=`/student/${student.email}`)
-										- var studentName = student.givenName + " " + student.familyName
+										- var studentName = student.profile.givenName + " " + student.profile.familyName
 										if student.stage === "declined" || student.stage === "canceled"
 											strike= studentName
 										else
