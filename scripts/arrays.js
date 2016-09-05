@@ -2,8 +2,8 @@
 window.updateContent = function(page, response) {
 	var focusedElementId = document.activeElement.id;
 
-	aero.setContent(response);
-	aero.emit('DOMContentLoaded');
+	$.setContent(response);
+	$.emit('DOMContentLoaded');
 
 	// Re-focus previously selected element
 	if(typeof focusedElementId !== "undefined")

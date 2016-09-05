@@ -1,2 +1,2 @@
-aero.fadeOutClass = 'kaze-fade-out';
-aero.fadeInClass = 'kaze-fade-in';
+$.fadeOutClass = 'kaze-fade-out';
+$.fadeInClass = 'kaze-fade-in';
