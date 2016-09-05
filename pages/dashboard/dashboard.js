@@ -29,7 +29,7 @@ exports.get = function*(request, response) {
 		'letterOfGuarantee'
 	]
 
-	let studentVisaRequired = (user.course && user.course !== '10 weeks')
+	let studentVisaRequired = (user.profile.course && user.profile.course !== '10 weeks')
 
 	if(!studentVisaRequired)
 		requiredUploads.splice(requiredUploads.indexOf('pledge'), 3)

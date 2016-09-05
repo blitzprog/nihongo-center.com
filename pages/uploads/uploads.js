@@ -59,7 +59,7 @@ module.exports = {
 
 			// Slack message
 			let user = request.user
-			let userLink = `<https://my.nihongo-center.com/student/${user.email}|${user.givenName} ${user.familyName}>`
+			let userLink = `<https://my.nihongo-center.com/student/${user.email}|${user.profile.givenName} ${user.profile.familyName}>`
 			let message = `${userLink} uploaded _${file.purpose}_: *${file.originalname}*`
 
 			sendToSlack(

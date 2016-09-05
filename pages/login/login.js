@@ -8,8 +8,8 @@ module.exports = {
 		}
 
 		response.render({
-			user: user,
-			displayName: user.givenName + ' ' + user.familyName
+			user,
+			displayName: user.profile.givenName + ' ' + user.profile.familyName
 		})
 	}
 }

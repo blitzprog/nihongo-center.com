@@ -80,7 +80,7 @@ module.exports = {
 
 		response.render({
 			user,
-			displayName: user.givenName + ' ' + user.familyName,
+			displayName: user.profile.givenName + ' ' + user.profile.familyName,
 			age: age.of(user),
 			nationalities: this.nationalities,
 			cities: this.cities,
@@ -91,7 +91,7 @@ module.exports = {
 			maritalStatusOptions: selection(__('options.maritalStatus')),
 			occupationTypeOptions: selection(__('options.occupationType')),
 			startYearOptions: selection(require('./options/startYear')()),
-			startMonthOptions: selection(require('./options/startMonth')(__, user.startYear)),
+			startMonthOptions: selection(require('./options/startMonth')(__, user.profile.startYear)),
 			portsOfEntry: selection(__('options.portOfEntry')),
 			educationOptions: selection(__('options.education')),
 			planAfterGraduationOptions: selection(__('options.planAfterGraduation')),
