@@ -51,7 +51,10 @@ exports.get = function*(request, response) {
 		}).join(', ')
 
 		let buildDataArray = function(letName, keyName, valueName, dataString) {
-			return `let ${letName} = [['${keyName}', '${valueName}'], ` + dataString + ']'
+			if(!dataString)
+				return `var ${letName} = [['${keyName}', '${valueName}']];`
+
+			return `var ${letName} = [['${keyName}', '${valueName}'], ` + dataString + '];'
 		}
 
 		let countryToStudents = buildDataArray('countryToStudents', __('country'), __('students'), pieChartData)
@@ -62,7 +65,7 @@ exports.get = function*(request, response) {
 		response.render({
 			user,
 			statistics,
-			displayName: user.givenName
+			displayName: user.profile.givenName
 		})
 	} else {
 		let allUploadsAvailable = requiredUploads.map(function(purpose) {

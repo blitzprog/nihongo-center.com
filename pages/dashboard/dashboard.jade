@@ -92,14 +92,14 @@ else
 					.glyphicon.glyphicon-education
 					span= __("course")
 				.panel-body
-					if !user.course
+					if !user.profile.course
 						p= __("error.noCourseSelected")
-					else if !user.startYear || !user.startMonth
+					else if !user.profile.startYear || !user.profile.startMonth
 						p= __("error.noStartDateSelected")
 					else
-						p!= __("courseStart", "<span class='course-name'>" + __("options.course." + user.course.replace(".", ",")) + "</span>") 
+						p!= __("courseStart", "<span class='course-name'>" + __("options.course." + user.profile.course.replace(".", ",")) + "</span>") 
 							.form-group
-								input.form-control(type="month", value=user.startYear + "-" + user.startMonth, disabled)
+								input.form-control(type="month", value=user.profile.startYear + "-" + user.profile.startMonth, disabled)
 		.col-sm-4
 			- var cssClass = "";
 			if readyToApply
@@ -121,7 +121,7 @@ else
 							p= __("contactSoon")
 					else if readyToApply
 						.text-center
-							button.btn.btn-primary(onclick="window.sendApplication('" + user.email + "', '" + user.givenName + " " + user.familyName + "');")
+							button.btn.btn-primary(onclick="window.sendApplication('" + user.email + "', '" + user.profile.givenName + " " + user.profile.familyName + "');")
 								.glyphicon.glyphicon-thumbs-up
 								span(style="margin-left: 0.4em")= __("sendApplication")
 							p

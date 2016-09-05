@@ -7,7 +7,7 @@ window.sendApplication = function(email, name) {
 		name
 	}).then(function(response) {
 		$.post('/_/', {
-			email: email
+			email
 		}).then(function() {
 			location.reload()
 		})
