@@ -1,1 +1,1 @@
-app.db.saveUser = user => app.db.set('Users', user.email, user)
+db.saveUser = user => db.set('Users', user.id, user)

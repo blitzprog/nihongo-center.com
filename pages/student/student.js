@@ -15,7 +15,7 @@ module.exports = {
 			return
 		}
 
-		let student = yield app.db.get('Users', email)
+		let student = yield db.get('Users', email)
 
 		student.age = age.of(student)
 		student.displayName = student.profile.givenName + ' ' + student.profile.familyName
@@ -122,14 +122,14 @@ module.exports = {
 
 	// Save stage
 	saveStage: function(request, response) {
-		let email = request.body.email
+		let id = request.body.id
 		let stageName = request.body.stageName
 
-		app.db.get('Users', email).then(student => {
+		db.get('Users', id).then(student => {
 			student.stage = stageName
 
 			// Save in DB
-			app.db.saveUser(student)
+			db.saveUser(student)
 
 			response.end()
 		})

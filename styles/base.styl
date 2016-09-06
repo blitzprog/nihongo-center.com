@@ -44,7 +44,7 @@ label:first-letter
 		border-radius 4px
 
 #content
-	padding-top 70px
+	//
 
 .panel-heading
 	.glyphicon
@@ -56,16 +56,41 @@ label:first-letter
 span.glyphicon
 	margin-right 0.25em
 
-.active
-	color rgb(255, 255, 128) !important
-	text-shadow 0 0 8px rgba(255, 255, 128, 0.3)
+a
+	transition all 150ms ease
 
-nav
+	&:active
+		transform translateY(3px)
+
+.navbar
+	background navBGColor
+	border-radius 0 !important
+
 	a
-		transition all 150ms ease
+		color navLinkColor
+		opacity 0.5
+		background transparent !important
 
-	a:hover
-		text-shadow 0 0 8px rgba(255, 255, 224, 0.2)
+	a:hover, a:focus, a:active
+		color navLinkColor
+		text-shadow 0 0 8px alpha(navLinkHoverColor, 20%)
+		opacity 0.85
+
+	.active
+		color navLinkActiveColor !important
+		text-shadow 0 0 8px alpha(navLinkActiveColor, 30%)
+		opacity 1.0 !important
+
+@media screen and (min-width: 774px)
+	.navbar
+		position fixed !important
+		top 0
+		left 0
+		z-index 9999
+		width 100%
+
+	#content-container
+		margin-top 20px + 50px
 
 /*input
 select

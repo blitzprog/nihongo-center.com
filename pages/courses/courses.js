@@ -1,7 +1,7 @@
 exports.get = function*(request, response) {
 	let user = request.user
 
-	let students = yield app.db.filter('Users', user => user.accessLevel === 'student')
+	let students = yield db.filter('Users', user => user.accessLevel === 'student')
 	let courses = {}
 
 	students.forEach(student => {

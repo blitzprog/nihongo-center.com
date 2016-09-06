@@ -97,7 +97,7 @@ else
 			- var currentStageReached = false;
 			
 			mixin stage(title, stageName)
-				- var saveStage = `javascript:window.saveStage('${student.email}', '${stageName}');`;
+				- var saveStage = `javascript:window.saveStage('${student.id}', '${stageName}');`;
 				if student.stage === stageName
 					a.list-group-item.list-group-item-danger
 						.glyphicon.glyphicon-refresh(style="margin-right: 0.35em")

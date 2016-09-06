@@ -30,7 +30,7 @@ else if user.isStaff
 						if stages[index]
 							each student in stages[index]
 								.student
-									a.ajax(href='/student/' + student.email)= student.profile.givenName + " " + student.profile.familyName
+									a.ajax(href='/student/' + student.id)= student.profile.givenName + " " + student.profile.familyName
 else
 	.page-header
 		h1= __("stages")

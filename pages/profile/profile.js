@@ -136,14 +136,14 @@ module.exports = {
 			user.profile.country = 'United States'
 
 		//user.application = null
-		app.db.saveUser(user)
+		db.saveUser(user)
 
 		// Render normally
 		request.user = user
 		this.get(request, response)
 
 		// Slack message
-		let userLink = `<https://my.nihongo-center.com/student/${user.email}|${user.profile.givenName} ${user.profile.familyName}>`
+		let userLink = `<https://my.nihongo-center.com/student/${user.id}|${user.profile.givenName} ${user.profile.familyName}>`
 		let message = old ?
 			`${userLink} changed _${key}_ from *${old}* to *${user[key]}*` :
 			`${userLink} added _${key}_: *${user[key]}*`
@@ -182,7 +182,7 @@ module.exports = {
 			user.profile[arrayName][index][key] = value
 		}
 
-		app.db.saveUser(user)
+		db.saveUser(user)
 
 		// Render normally
 		request.user = user
@@ -201,7 +201,7 @@ module.exports = {
 		else
 			user.profile[object][key] = value
 
-		app.db.saveUser(user)
+		db.saveUser(user)
 
 		// Render normally
 		request.user = user

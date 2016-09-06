@@ -35,7 +35,7 @@ exports.get = function*(request, response) {
 		requiredUploads.splice(requiredUploads.indexOf('pledge'), 3)
 
 	if(user.accessLevel === 'admin' || user.accessLevel === 'staff') {
-		let students = yield app.db.filter('Users', user => user.accessLevel === 'student')
+		let students = yield db.filter('Users', user => user.accessLevel === 'student')
 		let statistics = getStatistics(students)
 
 		statistics.countriesSorted = Object.keys(statistics.countries).sort(function(a, b){
@@ -96,7 +96,7 @@ exports.post = function*(request, response) {
 	}
 
 	request.user.application = (new Date()).toISOString()
-	yield app.db.saveUser(request.user)
+	yield db.saveUser(request.user)
 
 	response.end()
 }

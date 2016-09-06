@@ -18,7 +18,7 @@ exports.get = function*(request, response) {
 	}
 
 	let stages = {}
-	let students = yield app.db.filter('Users', user => user.accessLevel === 'student')
+	let students = yield db.filter('Users', user => user.accessLevel === 'student')
 
 	students.forEach(student => {
 		if(!student.application && student.stage === 'apply')

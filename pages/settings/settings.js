@@ -32,6 +32,6 @@ module.exports = {
 	saveLanguage: function(request, response) {
 		let user = request.user
 		user.language = request.body.languageCode
-		app.db.saveUser(user).then(() => response.end())
+		db.saveUser(user).then(() => response.end())
 	}
 }

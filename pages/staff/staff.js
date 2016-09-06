@@ -12,7 +12,7 @@ exports.get = function*(request, response) {
 		return
 	}
 
-	let staff = yield app.db.filter('Users', user => user.accessLevel === 'admin' || user.accessLevel === 'staff')
+	let staff = yield db.filter('Users', user => user.accessLevel === 'admin' || user.accessLevel === 'staff')
 
 	staff = staff.map(member => {
 		member.permaLink = '/student/' + member.email
@@ -32,7 +32,8 @@ exports.post = function*(request, response) {
 		return
 	}
 
-	let member = yield app.db.get('Users', request.body.email)
+	let record = yield db.get('EmailToUser', request.body.email)
+	let member = yield db.get('Users', record.userId)
 
 	if(member.data.accessLevel === 'admin') {
 		response.render()
@@ -43,7 +44,7 @@ exports.post = function*(request, response) {
 	member.data.accessLevel = 'staff'
 
 	// Save
-	yield app.db.saveUser(member)
+	yield db.saveUser(member)
 
 	// Render
 	response.render()

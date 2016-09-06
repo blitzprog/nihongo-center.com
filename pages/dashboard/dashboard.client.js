@@ -1,13 +1,13 @@
-window.sendApplication = function(email, name) {
+window.sendApplication = function(id, name) {
 	let host = 'https://my.nihongo-center.com'
 
 	$.post('/_/api/apply', {
 		host,
-		email,
+		id,
 		name
 	}).then(function(response) {
 		$.post('/_/', {
-			email
+			id
 		}).then(function() {
 			location.reload()
 		})

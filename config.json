@@ -16,7 +16,7 @@
 		"upload"
 	],
 	"database": {
-		"namespace": "ncenter"
+		"namespace": "nc"
 	},
 	"admin": {
 		"emails": [

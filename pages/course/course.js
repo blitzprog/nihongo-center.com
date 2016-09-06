@@ -3,7 +3,7 @@ exports.get = function*(request, response) {
 	let year = parseInt(request.params[0])
 	let month = parseInt(request.params[1])
 
-	let students = yield app.db.filter('Users', user => user.accessLevel === 'student')
+	let students = yield db.filter('Users', user => user.accessLevel === 'student')
 
 	let course = {
 		students: []

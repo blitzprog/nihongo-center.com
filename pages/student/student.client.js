@@ -1,9 +1,9 @@
-window.saveStage = function(email, stageName) {
-	console.log(email, stageName)
+window.saveStage = function(id, stageName) {
+	console.log(id, stageName)
 
-	$.post('/_/student/' + email, {
+	$.post('/_/student/' + id, {
 		func: 'saveStage',
-		email,
+		id,
 		stageName
 	}).then(response => {
 		location.reload()

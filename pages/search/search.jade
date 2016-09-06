@@ -21,7 +21,7 @@ else
 		each student in students
 			tr
 				td.col-md-1
-					a(href=`mailto:${student.email}`, target="_blank")
+					a(href=`mailto:${student.id}`, target="_blank")
 						.glyphicon.glyphicon-envelope
 				td.col-md-1
 					if student.countryCode

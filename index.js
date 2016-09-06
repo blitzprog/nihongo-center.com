@@ -13,7 +13,7 @@ app.sendRegistrationMessageToSlack = function(student) {
 	require('request').post({
 		url: webhook,
 		body: JSON.stringify({
-			text: '<' + host + '/student/' + student.email + '|' + student.profile.givenName + ' ' + student.profile.familyName + ' (' + student.email + ')>'
+			text: '<' + host + '/student/' + student.id + '|' + student.profile.givenName + ' ' + student.profile.familyName + ' (' + student.email + ')>'
 		}), function(err, res, body) {
 			if(err)
 				console.error(err, err.stack)
@@ -22,6 +22,8 @@ app.sendRegistrationMessageToSlack = function(student) {
 		}
 	})
 }
+
+app.on('database ready', db => global.db = db)
 
 app.use(require('body-parser').json())
 

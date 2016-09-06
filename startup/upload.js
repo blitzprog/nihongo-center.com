@@ -20,21 +20,6 @@ let storage = multer.diskStorage({
 
 app.use(multer({
 	storage,
-	/*changeDest: function(dest, req, res) {
-		if(typeof req.user === 'undefined') {
-			console.error('User is undefined on file upload')
-			return dest
-		}
-
-		let uploadPath = path.join(dest, req.user.email)
-
-		fs.ensureDirSync(uploadPath, function(error) {
-			if(error)
-				throw error
-		})
-
-		return uploadPath
-	},*/
 	limits: {
 		fileSize: 20 * megaByte,
 		files: 1,

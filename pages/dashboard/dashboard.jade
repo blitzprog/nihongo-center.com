@@ -121,7 +121,7 @@ else
 							p= __("contactSoon")
 					else if readyToApply
 						.text-center
-							button.btn.btn-primary(onclick="window.sendApplication('" + user.email + "', '" + user.profile.givenName + " " + user.profile.familyName + "');")
+							button.btn.btn-primary(onclick="window.sendApplication('" + user.id + "', '" + user.profile.givenName + " " + user.profile.familyName + "');")
 								.glyphicon.glyphicon-thumbs-up
 								span(style="margin-left: 0.4em")= __("sendApplication")
 							p

@@ -3,6 +3,9 @@ let fs = require('fs')
 let fetch = require('request-promise')
 
 let sendToSlack = function(url, message) {
+	if(!app.production)
+		return
+
 	let data = {
 		text: message
 	}
@@ -55,11 +58,11 @@ module.exports = {
 			file.dateTime = new Date()
 
 			request.user.uploads.unshift(file)
-			yield app.db.saveUser(request.user)
+			yield db.saveUser(request.user)
 
 			// Slack message
 			let user = request.user
-			let userLink = `<https://my.nihongo-center.com/student/${user.email}|${user.profile.givenName} ${user.profile.familyName}>`
+			let userLink = `<https://my.nihongo-center.com/student/${user.id}|${user.profile.givenName} ${user.profile.familyName}>`
 			let message = `${userLink} uploaded _${file.purpose}_: *${file.originalname}*`
 
 			sendToSlack(

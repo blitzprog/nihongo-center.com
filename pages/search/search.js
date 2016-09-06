@@ -28,7 +28,7 @@ exports.get = function*(request, response) {
 		return
 	}
 
-	let students = yield app.db.filter('Users', user => user.accessLevel === 'student')
+	let students = yield db.filter('Users', user => user.accessLevel === 'student')
 
 	let exactDateSearch = false
 
@@ -75,7 +75,7 @@ exports.get = function*(request, response) {
 		}
 
 		student.age = age.of(student)
-		student.permaLink = '/student/' + student.email
+		student.permaLink = '/student/' + student.id
 		student.profileCompleted = getStudentProgress(student)
 
 		if(student.profile.country) {
