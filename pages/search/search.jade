@@ -49,7 +49,7 @@ else
 				td.col-md-1
 					span= student.uploads.length
 				td.col-md-1
-					if student.application === null
-						span ❌
-					else
+					if student.application
 						span ✓
+					else
+						span ❌
