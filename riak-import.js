@@ -7,7 +7,10 @@ let db = aerospike.client({
 	namespace: 'nc'
 })
 
-let mapPhase = 'function(value) { return [JSON.parse(value.values[0].data)]; }'
+let mapPhase = {
+	language: 'javascript',
+	source: 'function(value) { return [JSON.parse(value.values[0].data)]; }'
+}
 
 const directProperties = [
 	'email',
