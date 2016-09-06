@@ -87,11 +87,24 @@ else
 							tr
 								th Field
 								th Value
-						
-						- var profileKeys = Object.keys(student.profile).sort()
-						each key in profileKeys
-							if !(keysNotRendered[key])
-								+display(key)
+						tbody
+							tr
+								td(style="width: 30%") E-Mail
+								td= student.email
+							tr
+								td(style="width: 30%") Language
+								td= student.language
+							tr
+								td(style="width: 30%") Registration date
+								td= student.registration
+							tr
+								td(style="width: 30%") Application date
+								td= student.application
+							
+							- var profileKeys = Object.keys(student.profile).sort()
+							each key in profileKeys
+								if !(keysNotRendered[key])
+									+display(key)
 			
 		.col-sm-4
 			- var currentStageReached = false;

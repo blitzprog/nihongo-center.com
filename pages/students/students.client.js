@@ -26,7 +26,7 @@ window.search = function(e) {
 		term = '*'
 
 	let $searchResult = $('searchResult')
-	$searchResult.innerHTML = '<div style="text-align: center width: 100%"><img src="/images/loading.svg" alt="Searching..."></div>'
+	$searchResult.innerHTML = '<div style="text-align: center; width: 100%"><img src="/images/loading.svg" alt="Searching..."></div>'
 
 	window.oldAjaxRequest = $.get('/_/students/search/' + term).then(function(data) {
 		$searchResult.innerHTML = data
