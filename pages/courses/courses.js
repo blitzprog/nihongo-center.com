@@ -5,7 +5,7 @@ exports.get = function*(request, response) {
 	let courses = {}
 
 	students.forEach(student => {
-		if(!student.application || student.stage === 'apply'
+		if(!student.application || student.stage === 'apply')
 			return
 
 		let startYear = parseInt(student.profile.startYear)
