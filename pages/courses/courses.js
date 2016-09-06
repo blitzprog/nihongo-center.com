@@ -1,5 +1,3 @@
-const disabledStages = ['apply', 'denied', 'canceled']
-
 exports.get = function*(request, response) {
 	let user = request.user
 
@@ -7,7 +5,7 @@ exports.get = function*(request, response) {
 	let courses = {}
 
 	students.forEach(student => {
-		if(!student.application || disabledStages.indexOf(student.stage) !== -1)
+		if(!student.application || student.stage === 'apply'
 			return
 
 		let startYear = parseInt(student.profile.startYear)
