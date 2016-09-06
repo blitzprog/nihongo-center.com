@@ -30,6 +30,7 @@ window.search = function(e) {
 
 	window.oldAjaxRequest = $.get('/_/students/search/' + term).then(function(data) {
 		$searchResult.innerHTML = data
+		$.ajaxifyLinks($searchResult)
 	})
 }
 
