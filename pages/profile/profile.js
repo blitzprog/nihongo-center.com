@@ -145,8 +145,8 @@ module.exports = {
 		// Slack message
 		let userLink = `<https://my.nihongo-center.com/student/${user.id}|${user.profile.givenName} ${user.profile.familyName}>`
 		let message = old ?
-			`${userLink} changed _${key}_ from *${old}* to *${user[key]}*` :
-			`${userLink} added _${key}_: *${user[key]}*`
+			`${userLink} changed _${key}_ from *${old}* to *${user.profile[key]}*` :
+			`${userLink} added _${key}_: *${user.profile[key]}*`
 
 		sendToSlack(
 			'https://hooks.slack.com/services/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',
