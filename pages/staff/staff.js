@@ -35,17 +35,13 @@ exports.post = function*(request, response) {
 	let record = yield db.get('EmailToUser', request.body.email)
 	let member = yield db.get('Users', record.userId)
 
-	if(member.data.accessLevel === 'admin') {
-		response.render()
+	if(member.accessLevel === 'admin') {
+		response.end()
 		return
 	}
 
-	// Modify
-	member.data.accessLevel = 'staff'
-
-	// Save
+	member.accessLevel = 'staff'
 	yield db.saveUser(member)
 
-	// Render
-	response.render()
+	response.end()
 }

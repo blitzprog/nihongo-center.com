@@ -23,7 +23,7 @@ else
 							option(value="admin", selected=(member.accessLevel === "admin")) Admin
 					
 				td.col-md-10
-					div= member.givenName + " " + member.familyName
+					div= member.profile.givenName + " " + member.profile.familyName
 	
 	if user.accessLevel === "admin"
 		.form-group

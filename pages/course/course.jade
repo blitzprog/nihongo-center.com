@@ -6,4 +6,4 @@ else
 	
 	each student in course.students
 		p
-			a(href=`/student/${student.id}`)= student.profile.givenName + " " + student.profile.familyName
+			a.ajax(href=`/student/${student.id}`)= student.profile.givenName + " " + student.profile.familyName
