@@ -17,8 +17,8 @@ const directProperties = [
 	'language',
 	'accessLevel',
 	'stage',
-	'application',
-	'registration',
+	'applicationDate',
+	'registrationDate',
 	'uploads'
 ]
 
