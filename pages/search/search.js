@@ -44,7 +44,7 @@ exports.get = function*(request, response) {
 				}
 			} else {
 				let found = searchProperties.some(function(key) {
-					let value = student[key]
+					let value = student.profile[key]
 
 					if(value === null)
 						return false
