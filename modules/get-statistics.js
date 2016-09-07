@@ -1,11 +1,17 @@
+let age = require('./age')
+
 module.exports = function(students) {
 	let countries = {}
 	let gender = {
 		male: 0,
 		female: 0
 	}
+	let ageGroups = {}
 
 	students.forEach(function(student) {
+		if(student.stage === 'apply' || student.stage === 'declined' || student.stage === 'canceled')
+			return
+
 		// Country
 		if(student.profile.country && student.profile.country.length > 1) {
 			if(student.profile.country === 'America')
@@ -15,6 +21,18 @@ module.exports = function(students) {
 				countries[student.profile.country] += 1
 			else
 				countries[student.profile.country] = 1
+		}
+
+		// Age
+		if(student.profile.birthDay) {
+			student.age = age.of(student)
+			if(isNaN(student.age) || student.age <= 10 || student.age >= 120)
+				return
+
+			if(ageGroups[student.age])
+				ageGroups[student.age] += 1
+			else
+				ageGroups[student.age] = 1
 		}
 
 		// Gender
@@ -42,6 +60,7 @@ module.exports = function(students) {
 		applicantsRejected,
 		applicantsRemaining,
 		countries,
-		gender
+		gender,
+		ageGroups
 	}
 }

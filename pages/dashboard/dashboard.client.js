@@ -36,6 +36,7 @@ if(isStaff) {
 
 		drawGraph(countryToStudents, 'countryChart', google.visualization.GeoChart)
 		drawGraph(genderToStudents, 'genderChart', google.visualization.PieChart)
+		drawGraph(ageToStudents, 'ageChart', google.visualization.BarChart)
 	}
 
 	let addGoogleScript = function() {

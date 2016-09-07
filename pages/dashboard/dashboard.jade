@@ -30,14 +30,22 @@ else if user.accessLevel === "admin" || user.accessLevel === "staff"
 						.panel-body
 							#genderChart
 			
-			if statistics.countries
-				.col-sm-8
+			.col-sm-8
+				if statistics.countries
 					.panel.panel-default
 						.panel-heading: h1
 							.glyphicon.glyphicon-globe
 							span= __("countries")
 						.panel-body
 							#countryChart
+
+				if statistics.ageGroups
+					.panel.panel-default
+						.panel-heading: h1
+							.glyphicon.glyphicon-stats
+							span= __("age")
+						.panel-body
+							#ageChart
 			
 else
 	mixin upload(purpose)

@@ -38,16 +38,16 @@ exports.get = function*(request, response) {
 		let students = yield db.filter('Users', user => user.accessLevel === 'student')
 		let statistics = getStatistics(students)
 
-		statistics.countriesSorted = Object.keys(statistics.countries).sort(function(a, b){
-			return statistics.countries[b] - statistics.countries[a]
-		})
-
-		let pieChartData = statistics.countriesSorted.map(function(country) {
+		let pieChartData =  Object.keys(statistics.countries).map(function(country) {
 			return '[\'' + country + '\', ' + statistics.countries[country] + ']'
 		}).join(', ')
 
 		let genderData = Object.keys(statistics.gender).map(function(gender) {
 			return '[\'' + gender + '\', ' + statistics.gender[gender] + ']'
+		}).join(', ')
+
+		let ageData = Object.keys(statistics.ageGroups).map(function(age) {
+			return '[\'' + age + '\', ' + statistics.ageGroups[age] + ']'
 		}).join(', ')
 
 		let buildDataArray = function(letName, keyName, valueName, dataString) {
@@ -59,8 +59,9 @@ exports.get = function*(request, response) {
 
 		let countryToStudents = buildDataArray('countryToStudents', __('country'), __('students'), pieChartData)
 		let genderToStudents = buildDataArray('genderToStudents', __('gender'), __('students'), genderData)
+		let ageToStudents = buildDataArray('ageToStudents', __('age'), __('students'), ageData)
 
-		statistics.script = countryToStudents + genderToStudents
+		statistics.script = countryToStudents + genderToStudents + ageToStudents
 
 		response.render({
 			user,
