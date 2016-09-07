@@ -34,4 +34,4 @@ window.search = function(e) {
 	})
 }
 
-window.search('force-search')
+$('search').focus()

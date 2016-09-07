@@ -2,11 +2,6 @@ doctype html
 html(lang='en')
 	head
 		title= app.config.title
-		
-		if user && (user.accessLevel === 'admin' || user.accessLevel === 'staff')
-			script(src='https://www.google.com/jsapi')
-			script google.load('visualization', '1', {packages:['corechart']});
-		
 		link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css')
 	
 	if user

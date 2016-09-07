@@ -70,6 +70,9 @@ exports.get = function*(request, response) {
 					found = (student.profile.familyName + ' ' + student.profile.givenName).toLowerCase().indexOf(term) !== -1
 
 				if(!found)
+					found = (student.email.indexOf(term) !== -1) || (student.profile.contactEmail.indexOf(term) !== -1)
+
+				if(!found)
 					return null
 			}
 		}
@@ -105,8 +108,8 @@ exports.get = function*(request, response) {
 		return registeredFactor + courseFactor * 2 + progressFactor * 4 + appliedFactor * 8
 	})
 
-	if(students.length > 150)
-		students.length = 150
+	// if(students.length > 150)
+	// 	students.length = 150
 
 	response.render({
 		user,

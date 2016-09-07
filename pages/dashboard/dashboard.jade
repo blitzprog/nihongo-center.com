@@ -1,9 +1,7 @@
 if !user
 	p= __("error.notLoggedIn")
 else if user.accessLevel === "admin" || user.accessLevel === "staff"
-	script!= statistics.script
-	script
-		include google-charts.js
+	script#statistics!= statistics.script
 	
 	.jumbotron.dashboard-header
 		h1= __("staffView.greeting.title", displayName)
