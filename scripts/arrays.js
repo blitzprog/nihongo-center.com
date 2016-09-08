@@ -6,8 +6,16 @@ window.updateContent = function(page, response) {
 	$.emit('DOMContentLoaded')
 
 	// Re-focus previously selected element
-	if(typeof focusedElementId !== 'undefined')
-		$(focusedElementId).focus()
+	if(focusedElementId) {
+		let focusedElement = $(focusedElementId)
+
+		if(focusedElement) {
+			if(focusedElement.focus)
+				focusedElement.focus()
+			if(focusedElement.select)
+				focusedElement.select()
+		}
+	}
 
 	// Remove from cache
 	//delete kaze.cache[page]

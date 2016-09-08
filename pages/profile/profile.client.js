@@ -1,5 +1,10 @@
 // Save
 window.save = function() {
+	if(window.disableSave)
+		return
+
+	window.disableSave = true
+
 	let page = 'profile'
 	let key = this.name
 	let value = this.value
@@ -20,11 +25,17 @@ window.save = function() {
 	}).then(function(response) {
 		window.updateContent(page, response)
 		$.fadeOut($('loading-animation'))
+		window.disableSave = false
 	})
 }
 
 // Save array element
 window.saveArrayElement = function() {
+	if(window.disableSave)
+		return
+
+	window.disableSave = true
+
 	let page = 'profile'
 	let array = this.dataset.array
 	let index = this.dataset.index
@@ -49,11 +60,17 @@ window.saveArrayElement = function() {
 	}).then(function(response) {
 		window.updateContent(page, response)
 		$.fadeOut($('loading-animation'))
+		window.disableSave = false
 	})
 }
 
 // Save object
 window.saveObject = function() {
+	if(window.disableSave)
+		return
+
+	window.disableSave = true
+
 	let page = 'profile'
 	let object = this.dataset.object
 	let key = this.dataset.key
@@ -76,6 +93,7 @@ window.saveObject = function() {
 	}).then(function(response) {
 		window.updateContent(page, response)
 		$.fadeOut($('loading-animation'))
+		window.disableSave = false
 	})
 }
 
