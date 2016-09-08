@@ -60,6 +60,7 @@ app.auth.facebook = {
 			})
 
 			console.log(`New user logged in: ${chalk.yellow(user.profile.givenName)} ${chalk.yellow(user.profile.familyName)} (${user.email}) | ID ${user.id}`)
+			app.sendRegistrationMessageToSlack(user)
 
 			return user
 		}
