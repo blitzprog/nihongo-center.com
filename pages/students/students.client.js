@@ -26,11 +26,13 @@ window.search = function(e) {
 		term = '*'
 
 	let $searchResult = $('searchResult')
-	$searchResult.innerHTML = '<div style="text-align: center; width: 100%"><img src="/images/loading.svg" alt="Searching..."></div>'
+	$searchResult.innerHTML = `<div style="width: 100%; text-align: center;">Searching for: <strong>${term}</strong></div>`
+	$.fadeIn($('loading-animation'))
 
 	window.oldAjaxRequest = $.get('/_/students/search/' + term).then(function(data) {
 		$searchResult.innerHTML = data
 		$.ajaxifyLinks($searchResult)
+		$.fadeOut($('loading-animation'))
 	})
 }
 
