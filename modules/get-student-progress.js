@@ -1,4 +1,4 @@
-let notRequiredFields = [
+const notRequiredFields = [
 	'email',
 	'accessLevel',
 	'stage',
@@ -13,14 +13,15 @@ let notRequiredFields = [
 	'registration',
 	'application'
 ]
-let atLeastOneElement = [
+const atLeastOneElement = [
 	'familyMembers',
 	'financialSupporters'
 ]
+const fields = Object.keys(require('../data/user-data').profile)
 
 module.exports = function(user, missingFields) {
 	let progress = 0
-	let fields = Object.keys(user.profile)
+
 
 	// Prevent division by zero
 	if(fields.length !== 0) {

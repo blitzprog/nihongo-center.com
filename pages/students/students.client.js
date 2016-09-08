@@ -36,6 +36,9 @@ window.search = function(e) {
 		$searchResult.innerHTML = data
 		$.ajaxifyLinks($searchResult)
 		$.fadeOut($('loading-animation'))
+
+		let numStudents = $searchResult.getElementsByTagName('tr').length
+		$('search-result-count').textContent = `${numStudents} students`
 	})
 }
 
