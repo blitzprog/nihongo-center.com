@@ -81,6 +81,13 @@ exports.get = function*(request, response) {
 		student.permaLink = '/student/' + student.id
 		student.profileCompleted = getStudentProgress(student)
 
+		if(student.profile.gender === 'male')
+			student.genderIcon = '♂'
+		else if(student.profile.gender === 'female')
+			student.genderIcon = '♀'
+		else
+			student.genderIcon = ''
+
 		if(student.profile.country) {
 			let countryObject = lookup.countries({name: student.profile.country})[0]
 			if(countryObject)

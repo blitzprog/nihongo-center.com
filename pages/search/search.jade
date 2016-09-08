@@ -1,44 +1,46 @@
 if !user
-	p= __("error.notLoggedIn")
-else if typeof students === "undefined"
-	p= __("error.notAuthorized")
+	p= __('error.notLoggedIn')
+else if typeof students === 'undefined'
+	p= __('error.notAuthorized')
 else if students.length === 0
-	p= __("error.noStudents")
+	p= __('error.noStudents')
 else
 	table.table.table-condensed
 		thead
 			tr
-				th= __("mail")
-				th= __("country")
-				th= __("name")
-				th= __("progress")
-				th= __("course")
-				th= __("duration")
-				th= __("profile")
-				th= __("uploads")
-				th= __("applied")
+				th= __('mail')
+				th= __('country')
+				th= __('name')
+				th= __('progress')
+				th= __('course')
+				th= __('duration')
+				th= __('profile')
+				th= __('uploads')
+				th= __('applied')
 		
 		each student in students
 			tr
 				td.col-md-1
-					a(href=`mailto:${student.email || student.profile.contactEmail}`, target="_blank")
+					a(href=`mailto:${student.email || student.profile.contactEmail}`, target='_blank')
 						.glyphicon.glyphicon-envelope
 				td.col-md-1
 					if student.countryCode
-						//- "https://flags.fmcdn.net/data/flags/mini/"
-						img(src="https://nihongo-center.com/images/flags/" + student.countryCode + ".png", title=student.country)
+						//- 'https://flags.fmcdn.net/data/flags/mini/'
+						img.flag(src='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.4.0/flags/4x3/' + student.countryCode + '.svg', title=student.country)
 				td.col-md-3
 					a.ajax(href=student.permaLink)
-						- var studentName = student.profile.givenName + " " + student.profile.familyName
-						if student.stage === "declined" || student.stage === "canceled"
+						- var studentName = student.profile.givenName + ' ' + student.profile.familyName
+						if student.stage === 'declined' || student.stage === 'canceled'
 							strike= studentName
 						else
 							span= studentName
+						
+					.asl= `${student.genderIcon} ${student.age}`
 				td.col-md-3
-					p= __("stageList." + student.stage)
+					p= __('stageList.' + student.stage)
 				td.col-md-2
 					.form-group
-						input.form-control(type="month", value=student.profile.startYear + "-" + student.profile.startMonth, disabled)
+						input.form-control(type='month', value=student.profile.startYear + '-' + student.profile.startMonth, disabled)
 					
 				td.col-md-1
 					span= student.profile.course

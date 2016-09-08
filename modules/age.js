@@ -10,6 +10,7 @@ module.exports = {
 	getAge: function(d1, d2) {
 		d2 = d2 || new Date()
 		let diff = d2.getTime() - d1.getTime()
-		return Math.floor(diff / year)
+		let age = Math.floor(diff / year)
+		return isNaN(age) ? '-' : age
 	}
 }

@@ -1,3 +1,5 @@
+let inputField = $('search')
+
 window.oldTerm = null
 window.oldAjaxRequest = null
 
@@ -12,13 +14,14 @@ window.search = function(e) {
 			return
 	}
 
-	let term = $('search').value
+	let term = inputField.value
 
 	// Don't repeat the same search
 	if(term === window.oldTerm)
 		return
 
 	window.oldTerm = term
+	localStorage.searchTerm = term
 
 	let queryUrl = ''
 
@@ -36,4 +39,9 @@ window.search = function(e) {
 	})
 }
 
-$('search').focus()
+if(localStorage.searchTerm)
+	inputField.value = localStorage.searchTerm
+
+inputField.focus()
+if(inputField.value)
+	window.search('force-search')
