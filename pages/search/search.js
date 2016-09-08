@@ -36,11 +36,11 @@ exports.get = function*(request, response) {
 		exactDateSearch = true
 	}
 
-	students = students.map(student => {
+	students = students.filter(student => {
 		if(term !== '*') {
 			if(exactDateSearch) {
 				if(!student.profile.startMonth || !student.profile.startYear || student.profile.startMonth + '-' + student.profile.startYear !== term) {
-					return null
+					return false
 				}
 			} else {
 				let found = searchProperties.some(function(key) {
@@ -73,7 +73,7 @@ exports.get = function*(request, response) {
 					found = (student.email.indexOf(term) !== -1) || (student.profile.contactEmail.indexOf(term) !== -1)
 
 				if(!found)
-					return null
+					return false
 			}
 		}
 
@@ -87,29 +87,10 @@ exports.get = function*(request, response) {
 				student.countryCode = countryObject.alpha2.toLowerCase()
 		}
 
-		return student
-	}).filter(student => {
-		return student !== null
+		return true
 	})
 
-	students.sort((a, b) => {
-		let appliedFactor = (b.application !== null) - (a.application !== null)
-		let progressFactor = b.profileCompleted - a.profileCompleted
-		let registeredFactor = Math.sign(Date.parse(b.registration) - Date.parse(a.registration))
-		let courseFactor = 0
-
-		if(a.profile.startYear && b.profile.startYear) {
-			if(b.profile.startYear === a.profile.startYear && a.profile.startMonth && b.profile.startMonth)
-				courseFactor = Math.sign(parseInt(a.profile.startMonth) - parseInt(b.profile.startMonth))
-			else
-				courseFactor = Math.sign(parseInt(a.profile.startYear) - parseInt(b.profile.startYear))
-		}
-
-		return registeredFactor + courseFactor * 2 + progressFactor * 4 + appliedFactor * 8
-	})
-
-	// if(students.length > 150)
-	// 	students.length = 150
+	students.sort((a, b) => b.profileCompleted - a.profileCompleted)
 
 	response.render({
 		user,
