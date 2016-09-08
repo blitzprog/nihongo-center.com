@@ -10,6 +10,8 @@ window.save = function() {
 		dataType = 'numeric'
 	}
 
+	$.fadeIn($('loading-animation'))
+
 	$.post('/_/' + page, {
 		func: 'saveProfile',
 		key: key,
@@ -17,6 +19,7 @@ window.save = function() {
 		dataType: dataType
 	}).then(function(response) {
 		window.updateContent(page, response)
+		$.fadeOut($('loading-animation'))
 	})
 }
 
@@ -34,6 +37,8 @@ window.saveArrayElement = function() {
 		dataType = 'numeric'
 	}
 
+	$.fadeIn($('loading-animation'))
+
 	$.post('/_/' + page, {
 		func: 'saveArrayElement',
 		array,
@@ -43,6 +48,7 @@ window.saveArrayElement = function() {
 		dataType
 	}).then(function(response) {
 		window.updateContent(page, response)
+		$.fadeOut($('loading-animation'))
 	})
 }
 
@@ -59,6 +65,8 @@ window.saveObject = function() {
 		dataType = 'numeric'
 	}
 
+	$.fadeIn($('loading-animation'))
+
 	$.post('/_/' + page, {
 		func: 'saveObject',
 		object: object,
@@ -67,6 +75,7 @@ window.saveObject = function() {
 		dataType: dataType
 	}).then(function(response) {
 		window.updateContent(page, response)
+		$.fadeOut($('loading-animation'))
 	})
 }
 

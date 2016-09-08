@@ -14,13 +14,20 @@ loadingColor = rgb(255, 32, 32)
 .cube1, .cube2
 	background-color loadingColor
 	box-shadow 0 0 8px loadingColor
-	width 10px
-	height 10px
+	width 16px
+	height 16px
 	position absolute
 	top 0
 	left 0
 	animation cubemove duration infinite ease-in-out
 	-webkit-animation cubemove duration infinite ease-in-out
+
+	// Text
+	color white
+	font-size 1rem
+	display flex
+	justify-content center
+	align-items center
 
 .cube2
 	animation-delay -(duration / 2)

@@ -5,6 +5,7 @@
 	"dependencies": {
 		"aero": "*",
 		"aero-ajax": "*",
+		"aero-git": "*",
 		"aero-aerospike": "*",
 		"aero-auth": "*",
 		"aero-auth-google": "*",
