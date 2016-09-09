@@ -50,7 +50,7 @@ module.exports = {
 		else if(student.profile.maritalStatus)
 			description += `${student.displayName} is ${student.profile.maritalStatus}. `
 
-		description += `${student.heShe} is from ${student.profile.country} and wants to start a ${student.profile.course} course in ${student.profile.startMonthName} ${student.profile.startYear}. `
+		description += `${student.heShe} is from ${student.profile.country} and wants to start a ${student.profile.course} course in ${student.startMonthName} ${student.profile.startYear}. `
 
 		if(student.profile.familyMembers.length === 0)
 			description += `${student.heShe} has no family members.`
