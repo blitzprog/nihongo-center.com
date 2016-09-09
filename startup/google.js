@@ -31,7 +31,7 @@ app.auth.google = {
 			let user = Object.assign({}, defaultUserData, {
 				id,
 				email,
-				language: google.language,
+				language: google.language || '',
 				registration: (new Date()).toISOString(),
 				accounts: {
 					google: google.id

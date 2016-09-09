@@ -34,7 +34,7 @@ app.auth.facebook = {
 			let user = Object.assign({}, defaultUserData, {
 				id,
 				email,
-				language: fb.locale,
+				language: fb.locale || '',
 				registration: (new Date()).toISOString(),
 				accounts: {
 					facebook: fb.id
