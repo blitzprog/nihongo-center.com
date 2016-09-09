@@ -17,6 +17,9 @@ else
 		h1
 			span.glyphicon.glyphicon-user(style="margin-right: 0.25em")
 			span= student.displayName
+			button.btn.btn-default.view-as-button(onclick=`viewAs('${student.id}')`)
+				span.glyphicon.glyphicon-eye-open
+				span View as
 			if country
 				a(href="#country")
 					img(src="https://flags.fmcdn.net/data/flags/small/" + country.alpha2.toLowerCase() + ".png", style="float: right", height=48, alt=country.name, title=country.name)

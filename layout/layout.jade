@@ -43,8 +43,15 @@ html(lang='en')
 											.navigation-button
 												div(class='glyphicon glyphicon-eject')
 												span(style='margin-left: 0.4em')= __('logout')
-			
+							
+				
 				#content-container.container
+					if user.viewedBy
+						.viewed-by.breadcrumb
+							a.viewer(href=`javascript:viewAs('')`)= `${user.viewedBy.profile.givenName} ${user.viewedBy.profile.familyName}`
+							span  viewing 
+							span.viewed= `${user.profile.givenName} ${user.profile.familyName}`
+					
 					main#content.kaze-fade!= content
 				
 				#loading-animation.spinner.kaze-fade
