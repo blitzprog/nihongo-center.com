@@ -38,6 +38,17 @@ exports.get = function*(request, response) {
 		}
 	})
 
+	for(let year of Object.keys(courses)) {
+		for(let month of Object.keys(courses[year])) {
+			courses[year][month].sort((a, b) => {
+				if(a.countryCode === undefined)
+					return 1
+
+				return a.countryCode.localeCompare(b.countryCode)
+			})
+		}
+	}
+
 	response.render({
 		user,
 		courses
