@@ -18,16 +18,18 @@ else
 							h3
 								span.glyphicon.glyphicon-calendar
 								a(href="/course/" + year + "/" + month)= __("monthNames." + month)
+								span.badge.course-student-count= studentList.length
 						
 						.panel-body
-							each student in studentList
-								p
-									if student.countryCode
-										img(src="https://nihongo-center.com/wp-content/plugins/sitepress-multilingual-cms/res/flags/" + student.countryCode + ".png", title=student.profile.country)
-									
-									a.ajax(href=`/student/${student.id}`)
-										- var studentName = student.profile.givenName + " " + student.profile.familyName
-										if student.stage === "declined" || student.stage === "canceled"
-											strike= studentName
-										else
-											span= studentName
+							.student-list
+								each student in studentList
+									p.student
+										if student.countryCode
+											img.flag(src='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.4.0/flags/4x3/' + student.countryCode + '.svg')
+										
+										a.ajax(href=`/student/${student.id}`)
+											- var studentName = student.profile.givenName + " " + student.profile.familyName
+											if student.stage === "declined" || student.stage === "canceled"
+												strike= studentName
+											else
+												span= studentName
